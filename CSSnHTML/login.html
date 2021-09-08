@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        /* li 초기화 */
+        li{
+            list-style:none;
+        }
+        /* 버튼 */
+        button{
+            border: none;
+            font-weight: bold;
+        }
+
+
+        .login-main-div{
+            text-align: center;
+            margin: 100px 25%;
+            width: 50%;
+            border: 2px solid rgb(94, 94, 94);
+        }
+        .login-main-div input, .login-main-div select{
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            height: 40px;
+        }
+        .login-main-div button{
+            margin: 10px 0;
+            width: 50%;
+            height: 60px;
+            font-size: 24px;
+        }
+        .login-change-mode{
+            width: 49%;
+            height: 60px;
+            font-size: 24px;
+            padding: 18px 0;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .login-change-div > li > ul{
+            background: lightgray;
+            border-bottom: 1px solid rgb(94, 94, 94);
+        }
+        .login-change-div .login-active{
+            background: white;
+            border-bottom: none;
+        }
+        .login-change-div .login-left-inactive{
+            border-right: 1px solid rgb(94, 94, 94);
+        }
+        .login-change-div .login-right-inactive{
+            border-left: 1px solid rgb(94, 94, 94);
+        }
+        .login-input-div > div{
+            padding: 10px;
+            display: none;
+        }
+        .login-input-div .login-active{
+            display: block;
+        }
+    </style>
+    <!-- 제이쿼리 임시 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
+</head>
+<body>
+    
+    <div class="login-main-div">
+        <div class="login-change-div">
+            <li>
+                <ul id="login-user-login-modifier" class="login-change-mode login-active">ID 로그인</ul>
+                <ul id="login-nonuser-login-modifier" class="login-change-mode login-right-inactive">비회원</ul>
+            </li>
+        </div>
+        <div class="login-input-div">
+            <!-- 회원 로그인 -->
+            <div id="login-user-login-input" class="login-active">
+                <form action="#">
+                    <input type="text" placeholder="아이디" name=""><br>
+                    <input type="password" placeholder="비밀번호" name=""><br>
+                    
+                    <button type="submit" class="color-darkskyblue">로그인</button>
+                </form>
+            </div>
+            <!-- 비회원 로그인 -->
+            <div id="login-nonuser-login-input">
+                <form action="#">
+                    <input type="text" placeholder="이름" name=""><br>
+                    <input type="text" placeholder="전화번호" name=""><br>
+                    
+                    <button type="submit" class="color-darkskyblue">로그인</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // 회원로그인, 비회원 로그인 전환
+    const $user_login_modifier = $('#login-user-login-modifier');
+    const $nonuser_login_modifier = $('#login-nonuser-login-modifier');
+    const $user_login_input = $('#login-user-login-input');
+    const $nonuser_login_input = $('#login-nonuser-login-input');
+    
+    $user_login_modifier.click(function(){
+        if(! $user_login_modifier.hasClass('login-active')){
+            $user_login_modifier.toggleClass('login-active');
+            $nonuser_login_modifier.toggleClass('login-active');
+            $user_login_modifier.toggleClass('login-left-inactive');
+            $nonuser_login_modifier.toggleClass('login-right-inactive');
+            $user_login_input.toggleClass('login-active');
+            $nonuser_login_input.toggleClass('login-active')
+        }
+    });
+
+    $nonuser_login_modifier.click(function(){
+        if(! $nonuser_login_modifier.hasClass('login-active')){
+            $user_login_modifier.toggleClass('login-active');
+            $nonuser_login_modifier.toggleClass('login-active');
+            $user_login_modifier.toggleClass('login-left-inactive');
+            $nonuser_login_modifier.toggleClass('login-right-inactive');
+            $user_login_input.toggleClass('login-active');
+            $nonuser_login_input.toggleClass('login-active')
+        }
+    });
+</script>
+</html>
