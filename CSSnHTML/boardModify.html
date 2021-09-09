@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .boardModify-main-div{
+            min-width: 400px;
+            text-align: center;
+        }
+        .boardModify-sub-div{
+            margin: 100px 25%;
+            width: 50%;
+            text-align: left;
+        }
+        #boardModify-title{
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .boardModify-form-div{
+            margin: 10px 0;
+        }
+        .boardModify-form-div > *{
+            margin: 5px 0;
+            padding: 5px;
+        }
+        .boardModify-form-div > input{
+            height: 30px;
+            width: 50%;
+            min-width: 160px;
+        }.boardModify-form-div > select{
+            height: 30px;
+        }
+        .boardModify-form-content-div{
+            background: rgb(231, 231, 231);
+            text-align: center;
+            padding: 10%;
+        }
+        .boardModify-fileupload-div{
+            padding: 0;
+        }
+        .boardModify-fileupload-div label{
+            display: inline-block;
+            padding: 0 10px;
+            margin: 5px 0;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            background: rgb(52, 152, 219);
+            border-radius: .25em;
+        }
+        .boardModify-fileupload-div input[type="file"] {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip:rect(0,0,0,0);
+            border: 0;
+        }
+        .boardModify-fileupload-div .boardModify-uploaded-file-name{
+            display: inline-block;
+            padding: 0 5px;
+            margin: 5px 0 5px 10px;
+            height: 30px;
+            line-height: 30px;
+            background-color: white;
+            border: 1px solid #e2e2e2;
+            border-radius: .25em;
+            -webkit-appearance: none; /* safari, chrome */
+            -moz-appearance: none; /* firefox */
+            appearance: none;
+        }
+        .boardModify-button-div{
+            text-align: right;
+        }
+        .boardModify-button-div > button{
+            margin: 10px 0 0 10px;
+            padding: 0 20px;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+            background: rgb(231, 231, 231);
+            color: rgb(52, 152, 219);
+        }
+    </style>
+</head>
+<body>
+    <div class="boardModify-main-div">
+        <div class="boardModify-sub-div">
+            <div id="boardModify-title">
+                게시글 등록
+            </div>
+            <form action="#">
+                <hr>
+                <div class="boardModify-form-div">               
+                    <select name="" id="">
+                        <option value="">카테고리</option>
+                        <option value="">카테고리</option>
+                        <option value="">카테고리</option>
+                        <option value="">카테고리</option>
+                    </select><br>
+                    <input type="text" placeholder="제목 입력">
+                    <div class="boardModify-form-content-div">
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    <!-- 파일 업로드 여부에 따라 파일 명 뜨도록 처리 필요. -->
+                    <div class="boardModify-fileupload-div">
+                        <!-- 다수 이미지 업로드 가능하도록 처리 필요. -->
+                        <label for="boardModify-image-upload">이미지 등록</label>
+                        <input type="file" id="boardModify-image-upload">
+                        <input class="boardModify-uploaded-file-name" placeholder="이미지" disabled="disabled">  
+                        <br>
+                        <label for="boardModify-video-upload">동영상 등록</label>
+                        <input type="file" id="boardModify-video-upload">
+                        <input class="boardModify-uploaded-file-name" placeholder="동영상" disabled="disabled">        
+                    </div>
+                </div>
+                <hr>
+                <div class="boardModify-button-div">
+                    <button type="button">목록</button>
+                    <button type="submit">등록</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
