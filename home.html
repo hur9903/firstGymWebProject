@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            text-align: center;
+        }
+        .title {
+            position: relative;
+        }
+        .bar {
+            text-align: center; 
+            background-color: aqua;          
+        }
+        .bar ul{
+            list-style: none;
+            display: flex;
+        }
+        .bar ul li {
+            margin: auto;
+        }
+        .join {
+            position: absolute;        
+            list-style: none;
+            left: 1000px;
+            bottom: 10px;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+            outline: none;
+        }
+        .bestboard {
+            float: left;
+        }
+        .recentboard {
+            float: right;
+        }
+        .homeboard ul {
+            background-color: aqua;
+        }
+        .footerhr {
+            clear: both;
+        }
+        .homegigu ul li {
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+            <div class='title'>
+                <h1>FIRST GYM</h1>
+                <div class="join">
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                </div>
+            </div>
+            <nav class='bar'>
+                <ul>
+                    <li><a href="#">MBI 검사</a></li>
+                    <li><a href="#">운동기구</a></li>
+                    <li><a href="#">게시판</a></li>
+                    <li><a href="#">마이페이지</a></li>
+                    <li><a href="#">문의하기</a></li>
+                </ul>
+            </nav>          
+    </header>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/QH2-TGUlwu4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <hr color="aqua" size="10px">
+    <div class="homeboard">
+        <div class="bestboard">
+            <h5 style="float: left;">인기 게시글</h5>
+            <h5 style="float: right;"><a href='#'>더보기</a></h5>
+            <ul style="clear: both;">
+                <li><a href='#'>인기글1&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><a href='#'>인기글2&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><a href='#'>인기글3&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><a href='#'>인기글4&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><a href='#'>인기글5&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+            </ul>
+        </div>
+        <div class="recentboard">
+            <h5 style="float: left;">최신 게시글</h5>
+            <h5 style="float: right;"><a href='#'>더보기</a></h5>
+            <ul style="clear: both;">
+                <li><a href='#'>최신글1&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><a href='#'>최신글2&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><a href='#'>최신글3&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><a href='#'>최신글4&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><a href='#'>최신글5&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr style="clear: both;">
+    <div class="homegigu">
+        <h5 style="float: left;">인기 기구</h5>
+        <h5 style="float: right;"><a href='#'>더보기</a></h5>
+        <ul style="clear: both; display: flex;">
+            <li>
+                <a href="#">
+                <div>
+                    <img src="img1" alt="기구1">
+                    <h5 style="float: left;">기구명</h5>
+                    <h5 style="float: right;">가격</h5>
+                </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                <div>
+                    <img src="img2" alt="기구2">
+                    <h5 style="float: left;">기구명</h5>
+                    <h5 style="float: right;">가격</h5>
+                </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                <div>
+                    <img src="img3" alt="기구3">
+                    <h5 style="float: left;">기구명</h5>
+                    <h5 style="float: right;">가격</h5>
+                </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                <div>
+                    <img src="img4" alt="기구4">
+                    <h5 style="float: left;">기구명</h5>
+                    <h5 style="float: right;">가격</h5>
+                </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <hr class="footerhr" color="aqua" size="10px">
+    <footer>
+        <h1>푸터</h1>
+    </footer>
+</body>
+</html>
