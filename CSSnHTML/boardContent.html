@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    
+    <style>
+        /* clearfix */
+        .boardContent-clearfix::after{
+            display: block;
+            content: '';
+            clear: both;
+        }
+
+        /* 버튼 */
+        .boardContent-btn-small{
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 12px;
+            height: 20px;
+            line-height: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+        }
+        .boardContent-color-white{
+            color: white;
+        }
+        .boardContent-color-black{
+            color: black;
+        }
+        .boardContent-btn-big{
+            padding: 0 20px;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+            color: white;
+        }
+        .boardContent-btn-heart{
+            padding: 0 20px;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+            border: 1px solid crimson;
+            color: darkred;
+        }
+
+        /* 위 아래 패딩, 마긴 */
+        .boardContent-updonw-padding-div{
+            padding: 10px 0;
+        }
+        .boardContent-updonw-margin-div{
+            margin: 10px 0;
+        }
+
+        /* 이미지 */
+        .boardContent-img{ 
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .boardContent-img img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate(50, 50);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            margin: auto;
+        }
+        .boardContent-main-div{
+            min-width: 800px;
+            text-align: center;
+        }
+        .boardContent-sub-div{
+            min-width: 400px;
+            margin: 100px 25%;
+            width: 50%;
+            text-align: left;
+        }
+        #boardContent-page-title{
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .boardContent-content-main-div{
+            background: rgb(231, 231, 231);
+            padding: 20px;
+            margin-top: 5px;
+        }
+        .boardContent-float-left{
+            float: left;
+        }
+        .boardContent-float-right{
+            float: right;
+        }
+        .boardContent-content-area-div{
+            position: relative;
+            padding: 10px;
+            background: white;
+            border: 1px solid lightgray;
+            min-height: 300px;
+        }
+        .boardContent-content-area-div button{
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+        }
+        .boardContent-report-btn-div{
+            height: 30px;
+        }
+        .boardContent-reply-area-div input{
+            padding: 5px;
+            width: 80%;
+        }
+        .boardContent-each-reply-div{
+            background: white;
+            width: 80%;
+        }
+        .boardContent-each-reply-div > *{
+            padding: 5px;
+        }
+        .boardContent-btn-heart{
+            padding: 5px;
+            width: 60px;
+        }
+        .boardContent-btn-heart img{
+            width: 20px;
+        }
+        .boardContent-carousel-div{
+            text-align: center;
+        }
+        .boardContent-images-div{
+            width: 85%;
+            overflow: hidden;
+            border: 2px solid gray;
+            background: darkgray;
+            border-radius: .25em;
+        }
+        .boardContent-images-div li{
+            list-style:none;
+            width: max-content;
+            text-align: center;
+        }
+        .boardContent-images-div ul{
+            display: inline-block;
+            margin: 0 10px;
+            padding: 5px;
+            background: black;
+            border: 1px solid gray;
+        }
+        .boardContent-carousel-div div{
+            display: inline-block;
+        }
+        .boardContent-arrow{
+            width: 4%;
+            height: 220px;
+            color: white;
+            border-radius: .25em;
+            line-height: 220px;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="boardContent-main-div">
+        <div class="boardContent-sub-div">
+            <div id="boardContent-page-title">
+                게시글 상세보기
+            </div>
+            <div class="boardContent-content-main-div">
+                <hr>
+                <div class="boardContent-updonw-padding-div boardContent-clearfix">
+                    <div class="boardContent-float-left">
+                        <button class="color-darkskyblue boardContent-btn-big">목록</button>
+                    </div>
+                    <div class="boardContent-float-right">
+                        <button class="color-darkskyblue boardContent-btn-big">수정</button>
+                        <button class="color-gray boardContent-btn-big">삭제</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="boardContent-updonw-padding-div boardContent-clearfix">
+                    <div class="boardContent-float-left">
+                        [카테고리] 제목
+                    </div>
+                    <div class="boardContent-float-right">
+                        <!-- 클릭 시 하트 이미지 바꾸고 좋아요 수 비동기 통신으로 가져오기 -->
+                        <button class="boardContent-btn-heart"><img src="image/heart-empty.svg" alt="heart"> 0</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="boardContent-updonw-padding-div boardContent-clearfix">
+                    <div class="boardContent-float-left">
+                        <small>등록일: 2021.09.01</small>
+                    </div>
+                    <div class="boardContent-float-right">
+                        <small>작성자: 작성자</small>
+                    </div>
+                </div>
+                <hr>
+                <div class="boardContent-content-sub-div">
+                    <!-- 이미지, 동영상 영역 -->
+                    <div class="boardContent-carousel-div boardContent-updonw-margin-div boardContent-updonw-padding-div">
+                        <div class="boardContent-arrow color-darkskyblue boardContent-float-left">
+                            ◁
+                        </div>
+                        <div class="boardContent-images-div">
+                            <li>
+                                <ul><div class="boardContent-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
+                                <ul><div class="boardContent-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
+                                <ul><div class="boardContent-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
+                                <ul><div class="boardContent-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
+                                <ul><div class="boardContent-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
+                            </li>
+                        </div>
+                        <div class="boardContent-arrow color-darkskyblue boardContent-float-right">
+                            ▷
+                        </div>
+                    </div>
+                    <!-- 컨텐츠 영역 -->
+                    <div class="boardContent-content-area-div">
+                        <div class="boardContent-content-div">
+                            <!-- 여기에 DB에서 가져온 내용 넣기(임시로 로렘입숨) -->
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis erat id vestibulum fringilla. Nam ut bibendum
+                            augue, eget sodales metus. Aenean vitae interdum purus. Proin faucibus tellus id risus ultricies, sit amet blandit nisi
+                            pretium. Maecenas cursus risus massa, nec scelerisque sem pellentesque vitae. Sed faucibus erat mauris, sit amet blandit
+                            augue commodo ut. Mauris lacinia nibh eu cursus rutrum. Curabitur sed cursus velit, sed fermentum sapien. In aliquam ex
+                            eget ex fermentum convallis. Curabitur porttitor non diam congue pellentesque. Nunc eu lobortis tellus. Vivamus
+                            malesuada ac odio eu venenatis. Etiam tellus ipsum, posuere quis congue ac, convallis a nibh. Cras in ligula at dolor
+                            eleifend bibendum at vel nibh.
+                        </div>
+                        <div class="boardContent-report-btn-div">
+                            <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">신고하기</button>
+                        </div>
+                    </div>
+                    <!-- 댓글영역 -->
+                    <div class="boardContent-reply-area-div">
+                        <form action="" class="boardContent-updonw-margin-div">
+                            <input type="text" placeholder="댓글 입력">
+                            <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">등록</button>
+                        </form>
+                        <div class="boardContent-reply-list-div">
+                            <!-- 댓글 추가 시 아래 div 반복시켜 출력 -->
+                            <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
+                                <div class="boardContent-float-left boardContent-reply-content">
+                                    <p><strong>댓글 작성자</strong></p>
+                                    <p class="boardContent-updonw-padding-div">댓글 내용~</p>
+                                    <p><small>2021.09.01</small></p>
+                                </div>
+                                <div class="boardContent-float-right boardContent-reply-btn-div">
+                                    <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
+                                    <button class="boardContent-color-black boardContent-btn-small">삭제</button>
+                                </div>
+                            </div>
+                            <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
+                                <div class="boardContent-float-left boardContent-reply-content">
+                                    <p><strong>댓글 작성자</strong></p>
+                                    <p class="boardContent-updonw-padding-div">댓글 내용~</p>
+                                    <p><small>2021.09.01</small></p>
+                                </div>
+                                <div class="boardContent-float-right boardContent-reply-btn-div">
+                                    <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
+                                    <button class="boardContent-color-black boardContent-btn-small">삭제</button>
+                                </div>
+                            </div>
+                            <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
+                                <div class="boardContent-float-left boardContent-reply-content">
+                                    <p><strong>댓글 작성자</strong></p>
+                                    <p class="boardContent-updonw-padding-div">댓글 내용~</p>
+                                    <p><small>2021.09.01</small></p>
+                                </div>
+                                <div class="boardContent-float-right boardContent-reply-btn-div">
+                                    <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
+                                    <button class="boardContent-color-black boardContent-btn-small">삭제</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function() {
+
+    });
+</script>
+</html>
