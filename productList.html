@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIRSTGYM</title>
+    <link rel="stylesheet" href="css/main.css" />
+
+    <style>
+        .products {
+            width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .products div h3 {
+            margin-top: 200px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .products .clearfix {
+            overflow: hidden;
+        }
+        .products ul li {
+            float: left;
+            list-style-type: none;
+            width: 220px;
+            padding: 10px;
+            position: relative;
+        }
+        .products ul li .product {
+            width: 220px;
+        }
+        .products ul li h3 {
+            font-size: 14px;
+            line-height: 10px;
+            color: black;
+            margin-top: 10px;
+        }
+        .products ul li h4 {
+            font-size: 12px;
+            line-height: 3px;
+            color: black;
+            margin-top: 10px;
+        }
+        .products ul li .hover-product {
+            position: absolute;
+            left: 3%;
+            top: 2%;
+            width: 98%;
+            height: 92%;
+            background-color: rgba(17, 17, 49, 0.897);
+            opacity: 0;
+        }
+        .products ul li:hover .hover-product {
+            opacity: 1;
+        }
+        .products ul li .hover-product a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            font-size: 15px;
+            line-height: 20px;
+            font-weight: bold;
+            margin-top: 60%;
+            text-decoration: none;
+        }
+        .paging {
+            text-align: center;
+        }
+        .pagination {
+            display: inline-block;
+        }
+        .pagination a {
+            display: block;
+            margin:0 3px;
+            float: left;
+            border: 1px solid rgb(247, 240, 240);
+            border-radius: 30%;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            background-color: rgb(247, 240, 240);
+            font-size: 13px;
+            color: black;
+            text-decoration: none;
+        }
+        .pagination .prev {
+            background: rgb(247, 240, 240) url('image/page_prev.png') no-repeat center center;
+        }
+        .pagination .next {
+            background: rgb(247, 240, 240) url('image/page_next.png') no-repeat center center;
+        }
+        
+    </style>
+
+</head>
+<body>
+
+    <section class="products">
+        <div>
+                <h3>전체상품</h3>
+        </div>
+        <ul class="clearfix">
+            <li>
+                <img src="image/1.png" alt="" class="product">
+                <h3>아령 덤벨</h3>
+                <h4>73,200원</h4>
+                <div class="hover-product">
+                    <a href="#">아령 덤벨</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/2.png" alt="" class="product">
+                <h3>폼롤러</h3>
+                <h4>20,000원</h4>
+                <div class="hover-product">
+                    <a href="#">폼롤러</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/3.png" alt="" class="product">
+                <h3>요가매트</h3>
+                <h4>224,600원</h4>
+                <div class="hover-product">
+                    <a href="#">요가매트</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/4.png" alt="" class="product">
+                <h3>스텝퍼</h3>
+                <h4>42,700원</h4>
+                <div class="hover-product">
+                    <a href="#">스텝퍼</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/5.png" alt="" class="product">
+                <h3>실내자전거</h3>
+                <h4>139,000원</h4>
+                <div class="hover-product">
+                    <a href="#">실내자전거</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/6.png" alt="" class="product">
+                <h3>풀업밴드</h3>
+                <h4>1,900원</h4>
+                <div class="hover-product">
+                    <a href="#">풀업밴드</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/7.png" alt="" class="product">
+                <h3>스트레칭밴드</h3>
+                <h4>7,100</h4>
+                <div class="hover-product">
+                    <a href="#">스트레칭밴드</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/9.png" alt="" class="product">
+                <h3>헬스장갑</h3>
+                <h4>15,900원</h4>
+                <div class="hover-product">
+                    <a href="#">헬스장갑</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/10.png" alt="" class="product">
+                <h3>푸쉬업바</h3>
+                <h4>42,600원</h4>
+                <div class="hover-product">
+                    <a href="#">푸쉬업바</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/11.png" alt="" class="product">
+                <h3>철봉</h3>
+                <h4>22,000원</h4>
+                <div class="hover-product">
+                    <a href="#">철봉</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/12.png" alt="" class="product">
+                <h3>마사지볼</h3>
+                <h4>6,000원</h4>
+                <div class="hover-product">
+                    <a href="#">마사지볼</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/13.png" alt="" class="product">
+                <h3>힙밴드</h3>
+                <h4>9,700원</h4>
+                <div class="hover-product">
+                    <a href="#">힙밴드</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/14.png" alt="" class="product">
+                <h3>바른자세 밴드</h3>
+                <h4>25,700원</h4>
+                <div class="hover-product">
+                    <a href="#">바른자세 밴드</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/15.png" alt="" class="product">
+                <h3>루프밴드</h3>
+                <h4>33,600원</h4>
+                <div class="hover-product">
+                    <a href="#">루프밴드</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/16.png" alt="" class="product">
+                <h3>요가링</h3>
+                <h4>29,700원</h4>
+                <div class="hover-product">
+                    <a href="#">요가링</a>
+                </div>
+            </li>
+            <li>
+                <img src="image/17.png" alt="" class="product">
+                <h3>실내 턱걸이</h3>
+                <h4>189,000원</h4>
+                <div class="hover-product">
+                    <a href="#">실내 턱걸이</a>
+                </div>
+            </li>
+        </ul>
+    </section>
+    <div class="paging">
+        <div class="pagination">
+            <a class="prev" href="#"></a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a class="next" href="#"></a>        
+        </div>
+    </div>
+
+    
+</body>
+</html>
