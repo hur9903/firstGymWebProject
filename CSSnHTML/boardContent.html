@@ -16,6 +16,12 @@
             content: '';
             clear: both;
         }
+        .boardContent-float-left{
+            float: left;
+        }
+        .boardContent-float-right{
+            float: right;
+        }
 
         /* 버튼 */
         .boardContent-btn-small{
@@ -69,6 +75,7 @@
             position: relative;
             width: 200px;
             height: 200px;
+            cursor: pointer;
         }
         .boardContent-img img{
             position: absolute;
@@ -80,6 +87,8 @@
             object-fit: cover;
             margin: auto;
         }
+
+        /* 게시글 상세보기 */
         .boardContent-main-div{
             min-width: 800px;
             text-align: center;
@@ -98,12 +107,6 @@
             background: rgb(231, 231, 231);
             padding: 20px;
             margin-top: 5px;
-        }
-        .boardContent-float-left{
-            float: left;
-        }
-        .boardContent-float-right{
-            float: right;
         }
         .boardContent-content-area-div{
             position: relative;
@@ -143,12 +146,14 @@
         }
         .boardContent-images-div{
             width: 85%;
+            position: relative;
             overflow: hidden;
             border: 2px solid gray;
             background: darkgray;
             border-radius: .25em;
         }
         .boardContent-images-div li{
+            position: relative;
             list-style:none;
             width: max-content;
             text-align: center;
@@ -171,10 +176,57 @@
             line-height: 220px;
             cursor: pointer;
         }
-        
+
+        /* 게시글 상세보기 이미지 모달 */
+        #boardContent-modal-shadow{
+            width: 100vw;
+            height: 100vw;
+            left: 0;
+            top: 0;
+            position: fixed;
+            background: #00000090;
+        }
+        .boardContent-modal-div{
+            border-radius: .25em;
+            background: lightgray;
+            position: fixed;
+            left: 50vw;
+            top: 50vh;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+        .boardContent-modal-div img{
+            max-width: 50vw;
+            max-height: 80vh;
+            border: 2px solid black;
+            border-radius: .25em;
+        }
+        .boardContent-modal-div video{
+            max-width: 50vw;
+            max-height: 80vh;
+            border: 2px solid black;
+            border-radius: .25em;
+        }
+        .boardContent-modal-div > *{
+            padding: 10px;
+        }
+        .boardContent-video-text{
+            position: absolute;
+            color: white;
+            border: 1px solid white;
+            border-radius: 25%;
+            padding: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 <body>
+    <!-- 게시글 상세보기 -->
     <div class="boardContent-main-div">
         <div class="boardContent-sub-div">
             <div id="boardContent-page-title">
@@ -214,19 +266,22 @@
                 <div class="boardContent-content-sub-div">
                     <!-- 이미지, 동영상 영역 -->
                     <div class="boardContent-carousel-div boardContent-updonw-margin-div boardContent-updonw-padding-div">
-                        <div class="boardContent-arrow color-darkskyblue boardContent-float-left">
+                        <div id="boardContent-arrow-left" class="boardContent-arrow color-darkskyblue boardContent-float-left">
                             ◁
                         </div>
                         <div class="boardContent-images-div">
                             <li>
-                                <ul><div class="boardContent-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
-                                <ul><div class="boardContent-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
-                                <ul><div class="boardContent-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
-                                <ul><div class="boardContent-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
-                                <ul><div class="boardContent-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
+                                <!-- 동영상. data-videourl에 동영상 주소 넣기-->
+                                <ul><div class="boardContent-img boardContent-video-img"><img src="image/sample-image2.jpg" alt="sample" data-videourl="image/sample-video.mp4"><div class="boardContent-video-text color-darkskyblue">▶</div></div></ul>
+                                <!-- 이미지 -->
+                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
+                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image2.jpg" alt="sample"></div></ul>
+                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image3.jpg" alt="sample"></div></ul>
+                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image2.jpg" alt="sample"></div></ul>
+                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
                             </li>
                         </div>
-                        <div class="boardContent-arrow color-darkskyblue boardContent-float-right">
+                        <div id="boardContent-arrow-right" class="boardContent-arrow color-darkskyblue boardContent-float-right">
                             ▷
                         </div>
                     </div>
@@ -234,6 +289,24 @@
                     <div class="boardContent-content-area-div">
                         <div class="boardContent-content-div">
                             <!-- 여기에 DB에서 가져온 내용 넣기(임시로 로렘입숨) -->
+                            이미지를 누르면 크게 볼 수 있습니다.
+                            <br><br>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis erat id vestibulum fringilla. Nam ut bibendum
+                            augue, eget sodales metus. Aenean vitae interdum purus. Proin faucibus tellus id risus ultricies, sit amet blandit nisi
+                            pretium. Maecenas cursus risus massa, nec scelerisque sem pellentesque vitae. Sed faucibus erat mauris, sit amet blandit
+                            augue commodo ut. Mauris lacinia nibh eu cursus rutrum. Curabitur sed cursus velit, sed fermentum sapien. In aliquam ex
+                            eget ex fermentum convallis. Curabitur porttitor non diam congue pellentesque. Nunc eu lobortis tellus. Vivamus
+                            malesuada ac odio eu venenatis. Etiam tellus ipsum, posuere quis congue ac, convallis a nibh. Cras in ligula at dolor
+                            eleifend bibendum at vel nibh.
+                            <br><br>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis erat id vestibulum fringilla. Nam ut bibendum
+                            augue, eget sodales metus. Aenean vitae interdum purus. Proin faucibus tellus id risus ultricies, sit amet blandit nisi
+                            pretium. Maecenas cursus risus massa, nec scelerisque sem pellentesque vitae. Sed faucibus erat mauris, sit amet blandit
+                            augue commodo ut. Mauris lacinia nibh eu cursus rutrum. Curabitur sed cursus velit, sed fermentum sapien. In aliquam ex
+                            eget ex fermentum convallis. Curabitur porttitor non diam congue pellentesque. Nunc eu lobortis tellus. Vivamus
+                            malesuada ac odio eu venenatis. Etiam tellus ipsum, posuere quis congue ac, convallis a nibh. Cras in ligula at dolor
+                            eleifend bibendum at vel nibh.
+                            <br><br>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis erat id vestibulum fringilla. Nam ut bibendum
                             augue, eget sodales metus. Aenean vitae interdum purus. Proin faucibus tellus id risus ultricies, sit amet blandit nisi
                             pretium. Maecenas cursus risus massa, nec scelerisque sem pellentesque vitae. Sed faucibus erat mauris, sit amet blandit
@@ -291,12 +364,94 @@
                     </div>
                 </div>
             </div>
+        </div>        
+    </div><!--게시글 상세보기 끝-->
+    
+    <!-- 모달 창 -->
+    <div id="boardContent-modal-shadow">
+        <div class="boardContent-modal-div">
+            <div class="boardContent-modal-xbtn-div boardContent-clearfix">
+                <button class="color-darkskyblue boardContent-btn-big boardContent-float-right">x</button>
+            </div>
+            <div class="boardContent-modal-img">
+                <img src="" alt="img">
+                <video src="" type="video/mp4" autoplay controls></video>
+            </div>
         </div>
     </div>
+
 </body>
 <script>
     $(document).ready(function() {
 
+        // 이미지바 이동
+        let is_mouse_down = false;
+        let right_move = false;
+        const $img_border_box = $('.boardContent-images-div');
+        const $img_box = $('.boardContent-images-div li');
+
+        $('#boardContent-arrow-left').mousedown(function(){
+            is_mouse_down = true;
+            img_move('left');
+        });
+        $('#boardContent-arrow-left').mouseup(function(){
+            is_mouse_down = false;
+        });
+        $('#boardContent-arrow-right').mousedown(function(){
+            is_mouse_down = true;
+            img_move('right');
+        });
+        $('#boardContent-arrow-right').mouseup(function(){
+            is_mouse_down = false;
+        });
+
+        function img_move(witch_side){
+            if(is_mouse_down){
+                if($img_border_box.width() <= $img_box.width()){
+                    if(witch_side === 'left'){
+                        if($img_box.position().left <= - ($img_box.width() - $img_border_box.width())){
+                            $img_box.css('left', - ($img_box.width() - $img_border_box.width()) + 'px');
+                        }
+                        else{
+                            $img_box.css('left', ($img_box.position().left - 50) + 'px');
+                        }
+                        
+                    }
+                    else{
+                        if($img_box.position().left < 0){
+                            $img_box.css('left', ($img_box.position().left + 50) + 'px');
+                        }
+                        else{
+                            $img_box.css('left', '0px');
+                        }
+                    }
+                    setTimeout(function() {
+                    img_move(witch_side);
+                }, 200);
+                }
+            }
+        };
+
+        // 이미지 모달
+        $('#boardContent-modal-shadow').hide();
+
+        $('.boardContent-img-img img').click(function(){
+            $('#boardContent-modal-shadow img').attr("src", $(this).attr("src"));
+            $('#boardContent-modal-shadow').show();
+            $('.boardContent-modal-img img').show();
+            $('.boardContent-modal-img video').hide();
+        });
+
+        $('.boardContent-video-img').click(function(){
+            $('#boardContent-modal-shadow video').attr("src", $('.boardContent-video-img img').data('videourl'));
+            $('#boardContent-modal-shadow').show();
+            $('.boardContent-modal-img img').hide();
+            $('.boardContent-modal-img video').show();
+        });
+
+        $('.boardContent-modal-xbtn-div button').click(function(){
+            $('#boardContent-modal-shadow').hide();
+        });
     });
 </script>
 </html>
