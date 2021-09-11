@@ -1,0 +1,58 @@
+/*----글씨체 다운로드----*/
+
+/*
+나눔 고딕(https://fonts.google.com/specimen/Nanum+Gothic)
+*/
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+/*
+비트로 프라이드 체(https://noonnu.cc/font_page/478)
+사용시
+font-family: 'Vitro_pride';
+*/
+@font-face {
+    font-family: 'Vitro_pride';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Vitro_pride.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/*
+강한 육군체(https://noonnu.cc/font_page/659)
+사용시
+font-family: 'ROKABold';
+*/
+@font-face {
+    font-family: 'ROKABold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.1/ROKABold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+* { /* padding과 margin을 0으로, 요소 크기에 padding, border값을 포함 x*/
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body, html {/*body와 html은 꽉 차게, 기본 폰트는 나눔 고딕*/
+	width: 100%;
+	min-width: 320px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+.color-skyblue{
+    background: rgb(208, 236, 248);
+}
+
+.color-darkskyblue{
+    background: rgb(52, 152, 219);
+}
+
+.color-lightskyblue{
+    background: rgba(208, 236, 248, 0.18)
+}
+
+.color-gray{
+    background: rgb(94, 94, 94);
+}
