@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     
     <style>
+        
         /* clearfix */
         .boardContent-clearfix::after{
             display: block;
@@ -49,6 +50,17 @@
             border: none;
             border-radius: .25em;
             color: white;
+        }
+        .boardContent-btn-red{
+            padding: 0 20px;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+            color: white;
+            background: crimson;
         }
         .boardContent-btn-heart{
             padding: 0 20px;
@@ -107,6 +119,9 @@
             background: rgb(231, 231, 231);
             padding: 20px;
             margin-top: 5px;
+        }
+        #boardContent-content-title, .boardContent-modal-title{
+            font-size: 32px;
         }
         .boardContent-content-area-div{
             position: relative;
@@ -178,7 +193,7 @@
         }
 
         /* 게시글 상세보기 이미지 모달 */
-        #boardContent-modal-shadow{
+        #boardContent-img-modal, #boardContent-report-modal{
             width: 100vw;
             height: 100vw;
             left: 0;
@@ -188,7 +203,7 @@
         }
         .boardContent-modal-div{
             border-radius: .25em;
-            background: lightgray;
+            background: white;
             position: fixed;
             left: 50vw;
             top: 50vh;
@@ -197,6 +212,7 @@
             -moz-transform: translate(-50%, -50%);
             -o-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
+            overflow: hidden;
         }
         .boardContent-modal-div img{
             max-width: 50vw;
@@ -210,7 +226,7 @@
             border: 2px solid black;
             border-radius: .25em;
         }
-        .boardContent-modal-div > *{
+        .boardContent-modal-div > *, .boardContent-modal-content{
             padding: 10px;
         }
         .boardContent-video-text{
@@ -222,6 +238,22 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+        }
+        #boardContent-report-modal .boardContent-modal-div{
+            width: 50%;
+            max-width: 500px;
+            min-width: 300px;
+        }
+        #boardContent-modal-content-title{
+            color: rgb(52, 152, 219);
+        }
+        #boardContent-modal-select{
+            text-align: center;
+        }
+        #boardContent-modal-select select{
+            width: 80%;
+            padding: 5px;
+            margin: 5px 0;
         }
     </style>
 </head>
@@ -245,7 +277,7 @@
                 </div>
                 <hr>
                 <div class="boardContent-updonw-padding-div boardContent-clearfix">
-                    <div class="boardContent-float-left">
+                    <div id="boardContent-content-title" class="boardContent-float-left">
                         [카테고리] 제목
                     </div>
                     <div class="boardContent-float-right">
@@ -316,7 +348,7 @@
                             eleifend bibendum at vel nibh.
                         </div>
                         <div class="boardContent-report-btn-div">
-                            <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">신고하기</button>
+                            <button id="boardContent-report-btn" class="boardContent-color-white color-darkskyblue boardContent-btn-small">신고하기</button>
                         </div>
                     </div>
                     <!-- 댓글영역 -->
@@ -367,11 +399,11 @@
         </div>        
     </div><!--게시글 상세보기 끝-->
     
-    <!-- 모달 창 -->
-    <div id="boardContent-modal-shadow">
+    <!-- 이미자, 동영상 모달 창 -->
+    <div id="boardContent-img-modal">
         <div class="boardContent-modal-div">
-            <div class="boardContent-modal-xbtn-div boardContent-clearfix">
-                <button class="color-darkskyblue boardContent-btn-big boardContent-float-right">x</button>
+            <div class="boardContent-modal-xbtn-div boardContent-clearfix color-skyblue">
+                <button id="boardContent-img-modal-xbtn" class="color-darkskyblue boardContent-btn-red boardContent-float-right">x</button>
             </div>
             <div class="boardContent-modal-img">
                 <img src="" alt="img">
@@ -380,7 +412,38 @@
         </div>
     </div>
 
+    <!-- 신고하기 모달 창 -->
+    <div id="boardContent-report-modal">
+        <div class="boardContent-modal-div">
+            <div class="boardContent-modal-xbtn-div boardContent-clearfix color-skyblue">
+                <div class="boardContent-modal-title boardContent-float-left">신고하기</div>
+                <button id="boardContent-report-modal-xbtn" class="boardContent-btn-red boardContent-float-right">x</button>
+            </div>
+            <form action="#">
+                <div class="boardContent-modal-content">
+                    <div id="boardContent-modal-content-title" class="boardContent-updonw-margin-div">
+                        신고 사유
+                    </div>
+                    <div id="boardContent-modal-select" class="boardContent-updonw-margin-div">
+                        <select name="" id="">
+                            <option value="">---- 신고 사유 옵션 ----</option>
+                            <option value="">---- 신고 사유 옵션 ----</option>
+                            <option value="">---- 신고 사유 옵션 ----</option>
+                            <option value="">---- 신고 사유 옵션 ----</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="boardContent-modal-bottombtn boardContent-clearfix">
+                    <div class="boardContent-float-right">
+                        <button type="button" id="boardContent-report-modal-undobtn" class="boardContent-color-black boardContent-btn-small">취소</button>
+                        <button type="submit" class="boardContent-color-white color-darkskyblue boardContent-btn-small">등록</button>
+                    </div>    
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
+
 <script>
     $(document).ready(function() {
 
@@ -408,49 +471,63 @@
         function img_move(witch_side){
             if(is_mouse_down){
                 if($img_border_box.width() <= $img_box.width()){
-                    if(witch_side === 'left'){
-                        if($img_box.position().left <= - ($img_box.width() - $img_border_box.width())){
-                            $img_box.css('left', - ($img_box.width() - $img_border_box.width()) + 'px');
-                        }
-                        else{
-                            $img_box.css('left', ($img_box.position().left - 50) + 'px');
-                        }
+                    if(witch_side === 'right'){
+                        $img_box.css('left', ($img_box.position().left - 25) + 'px');
                         
+                        if($img_box.position().left <= - ($img_box.outerWidth() - $img_border_box.innerWidth())){
+                            $img_box.css('left', - ($img_box.outerWidth() - $img_border_box.innerWidth()) + 'px');
+                        }
                     }
                     else{
-                        if($img_box.position().left < 0){
-                            $img_box.css('left', ($img_box.position().left + 50) + 'px');
-                        }
-                        else{
+                        $img_box.css('left', ($img_box.position().left + 25) + 'px');
+                        if($img_box.position().left >= 0){
                             $img_box.css('left', '0px');
                         }
                     }
                     setTimeout(function() {
                     img_move(witch_side);
-                }, 200);
+                }, 100);
                 }
             }
         };
 
         // 이미지 모달
-        $('#boardContent-modal-shadow').hide();
+        const $img_modal = $('#boardContent-img-modal');
+        const $img_modal_img = $('#boardContent-img-modal img');
+        const $img_modal_video = $('#boardContent-img-modal video');
+
+        $img_modal.hide();
 
         $('.boardContent-img-img img').click(function(){
-            $('#boardContent-modal-shadow img').attr("src", $(this).attr("src"));
-            $('#boardContent-modal-shadow').show();
-            $('.boardContent-modal-img img').show();
-            $('.boardContent-modal-img video').hide();
+            $img_modal_img.attr("src", $(this).attr("src"));
+            $img_modal.show();
+            $img_modal_img.show();
+            $img_modal_video.hide();
         });
 
         $('.boardContent-video-img').click(function(){
-            $('#boardContent-modal-shadow video').attr("src", $('.boardContent-video-img img').data('videourl'));
-            $('#boardContent-modal-shadow').show();
-            $('.boardContent-modal-img img').hide();
-            $('.boardContent-modal-img video').show();
+            $img_modal_video.attr("src", $('.boardContent-video-img img').data('videourl'));
+            $img_modal.show();
+            $img_modal_img.hide();
+            $img_modal_video.show();
         });
 
-        $('.boardContent-modal-xbtn-div button').click(function(){
-            $('#boardContent-modal-shadow').hide();
+        $('#boardContent-img-modal-xbtn').click(function(){
+            $img_modal.hide();
+        });
+
+        // 신고하기 모달
+        $('#boardContent-report-modal').hide();
+
+        $('#boardContent-report-btn').click(function(){
+            $('#boardContent-report-modal').show();
+        });
+
+        $('#boardContent-report-modal-xbtn').click(function(){
+            $('#boardContent-report-modal').hide();
+        });
+        $('#boardContent-report-modal-undobtn').click(function(){
+            $('#boardContent-report-modal').hide();
         });
     });
 </script>
