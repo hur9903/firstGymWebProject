@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        /* a태그 초기화 */
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        /* li 초기화 */
+        li{
+            list-style:none;
+        }
+
+
+        .boardList-clearfix::after{
+            display: block;
+            content: '';
+            clear: both;
+        }
+        .boardList-float-left{
+            float: left;
+        }
+        .boardList-float-right{
+            float: right;
+        }
+
+
+        .boardList-main-div{
+            min-width: 1000px;
+            text-align: center;
+        }
+        .boardList-sub-div{
+            min-width: 700px;
+            margin: 100px 15%;
+            width: 70%;
+            text-align: left;
+            padding: 30px;
+            background: rgb(232, 246, 255);
+        }
+        .boardList-sub-div > *{
+            margin-bottom: 10px;
+        }
+        #boardList-page-title{
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .boardList-search-div *{
+            display: inline-block;
+            height: 30px;
+        }
+        .boardList-search-div button{
+            padding: 0 20px;
+            font-weight: bold;
+            line-height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+            color: white;
+        }
+        .boardList-search-div button{
+            padding: 0 5px;
+        }
+        #boardList-top-search-div{
+            text-align: right;
+        }
+        #boardList-bottom-search-div{
+            text-align: center;
+        }
+        #boardList-list-div{
+            border-top: 1px solid darkgray;
+            border-bottom: 1px solid darkgray;
+        }
+        #boardList-list-div table{
+            width: 100%;
+            border-top: 1px solid darkgray;
+            border-collapse: collapse;
+        }
+        #boardList-list-div th, #boardList-list-div td{
+            border-bottom: 1px solid darkgray;
+            padding: 10px;
+        }
+        #boardList-list-div th{
+            background: rgb(231, 231, 231);
+            text-align: center;
+        }
+        .boardList-list-left-td{
+            background: rgb(231, 231, 231);
+            border-right: 3px double darkgray;
+            width: 20%;
+            text-align: center;
+        }
+        .boardList-list-right-td{
+            border-left: 1px dashed darkgray;
+            width: 20%;
+        }
+        .boardList-content-img{
+            position: relative;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            border: 2px solid black;
+            border-radius: .25em;
+        }
+        .boardList-content-img img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate(50, 50);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            margin: auto;
+        }
+        .boardList-content-info > *{
+            margin-right: 10px;
+        }
+        .boardList-content-info img{
+            width: 16px;
+        }
+        .boardList-content-div{
+            width: 60%;
+            min-height: 100px;
+        }
+        .boardList-content-div > *{
+            margin-bottom: 5px;
+        }
+        .boardList-content-title *{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .boardList-list-right-td{
+            text-align: center;
+            font-size: 18px;
+        }
+        .boardList-paging-div{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .boardList-paging-div *{
+            display: inline-block;
+        }
+        .boardList-btn-check{
+            background: rgb(52, 152, 219);
+            border: none;
+            color: white;
+        }
+        .boardList-btn-check a{
+            
+        }
+        .boardList-btn-not-check{
+            background: white;
+            border: 1px solid rgb(52, 152, 219);
+            color: black;
+        }
+        .boardList-paging-div li{
+            height: 30px;
+            width: 30px;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            border-radius: .25em;
+        }
+    </style>
+</head>
+<body>
+    <div class="boardList-main-div">
+        <div class="boardList-sub-div">
+            <div id="boardList-page-title">
+                게시글 목록
+            </div>
+            <hr>
+            <!-- 상단 검색창 -->
+            <div id="boardList-top-search-div">
+                <form action="#">
+                    <div class="boardList-search-div">
+                        <select name="" id="">
+                            <option value="">--- 카테고리 ---</option>
+                            <option value="">--- 카테고리 ---</option>
+                            <option value="">--- 카테고리 ---</option>
+                        </select>
+                        <select name="" id="">
+                            <option value="">제목</option>
+                            <option value="">작성자</option>
+                            <option value="">내용</option>
+                        </select>
+                        <div>
+                            <input type="text">
+                            <button class="color-darkskyblue">검색</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- 게시판 목록 -->
+            <div id="boardList-list-div">
+                <table>
+                    <tr>
+                        <th class="boardList-list-left-td">no.</th>
+                        <th>content</th>
+                        <th class="boardList-list-right-td">comment</th>
+                    </tr>
+                    <!-- 게시글 목록은 아래 tr을 복사 -->
+                    <tr>
+                        <td class="boardList-list-left-td">1234</td>
+                        <td class="boardList-clearfix">
+                            <div class="boardList-content-div boardList-float-left">
+                                <div class="boardList-content-title"><a href="#">[카테고리] 제목</a></div>
+                                <div class="boardList-content-info">
+                                    <span>작성자</span>
+                                    <span>조회수 0</span>
+                                    <span><img src="image/heart-full.svg" alt="heart"> 0</span>
+                                </div>
+                                <div class="boardList-content-date"><small>2021.09.01</small></div>
+                            </div>
+                            <!-- 썸네일 이미지가 없으면 아래 div 표시x -->
+                            <div class="boardList-content-img boardList-float-right">
+                                <img src="image/sample-image.jpg" alt="img">
+                            </div>
+                        </td>
+                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
+                    </tr>
+                    <!-- 예시용 리스트. 실제 구현시 삭제 -->
+                    <tr>
+                        <td class="boardList-list-left-td">1234</td>
+                        <td class="boardList-clearfix">
+                            <div class="boardList-content-div boardList-float-left">
+                                <div class="boardList-content-title"><a href="#">[카테고리] 제목</a></div>
+                                <div class="boardList-content-info">
+                                    <span>작성자</span>
+                                    <span>조회수 0</span>
+                                    <span><img src="image/heart-full.svg" alt="heart"> 0</span>
+                                </div>
+                                <div class="boardList-content-date"><small>2021.09.01</small></div>
+                            </div>
+                            
+                        </td>
+                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
+                    </tr>
+                    <tr>
+                        <td class="boardList-list-left-td">1234</td>
+                        <td class="boardList-clearfix">
+                            <div class="boardList-content-div boardList-float-left">
+                                <div class="boardList-content-title"><a href="#">[카테고리] 제목</a></div>
+                                <div class="boardList-content-info">
+                                    <span>작성자</span>
+                                    <span>조회수 0</span>
+                                    <span><img src="image/heart-full.svg" alt="heart"> 0</span>
+                                </div>
+                                <div class="boardList-content-date"><small>2021.09.01</small></div>
+                            </div>
+                            <!-- 썸네일 이미지가 없으면 아래 div 표시x -->
+                            <div class="boardList-content-img boardList-float-right">
+                                <img src="image/sample-image.jpg" alt="img">
+                            </div>
+                        </td>
+                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
+                    </tr>
+                    <tr>
+                        <td class="boardList-list-left-td">1234</td>
+                        <td class="boardList-clearfix">
+                            <div class="boardList-content-div boardList-float-left">
+                                <div class="boardList-content-title"><a href="#">[카테고리] 제목제목제목제목제목</a></div>
+                                <div class="boardList-content-info">
+                                    <span>작성자</span>
+                                    <span>조회수 0</span>
+                                    <span><img src="image/heart-full.svg" alt="heart"> 0</span>
+                                </div>
+                                <div class="boardList-content-date"><small>2021.09.01</small></div>
+                            </div>
+                            <!-- 썸네일 이미지가 없으면 아래 div 표시x -->
+                            <div class="boardList-content-img boardList-float-right">
+                                <img src="image/sample-image.jpg" alt="img">
+                            </div>
+                        </td>
+                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
+                    </tr>
+                    </table>
+            </div>
+            <!-- 페이징 바 -->
+            <div class="boardList-paging-div">
+                <ul>
+                    <!-- 이전버튼  -->
+                    <a href=""><li class="boardList-btn-not-check">&lt;</li></a>
+                    <!-- 페이지 버튼(체크되면 class이름 변경) -->
+                    <a href=""><li class="boardList-btn-check">1</li></a>
+                    <a href=""><li class="boardList-btn-not-check">2</li></a>
+                    <a href=""><li class="boardList-btn-not-check">3</li></a>
+                    <a href=""><li class="boardList-btn-not-check">4</li></a>
+                    <a href=""><li class="boardList-btn-not-check">5</li></a>
+                    <a href=""><li class="boardList-btn-not-check">6</li></a>
+                    <a href=""><li class="boardList-btn-not-check">7</li></a>
+                    <a href=""><li class="boardList-btn-not-check">8</li></a>
+                    <a href=""><li class="boardList-btn-not-check">9</li></a>
+                    <a href=""><li class="boardList-btn-not-check">10</li></a>
+                        
+                    <!-- 다음버튼 -->
+                    <a href=""><li class="boardList-btn-not-check">&gt;</li></a>
+
+                </ul>
+            </div>
+            <!-- 하단 검색창 -->
+            <div id="boardList-bottom-search-div">
+                <form action="#">
+                    <div class="boardList-search-div">
+                        <select name="" id="">
+                            <option value="">--- 카테고리 ---</option>
+                            <option value="">--- 카테고리 ---</option>
+                            <option value="">--- 카테고리 ---</option>
+                        </select>
+                        <select name="" id="">
+                            <option value="">제목</option>
+                            <option value="">작성자</option>
+                            <option value="">내용</option>
+                        </select>
+                        <div>
+                            <input type="text">
+                            <button class="color-darkskyblue">검색</button>
+                        </div>
+                    </div>
+                </form>
+            </div>    
+        </div>
+    </div>
+</body>
+</html>

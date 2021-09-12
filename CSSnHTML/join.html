@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        /* 버튼 */
+        button{
+            border: none;
+            font-weight: bold;
+            border-radius: .25em;
+        }
+
+        .join-main-div{
+            text-align: center;
+            margin: 100px 25%;
+            padding: 10px;
+            width: 50%;
+        }
+        .join-main-div input, .join-main-div select{
+            margin: 15px 0;
+            padding: 10px;
+            width: 100%;
+            height: 40px;
+        }
+        .join-main-div button{
+            margin: 10px 0;
+            width: 50%;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="join-main-div">
+        <div>
+            
+        </div>
+        <div>
+            <form action="#">
+                <input type="text" placeholder="아이디" name=""><br>
+                <input type="password" placeholder="비밀번호" name=""><br>
+                <input type="text" placeholder="이름" name=""><br>
+                <input type="text" placeholder="생년월일" name=""><br>
+                <select name="">
+                    <option value="">----성별----</option>
+                    <option value="">남자</option>
+                    <option value="">여자</option>
+                </select><br>
+                <input type="email" placeholder="본인 확인 이메일" name=""><br>
+                <input type="text" placeholder="휴대전화"><br>
+                <button type="submit" class="color-darkskyblue">가입하기</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

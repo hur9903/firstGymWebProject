@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    
+    <style>
+        
+        /* clearfix */
+        .boardContent-clearfix::after{
+            display: block;
+            content: '';
+            clear: both;
+        }
+        .boardContent-float-left{
+            float: left;
+        }
+        .boardContent-float-right{
+            float: right;
+        }
+
+        /* 버튼 */
+        .boardContent-btn-small{
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 12px;
+            height: 20px;
+            line-height: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+        }
+        .boardContent-color-white{
+            color: white;
+        }
+        .boardContent-color-black{
+            color: black;
+        }
+        .boardContent-btn-big{
+            padding: 0 20px;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+            color: white;
+        }
+        .boardContent-btn-red{
+            padding: 0 20px;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+            color: white;
+            background: crimson;
+        }
+        .boardContent-btn-heart{
+            padding: 0 20px;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+            border: 1px solid crimson;
+            color: darkred;
+        }
+
+        /* 위 아래 패딩, 마긴 */
+        .boardContent-updonw-padding-div{
+            padding: 10px 0;
+        }
+        .boardContent-updonw-margin-div{
+            margin: 10px 0;
+        }
+
+        /* 이미지 */
+        .boardContent-img{ 
+            position: relative;
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+        }
+        .boardContent-img img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate(50, 50);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            margin: auto;
+        }
+
+        /* 게시글 상세보기 */
+        .boardContent-main-div{
+            min-width: 800px;
+            text-align: center;
+        }
+        .boardContent-sub-div{
+            min-width: 400px;
+            margin: 100px 25%;
+            width: 50%;
+            text-align: left;
+        }
+        #boardContent-page-title{
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .boardContent-content-main-div{
+            background: rgb(231, 231, 231);
+            padding: 20px;
+            margin-top: 5px;
+        }
+        #boardContent-content-title, .boardContent-modal-title{
+            font-size: 32px;
+        }
+        .boardContent-content-area-div{
+            position: relative;
+            padding: 10px;
+            background: white;
+            border: 1px solid lightgray;
+            min-height: 300px;
+        }
+        .boardContent-content-area-div button{
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+        }
+        .boardContent-report-btn-div{
+            height: 30px;
+        }
+        .boardContent-reply-area-div input{
+            padding: 5px;
+            width: 80%;
+        }
+        .boardContent-each-reply-div{
+            background: white;
+            width: 80%;
+        }
+        .boardContent-each-reply-div > *{
+            padding: 5px;
+        }
+        .boardContent-btn-heart{
+            padding: 5px;
+            width: 60px;
+        }
+        .boardContent-btn-heart img{
+            width: 20px;
+        }
+        .boardContent-carousel-div{
+            text-align: center;
+        }
+        .boardContent-images-div{
+            width: 85%;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid gray;
+            background: darkgray;
+            border-radius: .25em;
+        }
+        .boardContent-images-div li{
+            position: relative;
+            list-style:none;
+            width: max-content;
+            text-align: center;
+        }
+        .boardContent-images-div ul{
+            display: inline-block;
+            margin: 0 10px;
+            padding: 5px;
+            background: black;
+            border: 1px solid gray;
+        }
+        .boardContent-carousel-div div{
+            display: inline-block;
+        }
+        .boardContent-arrow{
+            width: 4%;
+            height: 220px;
+            color: white;
+            border-radius: .25em;
+            line-height: 220px;
+            cursor: pointer;
+        }
+
+        /* 게시글 상세보기 이미지 모달 */
+        #boardContent-img-modal, #boardContent-report-modal{
+            width: 100vw;
+            height: 100vw;
+            left: 0;
+            top: 0;
+            position: fixed;
+            background: #00000090;
+        }
+        .boardContent-modal-div{
+            border-radius: .25em;
+            background: white;
+            position: fixed;
+            left: 50vw;
+            top: 50vh;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+        }
+        .boardContent-modal-div img{
+            max-width: 50vw;
+            max-height: 80vh;
+            border: 2px solid black;
+            border-radius: .25em;
+        }
+        .boardContent-modal-div video{
+            max-width: 50vw;
+            max-height: 80vh;
+            border: 2px solid black;
+            border-radius: .25em;
+        }
+        .boardContent-modal-div > *, .boardContent-modal-content{
+            padding: 10px;
+        }
+        .boardContent-video-text{
+            position: absolute;
+            color: white;
+            border: 1px solid white;
+            border-radius: 25%;
+            padding: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #boardContent-report-modal .boardContent-modal-div{
+            width: 50%;
+            max-width: 500px;
+            min-width: 300px;
+        }
+        #boardContent-modal-content-title{
+            color: rgb(52, 152, 219);
+        }
+        #boardContent-modal-select{
+            text-align: center;
+        }
+        #boardContent-modal-select select{
+            width: 80%;
+            padding: 5px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 게시글 상세보기 -->
+    <div class="boardContent-main-div">
+        <div class="boardContent-sub-div">
+            <div id="boardContent-page-title">
+                게시글 상세보기
+            </div>
+            <div class="boardContent-content-main-div">
+                <hr>
+                <div class="boardContent-updonw-padding-div boardContent-clearfix">
+                    <div class="boardContent-float-left">
+                        <button class="color-darkskyblue boardContent-btn-big">목록</button>
+                    </div>
+                    <div class="boardContent-float-right">
+                        <button class="color-darkskyblue boardContent-btn-big">수정</button>
+                        <button class="color-gray boardContent-btn-big">삭제</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="boardContent-updonw-padding-div boardContent-clearfix">
+                    <div id="boardContent-content-title" class="boardContent-float-left">
+                        [카테고리] 제목
+                    </div>
+                    <div class="boardContent-float-right">
+                        <!-- 클릭 시 하트 이미지 바꾸고 좋아요 수 비동기 통신으로 가져오기 -->
+                        <button class="boardContent-btn-heart"><img src="image/heart-empty.svg" alt="heart"> 0</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="boardContent-updonw-padding-div boardContent-clearfix">
+                    <div class="boardContent-float-left">
+                        <small>등록일: 2021.09.01</small>
+                    </div>
+                    <div class="boardContent-float-right">
+                        <small>작성자: 작성자</small>
+                    </div>
+                </div>
+                <hr>
+                <div class="boardContent-content-sub-div">
+                    <!-- 이미지, 동영상 영역 -->
+                    <div class="boardContent-carousel-div boardContent-updonw-margin-div boardContent-updonw-padding-div">
+                        <div id="boardContent-arrow-left" class="boardContent-arrow color-darkskyblue boardContent-float-left">
+                            ◁
+                        </div>
+                        <div class="boardContent-images-div">
+                            <li>
+                                <!-- 동영상. data-videourl에 동영상 주소 넣기-->
+                                <ul><div class="boardContent-img boardContent-video-img"><img src="image/sample-image2.jpg" alt="sample" data-videourl="image/sample-video.mp4"><div class="boardContent-video-text color-darkskyblue">▶</div></div></ul>
+                                <!-- 이미지 -->
+                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
+                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image2.jpg" alt="sample"></div></ul>
+                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image3.jpg" alt="sample"></div></ul>
+                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image2.jpg" alt="sample"></div></ul>
+                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
+                            </li>
+                        </div>
+                        <div id="boardContent-arrow-right" class="boardContent-arrow color-darkskyblue boardContent-float-right">
+                            ▷
+                        </div>
+                    </div>
+                    <!-- 컨텐츠 영역 -->
+                    <div class="boardContent-content-area-div">
+                        <div class="boardContent-content-div">
+                            <!-- 여기에 DB에서 가져온 내용 넣기(임시로 로렘입숨) -->
+                            이미지를 누르면 크게 볼 수 있습니다.
+                            <br><br>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis erat id vestibulum fringilla. Nam ut bibendum
+                            augue, eget sodales metus. Aenean vitae interdum purus. Proin faucibus tellus id risus ultricies, sit amet blandit nisi
+                            pretium. Maecenas cursus risus massa, nec scelerisque sem pellentesque vitae. Sed faucibus erat mauris, sit amet blandit
+                            augue commodo ut. Mauris lacinia nibh eu cursus rutrum. Curabitur sed cursus velit, sed fermentum sapien. In aliquam ex
+                            eget ex fermentum convallis. Curabitur porttitor non diam congue pellentesque. Nunc eu lobortis tellus. Vivamus
+                            malesuada ac odio eu venenatis. Etiam tellus ipsum, posuere quis congue ac, convallis a nibh. Cras in ligula at dolor
+                            eleifend bibendum at vel nibh.
+                            <br><br>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis erat id vestibulum fringilla. Nam ut bibendum
+                            augue, eget sodales metus. Aenean vitae interdum purus. Proin faucibus tellus id risus ultricies, sit amet blandit nisi
+                            pretium. Maecenas cursus risus massa, nec scelerisque sem pellentesque vitae. Sed faucibus erat mauris, sit amet blandit
+                            augue commodo ut. Mauris lacinia nibh eu cursus rutrum. Curabitur sed cursus velit, sed fermentum sapien. In aliquam ex
+                            eget ex fermentum convallis. Curabitur porttitor non diam congue pellentesque. Nunc eu lobortis tellus. Vivamus
+                            malesuada ac odio eu venenatis. Etiam tellus ipsum, posuere quis congue ac, convallis a nibh. Cras in ligula at dolor
+                            eleifend bibendum at vel nibh.
+                            <br><br>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis erat id vestibulum fringilla. Nam ut bibendum
+                            augue, eget sodales metus. Aenean vitae interdum purus. Proin faucibus tellus id risus ultricies, sit amet blandit nisi
+                            pretium. Maecenas cursus risus massa, nec scelerisque sem pellentesque vitae. Sed faucibus erat mauris, sit amet blandit
+                            augue commodo ut. Mauris lacinia nibh eu cursus rutrum. Curabitur sed cursus velit, sed fermentum sapien. In aliquam ex
+                            eget ex fermentum convallis. Curabitur porttitor non diam congue pellentesque. Nunc eu lobortis tellus. Vivamus
+                            malesuada ac odio eu venenatis. Etiam tellus ipsum, posuere quis congue ac, convallis a nibh. Cras in ligula at dolor
+                            eleifend bibendum at vel nibh.
+                        </div>
+                        <div class="boardContent-report-btn-div">
+                            <button id="boardContent-report-btn" class="boardContent-color-white color-darkskyblue boardContent-btn-small">신고하기</button>
+                        </div>
+                    </div>
+                    <!-- 댓글영역 -->
+                    <div class="boardContent-reply-area-div">
+                        <form action="" class="boardContent-updonw-margin-div">
+                            <input type="text" placeholder="댓글 입력">
+                            <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">등록</button>
+                        </form>
+                        <div class="boardContent-reply-list-div">
+                            <!-- 댓글 추가 시 아래 div 반복시켜 출력 -->
+                            <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
+                                <div class="boardContent-float-left boardContent-reply-content">
+                                    <p><strong>댓글 작성자</strong></p>
+                                    <p class="boardContent-updonw-padding-div">댓글 내용~</p>
+                                    <p><small>2021.09.01</small></p>
+                                </div>
+                                <div class="boardContent-float-right boardContent-reply-btn-div">
+                                    <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
+                                    <button class="boardContent-color-black boardContent-btn-small">삭제</button>
+                                </div>
+                            </div>
+                            <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
+                                <div class="boardContent-float-left boardContent-reply-content">
+                                    <p><strong>댓글 작성자</strong></p>
+                                    <p class="boardContent-updonw-padding-div">댓글 내용~</p>
+                                    <p><small>2021.09.01</small></p>
+                                </div>
+                                <div class="boardContent-float-right boardContent-reply-btn-div">
+                                    <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
+                                    <button class="boardContent-color-black boardContent-btn-small">삭제</button>
+                                </div>
+                            </div>
+                            <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
+                                <div class="boardContent-float-left boardContent-reply-content">
+                                    <p><strong>댓글 작성자</strong></p>
+                                    <p class="boardContent-updonw-padding-div">댓글 내용~</p>
+                                    <p><small>2021.09.01</small></p>
+                                </div>
+                                <div class="boardContent-float-right boardContent-reply-btn-div">
+                                    <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
+                                    <button class="boardContent-color-black boardContent-btn-small">삭제</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div><!--게시글 상세보기 끝-->
+    
+    <!-- 이미자, 동영상 모달 창 -->
+    <div id="boardContent-img-modal">
+        <div class="boardContent-modal-div">
+            <div class="boardContent-modal-xbtn-div boardContent-clearfix color-skyblue">
+                <button id="boardContent-img-modal-xbtn" class="color-darkskyblue boardContent-btn-red boardContent-float-right">x</button>
+            </div>
+            <div class="boardContent-modal-img">
+                <img src="" alt="img">
+                <video src="" type="video/mp4" autoplay controls></video>
+            </div>
+        </div>
+    </div>
+
+    <!-- 신고하기 모달 창 -->
+    <div id="boardContent-report-modal">
+        <div class="boardContent-modal-div">
+            <div class="boardContent-modal-xbtn-div boardContent-clearfix color-skyblue">
+                <div class="boardContent-modal-title boardContent-float-left">신고하기</div>
+                <button id="boardContent-report-modal-xbtn" class="boardContent-btn-red boardContent-float-right">x</button>
+            </div>
+            <form action="#">
+                <div class="boardContent-modal-content">
+                    <div id="boardContent-modal-content-title" class="boardContent-updonw-margin-div">
+                        신고 사유
+                    </div>
+                    <div id="boardContent-modal-select" class="boardContent-updonw-margin-div">
+                        <select name="" id="">
+                            <option value="">---- 신고 사유 옵션 ----</option>
+                            <option value="">---- 신고 사유 옵션 ----</option>
+                            <option value="">---- 신고 사유 옵션 ----</option>
+                            <option value="">---- 신고 사유 옵션 ----</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="boardContent-modal-bottombtn boardContent-clearfix">
+                    <div class="boardContent-float-right">
+                        <button type="button" id="boardContent-report-modal-undobtn" class="boardContent-color-black boardContent-btn-small">취소</button>
+                        <button type="submit" class="boardContent-color-white color-darkskyblue boardContent-btn-small">등록</button>
+                    </div>    
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function() {
+
+        // 이미지바 이동
+        let is_mouse_down = false;
+        let right_move = false;
+        const $img_border_box = $('.boardContent-images-div');
+        const $img_box = $('.boardContent-images-div li');
+
+        $('#boardContent-arrow-left').mousedown(function(){
+            is_mouse_down = true;
+            img_move('left');
+        });
+        $('#boardContent-arrow-left').mouseup(function(){
+            is_mouse_down = false;
+        });
+        $('#boardContent-arrow-right').mousedown(function(){
+            is_mouse_down = true;
+            img_move('right');
+        });
+        $('#boardContent-arrow-right').mouseup(function(){
+            is_mouse_down = false;
+        });
+
+        function img_move(witch_side){
+            if(is_mouse_down){
+                if($img_border_box.width() <= $img_box.width()){
+                    if(witch_side === 'right'){
+                        $img_box.css('left', ($img_box.position().left - 25) + 'px');
+                        
+                        if($img_box.position().left <= - ($img_box.outerWidth() - $img_border_box.innerWidth())){
+                            $img_box.css('left', - ($img_box.outerWidth() - $img_border_box.innerWidth()) + 'px');
+                        }
+                    }
+                    else{
+                        $img_box.css('left', ($img_box.position().left + 25) + 'px');
+                        if($img_box.position().left >= 0){
+                            $img_box.css('left', '0px');
+                        }
+                    }
+                    setTimeout(function() {
+                    img_move(witch_side);
+                }, 100);
+                }
+            }
+        };
+
+        // 이미지 모달
+        const $img_modal = $('#boardContent-img-modal');
+        const $img_modal_img = $('#boardContent-img-modal img');
+        const $img_modal_video = $('#boardContent-img-modal video');
+
+        $img_modal.hide();
+
+        $('.boardContent-img-img img').click(function(){
+            $img_modal_img.attr("src", $(this).attr("src"));
+            $img_modal.show();
+            $img_modal_img.show();
+            $img_modal_video.hide();
+        });
+
+        $('.boardContent-video-img').click(function(){
+            $img_modal_video.attr("src", $('.boardContent-video-img img').data('videourl'));
+            $img_modal.show();
+            $img_modal_img.hide();
+            $img_modal_video.show();
+        });
+
+        $('#boardContent-img-modal-xbtn').click(function(){
+            $img_modal.hide();
+        });
+
+        // 신고하기 모달
+        $('#boardContent-report-modal').hide();
+
+        $('#boardContent-report-btn').click(function(){
+            $('#boardContent-report-modal').show();
+        });
+
+        $('#boardContent-report-modal-xbtn').click(function(){
+            $('#boardContent-report-modal').hide();
+        });
+        $('#boardContent-report-modal-undobtn').click(function(){
+            $('#boardContent-report-modal').hide();
+        });
+    });
+</script>
+</html>
