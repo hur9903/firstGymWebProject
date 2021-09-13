@@ -8,21 +8,40 @@
     <link rel="stylesheet" href="main.css">
     <style>
         /* li 초기화 */
-        li{
+        .login-main-div li, .login-modal li{
             list-style:none;
+            display: inline-block;
+        }
+        .login-main-div ul, .login-modal ul{
+            width: 100%;
+            display: inline-block;
         }
         /* 버튼 */
-        button{
+        .login-main-div button, .login-modal button{
             border: none;
             font-weight: bold;
             border-radius: .25em;
+            color: white;
+            cursor: pointer;
         }
         /* 링크 */
-        a{
+        .login-main-div a, .login-modal a{
             text-decoration: none;
             color: gray;
         }
-
+        /* float */
+        .login-clearfix::after{
+            display: block;
+            content: '';
+            clear: both;
+        }
+        .login-float-left{
+            float: left;
+        }
+        .login-float-right{
+            float: right;
+        }
+        /* 로그인 */
         .login-main-div{
             text-align: center;
             margin: 100px 25%;
@@ -49,7 +68,7 @@
             display: inline-block;
             cursor: pointer;
         }
-        .login-change-div > li > ul{
+        .login-change-div > ul > li{
             background: lightgray;
             border-bottom: 1px solid rgb(94, 94, 94);
         }
@@ -74,18 +93,86 @@
             width: 100%;
             padding: 10px 0 20px 0;
         }
+        /* 모달 */
+        #login-modal{
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            position: fixed;
+            background: #00000090;
+        }
+        .login-modal-div{
+            border-radius: .25em;
+            background: white;
+            position: fixed;
+            left: 50vw;
+            top: 50vh;
+            width: 50%;
+            max-width: 500px;
+            min-width: 300px;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+        }
+        .login-modal-div > *, .login-modal-content{
+            padding: 10px;
+        }
+        .login-modal-content  *{
+            margin: 5px 0;
+        }
+        .login-modal-content input{
+            height: 30px;
+            width: 50%;
+        }
+        #login-report-modal .login-modal-div{
+            width: 50%;
+            max-width: 500px;
+            min-width: 300px;
+        }
+        .login-btn-red{
+            padding: 0 20px;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+            color: white;
+            background: crimson;
+        }
+        .login-btn-small{
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 12px;
+            height: 30px;
+            line-height: 20px;
+            cursor: pointer;
+            border: none;
+            color: white;
+            border-radius: .25em;
+        }
+        #login-modal-title{
+            font-size: 32px;
+        }
+        .login-modal-content-text{
+            color: rgb(52, 152, 219);
+        }
     </style>
     <!-- 제이쿼리 임시 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
 </head>
 <body>
-    
+    <!-- 로그인 페이지 -->
     <div class="login-main-div">
         <div class="login-change-div">
-            <li>
-                <ul id="login-user-login-modifier" class="login-change-mode login-active">ID 로그인</ul>
-                <ul id="login-nonuser-login-modifier" class="login-change-mode login-right-inactive">비회원</ul>
-            </li>
+            <ul>
+                <li id="login-user-login-modifier" class="login-change-mode login-active">ID 로그인</li>
+                <li id="login-nonuser-login-modifier" class="login-change-mode login-right-inactive">비회원</li>
+            </ul>
         </div>
         <div class="login-input-div">
             <!-- 회원 로그인 -->
@@ -108,7 +195,68 @@
             </div>
         </div>
         <div id="login-links-div">
-            <a href="#">비밀번호 찾기</a> | <a href="#">아이디 찾기</a> | <a href="#">회원가입</a>
+            <a href="#" id="login-find-pw">비밀번호 찾기</a> | <a href="#" id="login-find-id">아이디 찾기</a> | <a href="#">회원가입</a>
+        </div>
+    </div>
+    <!-- 아이디, 비번 찾기 모달 -->
+    <div id="login-modal">
+        <div class="login-modal-div">
+            <div class="login-modal-xbtn-div login-clearfix color-skyblue">
+                <div id="login-modal-title" class="login-float-left">아이디 찾기</div>
+                <button id="login-modal-xbtn" class="login-btn-red login-float-right">x</button>
+            </div>
+            <div class="login-modal-content">
+                <!-- 아이디 찾기 -->
+                <div id="login-id-modal">
+                    <form action="#">            
+                        <div class="login-modal-content-text">
+                            이름 입력
+                        </div>
+                        <input type="text" name="" placeholder="이름">
+                        <div class="login-modal-content-text">
+                            이메일 입력
+                        </div>
+                        <div id="login-modal-id-numbermake-btn" class="login-clearfix">
+                            <input type="text" name="" placeholder="이메일" class="login-float-left">
+                            <button type="button" class="login-float-right login-color-white color-darkskyblue login-btn-small">인증번호 발송</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- 비밀번호 찾기 -->
+                <div id="login-pw-modal">
+                    <form action="#">            
+                        <div class="login-modal-content-text">
+                            아이디 입력
+                        </div>
+                        <div id="login-modal-id-numbermake-btn" class="login-clearfix">
+                            <input type="text" name="" placeholder="아이디" class="login-float-left">
+                            <button type="button" class="login-float-right login-color-white color-darkskyblue login-btn-small">인증번호 발송</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- 인증번호 맞는지 확인 -->
+                <div id="login-make-number-modal">
+                    <hr>
+                    <form action="#">            
+                        <div class="login-modal-content-text">
+                            인증번호 입력
+                        </div>
+                        <div id="login-modal-id-numberckeck" class="login-clearfix">
+                            <input type="text" name="" placeholder="인증번호" class="login-float-left">
+                            <button type="button" id="login-numbercheck-btn" class="login-float-right login-color-white color-darkskyblue login-btn-small">인증번호 확인</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- 결과 모달(비밀번호면 text부분을 js로 변경)) -->
+                <div id="login-result-modal">
+                    <div id="login-result-title" class="login-modal-content-text">
+                        아이디
+                    </div>
+                    <div id="login-check-result">
+                        abc1234
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
@@ -139,6 +287,55 @@
             $user_login_input.toggleClass('login-active');
             $nonuser_login_input.toggleClass('login-active')
         }
+    });
+
+    // 아이디, 비번 찾기 모달
+    const $modal = $('#login-modal');
+    const $find_pw_btn = $('#login-find-pw');
+    const $find_id_btn = $('#login-find-id');
+    const $modal_xbtn = $('#login-modal-xbtn');
+    const $numbercheck_btn = $('#login-numbercheck-btn');
+    const $id_modal = $('#login-id-modal');
+    const $pw_modal = $('#login-pw-modal');
+    const $make_number_modal = $('#login-make-number-modal');
+    const $result_modal = $('#login-result-modal');
+
+    $modal.hide();
+    
+    $find_pw_btn.click(function(){
+        event.preventDefault();
+        $('#login-modal-title').text('비밀번호 찾기');
+        $('#login-result-title').text('비밀번호');
+
+        $modal.show();
+        $id_modal.hide();
+        $pw_modal.show();
+        $make_number_modal.show();
+        $result_modal.hide();
+    });
+
+    $find_id_btn.click(function(){
+        event.preventDefault();
+        $('#login-modal-title').text('아이디 찾기');
+        $('#login-result-title').text('아이디');
+        $modal.show();
+        $id_modal.show();
+        $pw_modal.hide();
+        $make_number_modal.show();
+        $result_modal.hide();
+    });
+
+    $modal_xbtn.click(function(){
+        $modal.hide();
+    });
+
+    $numbercheck_btn.click(function(){
+        
+        $modal.show();
+        $id_modal.hide();
+        $pw_modal.hide();
+        $make_number_modal.hide();
+        $result_modal.show();
     });
 </script>
 </html>

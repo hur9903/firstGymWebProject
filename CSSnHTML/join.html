@@ -7,53 +7,123 @@
     <title>Document</title>
     <link rel="stylesheet" href="main.css">
     <style>
+        /* float */
+        .join-clearfix::after{
+            display: block;
+            content: '';
+            clear: both;
+        }
+        .join-float-left{
+            float: left;
+            line-height: 40px;
+            width: 20%;
+        }
+        .join-float-right{
+            float: right;
+            width: 75%;
+            line-height: 40px;
+        }
+        /* input 크기 지정 */
+        .join-float-right input[type="text"],
+        .join-float-right input[type="email"],
+        .join-float-right input[type="password"]{
+            width: 70%;
+            height: 40px;
+            padding: 5px;
+        }
+        .join-float-right input[type="checkbox"]{
+            margin-right: 20px;
+        }
         /* 버튼 */
-        button{
+        .join-main-div button{
             border: none;
             font-weight: bold;
             border-radius: .25em;
+            cursor: pointer;
+            cursor: pointer;
+            color: white;
         }
-
-        .join-main-div{
-            text-align: center;
-            margin: 100px 25%;
-            padding: 10px;
-            width: 50%;
-        }
-        .join-main-div input, .join-main-div select{
-            margin: 15px 0;
-            padding: 10px;
-            width: 100%;
+        /* 중복확인버튼 */
+        .join-float-right button{
+            width: 25%;
+            max-width: 100px;
             height: 40px;
+            margin-left: 10px;
         }
-        .join-main-div button{
+        .join-main-div{
+            min-width: 800px;
+            text-align: center;
+        }
+        .join-sub-div{
+            min-width: 480px;
+            margin: 100px 20%;
+            width: 60%;
+            text-align: left;
+            border: 1px solid black;
+            padding: 20px 20px 10px 20px;
+        }
+        .join-sub-div div > *{
+            display: inline-block;
+        }
+        .join-sub-div form > div{
+            margin: 15px 0;
+        }
+        .join-center button{
             margin: 10px 0;
-            width: 50%;
+            width: 30%;
             height: 60px;
             font-size: 24px;
-            cursor: pointer;
+            
+        }
+        .join-center{
+            text-align: center;
+        }
+        #join-title{
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
     <div class="join-main-div">
-        <div>
-            
-        </div>
-        <div>
+        <div class="join-sub-div">
+            <div id="join-title">
+                회원 가입
+            </div>
+            <hr>
             <form action="#">
-                <input type="text" placeholder="아이디" name=""><br>
-                <input type="password" placeholder="비밀번호" name=""><br>
-                <input type="text" placeholder="이름" name=""><br>
-                <input type="text" placeholder="생년월일" name=""><br>
-                <select name="">
-                    <option value="">----성별----</option>
-                    <option value="">남자</option>
-                    <option value="">여자</option>
-                </select><br>
-                <input type="email" placeholder="본인 확인 이메일" name=""><br>
-                <input type="text" placeholder="휴대전화"><br>
-                <button type="submit" class="color-darkskyblue">가입하기</button>
+                <div class="join-clearfix">
+                    <span class="join-float-left">*아이디</span>
+                    <span class="join-float-right"><input type="text" placeholder="아이디" name=""><button type="button" class="color-darkskyblue">중복확인</button></span>
+                </div>
+                <div class="join-clearfix">
+                    <span class="join-float-left">*비밀번호</span>
+                    <span class="join-float-right"><input type="password" placeholder="비밀번호" name=""></span>
+                </div>
+                <div class="join-clearfix">
+                    <span class="join-float-left">*이름</span>
+                    <span class="join-float-right"><input type="text" placeholder="이름" name=""></span>
+                </div>
+                <div class="join-clearfix">
+                    <span class="join-float-left">*생년월일</span>
+                    <span class="join-float-right"><input type="text" placeholder="생년월일" name=""></span>
+                </div>
+                <div class="join-clearfix">
+                    <span class="join-float-left">*성별</span>
+                    <span class="join-float-right"><input type="checkbox" name="" id="">남자&nbsp;&nbsp;&nbsp;<input type="checkbox">여자</span>
+                </div>
+                <div class="join-clearfix">
+                    <span class="join-float-left">*이메일</span>
+                    <span class="join-float-right"><input type="email" placeholder="본인 확인 이메일" name=""><button type="button" class="color-darkskyblue">중복확인</button></span>
+                </div>
+                <div class="join-clearfix">
+                    <span class="join-float-left">*휴대전화</span>
+                    <span class="join-float-right"><input type="text" placeholder="휴대전화"></span>
+                </div>
+                
+                <div class="join-center"><button type="submit" class="color-darkskyblue">가입하기</button></div>
             </form>
         </div>
     </div>
