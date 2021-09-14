@@ -28,7 +28,7 @@ font-family: 'ROKABold';
     font-style: normal;
 }
 
-
+/*** 공통 디자인 ***/
 * { /* padding과 margin을 0으로, 요소 크기에 padding, border값을 포함 x*/
 	padding: 0;
 	margin: 0;
@@ -56,3 +56,1190 @@ body, html {/*body와 html은 꽉 차게, 기본 폰트는 나눔 고딕*/
 .color-gray{
     background: rgb(94, 94, 94);
 }
+/*** header.html 디자인 ***/
+header * {
+    text-align: center;
+}
+header .title {
+    position: relative;
+}
+header .bar {
+    text-align: center; 
+    background-color: aqua;          
+}
+header .bar ul{
+    list-style: none;
+    display: flex;
+}
+header .bar ul li {
+    margin: auto;
+}
+header .join {
+    position: fixed;        
+    list-style: none;
+    left: 80%;
+    bottom: 97%;
+}
+header a {
+    color: black;
+    text-decoration: none;
+    outline: none;
+}
+header .bar ul li a:hover, .join a:hover {
+    color: yellow;
+}
+
+/*** footer.html 디자인 ***/
+footer .footerhr {
+    clear: both;
+}
+
+/*** bmiCheck.html 디자인 ***/
+.bmiCheck-title{
+    padding: 50px;
+    text-align: center;
+    font-size: 30px;
+
+}
+.bmiCheck-main{
+    padding: 30px;
+   
+}
+
+.bmiCheck-table{
+    background: rgba(208, 236, 248, 0.18);
+    height: 400px;
+    width: 800px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 30px 40px;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.bmiCheck-td-text {
+    width: 90px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    border: 1px solid rgb(190, 188, 188);
+}
+
+.bmiCheck-td-check{
+    transform: scale(2);
+}
+
+.bmiCheck-calc{
+    text-align: center;
+}
+.bmiCheck-calc-btn{
+    border: none;
+    border-radius: 5px;
+    width: 120px;
+    height: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    background: rgb(52, 152, 219);
+
+}
+.bmiCheck-calc-btn:hover{
+    background-color:rgb(14, 117, 185);
+    cursor: pointer;
+}
+
+/*** boardContent.html 디자인 ***/
+/* clearfix */
+.boardContent-clearfix::after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.boardContent-float-left{
+    float: left;
+}
+.boardContent-float-right{
+    float: right;
+}
+
+/* 버튼 */
+.boardContent-btn-small{
+    padding: 0 10px;
+    font-weight: bold;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: .25em;
+}
+.boardContent-color-white{
+    color: white;
+}
+.boardContent-color-black{
+    color: black;
+}
+.boardContent-btn-big{
+    padding: 0 20px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    border: none;
+    border-radius: .25em;
+    color: white;
+}
+.boardContent-btn-red{
+    padding: 0 20px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    border: none;
+    border-radius: .25em;
+    color: white;
+    background: crimson;
+}
+.boardContent-btn-heart{
+    padding: 0 20px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    border: none;
+    border-radius: .25em;
+    border: 1px solid crimson;
+    color: darkred;
+}
+
+/* 위 아래 패딩, 마긴 */
+.boardContent-updonw-padding-div{
+    padding: 10px 0;
+}
+.boardContent-updonw-margin-div{
+    margin: 10px 0;
+}
+
+/* 이미지 */
+.boardContent-img{ 
+    position: relative;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+.boardContent-img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(50, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+}
+
+/* 게시글 상세보기 */
+.boardContent-main-div{
+    min-width: 800px;
+    text-align: center;
+}
+.boardContent-sub-div{
+    min-width: 400px;
+    margin: 100px 25%;
+    width: 50%;
+    text-align: left;
+}
+#boardContent-page-title{
+    font-size: 24px;
+    font-weight: bold;
+}
+.boardContent-content-main-div{
+    background: rgb(231, 231, 231);
+    padding: 20px;
+    margin-top: 5px;
+}
+#boardContent-content-title, .boardContent-modal-title{
+    font-size: 32px;
+}
+.boardContent-content-area-div{
+    position: relative;
+    padding: 10px;
+    background: white;
+    border: 1px solid lightgray;
+    min-height: 300px;
+}
+.boardContent-content-area-div button{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.boardContent-report-btn-div{
+    height: 30px;
+}
+.boardContent-reply-area-div input{
+    padding: 5px;
+    width: 80%;
+}
+.boardContent-each-reply-div{
+    background: white;
+    width: 80%;
+}
+.boardContent-each-reply-div > *{
+    padding: 5px;
+}
+.boardContent-btn-heart{
+    padding: 5px;
+    width: 60px;
+}
+.boardContent-btn-heart img{
+    width: 20px;
+}
+.boardContent-carousel-div{
+    text-align: center;
+}
+.boardContent-images-div{
+    width: 85%;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid gray;
+    background: darkgray;
+    border-radius: .25em;
+}
+.boardContent-images-div li{
+    position: relative;
+    list-style:none;
+    width: max-content;
+    text-align: center;
+}
+.boardContent-images-div ul{
+    display: inline-block;
+    margin: 0 10px;
+    padding: 5px;
+    background: black;
+    border: 1px solid gray;
+}
+.boardContent-carousel-div div{
+    display: inline-block;
+}
+.boardContent-arrow{
+    width: 4%;
+    height: 220px;
+    color: white;
+    border-radius: .25em;
+    line-height: 220px;
+    cursor: pointer;
+}
+
+/* 게시글 상세보기 이미지 모달 */
+#boardContent-img-modal, #boardContent-report-modal{
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    position: fixed;
+    background: #00000090;
+}
+.boardContent-modal-div{
+    border-radius: .25em;
+    background: white;
+    position: fixed;
+    left: 50vw;
+    top: 50vh;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+.boardContent-modal-div img{
+    max-width: 50vw;
+    max-height: 80vh;
+    border: 2px solid black;
+    border-radius: .25em;
+}
+.boardContent-modal-div video{
+    max-width: 50vw;
+    max-height: 80vh;
+    border: 2px solid black;
+    border-radius: .25em;
+}
+.boardContent-modal-div > *, .boardContent-modal-content{
+    padding: 10px;
+}
+.boardContent-video-text{
+    position: absolute;
+    color: white;
+    border: 1px solid white;
+    border-radius: 25%;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#boardContent-report-modal .boardContent-modal-div{
+    width: 50%;
+    max-width: 500px;
+    min-width: 300px;
+}
+#boardContent-modal-content-title{
+    color: rgb(52, 152, 219);
+}
+#boardContent-modal-select{
+    text-align: center;
+}
+#boardContent-modal-select select{
+    width: 80%;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+/*** boardList.html 디자인 ***/
+/* a태그 초기화 */
+.boardList-main-div a{
+    text-decoration: none;
+    color: black;
+}
+.boardList-main-div a:hover{
+    text-decoration: underline;
+}
+/* li 초기화 */
+.boardList-main-div li{
+    list-style:none;
+}
+
+
+.boardList-clearfix::after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.boardList-float-left{
+    float: left;
+}
+.boardList-float-right{
+    float: right;
+}
+
+
+.boardList-main-div{
+    min-width: 1000px;
+    text-align: center;
+}
+.boardList-sub-div{
+    min-width: 700px;
+    margin: 100px 15%;
+    width: 70%;
+    text-align: left;
+    padding: 30px;
+    background: rgb(232, 246, 255);
+}
+.boardList-sub-div > *{
+    margin-bottom: 10px;
+}
+#boardList-page-title{
+    font-size: 16px;
+    font-weight: bold;
+}
+.boardList-search-div *{
+    display: inline-block;
+    height: 30px;
+}
+.boardList-search-div button{
+    padding: 0 20px;
+    font-weight: bold;
+    line-height: 30px;
+    cursor: pointer;
+    border: none;
+    border-radius: .25em;
+    color: white;
+}
+.boardList-search-div button{
+    padding: 0 5px;
+}
+#boardList-top-search-div{
+    text-align: right;
+}
+#boardList-bottom-search-div{
+    text-align: center;
+}
+#boardList-list-div{
+    border-top: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+}
+#boardList-list-div table{
+    width: 100%;
+    border-top: 1px solid darkgray;
+    border-collapse: collapse;
+}
+#boardList-list-div th, #boardList-list-div td{
+    border-bottom: 1px solid darkgray;
+    padding: 10px;
+}
+#boardList-list-div th{
+    background: rgb(231, 231, 231);
+    text-align: center;
+}
+.boardList-list-left-td{
+    background: rgb(231, 231, 231);
+    border-right: 3px double darkgray;
+    width: 20%;
+    text-align: center;
+}
+.boardList-list-right-td{
+    border-left: 1px dashed darkgray;
+    width: 20%;
+}
+.boardList-content-img{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: .25em;
+}
+.boardList-content-img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(50, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+}
+.boardList-content-info > *{
+    margin-right: 10px;
+}
+.boardList-content-info img{
+    width: 16px;
+}
+.boardList-content-div{
+    width: 60%;
+    min-height: 100px;
+}
+.boardList-content-div > *{
+    margin-bottom: 5px;
+}
+.boardList-content-title *{
+    font-size: 18px;
+    font-weight: bold;
+}
+.boardList-list-right-td{
+    text-align: center;
+    font-size: 18px;
+}
+.boardList-paging-div{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.boardList-paging-div *{
+    display: inline-block;
+}
+.boardList-btn-check{
+    background: rgb(52, 152, 219);
+    border: none;
+    color: white;
+}
+.boardList-btn-not-check{
+    background: white;
+    border: 1px solid rgb(52, 152, 219);
+    color: black;
+}
+.boardList-paging-div li{
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    border-radius: .25em;
+}
+
+/*** boardModify.html 디자인 ***/
+.boardModify-main-div{
+    min-width: 800px;
+    text-align: center;
+}
+.boardModify-sub-div{
+    min-width: 400px;
+    margin: 100px 25%;
+    width: 50%;
+    text-align: left;
+}
+#boardModify-title{
+    font-size: 24px;
+    font-weight: bold;
+}
+.boardModify-form-div{
+    margin: 10px 0;
+}
+.boardModify-form-div > *{
+    margin: 5px 0;
+    padding: 5px;
+}
+.boardModify-form-div > input{
+    height: 30px;
+    width: 50%;
+    min-width: 160px;
+}.boardModify-form-div > select{
+    height: 30px;
+}
+.boardModify-form-content-div{
+    background: rgb(231, 231, 231);
+    text-align: center;
+    padding: 2%;
+}
+.boardModify-form-content-div *{
+    background: white;
+    text-align: left;
+}
+.boardModify-fileupload-div{
+    padding: 0;
+}
+.boardModify-fileupload-div label{
+    display: inline-block;
+    padding: 0 10px;
+    margin: 5px 0;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    background: rgb(52, 152, 219);
+    border-radius: .25em;
+}
+.boardModify-fileupload-div input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+}
+.boardModify-fileupload-div .boardModify-uploaded-file-name{
+    display: inline-block;
+    padding: 0 5px;
+    margin: 5px 0 5px 10px;
+    height: 30px;
+    line-height: 30px;
+    background-color: white;
+    border: 1px solid #e2e2e2;
+    border-radius: .25em;
+    -webkit-appearance: none; /* safari, chrome */
+    -moz-appearance: none; /* firefox */
+    appearance: none;
+}
+.boardModify-button-div{
+    text-align: right;
+}
+.boardModify-button-div > button{
+    margin: 10px 0 0 10px;
+    padding: 0 20px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    border: none;
+    border-radius: .25em;
+    background: rgb(231, 231, 231);
+    color: rgb(52, 152, 219);
+}
+
+/*** login.html 디자인 ***/
+/* li 초기화 */
+.login-main-div li, .login-modal li{
+    list-style:none;
+    display: inline-block;
+}
+.login-main-div ul, .login-modal ul{
+    width: 100%;
+    display: inline-block;
+}
+/* 버튼 */
+.login-main-div button, .login-modal button{
+    border: none;
+    font-weight: bold;
+    border-radius: .25em;
+    color: white;
+    cursor: pointer;
+}
+/* 링크 */
+.login-main-div a, .login-modal a{
+    text-decoration: none;
+    color: gray;
+}
+/* float */
+.login-clearfix::after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.login-float-left{
+    float: left;
+}
+.login-float-right{
+    float: right;
+}
+/* 로그인 */
+.login-main-div{
+    text-align: center;
+    margin: 100px 25%;
+    width: 50%;
+    border: 2px solid rgb(94, 94, 94);
+}
+.login-main-div input{
+    margin: 15px 0;
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+}
+.login-main-div button{
+    margin: 10px 0;
+    width: 50%;
+    height: 60px;
+    font-size: 24px;
+}
+.login-change-mode{
+    width: 49%;
+    height: 60px;
+    font-size: 24px;
+    padding: 18px 0;
+    display: inline-block;
+    cursor: pointer;
+}
+.login-change-div > ul > li{
+    background: lightgray;
+    border-bottom: 1px solid rgb(94, 94, 94);
+}
+.login-change-div .login-active{
+    background: white;
+    border-bottom: none;
+}
+.login-change-div .login-left-inactive{
+    border-right: 1px solid rgb(94, 94, 94);
+}
+.login-change-div .login-right-inactive{
+    border-left: 1px solid rgb(94, 94, 94);
+}
+.login-input-div > div{
+    padding: 10px;
+    display: none;
+}
+.login-input-div .login-active{
+    display: block;
+}
+#login-links-div{
+    width: 100%;
+    padding: 10px 0 20px 0;
+}
+/* 모달 */
+#login-modal{
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    position: fixed;
+    background: #00000090;
+}
+.login-modal-div{
+    border-radius: .25em;
+    background: white;
+    position: fixed;
+    left: 50vw;
+    top: 50vh;
+    width: 50%;
+    max-width: 500px;
+    min-width: 300px;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+.login-modal-div > *, .login-modal-content{
+    padding: 10px;
+}
+.login-modal-content  *{
+    margin: 5px 0;
+}
+.login-modal-content input{
+    height: 30px;
+    width: 50%;
+}
+#login-report-modal .login-modal-div{
+    width: 50%;
+    max-width: 500px;
+    min-width: 300px;
+}
+.login-btn-red{
+    padding: 0 20px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    border: none;
+    border-radius: .25em;
+    color: white;
+    background: crimson;
+}
+.login-btn-small{
+    padding: 0 10px;
+    font-weight: bold;
+    font-size: 12px;
+    height: 30px;
+    line-height: 20px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: .25em;
+}
+#login-modal-title{
+    font-size: 32px;
+}
+.login-modal-content-text{
+    color: rgb(52, 152, 219);
+}
+
+/*** join.html 디자인 ***/
+/* float */
+.join-clearfix::after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.join-float-left{
+    float: left;
+    line-height: 40px;
+    width: 20%;
+}
+.join-float-right{
+    float: right;
+    width: 75%;
+    line-height: 40px;
+}
+/* input 크기 지정 */
+.join-float-right input[type="text"],
+.join-float-right input[type="email"],
+.join-float-right input[type="password"]{
+    width: 70%;
+    height: 40px;
+    padding: 5px;
+}
+.join-float-right input[type="checkbox"]{
+    margin-right: 20px;
+}
+/* 버튼 */
+.join-main-div button{
+    border: none;
+    font-weight: bold;
+    border-radius: .25em;
+    cursor: pointer;
+    cursor: pointer;
+    color: white;
+}
+/* 중복확인버튼 */
+.join-float-right button{
+    width: 25%;
+    max-width: 100px;
+    height: 40px;
+    margin-left: 10px;
+}
+.join-main-div{
+    min-width: 800px;
+    text-align: center;
+}
+.join-sub-div{
+    min-width: 480px;
+    margin: 100px 20%;
+    width: 60%;
+    text-align: left;
+    border: 1px solid black;
+    padding: 20px 20px 10px 20px;
+}
+.join-sub-div div > *{
+    display: inline-block;
+}
+.join-sub-div form > div{
+    margin: 15px 0;
+}
+.join-center button{
+    margin: 10px 0;
+    width: 30%;
+    height: 60px;
+    font-size: 24px;
+    
+}
+.join-center{
+    text-align: center;
+}
+#join-title{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/*** productList.html 디자인 ***/
+#productList *{
+    padding: auto;
+    margin: auto;
+    box-sizing: unset;
+}
+
+#productList .products {
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+#productList .products div h3 {
+    margin-top: 200px;
+    text-align: center;
+    font-weight: bold;
+}
+#productList .products .clearfix {
+    overflow: hidden;
+}
+#productList .products ul li {
+    float: left;
+    list-style-type: none;
+    width: 220px;
+    padding: 10px;
+    position: relative;
+}
+#productList .products ul li .product {
+    width: 220px;
+}
+#productList .products ul li h3 {
+    font-size: 14px;
+    line-height: 10px;
+    color: black;
+    margin-top: 10px;
+}
+#productList .products ul li h4 {
+    font-size: 12px;
+    line-height: 3px;
+    color: black;
+    margin-top: 10px;
+}
+#productList .products ul li .hover-product {
+    position: absolute;
+    left: 3%;
+    top: 2%;
+    width: 98%;
+    height: 92%;
+    background-color: rgba(17, 17, 49, 0.897);
+    opacity: 0;
+}
+#productList .products ul li:hover .hover-product {
+    opacity: 1;
+}
+#productList .products ul li .hover-product a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: bold;
+    margin-top: 60%;
+    text-decoration: none;
+}
+#productList .paging {
+    text-align: center;
+}
+#productList .pagination {
+    display: inline-block;
+}
+#productList .pagination a {
+    display: block;
+    margin:0 3px;
+    float: left;
+    border: 1px solid rgb(247, 240, 240);
+    border-radius: 30%;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background-color: rgb(247, 240, 240);
+    font-size: 13px;
+    color: black;
+    text-decoration: none;
+}
+#productList .pagination .prev {
+    background: rgb(247, 240, 240) url('image/page_prev.png') no-repeat center center;
+}
+#productList .pagination .next {
+    background: rgb(247, 240, 240) url('image/page_next.png') no-repeat center center;
+}
+
+/*** mypageMain.html 디자인 ***/
+.mypageMain-h3{
+    padding: 50px;
+    text-align: center;
+    margin-bottom: -30px;
+    font-size: 30px;
+}
+
+.mypageMain-table{
+    background: rgba(208, 236, 248, 0.18);
+    height: 300px;
+    width: 800px;
+    border-radius: 10px;
+    padding: 30px 40px;
+    margin: 0 auto;
+    font-size: 20px;
+}
+           
+.mypageMain-menu{
+    position: relative;
+    width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.mypageMain-menu a{
+   color: black;
+   background: rgb(208, 236, 248);
+   text-decoration: none;
+   width: 250px;
+   height: 100px;
+   font-size: 20px;
+   padding:35px;
+   text-align: center;
+   border-radius: 10px;
+}
+.mypageMain-menu a:hover{
+background: rgb(159, 214, 238);
+cursor: pointer;
+text-decoration: none;
+}
+.left{
+   position: absolute;
+   left: 50px;
+}
+.left a{
+   display: block;
+}
+.right{
+   position: absolute;
+   right: 50px;
+}
+.right a{
+   display: block;
+}
+
+/*-----------modify modal*/
+#info{
+   width: 100vw;
+   height: 100vw;
+   position: fixed;
+   left: 0;
+   top: 0;
+   background-color: #00000090;
+}
+.mypageModify-Main{
+    border-radius: .25em;
+    background: white;
+    position: fixed;
+    left: 50vw;
+    top: 50vh;
+    min-width: 300px;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+        border: 1px solid black;
+        width: 600px;
+        height:auto;
+        padding: 50px 80px;
+        font-size: 20px;
+}
+/*---------------------modify*/
+.mypageModify-h3{
+font-size: 30px;
+}
+#info p{
+    padding: 10px;
+    font-size: 15px;
+}
+.mypageModify-table{
+    width: 500px;
+
+}
+.mypageModify-table td input{
+    background-color: rgb(240, 240, 240);
+    border: none;
+    height: 30px;
+    margin: 10px;
+}
+.mypageModify-gender{
+        transform: scale(1.5);
+}
+#info label{
+    position: relative;
+    top: -8px;
+}
+.second{
+    height: 500px;
+}    
+    .mypageModify-mod, .mypageModify-can{
+        border: none;
+        border-radius: 5px;
+        width:100px;
+        height: 40px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 25px;
+    }
+    .mypageModify-mod{
+        background: rgb(52, 152, 219);
+    }
+    .mypageModify-mod:hover{
+        background-color:rgb(14, 117, 185);
+    }
+    .mypageModify-can{
+        background-color:  rgb(94, 94, 94);;
+    } 
+    .mypageModify-can:hover{
+        background-color:  rgb(70, 70, 70);;
+    }
+    .mypageModify-mailFind{
+        background-color: rgba(33, 14, 99, 0.671);
+        border: none;
+        width:80px;
+        height: 30px;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        font-size: 15px;
+        cursor: pointer;
+
+    }
+
+    .mypageModify-button{
+        text-align: center;
+        margin-bottom: -50px;
+    }
+    
+    .mypageModify-mod:hover, .mypageModify-can:hover{
+        cursor: pointer;
+    }
+
+    /*modal- bmiList*/
+    #bmiList{
+   width: 100vw;
+   height: 100vw;
+   position: fixed;
+   left: 0;
+   top: 0;
+   background-color: #00000090;
+}
+    .bmiList-Main{
+    border-radius: .25em;
+    background: white;
+    position: fixed;
+    left: 50vw;
+    top: 50vh;
+    min-width: 300px;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    overflow: scroll;
+    border: 1px solid black;
+    width: 600px;
+    padding: 50px 80px;
+    font-size: 20px;
+    height:auto;
+
+}
+/*BMI list*/
+#bmiList h3{
+font-size: 30px;
+}
+
+.bmiList-table{
+        margin-top: 40px;
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+        border-collapse:collapse;
+        
+}
+.bmiList-table th{
+        background: rgb(167, 163, 163);
+        text-align: left;
+}
+.bmiList-table th, .bmiList-table td{
+    height: 30px;
+    padding: 10px;
+}
+
+.bmiList-btn-confirm{
+    background-color: rgb(52, 152, 219);
+    border: none;
+    border-radius: 5px;
+    width:100px;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 25px;
+}
+.bmiList-btn-confirm:hover{
+    cursor: pointer;
+    background-color:rgb(14, 117, 185);
+    
+}
+
+.bmiList-btn{
+    text-align: center;
+    margin: 50px;
+    margin-bottom: -50px;
+}
+
+
+
+/*------------페이지*/
+#bmiList li{
+    list-style:none;
+    display: inline-block;
+}
+.bmiList-paging-div{
+    margin-top: 20px;
+}
+.bmiList-paging-div li{
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    border-radius: .25em;
+}
+.bmiList-btn-check{
+    background: rgb(52, 152, 219);
+    border: none;
+    color: white;
+}
+.bmiList-btn-not-check{
+    background: white;
+    border: 1px solid rgb(52, 152, 219);
+    color: black;
+}
+#bmiList a{
+    text-decoration: none;
+    color: black;
+}
+#bmiList a:hover{
+    text-decoration: underline;
+    }
+.bmiList-paging-ul{
+    position: absolute;
+    margin: 10px;
+}
+
