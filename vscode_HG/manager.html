@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
     <style>
+        /* header */
         * {
             text-align: center;
         }
@@ -23,11 +25,14 @@
         .bar ul li {
             margin: auto;
         }
+        .bar ul li a:hover, .join a:hover {
+            color: yellow;
+        }
         .join {
-            position: absolute;        
+            position: fixed;        
             list-style: none;
-            left: 1000px;
-            bottom: 10px;
+            left: 80%;
+            bottom: 97%;
         }
         a {
             color: black;
@@ -39,6 +44,9 @@
         }
         table {
             border-spacing: 100px 0px;
+        }
+        .gongji table tr td a:hover, .report table tr td a:hover {
+            color: yellow;
         }
     </style>
 </head>
@@ -82,6 +90,7 @@
         <button onclick="location='#'">전체 보기</button>
         <button onclick="location='#'">공지 작성</button>
     </div>
+    <hr color="aqua" size="10px">
     <div class='report'>
         <h1>신고 목록</h1>
         <table style="margin: auto">
@@ -106,6 +115,7 @@
         </table>
         <button onclick="location='#'">전체 보기</button>
     </div>
+    <hr color="aqua" size="10px">
     <div class='users'>
         <h1>회원 목록</h1>
         <table style="margin: auto;">

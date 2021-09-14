@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
     <style>
+        /* header */
         * {
             text-align: center;
         }
@@ -23,12 +25,21 @@
         .bar ul li {
             margin: auto;
         }
-        .join {
-            position: absolute;        
-            list-style: none;
-            left: 1000px;
-            bottom: 10px;
+        .bar ul li a:hover, .join a:hover {
+            color: yellow;
         }
+        .join {
+            position: fixed;        
+            list-style: none;
+            left: 80%;
+            bottom: 97%;
+        }
+
+        /* footer */
+        .footerhr {
+            clear: both;
+        }
+        
         a {
             color: black;
             text-decoration: none;
@@ -43,68 +54,69 @@
         .homeboard ul {
             background-color: aqua;
         }
-        .footerhr {
-            clear: both;
-        }
         .homegigu ul li {
             margin: auto;
+        }
+        .moreview:hover, .bestboard ul li a:hover, .recentboard ul li a:hover, .homegigu ul li div:hover{
+            color: yellow;
         }
     </style>
 </head>
 <body>
     <header>
-            <div class='title'>
-                <h1>FIRST GYM</h1>
-                <div class="join">
-                    <a href="#">로그인</a>
-                    <a href="#">회원가입</a>
-                </div>
+        <div class='title'>
+            <h1>FIRST GYM</h1>
+            <div class="join">
+                <a href="#">로그인</a>
+                 <a href="#">회원가입</a>
             </div>
-            <nav class='bar'>
-                <ul>
-                    <li><a href="#">MBI 검사</a></li>
-                    <li><a href="#">운동기구</a></li>
-                    <li><a href="#">게시판</a></li>
-                    <li><a href="#">마이페이지</a></li>
-                    <li><a href="#">문의하기</a></li>
-                </ul>
-            </nav>          
+        </div>
+        <nav class='bar'>
+            <ul>
+                <li><a href="#">MBI 검사</a></li>
+                <li><a href="#">운동기구</a></li>
+                <li><a href="#">게시판</a></li>
+                <li><a href="#">마이페이지</a></li>
+                <li><a href="#">문의하기</a></li>
+            </ul>
+        </nav>          
     </header>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/QH2-TGUlwu4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <hr color="aqua" size="10px">
     <div class="homeboard">
         <div class="bestboard">
             <h5 style="float: left;">인기 게시글</h5>
-            <h5 style="float: right;"><a href='#'>더보기</a></h5>
+            <h5 style="float: right;"><a href='#' class="moreview">더보기</a></h5>
             <ul style="clear: both;">
-                <li><a href='#'>인기글1&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><a href='#'>인기글2&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><a href='#'>인기글3&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><a href='#'>인기글4&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><a href='#'>인기글5&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><img src="img/icon_hot.png" width="33px" height="13px"><a href='#'>인기글1&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><img src="img/icon_hot.png" width="33px" height="13px"><a href='#'>인기글2&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><img src="img/icon_hot.png" width="33px" height="13px"><a href='#'>인기글3&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><img src="img/icon_hot.png" width="33px" height="13px"><a href='#'>인기글4&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><img src="img/icon_hot.png" width="33px" height="13px"><a href='#'>인기글5&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
             </ul>
         </div>
         <div class="recentboard">
             <h5 style="float: left;">최신 게시글</h5>
-            <h5 style="float: right;"><a href='#'>더보기</a></h5>
-            <ul style="clear: both;">
-                <li><a href='#'>최신글1&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><a href='#'>최신글2&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><a href='#'>최신글3&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><a href='#'>최신글4&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><a href='#'>최신글5&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+            <h5 style="float: right;"><a href='#' class="moreview">더보기</a></h5>
+            <ul style="clear: both; list-style: none;">
+                <li><img src="img/icon_new.gif" alt=""><a href='#'>최신글1&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><img src="img/icon_new.gif" alt=""><a href='#'>최신글2&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><img src="img/icon_new.gif" alt=""><a href='#'>최신글3&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><img src="img/icon_new.gif" alt=""><a href='#'>최신글4&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+                <li><img src="img/icon_new.gif" alt=""><a href='#'>최신글5&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
             </ul>
         </div>
     </div>
     <hr style="clear: both;">
     <div class="homegigu">
         <h5 style="float: left;">인기 기구</h5>
-        <h5 style="float: right;"><a href='#'>더보기</a></h5>
-        <ul style="clear: both; display: flex;">
+        <h5 style="float: right;"><a href='#' class="moreview">더보기</a></h5>
+        <ul style="clear: both; display: flex; list-style: none;">
             <li>
                 <a href="#">
                 <div>
-                    <img src="img1" alt="기구1">
+                    <img src="img/test.jpeg" width="80px" height="100px" alt="기구1">
+                    <hr style="clear: both;">
                     <h5 style="float: left;">기구명</h5>
                     <h5 style="float: right;">가격</h5>
                 </div>
@@ -113,7 +125,8 @@
             <li>
                 <a href="#">
                 <div>
-                    <img src="img2" alt="기구2">
+                    <img src="img/test.jpeg" width="80px" height="100px" alt="기구2">
+                    <hr style="clear: both;">
                     <h5 style="float: left;">기구명</h5>
                     <h5 style="float: right;">가격</h5>
                 </div>
@@ -122,7 +135,8 @@
             <li>
                 <a href="#">
                 <div>
-                    <img src="img3" alt="기구3">
+                    <img src="img/test.jpeg" width="80px" height="100px" alt="기구3">
+                    <hr style="clear: both;">
                     <h5 style="float: left;">기구명</h5>
                     <h5 style="float: right;">가격</h5>
                 </div>
@@ -131,7 +145,8 @@
             <li>
                 <a href="#">
                 <div>
-                    <img src="img4" alt="기구4">
+                    <img src="img/test.jpeg" width="80px" height="100px" alt="기구4">
+                    <hr style="clear: both;">
                     <h5 style="float: left;">기구명</h5>
                     <h5 style="float: right;">가격</h5>
                 </div>
