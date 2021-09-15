@@ -69,7 +69,9 @@ header .title {
 }
 header .bar {
     text-align: center; 
-    background-color: aqua;
+    /* background-color: aqua; */
+    /* background: rgb(23, 56, 78); */
+    background: rgba(208, 236, 248, 0.18);
     height: 50px;
     line-height: 50px;         
 }
@@ -87,7 +89,8 @@ header .join {
     top: 3%;
 }
 header a {
-    color: black;
+    /* color: black; */
+    color: white;
     text-decoration: none;
     outline: none;
     font-family: 'Vitro_pride';

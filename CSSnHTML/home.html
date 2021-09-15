@@ -49,16 +49,16 @@
             outline: none;
         }
         .bestboard {
-            float: left;
+            display: inline-block;
         }
         .recentboard {
-            float: right;
+            display: inline-block;
         }
-        .homeboard ul {
+        /* .homeboard ul {
             background-color: aqua;
-        }
+        } */
         .homegigu ul li {
-            margin: auto;
+            margin: 0 50px;
         }
         .moreview:hover, .bestboard ul li a:hover, .recentboard ul li a:hover, .homegigu ul li div:hover{
             color: yellow;
@@ -67,7 +67,7 @@
 </head>
 <body>
     <header>
-        <div class='title'>
+        <div class='title' style="margin: 20px 0;">
             <h1>FIRST GYM</h1>
             <div class="join">
                 <a href="#">로그인</a>
@@ -85,12 +85,12 @@
         </nav>          
     </header>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/QH2-TGUlwu4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <hr color="aqua" size="10px">
+    <hr color="#3498db" size="10px">
     <div class="homeboard">
-        <div class="bestboard">
+        <div class="bestboard" style="margin: 0 50px;">
             <h3 style="float: left;">인기 게시글</h3>
             <h3 style="float: right;"><a href='#' class="moreview">더보기</a></h3>
-            <ul style="clear: both;">
+            <ul style="clear: both; list-style: none;">
                 <li><img src="image/icon_hot.png" width="33px" height="13px"><a href='#'>인기글1&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
                 <li><img src="image/icon_hot.png" width="33px" height="13px"><a href='#'>인기글2&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
                 <li><img src="image/icon_hot.png" width="33px" height="13px"><a href='#'>인기글3&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
@@ -98,7 +98,7 @@
                 <li><img src="image/icon_hot.png" width="33px" height="13px"><a href='#'>인기글5&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
             </ul>
         </div>
-        <div class="recentboard">
+        <div class="recentboard" style="margin: 0 50px;">
             <h3 style="float: left;">최신 게시글</h3>
             <h3 style="float: right;"><a href='#' class="moreview">더보기</a></h3>
             <ul style="clear: both; list-style: none;">
@@ -110,8 +110,8 @@
             </ul>
         </div>
     </div>
-    <hr color="aqua" size="10px" style="clear: both;">
-    <div class="homegigu">
+    <hr color="#3498db" size="10px" style="clear: both;">
+    <div class="homegigu" style="display: inline-block;">
         <h3 style="float: left;">인기 기구</h3>
         <h3 style="float: right;"><a href='#' class="moreview">더보기</a></h3>
         <ul style="clear: both; display: flex; list-style: none;">
@@ -157,7 +157,7 @@
             </li>
         </ul>
     </div>
-    <hr class="footerhr" color="aqua" size="10px">
+    <hr class="footerhr" color="#3498db" size="10px">
     <footer>
         <h1>푸터</h1>
     </footer>
