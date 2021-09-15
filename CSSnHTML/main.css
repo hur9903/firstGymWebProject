@@ -844,7 +844,7 @@ footer .footerhr {
     background-color: rgb(240, 240, 240);
     border: none;
 }
-.join-float-right input[type="checkbox"]{
+.join-float-right input[type="radio"]{
     margin-right: 20px;
     background-color: rgb(240, 240, 240);
     border: none;
@@ -1266,3 +1266,391 @@ font-size: 30px;
     margin: 10px;
 }
 
+/*** purchase.html 디자인 ***/
+.purchase-main-div{
+    min-width: 1000px;
+    text-align: center;
+}
+.purchase-sub-div{
+    min-width: 600px;
+    margin: 0 20% 50px;
+    width: 60%;
+    text-align: left;
+    padding: 30px;
+    /* background: rgb(232, 246, 255); */
+}
+/* 테이블 테두리*/
+.purchase-main-div table{
+    width: 100%;
+    border-top: 1px solid darkgray;
+    border-collapse: collapse;
+}
+.purchase-table-tr{
+    font-weight: 600;
+    text-align: center;
+}
+.purchase-main-div td{
+    border: 1px solid darkgray;
+    padding: 5px;
+    text-align: center;
+}
+.purchase-main-table1{
+    background: rgba(250, 229, 239, 0.5);
+}
+.purchase-main-table2{
+    background: rgba(203, 226, 236, 0.3);
+}
+/* 첫번째 테이블 가로비율 */
+#purchase-first-table .purchase-table-td1{
+    width: 5%;
+}
+#purchase-first-table .purchase-table-td2,
+#purchase-first-table .purchase-table-td3,
+#purchase-first-table .purchase-table-td6,
+#purchase-first-table .purchase-table-td7
+{
+    width: 15%;
+}
+#purchase-first-table .purchase-table-td4,
+#purchase-first-table .purchase-table-td5{
+    width: 10%;
+}
+/* 주문정보 테이블 가로비율 */
+#purchase-second-table .purchase-table-td1{
+    width: 30%;
+}
+#purchase-second-table .purchase-table-td2{
+    width: 70%;
+}
+/* 배송정보 테이블 가로비율 */
+#purchase-third-table .purchase-table-td1{
+    width: 30%;
+}
+#purchase-third-table .purchase-table-td2{
+    width: 70%;
+}
+/* 결제수단 테이블 가로비율 */
+#purchase-forth-table .purchase-table-td1{
+    width: 30%;
+}
+#purchase-forth-table .purchase-table-td2{
+    width: 45%;
+}
+#purchase-forth-table .purchase-table-td3{
+    width: 25%;
+}
+/* 상하 마긴 */
+.purchase-table-box{
+    margin: 10px 10px;
+}
+/* 입력창 길이조절 */
+.purchase-input-full-width{
+    width: 80%;
+}
+.purchase-input-small-width{
+    min-width: 150px;
+}
+/* 인풋창 설정 */
+.purchase-sub-div input,
+.purchase-sub-div select{
+    padding: 5px;
+    margin: 5px;
+}
+/* 텍스트에리어 설정 */
+.purchase-sub-div textarea{
+    padding: 5px;
+    margin: 5px;
+    width: 80%;
+    height: 60px;
+    resize: none;
+}
+.purchase-img{
+    position: relative;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+   
+}
+.purchase-img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(50, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+}
+/* 중앙정렬 */
+.purchase-align-center{
+    text-align: center;
+}
+.purchase-order{
+    font-size: 20px;
+    text-align: center;
+    color: rgb(104, 105, 102);
+    font-size: 40px;
+    padding-bottom: 50px;
+    font-weight: bolder;
+}
+
+/*버튼*/
+.purchase-prevBtn{
+    background: rgb(52, 152, 219);
+    border: 1px solid black;
+    height: 30px;
+    width: 100px;
+    color: white;
+    text-align: center;
+    float: right;
+    margin: 10px;
+}
+.purchase-table-box button:hover{
+    cursor: pointer;
+}
+.purchase-order-main{
+    font-size: 20px;
+    font-weight: 600;
+}
+.purchase-payBtn{
+    background: rgb(255, 225, 0);
+    border: none;
+    width:150px;
+    height: 50px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    float: right;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.purchase-payBtn:hover{
+    background: rgb(247, 232, 104);
+
+}   
+.purchase-mailBtn{
+    background-color: rgba(33, 14, 99, 0.671);
+    border: none;
+    width:80px;
+    height: 30px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+.purchase-check{
+   text-align: center;
+   font-size: 20px;
+   padding: 5px;
+   font-weight: 600;
+   color: rgb(173, 55, 35);
+   position: relative;
+    top: 5px;
+}
+.purchase-span{
+   text-align: right;
+   padding: 5px;
+   font-weight: bold;
+}
+.purchase-total{
+    color: rgb(255, 154, 1);
+    font-weight: bold;
+}
+.purchase-checkbox{
+   transform: scale(1.5);
+}
+.purchase-card{
+   transform: scale(2);
+}
+
+/*** orderList.html ***/
+.orderList-main-div .style li{
+    list-style: none;
+}
+
+.orderList-main-div .orderList {
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+.orderList-main-div div h3 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+.orderList-main-div .style {
+    position: relative;
+    padding-bottom: 30px;
+}
+.orderList-main-div .list {
+    margin-left: 15%;
+    width: 70%;
+}
+.orderList-main-div .out-box {
+    display: table;
+    width: 800px;
+    min-height: 161px;
+    padding: 23px 0 24px;
+    margin-top: 20px;
+    border-top: 2px solid rgb(201, 201, 201);
+    border-bottom: 2px solid rgb(201, 201, 201);
+    margin-top: 2px;
+    table-layout: fixed;
+}
+.orderList-main-div .pic-box {
+    text-align: center;
+    width: 280px;
+    position: relative;
+    display: table-cell;
+    vertical-align: top;
+}
+.orderList-main-div .pic {
+    width: 150px;
+    height: 150px;
+}
+.orderList-main-div .out-box .order-info {
+    vertical-align: middle;
+    padding: 4px 18px 0 21px;
+    position: relative;
+    display: table-cell;
+}
+.orderList-main-div .product-title .dumbel {
+    font-weight: bold;
+    color: black;
+    word-break: break-all;
+    text-decoration: none;
+}
+.orderList-main-div .product-price {
+    margin-top: 20px;
+    display: inline-block;
+}
+.orderList-main-div .product-price .price {
+    font-weight: 700;
+    line-height: 25px;
+    color: black;
+}
+.orderList-main-div .product-price .date {
+    font-size: 14px;
+    line-height: 10px;
+    font-weight: initial;
+    color: rgb(117, 117, 117);
+}
+.orderList-main-div .type a {
+    text-decoration: none;
+    display: inline-block;
+    color: rgb(153, 153, 153);
+    font-size: 10px;
+    line-height: 30px;
+    font-weight: bold;
+}
+.orderList-main-div .seller-info {
+    width: 150px;
+    height: 150px;
+    vertical-align: middle;
+    display: table-cell;
+}
+.orderList-main-div .seller-info .seller {
+    text-align: center;
+    overflow: hidden;
+    max-width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+
+}
+.orderList-main-div .seller-info .qna-btn {
+    width: 55px;
+    height: 20px;
+    margin: 0 auto;
+    color: #a5a5a5;
+    font-size: 12px;
+    line-height: 18px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 10%;
+}
+.orderList-main-div .paging {
+    text-align: center;
+}
+.orderList-main-div .pagination {
+    display: inline-block;
+}
+.orderList-main-div .pagination a {
+    display: block;
+    margin:0 3px;
+    float: left;
+    border: 1px solid rgb(247, 240, 240);
+    border-radius: 30%;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background-color: rgb(247, 240, 240);
+    font-size: 13px;
+    color: black;
+     text-decoration: none;
+}
+.orderList-main-div .pagination .prev {
+    background: rgb(247, 240, 240) url('image/page_prev.png') no-repeat center center;
+}
+.orderList-main-div .pagination .next {
+     background: rgb(247, 240, 240) url('image/page_next.png') no-repeat center center;
+}
+.orderList-main-div{
+    margin-bottom: 50px;
+}
+
+/*** dailyCheck.html 디자인 ***/
+.dailyCheck-main-div{
+    min-width: 800px;
+    margin: 50px 0;
+}
+.dailyCheck-main-div table {
+    margin: 0 auto;
+    border: 2px solid rgb(201, 201, 201);
+    border-collapse: collapse;
+}
+.dailyCheck-main-div #check {
+    text-align: center;
+    margin-right: 650px;
+    font-weight: bold;
+    font-size: 32px;
+    margin-bottom: 50px;
+}
+.dailyCheck-main-div .button1 {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+}
+.dailyCheck-main-div #span {
+    text-align: center;
+    margin-bottom: 35px;
+}
+.dailyCheck-main-div #button {
+    text-align: center;
+}
+.dailyCheck-main-div .buttonColor {
+    border: none;
+    border-radius: 5px;
+    width: 120px;
+    height: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    background: rgb(52, 152, 219);
+    margin-top: 20px;
+    cursor: pointer;
+}
+.dailyCheck-main-div td {
+    border: 2px solid rgb(201, 201, 201);
+    border-collapse: collapse;
+    width: 110px;
+    height: 65px;
+    border-spacing: 0;
+    padding-left: 10px;
+}
+.dailyCheck-main-div #span span{
+    font-weight: bold;
+}

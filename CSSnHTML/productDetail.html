@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIRDTGYM</title>
+    <link rel="stylesheet" href="CSSnHTML/main.css" />
+
+    <style>
+
+        .product-detail {
+            overflow: hidden;
+            position: relative;
+            width: 900px;
+            margin: 0 auto;
+            padding: 20px 0 0 0;
+        }
+        .product-imgArea {
+            float: left;
+            width: 364px;
+            margin: 0 0 30px 0;
+            text-align: center;
+        }
+        .keyImg {
+            width: 300px;
+            text-align: center;
+            margin: 50px;
+        }
+        .image {
+            width: 400px;
+        }
+        .info-area {
+            float: right;
+            width: 372px;
+            margin-left: 30px;
+            margin-top: 65px;
+        }
+        .info-area h3 {
+            margin: 0 0 10px;
+            padding: 0 5px 5px 2px;
+            font-size: 20px;
+            color: black;
+            border-bottom: 1px solid black;
+        }
+        .detail .basic-info{
+            border-bottom: 1px dotted gray;
+        }
+        .info-area table {
+            font-size: 12px;
+        }
+        table {
+            width: 100%;
+            border: 0;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+        caption {
+            display: none;
+        }
+        tbody {
+            display: table-row-group;
+            vertical-align: middle;
+            border-color: white;
+            opacity: 100%;
+        }
+        tr {
+            display: table-row;
+            vertical-align: inherit;
+            border-color: inherit;
+        }
+        .info-area th {
+            font-weight: normal;
+            color: black;
+            width: 108px;
+            padding: 8px 0 8px 4px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .info-area .product-title {
+            font-size: 20px;
+        }
+        .info-area .title {
+            font-size: 20px;
+        }
+        td {
+            display: table-cell;
+        }
+        .total-products {
+            margin: 14px 0 0 0;
+        }
+        .total-products .info {
+            padding: 0 0 7px 5px;
+            border-bottom: 1px solid black;
+            font-size: 11px;
+            color: rgb(106, 106, 201);
+            line-height: 14px;
+        }
+        img {
+            border: none;
+            vertical-align: top;
+        }
+        .total-products table {
+            margin: 0;
+        }
+        .total-products thead th {
+            height: 0;
+            padding: 0;
+            font-size: 0;
+            line-height: 0;
+        }
+        .total-products tbody tr:first-child td {
+            border-top: 0;
+        }
+        .total-products tbody tr td:first-child {
+            padding-left: 4px;
+        }
+        .total-products tbody td {
+            padding: 5px 0;
+            font-size: 11px;
+            color: #5f5f5f;
+            line-height: 16px;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-all;
+            border-left: 1px solid white;
+
+        }
+        .total-products tbody td .quantity {
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+        }
+        .total-products tbody td .quantity input {
+            font-size: 1px;
+            width: 23px;
+            height: 19px;
+            padding: 0 5px;
+            line-height: 19px;
+            border: 1px solid #e9e9e9;
+            border-top: 1px solid #c5c5c5;
+            border-left: 1px solid #c5c5c5;
+            
+        }
+        .total-products .quantity-up {
+            position: absolute;
+            left: 38px;
+            top: 0;
+        }
+        .total-products .quantity-down {
+            position: absolute;
+            left: 38px;
+            top: 10px;
+        }
+        .total-products table .right {
+            padding-right: 9px;
+            text-align: right;
+            border-right: 1px solid white;
+        }
+        tfoot {
+            display: table-footer-group;
+            vertical-align: middle;
+            border-color: inherit;
+        }
+        .total-products tfoot td {
+            padding: 11px 9px 13px 9px;
+            font-size: 12px;
+            color: black;
+            text-align: right;
+            vertical-align: middle;
+            background: rgb(245, 244, 244);
+        }
+        strong {
+            font-weight: bold;
+        }
+        .total-products tfoot td .total {
+            color: rgb(60, 60, 221);
+        }
+        .total-products tfoot td .total em {
+            font-style: normal;
+            font-size: 19px;
+        }
+        .purchase-btn {
+            overflow: hidden;
+            float: right;
+            width: 372px;
+            padding: 17px 0 53px 0;
+            border-top: 1px solid black;
+        }
+        .purchase-btn .btn-area {
+            overflow: hidden;
+            margin: 0 0 15px;
+            text-align: right;
+            font-size: 0;
+            line-height: 0;
+        }
+        .add-detail {
+            clear: both;
+            margin: 45px 0 0;
+        }
+        .add-detail .link {
+            height: 29px;
+            border-bottom: 1px solid #bbb;
+            zoom: 1;
+        }
+        .add-detail .link:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .add-detail .link li {
+            float: left;
+            height: 29px;
+            margin: 0 1px 0 0;
+            padding: 0 16px 0 17px;
+            line-height: 33px;
+            border-top: 1px solid #bbb;
+            border-right: 1px solid #bbb;
+            border-left: 1px solid #bbb;
+            list-style: none;
+        }
+        .add-detail .link .selected {
+            background: black;
+            border: 1px solid black;
+            border-bottom: 0;
+            line-height: 31px;
+        }
+        .add-detail .link .selected a {
+            color: white;
+        }
+        .add-detail .link a {
+            font-size: 13px;
+            text-decoration-line: none;
+        }
+        .add-detail .cont {
+            padding: 20px 20px 60px;
+            color: #8f8f91;
+            line-height: 1.8em;
+            font-size: 13px;
+        }
+        .add-detail .cont h3 {
+            margin: 0 0 20px;
+            color: black;
+            font-size: 12px;
+        }
+        .add-detail .board {
+            padding: 20px 0 50px;
+            color: rgb(185, 184, 184);
+        }
+        .item-title {
+            margin-top: 40px;
+            height: 30px;
+            text-align: center;
+        }
+        .add-detail p.nodata {
+            border: 1px solid #e3e3e3;
+            line-height: 50px;
+            text-align: center;
+            font-size: 13px;
+        }
+        .add-detail .btn-area {
+            margin: 10px 0;
+            text-align: right;
+        }
+        .add-detail p.desc {
+            padding: 0 20px;
+            font-size: 13px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+
+    <!-- 상단 제품 정보 -->
+    <div class="product-detail">
+       <div class="product-imgArea">
+           <div class="keyImg">
+               <img class="image" src="image/1.png">
+           </div>
+       </div> 
+       <div class="info-area">
+        <h3>아령 덤벨</h3>
+        <div class="detail">
+            <table class="basic-info" summary>
+                <caption>기본 정보</caption>
+                <tbody>
+                    <tr class="record">
+                        <th scope="row">
+                            <span class="product-title">상품명</span>
+                        </th>
+                        <td class="title">아령 덤벨</td>
+                    </tr> 
+                    <tr class="record">
+                        <th scope="row">
+                            <span>제조사</span>
+                        </th>\
+                        <td>퍼스트짐</td>
+                    </tr>
+                    <tr class="record">
+                        <th scope="row">
+                            <span>원산지</span>
+                        </th>
+                        <td>한국</td>
+                    </tr> 
+                    <tr class="record">
+                        <th scope="row">
+                            <span>판매가</span>
+                        </th>
+                        <td>73,200원</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="total-products">
+                <p class="info">
+                    <img src="image/느낌표.gif" alt="">
+                    수량을 선택해 주세요.
+                </p>
+                <table summary>
+                    <caption>상품목록</caption>
+                    <colgroup>
+                        <col style="width: 202px;">
+                        <col style="width: 85px;">
+                        <col style="width: 85px;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th scope="col">상품명</th>
+                            <th scope="col">상품수</th>
+                            <th scope="col">가격</th>
+                        </tr>
+                    </thead>
+                    <tbody class>
+                        <tr>
+                            <td>아령 덤벨</td>
+                            <td>
+                                <span class="quantity">
+                                    <input id="quatity" name="quantity-opt" style value="1" type="text">
+                                    <a href="none">
+                                        <img src="image/수량증가.gif" alt="수량증가" class="quantity-up">
+                                    </a>
+                                    <a href="none">
+                                        <img src="image/수량감소.gif" alt="수량감소" class="quantity-down">
+                                    </a>
+                                </span>
+                            </td>
+                            <td class="right">
+                                <span class="quantity-price">
+                                    73,200원
+                                    <input type="hidden" name="option-box-price" class="option-box-price" value="73200">
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <strong>총 상품금액</strong>
+                                (수량) : 
+                                <span class="total">
+                                    <strong>
+                                        <em>73,200원</em>
+                                    </strong>
+                                     (1개)
+                                </span>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="purchase-btn">
+                <div class="btn-area">
+                    <a href="#" class="first">
+                        <img src="image/바로구매하기.gif" alt="바로 구매하기">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="add-detail">
+        <!-- 상품상세정보 -->
+        <div class="prd-detail">
+            <ul class="link">
+                <li class="selected">
+                    <a href="#prd-detail">상품상세정보</a>
+                </li>
+                <li>
+                    <a href="#prd-change">교환 및 반품정보</a>
+                </li>
+                <li>
+                    <a href="#prd-review">상품사용후기</a>
+                </li>
+                <li>
+                    <a href="prdQnA">상품Q&A</a>
+                </li>
+            </ul>
+            <div class="cont">
+                <h3>상품상세정보</h3>
+                <p> </p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="image/아령덤벨설명.png" alt="">
+                                <br>
+                                <img src="image/아령덤벨설명2.png" alt="">
+                                <br>
+                                <br>
+                                <img src="image/아령덤벨설명3.png" alt="">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p></p>
+            </div>
+        </div>
+        <!-- 상품상세정보 -->
+        <!-- 교환 및 반품정보 -->
+        <div class="prd-change">
+            <ul class="link">
+                <li>
+                    <a href="#prd-detail">상품상세정보</a>
+                </li>
+                <li class="selected">
+                    <a href="#prd-change">교환 및 반품정보</a>
+                </li>
+                <li>
+                    <a href="#prd-review">상품사용후기</a>
+                </li>
+                <li>
+                    <a href="prdQnA">상품Q&A</a>
+                </li>
+            </ul>
+            <div class="cont">
+                <h3>교환 및 반품정보</h3>
+                <b>교환 및 반품이 가능한 경우</b>
+                <br>
+                - 상품을 공급 받으신 날로부터 7일이내 단, 가전제품의
+                <br>
+                &nbsp;&nbsp;경우 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우에는 교환/반품이 불가능합니다.
+                <br>
+                - 공급받으신 상품 및 용역의 내용이 표시.광고 내용과
+                <br>
+                &nbsp;&nbsp;다르거나 다르게 이행된 경우에는 공급받은 날로부터 3월이내, 그사실을 알게 된 날로부터 30일이내
+                <br>
+                <br>
+                <b>교환 및 반품이 불가능한 경우</b>
+                <br>
+                - 고객님의 책임 있는 사유로 상품등이 멸실 또는 훼손된 경우. 단, 상품의 내용을 확인하기 위하여
+                <br>
+                &nbsp;&nbsp;포장 등을 훼손한 경우는 제외
+                <br>
+                - 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우
+                <br>
+                &nbsp;&nbsp;(예 : 가전제품, 식품, 음반 등, 단 액정화면이 부착된 노트북, LCD모니터, 디지털 카메라 등의 불량화소에
+                <br>
+                &nbsp;&nbsp;따른 반품/교환은 제조사 기준에 따릅니다.)
+                <br>
+                - 고객님의 사용 또는 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우 단, 화장품등의 경우 시용제품을
+                <br>
+                &nbsp;&nbsp;제공한 경우에 한 합니다.
+                <br>
+                - 시간의 경과에 의하여 재판매가 곤란할 정도로 상품등의 가치가 현저히 감소한 경우
+                <br>
+                &nbsp;&nbsp;- 복제가 가능한 상품등의 포장을 훼손한 경우
+                <br>
+                &nbsp;&nbsp;(자세한 내용은 고객만족센터 1:1 E-MAIL상담을 이용해 주시기 바랍니다.)
+                <br>
+                <br>
+                ※ 고객님의 마음이 바뀌어 교환, 반품을 하실 경우 상품반송 비용은 고객님께서 부담하셔야 합니다.
+                <br>
+                &nbsp;&nabla;(색상 교환, 사이즈 교환 등 포함)
+                <br>
+            </div>
+        </div>
+        <!-- 교환 및 반품정보 -->
+        <!-- 상품사용후기 -->
+        <div class="prd-review">
+            <div class="board">
+                <div class="item-title">
+                     <img src="image/review.gif" alt="">
+                </div>
+                <p class="nodata">게시물이 없습니다.</p>
+                <p class="btn-area">
+                    <a href="#">
+                        <img src="image/상품후기쓰기.gif" alt="상품후기쓰기">
+                    </a>
+                </p>
+            </div>
+        </div>
+        <!-- 상품사용후기 -->
+
+        <!-- 상품 Q&A -->
+        <div class="prdQnA">
+            <div class="board">
+                <div class="item-title">
+                    <img src="image/Q&A.gif" alt="상품문의하기">
+                </div>
+                <p class="desc">상품에 대해 궁금한 점을 해결해 드립니다.</p>
+                <p class="nodata">게시물이 없습니다.</p>
+                <p class="btn-area">
+                    <a href="#">
+                        <img src="image/상품문의하기.gif" alt="">
+                    </a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    
+    
+</body>
+</html>
