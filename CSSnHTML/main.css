@@ -290,8 +290,10 @@ footer .footerhr {
     width: 80%;
 }
 .boardContent-each-reply-div{
-    background: white;
     width: 80%;
+}
+.boardContent-back-white{
+    background: white;
 }
 .boardContent-each-reply-div > *{
     padding: 5px;
@@ -454,7 +456,7 @@ footer .footerhr {
     display: inline-block;
     height: 30px;
 }
-.boardList-search-div button{
+.boardList-search-div button, .boardList-update-btn-div button{
     padding: 0 20px;
     font-weight: bold;
     line-height: 30px;
