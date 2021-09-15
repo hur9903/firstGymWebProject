@@ -66,12 +66,11 @@ header * {
 }
 header .title {
     position: relative;
+    margin: 20px 0;
 }
 header .bar {
     text-align: center; 
-    /* background-color: aqua; */
-    /* background: rgb(23, 56, 78); */
-    background: rgba(208, 236, 248, 0.18);
+        background-color: #3498db;
     height: 50px;
     line-height: 50px;         
 }
