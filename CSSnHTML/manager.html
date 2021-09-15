@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        /*
+         header 
+        
+        .title {
+            position: relative;
+        }
+        .bar {
+            text-align: center; 
+            background-color: aqua;          
+        }
+        .bar ul{
+            list-style: none;
+            display: flex;
+        }
+        .bar ul li {
+            margin: auto;
+        }
+        .bar ul li a:hover, .join a:hover {
+            color: yellow;
+        }
+        .join {
+            position: fixed;        
+            list-style: none;
+            left: 80%;
+            bottom: 97%;
+        }
+        */
+
+        * {
+            text-align: center;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+            outline: none;
+        }
+        table th,tr,td {
+            margin: auto;
+        }
+        table {
+            border-spacing: 100px 0px;
+        }
+        .gongji table tr td a:hover, .report table tr td a:hover {
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class='title'>
+            <h1>FIRST GYM</h1>
+            <div class="join">
+                <a href="#">로그인</a>
+                <a href="#">회원가입</a>
+            </div>
+        </div>
+        <nav class='bar'>
+            <ul>
+                <li><a href="#">BMI 검사</a></li>
+                <li><a href="#">운동기구</a></li>
+                <li><a href="#">게시판</a></li>
+                <li><a href="#">마이페이지</a></li>
+                <li><a href="#">문의하기</a></li>
+            </ul>
+        </nav>          
+    </header>
+    <div class='gongji'>
+        <h1>공지사항</h1>
+        <div style="overflow: scroll;">
+            <table style="margin: auto">
+                <th>제목</th>
+                <th>작성일자</th>
+                <tr>
+                    <td><a href="#">제목1</a></td>
+                    <td>작성일자1</td>
+                </tr>
+                <tr>
+                    <td><a href="#">제목2</a></td>
+                    <td>작성일자2</td>
+                </tr>
+                <tr>
+                    <td><a href="#">제목3</a></td>
+                    <td>작성일자3</td>
+                </tr>
+            </table>
+        </div>
+        <button onclick="location='#'">전체 보기</button>
+        <button onclick="location='#'">공지 작성</button>
+    </div>
+    <hr color="aqua" size="10px">
+    <div class='report'>
+        <h1>신고 목록</h1>
+        <div style="overflow: scroll;">
+            <table style="margin: auto">
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일자</th>
+                <tr>
+                    <td><a href="#">제목1</a></td>
+                    <td>작성자1</td>
+                    <td>작성일자1</td>
+                </tr>
+                <tr>
+                    <td><a href="#">제목2</a></td>
+                    <td>작성자2</td>
+                    <td>작성일자2</td>
+                </tr>
+                <tr>
+                    <td><a href="#">제목3</a></td>
+                    <td>작성자3</td>
+                    <td>작성일자3</td>
+                </tr>
+            </table>
+        </div>
+        <button onclick="location='#'">전체 보기</button>
+    </div>
+    <hr color="aqua" size="10px">
+    <div class='users'>
+        <h1>회원 목록</h1>
+        <div style="overflow: scroll;">
+            <table style="margin: auto;">
+                <th colspan="3">회원 목록</th>
+                <!-- <th style="display: none;"></th>
+                <th style="display: none;"></th> -->
+                <tr>
+                    <td>회원이름1</td>
+                    <td><button>회원정보</button></td>
+                    <td><button>회원탈퇴</button></td>
+                </tr>
+                <tr>
+                    <td>회원이름2</td>
+                    <td><button>회원정보</button></td>
+                    <td><button>회원탈퇴</button></td>
+                </tr>
+                <tr>
+                    <td>회원이름3</td>
+                    <td><button>회원정보</button></td>
+                    <td><button>회원탈퇴</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <hr class="footerhr" color="aqua" size="10px">
+    <footer>
+        <h1>푸터</h1>
+    </footer>
+</body>
+</html>
