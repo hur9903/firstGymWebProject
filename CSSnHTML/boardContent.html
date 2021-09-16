@@ -46,7 +46,7 @@
                     </div>
                     <div class="boardContent-float-right">
                         <button class="color-darkskyblue boardContent-btn-big">수정</button>
-                        <button class="color-gray boardContent-btn-big">삭제</button>
+                        <button class="boardContent-del boardContent-btn-big">삭제</button>
                     </div>
                 </div>
                 <hr>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="boardContent-float-right">
                         <!-- 클릭 시 하트 이미지 바꾸고 좋아요 수 비동기 통신으로 가져오기 -->
-                        <button class="boardContent-btn-heart"><img src="image/heart-empty.svg" alt="heart"> 0</button>
+                        <button class="boardContent-btn-heart"><img class="boardContent-heart" src="image/heart-empty.svg" alt="heart"> 0</button>
                     </div>
                 </div>
                 <hr>
@@ -122,48 +122,51 @@
                             eleifend bibendum at vel nibh.
                         </div>
                         <div class="boardContent-report-btn-div">
-                            <button id="boardContent-report-btn" class="boardContent-color-white color-darkskyblue boardContent-btn-small">신고하기</button>
+                            <button id="boardContent-report-btn" class="boardContent-color-white boardContent-btn-small">신고하기</button>
                         </div>
                     </div>
                     <!-- 댓글영역 -->
-                    <div class="boardContent-reply-area-div">
-                        <form action="" class="boardContent-updonw-margin-div">
-                            <input type="text" placeholder="댓글 입력">
-                            <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">등록</button>
-                        </form>
-                        <div class="boardContent-reply-list-div">
-                            <!-- 댓글 추가 시 아래 div 반복시켜 출력 -->
-                            <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix boardContent-back-white">
-                                <div class="boardContent-float-left boardContent-reply-content">
-                                    <p><strong>댓글 작성자</strong></p>
-                                    <p class="boardContent-updonw-padding-div">댓글 내용~</p>
-                                    <p><small>2021.09.01</small></p>
+                    <div class="boardContent-reply">
+                        <div class="boardContent-reply-area-div">
+                            <form action="" class="boardContent-updonw-margin-div">
+                                <input type="text" placeholder="댓글 입력">
+                                <button class="boardContent-reg boardContent-color-white boardContent-btn-small">등록</button>
+                            </form>
+                            <div class="boardContent-reply-list-div">
+                                <!-- 댓글 추가 시 아래 div 반복시켜 출력 -->
+                                <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
+                                    <div class="boardContent-float-left boardContent-reply-content">
+                                        <p><strong>댓글 작성자</strong></p>
+                                        <p class="boardContent-updonw-padding-div">댓글 내용~</p>
+                                        <p><small>2021.09.01</small></p>
+                                    </div>
+                                    <div class="boardContent-float-right boardContent-reply-btn-div">
+                                        <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
+                                        <button class="boardContent-del boardContent-color-black boardContent-btn-small">삭제</button>
+                                    </div>
                                 </div>
-                                <div class="boardContent-float-right boardContent-reply-btn-div">
-                                    <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
-                                    <button class="boardContent-color-black boardContent-btn-small">삭제</button>
+                                <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
+                                    <div class="boardContent-float-left boardContent-reply-content">
+                                        <p><strong>댓글 작성자</strong></p>
+                                        <p class="boardContent-updonw-padding-div">댓글 내용~</p>
+                                        <p><small>2021.09.01</small></p>
+                                    </div>
+                                    <div class="boardContent-float-right boardContent-reply-btn-div">
+                                        <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
+                                        <button class="boardContent-del boardContent-color-black boardContent-btn-small">삭제</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix boardContent-back-white">
-                                <div class="boardContent-float-left boardContent-reply-content">
-                                    <p><strong>댓글 작성자</strong></p>
-                                    <p class="boardContent-updonw-padding-div">댓글 내용~</p>
-                                    <p><small>2021.09.01</small></p>
-                                </div>
-                                <div class="boardContent-float-right boardContent-reply-btn-div">
-                                    <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
-                                    <button class="boardContent-color-black boardContent-btn-small">삭제</button>
-                                </div>
-                            </div>
-                            <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix boardContent-back-white">
-                                <div class="boardContent-float-left boardContent-reply-content">
-                                    <p><strong>댓글 작성자</strong></p>
-                                    <p class="boardContent-updonw-padding-div">댓글 내용~</p>
-                                    <p><small>2021.09.01</small></p>
-                                </div>
-                                <div class="boardContent-float-right boardContent-reply-btn-div">
-                                    <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
-                                    <button class="boardContent-color-black boardContent-btn-small">삭제</button>
+                                <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
+                                    <div class="boardContent-float-left boardContent-reply-content">
+                                        <p><strong>댓글 작성자</strong></p>
+                                        <p class="boardContent-updonw-padding-div">댓글 내용~</p>
+                                        <p><small>2021.09.01</small></p>
+                                    </div>
+                                    <div class="boardContent-float-right boardContent-reply-btn-div">
+                                        <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
+                                        <button class="boardContent-del boardContent-color-black boardContent-btn-small">삭제</button>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
