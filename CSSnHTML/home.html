@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,6 +35,27 @@
         }
         */
 
+        body {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        header .title h1 {
+            font-size: 3em;
+        }
+
+        header .join {
+            position: absolute;        
+            list-style: none;
+            right: 0%;
+            top: 30px;
+        }
+
+        header .join a {
+            font-size: 13px;
+            color: rgb(167, 167, 167);
+        }
+
         /* footer */
         .footerhr {
             clear: both;
@@ -42,29 +64,117 @@
         * {
             text-align: center;
         }
-        
+
         a {
             color: black;
             text-decoration: none;
             outline: none;
         }
+        .middle-body {
+            min-width: 1000px;
+            max-width: 11000px;
+        }
+
         .bestboard {
+            float: left;
+            margin-left: 10%;
+        }
+
+        .bestboard .best,
+        .bestboard .best-more {
             display: inline-block;
         }
+
+        .best-more {
+            margin-top: 10px;
+            margin-left: 200px;
+        }
+
+        .bestboard .in-box {
+            margin-bottom: 10px;
+        }
+
+        .moreview {
+            vertical-align: middle;
+            font-size: 1px;
+            color: rgb(187, 184, 184);
+        }
+
+        .best-list {
+            list-style: none;
+            background-color: rgb(239, 255, 255);
+            border-radius: 20px;
+
+        }
+        .hot-new {
+            margin: 10px 0;
+            font-size: 13px;
+        }
+
+        .hot-new .writing {
+            float: left;
+        }
+
+        .hot-new .date {
+            float: right;
+        }
+
+        .hot-new .link::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
+
         .recentboard {
+            float: right;
+            margin-right: 10%;
+        }
+        .recentboard .recent-list {
+            list-style: none;
+        }
+        .recentboard .best, .recentboard .best-more {
             display: inline-block;
         }
+        .recent-list{
+            background-color: rgb(239, 255, 255);
+            border-radius: 20px;
+
+        }
+
         /* .homeboard ul {
             background-color: aqua;
         } */
+        .homegigu ul {
+            margin-left: 50px;
+        }
         .homegigu ul li {
             margin: 0 50px;
         }
-        .moreview:hover, .bestboard ul li a:hover, .recentboard ul li a:hover, .homegigu ul li div:hover{
-            color: yellow;
+        .homegigu h4 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 5px;
+        }
+
+        .moreview:hover,
+        .bestboard ul a:hover,
+        .recentboard ul a:hover,
+        .homegigu ul li div:hover {
+            color: blue;
+        }
+
+        .clearfix::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
+        .best-homegigu-pic-box {
+            width: 160px;
+            margin: 5px;
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class='title' style="margin: 20px 0;">
@@ -82,84 +192,160 @@
                 <li><a href="#">마이페이지</a></li>
                 <li><a href="#">문의하기</a></li>
             </ul>
-        </nav>          
+        </nav>
     </header>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/QH2-TGUlwu4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <hr color="#3498db" size="10px">
-    <div class="homeboard">
-        <div class="bestboard" style="margin: 0 50px;">
-            <h3 style="float: left;">인기 게시글</h3>
-            <h3 style="float: right;"><a href='#' class="moreview">더보기</a></h3>
-            <ul style="clear: both; list-style: none;">
-                <li><img src="image/icon_hot.png" width="33px" height="13px"><a href='#'>인기글1&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><img src="image/icon_hot.png" width="33px" height="13px"><a href='#'>인기글2&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><img src="image/icon_hot.png" width="33px" height="13px"><a href='#'>인기글3&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><img src="image/icon_hot.png" width="33px" height="13px"><a href='#'>인기글4&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><img src="image/icon_hot.png" width="33px" height="13px"><a href='#'>인기글5&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+    <div class="middle-body">
+    <iframe width="720" height="350" src="https://www.youtube.com/embed/QH2-TGUlwu4" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    <hr style="margin-top: 10px;" color="#c0e1f5" size="6px">
+    <div class="homeboard clearfix">
+        <div class="bestboard">
+            <div class="in-box">
+                <h4 class="best">인기 게시글</h4>
+                <h3 class="best-more"><a href='#' class="moreview">더보기</a></h3>
+            </div>
+            <ul class="best-list">
+                <a href="#">
+                    <li class="hot-new clearfix">
+                        <p class="writing">
+                            인기글
+                            <img src="image/icon_hot.png" alt="" width="20px">
+                        </p>
+                        <p class="date">2022-02-22</p>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="hot-new clearfix">
+                        <p class="writing">
+                            인기글
+                            <img src="image/icon_hot.png" alt="" width="20px">
+                        </p>
+                        <p class="date">2022-02-22</p>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="hot-new clearfix">
+                        <p class="writing">
+                            인기글
+                            <img src="image/icon_hot.png" alt="" width="20px">
+                        </p>
+                        <p class="date">2022-02-22</p>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="hot-new clearfix">
+                        <p class="writing">
+                            인기글
+                            <img src="image/icon_hot.png" alt="" width="20px">
+                        </p>
+                        <p class="date">2022-02-22</p>
+                    </li>
+                </a>
             </ul>
         </div>
-        <div class="recentboard" style="margin: 0 50px;">
-            <h3 style="float: left;">최신 게시글</h3>
-            <h3 style="float: right;"><a href='#' class="moreview">더보기</a></h3>
-            <ul style="clear: both; list-style: none;">
-                <li><img src="image/icon_new.gif" alt=""><a href='#'>최신글1&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><img src="image/icon_new.gif" alt=""><a href='#'>최신글2&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><img src="image/icon_new.gif" alt=""><a href='#'>최신글3&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><img src="image/icon_new.gif" alt=""><a href='#'>최신글4&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
-                <li><img src="image/icon_new.gif" alt=""><a href='#'>최신글5&nbsp;&nbsp;&nbsp;2022-02-22</a></li>
+        <div class="recentboard">
+            <div class="in-box">
+                <h4 class="best">최신 게시글</h4>
+                <h3 class="best-more"><a href='#' class="moreview">더보기</a></h3>
+            </div>
+            <ul class="recent-list">
+                <a href="#">
+                    <li class="hot-new clearfix">
+                        <p class="writing">
+                            최신글
+                            <img src="image/icon_new.gif" alt="" width="25px">
+                        </p>
+                        <p class="date">2022-02-22</p>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="hot-new clearfix">
+                        <p class="writing">
+                            최신글
+                            <img src="image/icon_new.gif" alt="" width="25px">
+                        </p>
+                        <p class="date">2022-02-22</p>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="hot-new clearfix">
+                        <p class="writing">
+                            최신글
+                            <img src="image/icon_new.gif" alt="" width="25px">
+                        </p>
+                        <p class="date">2022-02-22</p>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="hot-new clearfix">
+                        <p class="writing">
+                            최신글
+                            <img src="image/icon_new.gif" alt="" width="25px">
+                        </p>
+                        <p class="date">2022-02-22</p>
+                    </li>
+                </a>
+                
             </ul>
         </div>
     </div>
-    <hr color="#3498db" size="10px" style="clear: both;">
+    <hr color="#c0e1f5" size="6px" style="clear: both;">
     <div class="homegigu" style="display: inline-block;">
-        <h3 style="float: left;">인기 기구</h3>
+        <h4 style="float: left;">인기 기구</h4>
         <h3 style="float: right;"><a href='#' class="moreview">더보기</a></h3>
-        <ul style="clear: both; display: flex; list-style: none;">
+        <ul style="clear: both; display: flex; list-style: none; margin-left: 10px;">
             <li>
                 <a href="#">
-                <div>
-                    <img src="image/test.jpeg" width="160px" height="200px" alt="기구1">
-                    <hr style="clear: both;">
-                    <h5 style="float: left;">기구명</h5>
-                    <h5 style="float: right;">가격</h5>
-                </div>
+                    <div>
+                        <img src="image/test.jpeg" width="160px" height="200px" alt="기구1">
+                        <div class="best-homegigu-pic-box">
+                            <h5 style="float: left;">기구명</h5>
+                            <h5 style="float: right;">가격</h5>
+                        </div>
+                    </div>
                 </a>
             </li>
             <li>
                 <a href="#">
-                <div>
-                    <img src="image/test.jpeg" width="160px" height="200px" alt="기구2">
-                    <hr style="clear: both;">
-                    <h5 style="float: left;">기구명</h5>
-                    <h5 style="float: right;">가격</h5>
-                </div>
+                    <div>
+                        <img src="image/test.jpeg" width="160px" height="200px" alt="기구1">
+                        <div class="best-homegigu-pic-box">
+                            <h5 style="float: left;">기구명</h5>
+                            <h5 style="float: right;">가격</h5>
+                        </div>
+                    </div>
                 </a>
             </li>
             <li>
                 <a href="#">
-                <div>
-                    <img src="image/test.jpeg" width="160px" height="200px" alt="기구3">
-                    <hr style="clear: both;">
-                    <h5 style="float: left;">기구명</h5>
-                    <h5 style="float: right;">가격</h5>
-                </div>
+                    <div>
+                        <img src="image/test.jpeg" width="160px" height="200px" alt="기구1">
+                        <div class="best-homegigu-pic-box">
+                            <h5 style="float: left;">기구명</h5>
+                            <h5 style="float: right;">가격</h5>
+                        </div>
+                    </div>
                 </a>
             </li>
             <li>
                 <a href="#">
-                <div>
-                    <img src="image/test.jpeg" width="160px" height="200px" alt="기구4">
-                    <hr style="clear: both;">
-                    <h5 style="float: left;">기구명</h5>
-                    <h5 style="float: right;">가격</h5>
-                </div>
+                    <div>
+                        <img src="image/test.jpeg" width="160px" height="200px" alt="기구1">
+                        <div class="best-homegigu-pic-box">
+                            <h5 style="float: left;">기구명</h5>
+                            <h5 style="float: right;">가격</h5>
+                        </div>
+                    </div>
                 </a>
             </li>
         </ul>
     </div>
-    <hr class="footerhr" color="#3498db" size="10px">
+    <hr class="footerhr" color="gainsboro" size="6px" style="margin-top: 5px;">
+</div>
     <footer>
         <h1>푸터</h1>
     </footer>
 </body>
+
 </html>
