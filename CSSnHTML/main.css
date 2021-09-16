@@ -70,7 +70,7 @@ header .title {
 }
 header .bar {
     text-align: center; 
-        background-color: #3498db;
+        background-color: #c0e1f5;
     height: 50px;
     line-height: 50px;         
 }
@@ -81,22 +81,21 @@ header .bar ul{
 header .bar ul li {
     margin: auto;
 }
-header .join {
+/* header .join {
     position: absolute;        
     list-style: none;
-    right: 20%;
-    top: 3%;
-}
+    right: 10%;
+    top: 40px;
+} */
 header a {
     /* color: black; */
-    color: white;
     text-decoration: none;
     outline: none;
     font-family: 'Vitro_pride';
     font-weight: bold;
 }
 header .bar ul li a:hover, .join a:hover {
-    color: yellow;
+    color: white;
 }
 
 /*** footer.html 디자인 ***/
@@ -113,7 +112,6 @@ footer .footerhr {
 }
 .bmiCheck-main{
     padding: 30px;
-    
 }
 
 .bmiCheck-table{
