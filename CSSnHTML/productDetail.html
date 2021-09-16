@@ -230,6 +230,7 @@
         .add-detail .link a {
             font-size: 13px;
             text-decoration-line: none;
+            color: black;
         }
         .add-detail .cont {
             padding: 20px 20px 60px;
@@ -366,7 +367,13 @@
             padding: 0 20px;
             font-size: 13px;
         }
-        
+        .selected:hover,
+        .prd-li-change:hover,
+        .prd-li-review:hover,
+        .prd-li-qna:hover{
+            background-color: rgb(0, 0, 0,0.7);
+            cursor: pointer;
+        }
         
     </style>
 </head>
@@ -484,14 +491,13 @@
                 <li class="selected">
                     <a href="#prd-detail">상품상세정보</a>
                 </li>
-                <li>
+                <li class="prd-li-change">
                     <a href="#prd-change">교환 및 반품정보</a>
                 </li>
-                <li>
+                <li class="prd-li-review">
                     <a href="#prd-review">상품사용후기</a>
                 </li>
-                <li>
-                    <a href="#prdQnA">상품Q&A</a>
+                <li class="prd-li-qna">
                 </li>
             </ul>
             <div class="cont">
