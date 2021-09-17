@@ -1,79 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="main.css">
-    <style>
-        /*
-         header 
-        
-        .title {
-            position: relative;
-        }
-        .bar {
-            text-align: center; 
-            background-color: aqua;          
-        }
-        .bar ul{
-            list-style: none;
-            display: flex;
-        }
-        .bar ul li {
-            margin: auto;
-        }
-        .bar ul li a:hover, .join a:hover {
-            color: yellow;
-        }
-        .join {
-            position: fixed;        
-            list-style: none;
-            left: 80%;
-            bottom: 97%;
-        }
-        */
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-        * {
-            text-align: center;
-        }
+<%@ include file="./include/header.jsp" %>
 
-        a {
-            color: black;
-            text-decoration: none;
-            outline: none;
-        }
-        table th,tr,td {
-            margin: auto;
-        }
-        table {
-            border-spacing: 100px 0px;
-        }
-        .gongji table tr td a:hover, .report table tr td a:hover {
-            color: yellow;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class='title'>
-            <h1>FIRST GYM</h1>
-            <div class="join">
-                <a href="#">로그인</a>
-                <a href="#">회원가입</a>
-            </div>
-        </div>
-        <nav class='bar'>
-            <ul>
-                <li><a href="#">BMI 검사</a></li>
-                <li><a href="#">운동기구</a></li>
-                <li><a href="#">게시판</a></li>
-                <li><a href="#">마이페이지</a></li>
-                <li><a href="#">문의하기</a></li>
-            </ul>
-        </nav>          
-    </header>
+
+    
     <div class='gongji'>
         <h1>공지사항</h1>
         <div style="overflow: scroll;">
@@ -151,8 +82,4 @@
         </div>
     </div>
     <hr class="footerhr" color="#3498db" size="10px">
-    <footer>
-        <h1>푸터</h1>
-    </footer>
-</body>
-</html>
+<%@ include file="./include/footer.jsp" %>
