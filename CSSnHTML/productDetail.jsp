@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIRDTGYM</title>
-    <link rel="stylesheet" href="main.css" />
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-    <style>
-
-        
-        
-    </style>
-</head>
-<body>
+<%@ include file="./include/header.jsp" %>
 
     <div id="productDetail-div">
         <!-- 상단 제품 정보 -->
@@ -300,6 +289,5 @@
         </div>
     </div>
     
+<%@ include file="./include/footer.jsp" %>
     
-</body>
-</html>

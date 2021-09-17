@@ -1,39 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./main.css" />
-    
-    <style>
-        
-      
-    </style>
-</head>
-<body>
-    <!-- 헤더. jsp전환시 삭제 후 include 사용 -->
-    <header>
-        <div class='title'>
-            <h1>FIRST GYM</h1>
-            <div class="join">
-                <a href="#">로그인</a>
-                <a href="#">회원가입</a>
-            </div>
-        </div>
-        <nav class='bar'>
-            <ul>
-                <li><a href="#">MBI 검사</a></li>
-                <li><a href="#">운동기구</a></li>
-                <li><a href="#">게시판</a></li>
-                <li><a href="#">마이페이지</a></li>
-                <li><a href="#">문의하기</a></li>
-            </ul>
-        </nav>      
-    </header>
-    <!-- 헤더. jsp전환시 삭제 후 include 사용 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@ include file="./include/header.jsp" %>
+  
     <div class="orderDetail-main-div">
         <div class="orderDetail-sub-div">
             <form action="#">
@@ -102,8 +71,5 @@
 
 
 
-
-
-
-</body>
-</html>
+<!-- 푸터 -->
+    <%@ include file="./include/footer.jsp" %>

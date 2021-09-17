@@ -1,41 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="main.css">
-    <!-- 제이쿼리 임시 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
-    <style>
-      
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-    </style>
-</head>
-<body>
-    <!-- 헤더. jsp전환시 삭제 후 include 사용 -->
-    <header>
-        <div class='title'>
-            <h1>FIRST GYM</h1>
-            <div class="join">
-                <a href="#">로그인</a>
-                 <a href="#">회원가입</a>
-            </div>
-        </div>
-        <nav class='bar'>
-            <ul>
-                <li><a href="#">MBI 검사</a></li>
-                <li><a href="#">운동기구</a></li>
-                <li><a href="#">게시판</a></li>
-                <li><a href="#">마이페이지</a></li>
-                <li><a href="#">문의하기</a></li>
-            </ul>
-        </nav>          
-    </header>
-    <!-- 헤더. jsp전환시 삭제 후 include 사용 -->
+<%@ include file="./include/header.jsp" %>
 
-    <!-- 로그인 페이지 -->
     <div class="login-main-div">
         <div class="login-change-div">
             <ul>
@@ -129,12 +96,7 @@
         </div>
     </div>
     <!-- 푸터. jsp전환시 삭제 후 include 사용 -->
-    <footer>
-        <hr>
-        <h1>푸터</h1>
-    </footer>
-    <!-- 푸터. jsp전환시 삭제 후 include 사용 -->
-</body>
+    <%@ include file="./include/footer.jsp" %>
 <script>
     // 회원로그인, 비회원 로그인 전환
     const $user_login_modifier = $('#login-user-login-modifier');
@@ -213,4 +175,3 @@
         $result_modal.show();
     });
 </script>
-</html>
