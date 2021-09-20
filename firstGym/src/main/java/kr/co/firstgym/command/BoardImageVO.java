@@ -1,5 +1,16 @@
 package kr.co.firstgym.command;
 
-public class BoardImageVO {
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString
+public class BoardImageVO {
+	
+	private int imgNum;
+	private int boardNum;
+	private String imgBoard;
+	
 }

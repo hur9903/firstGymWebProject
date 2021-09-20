@@ -205,7 +205,17 @@
 			<version>2.4</version>
 		</dependency>
 
-
+		<!-- jcodec: 동영상 썸네일 추출에 필요한 라이브러리 -->
+		<dependency>
+			<groupId>org.jcodec</groupId>
+			<artifactId>jcodec</artifactId>
+			<version>0.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jcodec</groupId>
+			<artifactId>jcodec-javase</artifactId>
+			<version>0.2.3</version>
+		</dependency>
 
 
 	</dependencies>

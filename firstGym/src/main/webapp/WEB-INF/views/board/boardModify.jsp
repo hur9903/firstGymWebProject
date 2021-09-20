@@ -3,56 +3,37 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
     <%@include file="../include/header.jsp" %>
-    <header>
-        <div class='title'>
-            <h1>FIRST GYM</h1>
-            <div class="join">
-                <a href="#">로그인</a>
-                 <a href="#">회원가입</a>
-            </div>
-        </div>
-        <nav class='bar'>
-            <ul>
-                <li><a href="#">MBI 검사</a></li>
-                <li><a href="#">운동기구</a></li>
-                <li><a href="#">게시판</a></li>
-                <li><a href="#">마이페이지</a></li>
-                <li><a href="#">문의하기</a></li>
-            </ul>
-        </nav>          
-    </header>
-    <!-- 헤더. jsp전환시 삭제 후 include 사용 -->
 
     <div class="boardModify-main-div">
         <div class="boardModify-sub-div">
             <div id="boardModify-title">
                 게시글 등록
             </div>
-            <form action="#">
+            <form action="<c:url value='/board/boardUpdate'/>" method="post" enctype="multipart/form-data">
                 <hr>
                 <div class="boardModify-form-div">               
-                    <select name="" id="">
-                        <option value="">카테고리</option>
-                        <option value="">카테고리</option>
-                        <option value="">카테고리</option>
-                        <option value="">카테고리</option>
+                    <select name="boardCategory" id="">
+                        <option value="none">--카테고리--</option>
+                        <option value="none">카테고리</option>
+                        <option value="none">카테고리</option>
+                        <option value="none">카테고리</option>
                     </select><br>
-                    <input type="text" placeholder="제목 입력">
+                    <input type="text" name="boardTitle" placeholder="제목 입력">
                     <div class="boardModify-form-content-div">
-                        <textarea id="boardModify-summernote" name=""></textarea>
+                        <textarea id="boardModify-summernote" name="boardContent"></textarea>
                     </div>
                     <div class="boardModify-fileupload-div">
                         <!-- 다수 이미지 업로드 가능. -->
                         <div class="boardModify-imageupload">
                             <label for="boardModify-image-upload">이미지 등록</label>
-                            <input type="file" id="boardModify-image-upload" name="a" multiple>
-                            <input class="boardModify-uploaded-file-name" placeholder="이미지" disabled="disabled">  
+                            <input type="file" id="boardModify-image-upload" name="images" accept=".png, .jpg, .jpeg" multiple>
+                            <input class="boardModify-uploaded-file-name" placeholder="이미지(png,jpg)" disabled="disabled">  
                         </div>
                         <!-- 동영상 1개만 업로드 가능 -->
                         <div class="boardModify-videoupload">
                             <label for="boardModify-video-upload">동영상 등록</label>
-                            <input type="file" id="boardModify-video-upload" name="b">
-                            <input class="boardModify-uploaded-file-name" placeholder="동영상" disabled="disabled">        
+                            <input type="file" id="boardModify-video-upload" name="video" accept=".mp4">
+                            <input class="boardModify-uploaded-file-name" placeholder="동영상(mp4)" disabled="disabled">        
                         </div>
                     </div>
                 </div>

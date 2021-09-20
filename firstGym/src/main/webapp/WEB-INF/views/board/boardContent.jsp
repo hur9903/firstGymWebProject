@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
     
 
 <body>
@@ -27,74 +28,54 @@
                 <hr>
                 <div class="boardContent-updonw-padding-div boardContent-clearfix">
                     <div id="boardContent-content-title" class="boardContent-float-left">
-                        [카테고리] 제목
+                        [${article.boardCategory}] ${article.boardTitle}
                     </div>
                     <div class="boardContent-float-right">
                         <!-- 클릭 시 하트 이미지 바꾸고 좋아요 수 비동기 통신으로 가져오기 -->
-                        <button class="boardContent-btn-heart"><img class="boardContent-heart" src="image/heart-empty.svg" alt="heart"> 0</button>
+                        <button class="boardContent-btn-heart"><img class="boardContent-heart" src="image/heart-empty.svg" alt="heart"> ${article.boardRecom}</button>
                     </div>
                 </div>
                 <hr>
                 <div class="boardContent-updonw-padding-div boardContent-clearfix">
                     <div class="boardContent-float-left">
-                        <small>등록일: 2021.09.01</small>
+                        <small>등록일: <fmt:formatDate value="${article.boardDate}" pattern="yyyy.MM.dd HH:mm:ss" /></small>
                     </div>
                     <div class="boardContent-float-right">
-                        <small>작성자: 작성자</small>
+                        <small>작성자: ${article.userId}</small>
                     </div>
                 </div>
                 <hr>
                 <div class="boardContent-content-sub-div">
                     <!-- 이미지, 동영상 영역 -->
-                    <div class="boardContent-carousel-div boardContent-updonw-margin-div boardContent-updonw-padding-div">
-                        <div id="boardContent-arrow-left" class="boardContent-arrow color-darkskyblue boardContent-float-left">
-                            ◁
-                        </div>
-                        <div class="boardContent-images-div">
-                            <li>
-                                <!-- 동영상. data-videourl에 동영상 주소 넣기-->
-                                <ul><div class="boardContent-img boardContent-video-img"><img src="image/sample-image2.jpg" alt="sample" data-videourl="image/sample-video.mp4"><div class="boardContent-video-text color-darkskyblue">▶</div></div></ul>
-                                <!-- 이미지 -->
-                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
-                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image2.jpg" alt="sample"></div></ul>
-                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image3.jpg" alt="sample"></div></ul>
-                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image2.jpg" alt="sample"></div></ul>
-                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
-                            </li>
-                        </div>
-                        <div id="boardContent-arrow-right" class="boardContent-arrow color-darkskyblue boardContent-float-right">
-                            ▷
-                        </div>
-                    </div>
+                    <c:if test="${article.boardThum != null}">
+	                    <div class="boardContent-carousel-div boardContent-updonw-margin-div boardContent-updonw-padding-div">
+	                        <div id="boardContent-arrow-left" class="boardContent-arrow color-darkskyblue boardContent-float-left">
+	                            ◁
+	                        </div>
+	                        <div class="boardContent-images-div">
+	                            <li>
+	                            	<c:if test="${article.boardVideo != null}">
+	                                <!-- 동영상. data-videourl에 동영상 주소 넣기-->
+	                                	<ul><div class="boardContent-img boardContent-video-img"><img src="<spring:url value='${article.boardThum}' />" alt="sample" data-videourl=""><div class="boardContent-video-text color-darkskyblue">▶</div></div></ul>
+	                                </c:if>
+	                                <!-- 이미지 -->
+	                                <ul><div class="boardContent-img boardContent-img-img"><img src="<spring:url value='/boardImg/41bc2a99263.png' />" alt="sample"></div></ul>
+	                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image2.jpg" alt="sample"></div></ul>
+	                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image3.jpg" alt="sample"></div></ul>
+	                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image2.jpg" alt="sample"></div></ul>
+	                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
+	                            </li>
+	                        </div>
+	                        <div id="boardContent-arrow-right" class="boardContent-arrow color-darkskyblue boardContent-float-right">
+	                            ▷
+	                        </div>
+	                    </div>
+                    </c:if>
                     <!-- 컨텐츠 영역 -->
                     <div class="boardContent-content-area-div">
                         <div class="boardContent-content-div">
                             <!-- 여기에 DB에서 가져온 내용 넣기(임시로 로렘입숨) -->
-                            이미지를 누르면 크게 볼 수 있습니다.
-                            <br><br>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis erat id vestibulum fringilla. Nam ut bibendum
-                            augue, eget sodales metus. Aenean vitae interdum purus. Proin faucibus tellus id risus ultricies, sit amet blandit nisi
-                            pretium. Maecenas cursus risus massa, nec scelerisque sem pellentesque vitae. Sed faucibus erat mauris, sit amet blandit
-                            augue commodo ut. Mauris lacinia nibh eu cursus rutrum. Curabitur sed cursus velit, sed fermentum sapien. In aliquam ex
-                            eget ex fermentum convallis. Curabitur porttitor non diam congue pellentesque. Nunc eu lobortis tellus. Vivamus
-                            malesuada ac odio eu venenatis. Etiam tellus ipsum, posuere quis congue ac, convallis a nibh. Cras in ligula at dolor
-                            eleifend bibendum at vel nibh.
-                            <br><br>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis erat id vestibulum fringilla. Nam ut bibendum
-                            augue, eget sodales metus. Aenean vitae interdum purus. Proin faucibus tellus id risus ultricies, sit amet blandit nisi
-                            pretium. Maecenas cursus risus massa, nec scelerisque sem pellentesque vitae. Sed faucibus erat mauris, sit amet blandit
-                            augue commodo ut. Mauris lacinia nibh eu cursus rutrum. Curabitur sed cursus velit, sed fermentum sapien. In aliquam ex
-                            eget ex fermentum convallis. Curabitur porttitor non diam congue pellentesque. Nunc eu lobortis tellus. Vivamus
-                            malesuada ac odio eu venenatis. Etiam tellus ipsum, posuere quis congue ac, convallis a nibh. Cras in ligula at dolor
-                            eleifend bibendum at vel nibh.
-                            <br><br>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis erat id vestibulum fringilla. Nam ut bibendum
-                            augue, eget sodales metus. Aenean vitae interdum purus. Proin faucibus tellus id risus ultricies, sit amet blandit nisi
-                            pretium. Maecenas cursus risus massa, nec scelerisque sem pellentesque vitae. Sed faucibus erat mauris, sit amet blandit
-                            augue commodo ut. Mauris lacinia nibh eu cursus rutrum. Curabitur sed cursus velit, sed fermentum sapien. In aliquam ex
-                            eget ex fermentum convallis. Curabitur porttitor non diam congue pellentesque. Nunc eu lobortis tellus. Vivamus
-                            malesuada ac odio eu venenatis. Etiam tellus ipsum, posuere quis congue ac, convallis a nibh. Cras in ligula at dolor
-                            eleifend bibendum at vel nibh.
+	                        ${article.boardContent}
                         </div>
                         <div class="boardContent-report-btn-div">
                             <button id="boardContent-report-btn" class="boardContent-color-white boardContent-btn-small">신고하기</button>

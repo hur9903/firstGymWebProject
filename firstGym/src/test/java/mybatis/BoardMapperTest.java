@@ -1,0 +1,38 @@
+package mybatis;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import kr.co.firstgym.board.mapper.IBoardMapper;
+import kr.co.firstgym.command.BoardVO;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+public class BoardMapperTest {
+
+	@Autowired
+	private IBoardMapper mapper;
+	
+	@Test
+	public void registTest() {
+		
+		BoardVO vo = new BoardVO();
+		
+		vo.setUserId("userId");
+		vo.setBoardContent("test");
+		vo.setBoardTitle("test");
+		vo.setBoardCategory("test");
+		vo.setBoardThum("test");
+		
+		mapper.regist(vo);
+	}
+	
+	@Test
+	public void getArticleTest() {
+		
+		System.out.println(mapper.getArticle(2));
+	}
+}
