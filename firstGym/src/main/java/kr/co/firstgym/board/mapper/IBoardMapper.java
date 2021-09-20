@@ -15,9 +15,6 @@ public interface IBoardMapper {
 	//게시글 불러오기(게시글 번호)
 	BoardVO getArticle(int boardNum);
 		
-	//게시글 이미지 불러오기
-	List<String> getImages(int boardNum);
-		
 	//특정 사용자의 최신 게시글 번호 가져오기
 	int getArticleNo(String userId);
 		

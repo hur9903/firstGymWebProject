@@ -174,8 +174,7 @@ public class BoardService implements IBoardService{
 	
 	@Override
 	public List<String> getImages(int boardNum) {
-		// TODO Auto-generated method stub
-		return null;
+		return imageMapper.getImages(boardNum);
 	}
 
 	@Override

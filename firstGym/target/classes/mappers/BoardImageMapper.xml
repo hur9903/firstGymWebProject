@@ -10,4 +10,9 @@
 		VALUES(board_image_seq.NEXTVAL, #{boardNum}, #{imgBoard})
 	</update>
 	
+	<select id="getImages" resultType="String">
+		SELECT img_board from board_image
+		WHERE board_num = #{boardNum}
+	</select>
+	
 </mapper>

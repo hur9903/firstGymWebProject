@@ -55,15 +55,14 @@
 	                        <div class="boardContent-images-div">
 	                            <li>
 	                            	<c:if test="${article.boardVideo != null}">
-	                                <!-- 동영상. data-videourl에 동영상 주소 넣기-->
-	                                	<ul><div class="boardContent-img boardContent-video-img"><img src="<spring:url value='${article.boardThum}' />" alt="sample" data-videourl=""><div class="boardContent-video-text color-darkskyblue">▶</div></div></ul>
+	                                	<!-- 동영상.-->
+	                                	<ul><div class="boardContent-img boardContent-video-img"><img src="<spring:url value='${article.boardThum}' />" alt="sample"><div class="boardContent-video-text color-darkskyblue">▶</div></div></ul>
 	                                </c:if>
+	                                <c:forEach var="img" items="${images}">
 	                                <!-- 이미지 -->
-	                                <ul><div class="boardContent-img boardContent-img-img"><img src="<spring:url value='/boardImg/41bc2a99263.png' />" alt="sample"></div></ul>
-	                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image2.jpg" alt="sample"></div></ul>
-	                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image3.jpg" alt="sample"></div></ul>
-	                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image2.jpg" alt="sample"></div></ul>
-	                                <ul><div class="boardContent-img boardContent-img-img"><img src="image/sample-image.jpg" alt="sample"></div></ul>
+	                                	<ul><div class="boardContent-img boardContent-img-img"><img src="<spring:url value='${img}' />" alt="sample"></div></ul>
+	                                </c:forEach>
+	                                
 	                            </li>
 	                        </div>
 	                        <div id="boardContent-arrow-right" class="boardContent-arrow color-darkskyblue boardContent-float-right">
@@ -162,7 +161,7 @@
             </div>
             <div class="boardContent-modal-img">
                 <img src="" alt="img">
-                <video src="" type="video/mp4" autoplay controls></video>
+                <video src="<spring:url value='${article.boardVideo}' />" controls></video>
             </div>
         </div>
     </div>
@@ -262,7 +261,6 @@
         });
 
         $('.boardContent-video-img').click(function(){
-            $img_modal_video.attr("src", $('.boardContent-video-img img').data('videourl'));
             $img_modal.show();
             $img_modal_img.hide();
             $img_modal_video.show();
@@ -270,6 +268,7 @@
 
         $('#boardContent-img-modal-xbtn').click(function(){
             $img_modal.hide();
+            $img_modal_video.get(0).pause();
         });
 
         // 신고하기 모달

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import kr.co.firstgym.board.mapper.IBoardImageMapper;
 import kr.co.firstgym.board.mapper.IBoardMapper;
 import kr.co.firstgym.command.BoardVO;
 
@@ -15,6 +16,9 @@ public class BoardMapperTest {
 
 	@Autowired
 	private IBoardMapper mapper;
+	
+	@Autowired
+	private IBoardImageMapper imageMapper;
 	
 	@Test
 	public void registTest() {
@@ -34,5 +38,11 @@ public class BoardMapperTest {
 	public void getArticleTest() {
 		
 		System.out.println(mapper.getArticle(2));
+	}
+	
+	@Test
+	public void getImagesTest() {
+		
+		System.out.println(imageMapper.getImages(28));
 	}
 }
