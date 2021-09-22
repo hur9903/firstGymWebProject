@@ -194,5 +194,52 @@ public class BoardService implements IBoardService{
 		return boardMapper.getTotalArticleNum(page);
 	}
 
+	@Override
+	public void deleteArticle(int boardNum) {
+		
+		BoardVO article = boardMapper.getArticle(boardNum);
+		
+		String video = article.getBoardVideo();
+		String thum = article.getBoardThum();
+		List<String> images = imageMapper.getImages(boardNum);
+		
+		//영상삭제
+		if(video != null) {
+			String[] videoNameSplit = video.split("/");
+			String videoName = videoNameSplit[videoNameSplit.length - 1];
+			String videoRealPath = "C:\\firstGym\\video\\" + videoName;
+			
+			String[] thumNameSplit = thum.split("/");
+			String thumName = thumNameSplit[thumNameSplit.length - 1];
+			String thumRealPath = "C:\\firstGym\\image\\" + thumName;
+			
+			deleteFile(videoRealPath);
+			deleteFile(thumRealPath);
+		}
+		
+		//이미지 삭제
+		if(! images.isEmpty()) {
+			for(String image : images) {
+				String[] imageNameSplit = image.split("/");
+				String imageName = imageNameSplit[imageNameSplit.length - 1];
+				String imageRealPath = "C:\\firstGym\\image\\" + imageName;
+				
+				deleteFile(imageRealPath);
+			}
+		}
+		
+		//db에서 게시글 삭제
+		boardMapper.deleteArticle(boardNum);	
+	}
 
+	private void deleteFile(String path) {
+		File file = new File(path);
+		if(file.exists()) {
+			if(file.delete()) {
+				System.out.println(path + " 삭제 완료");
+			} else {
+				System.out.println(path + " 삭제 실패");
+			}
+		}
+	}
 }

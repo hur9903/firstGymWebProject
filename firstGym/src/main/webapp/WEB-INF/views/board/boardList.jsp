@@ -49,7 +49,14 @@
 	                        <td class="boardList-list-left-td">${article.boardNum}</td>
 	                        <td class="boardList-clearfix">
 	                            <div class="boardList-content-div boardList-float-left">
-	                                <div class="boardList-content-title"><a href="<c:url value="/board/boardDetailPage/${article.boardNum}" />">[${article.boardCategory}] ${article.boardTitle}</a></div>
+	                                <div class="boardList-content-title">
+	                                	<a href="<c:url value="/board/boardDetailPage/${article.boardNum}" />">
+	                                		<c:if test="${article.boardCategory == 'oxy'}">[유산소 운동]</c:if>
+                        					<c:if test="${article.boardCategory == 'nonoxy'}">[근력 운동]</c:if>
+                       						<c:if test="${article.boardCategory == 'yoga'}">[요가, 스트레칭]</c:if>
+	                                		${article.boardTitle}
+	                                	</a>
+	                                </div>
 	                                <div class="boardList-content-info">
 	                                    <span>${article.userId}</span>
 	                                    <span>조회수 ${article.boardView}</span>
@@ -123,6 +130,12 @@
     <%@include file="../include/footer.jsp" %>
     <script>
     	$(document).ready(function(){
+    		
+    		//글 삭제여부 체크
+    		if('${msg}' === 'deleteSuccess'){
+    			alert('게시글이 삭제되었습니다.');
+    		}
+    		
     		//글 등록 버튼
 	    	$('#regist-btn').click(function(){
 	    		location.href = '<c:url value="/board/boardModifyPage" />';
@@ -135,14 +148,6 @@
 	    		$('#page-pn').val(event.target.getAttribute("data-pn"));
 	    		$('#page-form').submit();
     		});
-    		
-    		/*
-    		$('#page-form').click(function(event){
-    			event.preventDefault();
-	    		$('#page-pn').val(event.target.getAttribute("data-pn"));
-	    		$('#page-form').submit();
-    		});
-    		*/
     		
     	});
     </script>

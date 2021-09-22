@@ -27,5 +27,7 @@ public interface IBoardService {
 	//게시글 리스트 글 수 불러오기
 	int getTotalArticleNum(BoardPageVO page);
 		
-	//게시글 수정
+	//게시글 삭제
+	void deleteArticle(int boardNum);
+	
 }

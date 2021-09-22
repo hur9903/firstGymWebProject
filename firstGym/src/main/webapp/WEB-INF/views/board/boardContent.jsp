@@ -21,14 +21,20 @@
                         <button id="list-btn" class="color-darkskyblue boardContent-btn-big">목록</button>
                     </div>
                     <div class="boardContent-float-right">
-                        <button class="color-darkskyblue boardContent-btn-big">수정</button>
-                        <button class="boardContent-del boardContent-btn-big">삭제</button>
+                        <form id="del-form" action="<c:url value="/board/boardDelete" />" method="post">
+                        	<button type="button" class="color-darkskyblue boardContent-btn-big">수정</button>
+                        	<input type="hidden" name="boardNum" value="${article.boardNum}">
+                        	<button id="del-btn" type="button" class="boardContent-del boardContent-btn-big">삭제</button>
+                        </form>
                     </div>
                 </div>
                 <hr>
                 <div class="boardContent-updonw-padding-div boardContent-clearfix">
                     <div id="boardContent-content-title" class="boardContent-float-left">
-                        [${article.boardCategory}] ${article.boardTitle}
+                        <c:if test="${article.boardCategory == 'oxy'}">[유산소 운동]</c:if>
+                        <c:if test="${article.boardCategory == 'nonoxy'}">[근력 운동]</c:if>
+                        <c:if test="${article.boardCategory == 'yoga'}">[요가, 스트레칭]</c:if>
+                        ${article.boardTitle}
                     </div>
                     <div class="boardContent-float-right">
                         <!-- 클릭 시 하트 이미지 바꾸고 좋아요 수 비동기 통신으로 가져오기 -->
@@ -73,7 +79,7 @@
                     <!-- 컨텐츠 영역 -->
                     <div class="boardContent-content-area-div">
                         <div class="boardContent-content-div">
-                            <!-- 여기에 DB에서 가져온 내용 넣기(임시로 로렘입숨) -->
+                            <!-- 여기에 DB에서 가져온 내용 넣기 -->
 	                        ${article.boardContent}
                         </div>
                         <div class="boardContent-report-btn-div">
@@ -99,29 +105,6 @@
                                         <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
                                         <button class="boardContent-del boardContent-color-black boardContent-btn-small">삭제</button>
                                     </div>
-                                </div>
-                                <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
-                                    <div class="boardContent-float-left boardContent-reply-content">
-                                        <p><strong>댓글 작성자</strong></p>
-                                        <p class="boardContent-updonw-padding-div">댓글 내용~</p>
-                                        <p><small>2021.09.01</small></p>
-                                    </div>
-                                    <div class="boardContent-float-right boardContent-reply-btn-div">
-                                        <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
-                                        <button class="boardContent-del boardContent-color-black boardContent-btn-small">삭제</button>
-                                    </div>
-                                </div>
-                                <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
-                                    <div class="boardContent-float-left boardContent-reply-content">
-                                        <p><strong>댓글 작성자</strong></p>
-                                        <p class="boardContent-updonw-padding-div">댓글 내용~</p>
-                                        <p><small>2021.09.01</small></p>
-                                    </div>
-                                    <div class="boardContent-float-right boardContent-reply-btn-div">
-                                        <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
-                                        <button class="boardContent-del boardContent-color-black boardContent-btn-small">삭제</button>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -288,6 +271,13 @@
         // 리스트로 이동 버튼 
         $('#list-btn').click(function(){
         	location.href='<c:url value="/board/boardListPage" />';
+        });
+        
+        //게시글 삭제 버튼
+        $('#del-btn').click(function(){
+        	if(confirm('정말 삭제하시겠습니까?')){
+        		$('#del-form').submit();
+        	}
         });
     });
 </script>

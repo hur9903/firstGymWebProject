@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.firstgym.board.service.IBoardService;
 import kr.co.firstgym.command.BoardPageVO;
@@ -81,7 +82,10 @@ public class BoardController {
 	
 	//게시글 삭제
 	@PostMapping("/boardDelete")
-	public String boardDelete() {
+	public String boardDelete(@RequestParam("boardNum") int boardNum, RedirectAttributes ra) {
+		service.deleteArticle(boardNum);
+		
+		ra.addFlashAttribute("msg", "deleteSuccess");
 		return "redirect:/board/boardListPage";
 	}
 	

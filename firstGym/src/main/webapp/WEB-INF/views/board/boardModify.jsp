@@ -9,18 +9,18 @@
             <div id="boardModify-title">
                 게시글 등록
             </div>
-            <form action="<c:url value='/board/boardUpdate'/>" method="post" enctype="multipart/form-data">
+            <form id="article-form" action="<c:url value='/board/boardUpdate'/>" method="post" enctype="multipart/form-data">
                 <hr>
                 <div class="boardModify-form-div">               
-                    <select name="boardCategory" id="">
+                    <select name="category" id="">
                         <option value="none">-- 운동 카테고리 --</option>
                         <option value="oxy">유산소 운동</option>
                         <option value="nonoxy">근력 운동</option>
                         <option value="yoga">요가, 스트레칭</option>
                     </select><br>
-                    <input type="text" name="boardTitle" placeholder="제목 입력">
+                    <input type="text" name="title" id="board-title" placeholder="제목 입력">
                     <div class="boardModify-form-content-div">
-                        <textarea id="boardModify-summernote" name="boardContent"></textarea>
+                        <textarea id="boardModify-summernote" name="content"></textarea>
                     </div>
                     <div class="boardModify-fileupload-div">
                         <!-- 다수 이미지 업로드 가능. -->
@@ -40,7 +40,7 @@
                 <hr>
                 <div class="boardModify-button-div">
                     <button id="list-btn" type="button" class="boardModify-list">목록</button>
-                    <button type="submit" class="boardModify-reg">등록</button>
+                    <button id="submit-btn" type="button" class="boardModify-reg">등록</button>
                 </div>
             </form>
         </div>
@@ -114,6 +114,16 @@
         $('#list-btn').click(function(){
         	location.href = '<c:url value="/board/boardListPage" />';
         });
+        
+        //글 등록버튼
+        $('#submit-btn').click(function(){
+        	if($('#board-title').val() === ''){
+        		alert('제목을 입력해주세요.');
+        	} else{
+        		$('#article-form').submit();
+        	}
+        });
+        
     });
 </script>
 </html>

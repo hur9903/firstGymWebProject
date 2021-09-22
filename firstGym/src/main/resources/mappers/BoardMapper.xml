@@ -113,7 +113,8 @@
 		    SELECT ROWNUM AS rn, blist.*
 		    FROM
 		        (
-		        SELECT * FROM board
+		        SELECT board_num, user_id, board_title, board_category, board_view, board_recom, board_date, board_thum
+		        FROM board
 		        <include refid="boardListSql" />
 		        ORDER BY board_num DESC
 		        ) blist
@@ -128,4 +129,9 @@
 		SELECT COUNT(*) FROM board
 		<include refid="boardListSql" />
 	</select>
+	
+	<delete id="deleteArticle">
+		DELETE FROM board
+		WHERE board_num = #{boardNum}
+	</delete>
 </mapper>
