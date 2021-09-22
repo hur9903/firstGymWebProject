@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.co.firstgym.board.mapper.IBoardImageMapper;
 import kr.co.firstgym.board.mapper.IBoardMapper;
 import kr.co.firstgym.command.BoardImageVO;
+import kr.co.firstgym.command.BoardPageVO;
 import kr.co.firstgym.command.BoardVO;
 
 @Service
@@ -183,9 +184,14 @@ public class BoardService implements IBoardService{
 	}
 	
 	@Override
-	public List<BoardVO> getBoard() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BoardVO> getBoard(BoardPageVO page) {
+		
+		return boardMapper.getBoard(page);
+	}
+
+	@Override
+	public int getTotalArticleNum(BoardPageVO page) {
+		return boardMapper.getTotalArticleNum(page);
 	}
 
 

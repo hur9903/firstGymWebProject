@@ -18,7 +18,7 @@
                 <hr>
                 <div class="boardContent-updonw-padding-div boardContent-clearfix">
                     <div class="boardContent-float-left">
-                        <button class="color-darkskyblue boardContent-btn-big">목록</button>
+                        <button id="list-btn" class="color-darkskyblue boardContent-btn-big">목록</button>
                     </div>
                     <div class="boardContent-float-right">
                         <button class="color-darkskyblue boardContent-btn-big">수정</button>
@@ -283,6 +283,11 @@
         });
         $('#boardContent-report-modal-undobtn').click(function(){
             $('#boardContent-report-modal').hide();
+        });
+        
+        // 리스트로 이동 버튼 
+        $('#list-btn').click(function(){
+        	location.href='<c:url value="/board/boardListPage" />';
         });
     });
 </script>

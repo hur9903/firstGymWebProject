@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
     <%@include file="../include/header.jsp" %>
     
@@ -13,20 +15,21 @@
             <hr>
             <!-- 상단 검색창 -->
             <div id="boardList-top-search-div">
-                <form action="#">
+                <form action="<c:url value="/board/boardListPage" />">
                     <div class="boardList-search-div">
-                        <select name="" id="">
-                            <option value="">--- 카테고리 ---</option>
-                            <option value="">--- 카테고리 ---</option>
-                            <option value="">--- 카테고리 ---</option>
+                        <select name="category" id="">
+                            <option value="none" ${page.category == 'none' ? 'selected' : ''}>--- 운동 카테고리 ---</option>
+                            <option value="oxy" ${page.category == 'oxy' ? 'selected' : ''}>유산소 운동</option>
+                            <option value="nonoxy" ${page.category == 'nonoxy' ? 'selected' : ''}>근력 운동</option>
+                            <option value="yoga" ${page.category == 'yoga' ? 'selected' : ''}>요가, 스트레칭</option>
                         </select>
-                        <select name="" id="">
-                            <option value="">제목</option>
-                            <option value="">작성자</option>
-                            <option value="">내용</option>
+                        <select name="condition" id="">
+                            <option value="title" ${page.condition == 'title' ? 'selected' : ''}>제목</option>
+                            <option value="writer" ${page.condition == 'writer' ? 'selected' : ''}>작성자</option>
+                            <option value="content" ${page.condition == 'content' ? 'selected' : ''}>내용</option>
                         </select>
                         <div>
-                            <input type="text">
+                            <input name="keyword" type="text">
                             <button class="color-darkskyblue">검색</button>
                         </div>
                     </div>
@@ -41,181 +44,75 @@
                         <th class="boardList-list-right-td">comment</th>
                     </tr>
                     <!-- 게시글 목록은 아래 tr을 복사 -->
-                    <tr>
-                        <td class="boardList-list-left-td">1234</td>
-                        <td class="boardList-clearfix">
-                            <div class="boardList-content-div boardList-float-left">
-                                <div class="boardList-content-title"><a href="#">[카테고리] 제목</a></div>
-                                <div class="boardList-content-info">
-                                    <span>작성자</span>
-                                    <span>조회수 0</span>
-                                    <span><img src="image/heart-full.svg" alt="heart"> 0</span>
-                                </div>
-                                <div class="boardList-content-date"><small>2021.09.01</small></div>
-                            </div>
-                            <!-- 썸네일 이미지가 없으면 아래 div 표시x -->
-                            <div class="boardList-content-img boardList-float-right">
-                                <img src="image/sample-image.jpg" alt="img">
-                            </div>
-                        </td>
-                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
-                    </tr>
-                    <!-- 예시용 리스트. 실제 구현시 삭제 -->
-                    <tr>
-                        <td class="boardList-list-left-td">1234</td>
-                        <td class="boardList-clearfix">
-                            <div class="boardList-content-div boardList-float-left">
-                                <div class="boardList-content-title"><a href="#">[카테고리] 제목</a></div>
-                                <div class="boardList-content-info">
-                                    <span>작성자</span>
-                                    <span>조회수 0</span>
-                                    <span><img src="image/heart-full.svg" alt="heart"> 0</span>
-                                </div>
-                                <div class="boardList-content-date"><small>2021.09.01</small></div>
-                            </div>
-                            
-                        </td>
-                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
-                    </tr>
-                    <tr>
-                        <td class="boardList-list-left-td">1234</td>
-                        <td class="boardList-clearfix">
-                            <div class="boardList-content-div boardList-float-left">
-                                <div class="boardList-content-title"><a href="#">[카테고리] 제목</a></div>
-                                <div class="boardList-content-info">
-                                    <span>작성자</span>
-                                    <span>조회수 0</span>
-                                    <span><img src="image/heart-full.svg" alt="heart"> 0</span>
-                                </div>
-                                <div class="boardList-content-date"><small>2021.09.01</small></div>
-                            </div>
-                            <!-- 썸네일 이미지가 없으면 아래 div 표시x -->
-                            <div class="boardList-content-img boardList-float-right">
-                                <img src="image/sample-image.jpg" alt="img">
-                            </div>
-                        </td>
-                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
-                    </tr>
-                    <tr>
-                        <td class="boardList-list-left-td">1234</td>
-                        <td class="boardList-clearfix">
-                            <div class="boardList-content-div boardList-float-left">
-                                <div class="boardList-content-title"><a href="#">[카테고리] 제목제목제목제목제목</a></div>
-                                <div class="boardList-content-info">
-                                    <span>작성자</span>
-                                    <span>조회수 0</span>
-                                    <span><img src="image/heart-full.svg" alt="heart"> 0</span>
-                                </div>
-                                <div class="boardList-content-date"><small>2021.09.01</small></div>
-                            </div>
-                            <!-- 썸네일 이미지가 없으면 아래 div 표시x -->
-                            <div class="boardList-content-img boardList-float-right">
-                                <img src="image/sample-image.jpg" alt="img">
-                            </div>
-                        </td>
-                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
-                    </tr>
-                    <tr>
-                        <td class="boardList-list-left-td">1234</td>
-                        <td class="boardList-clearfix">
-                            <div class="boardList-content-div boardList-float-left">
-                                <div class="boardList-content-title"><a href="#">[카테고리] 제목제목제목제목제목</a></div>
-                                <div class="boardList-content-info">
-                                    <span>작성자</span>
-                                    <span>조회수 0</span>
-                                    <span><img src="image/heart-full.svg" alt="heart"> 0</span>
-                                </div>
-                                <div class="boardList-content-date"><small>2021.09.01</small></div>
-                            </div>
-                            <!-- 썸네일 이미지가 없으면 아래 div 표시x -->
-                            <div class="boardList-content-img boardList-float-right">
-                                <img src="image/sample-image.jpg" alt="img">
-                            </div>
-                        </td>
-                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
-                    </tr>
-                    <tr>
-                        <td class="boardList-list-left-td">1234</td>
-                        <td class="boardList-clearfix">
-                            <div class="boardList-content-div boardList-float-left">
-                                <div class="boardList-content-title"><a href="#">[카테고리] 제목제목제목제목제목</a></div>
-                                <div class="boardList-content-info">
-                                    <span>작성자</span>
-                                    <span>조회수 0</span>
-                                    <span><img src="image/heart-full.svg" alt="heart"> 0</span>
-                                </div>
-                                <div class="boardList-content-date"><small>2021.09.01</small></div>
-                            </div>
-                            <!-- 썸네일 이미지가 없으면 아래 div 표시x -->
-                            <div class="boardList-content-img boardList-float-right">
-                                <img src="image/sample-image.jpg" alt="img">
-                            </div>
-                        </td>
-                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
-                    </tr>
-                    <tr>
-                        <td class="boardList-list-left-td">1234</td>
-                        <td class="boardList-clearfix">
-                            <div class="boardList-content-div boardList-float-left">
-                                <div class="boardList-content-title"><a href="#">[카테고리] 제목제목제목제목제목</a></div>
-                                <div class="boardList-content-info">
-                                    <span>작성자</span>
-                                    <span>조회수 0</span>
-                                    <span><img src="image/heart-full.svg" alt="heart"> 0</span>
-                                </div>
-                                <div class="boardList-content-date"><small>2021.09.01</small></div>
-                            </div>
-                            <!-- 썸네일 이미지가 없으면 아래 div 표시x -->
-                            <div class="boardList-content-img boardList-float-right">
-                                <img src="image/sample-image.jpg" alt="img">
-                            </div>
-                        </td>
-                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
-                    </tr>
-                    </table>
+                    <c:forEach var="article" items="${board}">
+	                    <tr>
+	                        <td class="boardList-list-left-td">${article.boardNum}</td>
+	                        <td class="boardList-clearfix">
+	                            <div class="boardList-content-div boardList-float-left">
+	                                <div class="boardList-content-title"><a href="<c:url value="/board/boardDetailPage/${article.boardNum}" />">[${article.boardCategory}] ${article.boardTitle}</a></div>
+	                                <div class="boardList-content-info">
+	                                    <span>${article.userId}</span>
+	                                    <span>조회수 ${article.boardView}</span>
+	                                    <span><img src="image/heart-full.svg" alt="heart"> ${article.boardRecom}</span>
+	                                </div>
+	                                <div class="boardList-content-date"><small><fmt:formatDate value="${article.boardDate}" pattern="yyyy.MM.dd" /></small></div>
+	                            </div>
+	                            <!-- 썸네일 이미지가 없으면 아래 div 표시x -->
+	                            <c:if test="${article.boardThum != null}">
+		                            <div class="boardList-content-img boardList-float-right">
+		                                <img src="<spring:url value='${article.boardThum}' />" alt="img">
+		                            </div>
+	                            </c:if>
+	                        </td>
+	                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
+	                    </tr>
+                    </c:forEach>
+            	</table>
             </div>
             <!-- 게시글 등록 버튼 -->
             <div class="boardList-update-btn-div boardList-clearfix">
-                <button class="color-darkskyblue boardList-float-right">게시글 등록</button>
+                <button id="regist-btn" class="color-darkskyblue boardList-float-right">게시글 등록</button>
             </div>
             <!-- 페이징 바 -->
             <div class="boardList-paging-div">
-                <ul>
-                    <!-- 이전버튼  -->
-                    <a href=""><li class="boardList-btn-not-check">&lt;</li></a>
-                    <!-- 페이지 버튼(체크되면 class이름 변경) -->
-                    <a href=""><li class="boardList-btn-check">1</li></a>
-                    <a href=""><li class="boardList-btn-not-check">2</li></a>
-                    <a href=""><li class="boardList-btn-not-check">3</li></a>
-                    <a href=""><li class="boardList-btn-not-check">4</li></a>
-                    <a href=""><li class="boardList-btn-not-check">5</li></a>
-                    <a href=""><li class="boardList-btn-not-check">6</li></a>
-                    <a href=""><li class="boardList-btn-not-check">7</li></a>
-                    <a href=""><li class="boardList-btn-not-check">8</li></a>
-                    <a href=""><li class="boardList-btn-not-check">9</li></a>
-                    <a href=""><li class="boardList-btn-not-check">10</li></a>
-                        
-                    <!-- 다음버튼 -->
-                    <a href=""><li class="boardList-btn-not-check">&gt;</li></a>
-
-                </ul>
+	            <form action="<c:url value="/board/boardListPage" />" id="page-form">
+	            	<input type="hidden" name="category" value="${page.category}">
+	            	<input type="hidden" name="condition" value="${page.condition}">
+	            	<input type="hidden" name="keyword" value="${page.keyword}">
+	            	<input id="page-pn" type="hidden" name="pageNum" value="${page.pageNum}">
+	                <ul>
+	                    <!-- 이전버튼  -->
+	                    <c:if test="${page.prev}">
+	                    	<a href=""><li class="boardList-btn-not-check" data-pn="${page.beginPageNum-1}">&lt;</li></a>
+	                    </c:if>
+	                    <!-- 페이지 버튼(체크되면 class이름 변경) -->
+	                    <c:forEach var="num" begin="${page.beginPageNum}" end="${page.endPageNum}">
+		                    <a href="#"><li class="${page.pageNum == num ? 'boardList-btn-check' : 'boardList-btn-not-check'}" data-pn="${num}">${num}</li></a>
+		                </c:forEach>
+	                    <!-- 다음버튼 -->
+	                    <c:if test="${page.next}">
+	                    	<a href=""><li class="boardList-btn-not-check" data-pn="${page.endPageNum+1}">&gt;</li></a>
+						</c:if>
+	                </ul>
+                </form>
             </div>
             <!-- 하단 검색창 -->
             <div id="boardList-bottom-search-div">
-                <form action="#">
+                <form action="<c:url value="/board/boardListPage" />">
                     <div class="boardList-search-div">
-                        <select name="" id="">
-                            <option value="">--- 카테고리 ---</option>
-                            <option value="">--- 카테고리 ---</option>
-                            <option value="">--- 카테고리 ---</option>
+                        <select name="category" id="">
+                            <option value="none" ${page.category == 'none' ? 'selected' : ''}>--- 운동 카테고리 ---</option>
+                            <option value="oxy" ${page.category == 'oxy' ? 'selected' : ''}>유산소 운동</option>
+                            <option value="nonoxy" ${page.category == 'nonoxy' ? 'selected' : ''}>근력 운동</option>
+                            <option value="yoga" ${page.category == 'yoga' ? 'selected' : ''}>요가, 스트레칭</option>
                         </select>
-                        <select name="" id="">
-                            <option value="">제목</option>
-                            <option value="">작성자</option>
-                            <option value="">내용</option>
+                        <select name="condition" id="">
+                            <option value="title" ${page.condition == 'title' ? 'selected' : ''}>제목</option>
+                            <option value="writer" ${page.condition == 'writer' ? 'selected' : ''}>작성자</option>
+                            <option value="content" ${page.condition == 'content' ? 'selected' : ''}>내용</option>
                         </select>
                         <div>
-                            <input type="text">
+                            <input name="keyword" type="text">
                             <button class="color-darkskyblue">검색</button>
                         </div>
                     </div>
@@ -224,4 +121,29 @@
         </div>
     </div>
     <%@include file="../include/footer.jsp" %>
+    <script>
+    	$(document).ready(function(){
+    		//글 등록 버튼
+	    	$('#regist-btn').click(function(){
+	    		location.href = '<c:url value="/board/boardModifyPage" />';
+	    	});
+    		
+    		//페이지버튼
+    		
+    		$('#page-form a').click(function(event){
+    			event.preventDefault();
+	    		$('#page-pn').val(event.target.getAttribute("data-pn"));
+	    		$('#page-form').submit();
+    		});
+    		
+    		/*
+    		$('#page-form').click(function(event){
+    			event.preventDefault();
+	    		$('#page-pn').val(event.target.getAttribute("data-pn"));
+	    		$('#page-form').submit();
+    		});
+    		*/
+    		
+    	});
+    </script>
 </html>

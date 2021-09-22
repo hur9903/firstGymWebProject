@@ -13,10 +13,10 @@
                 <hr>
                 <div class="boardModify-form-div">               
                     <select name="boardCategory" id="">
-                        <option value="none">--카테고리--</option>
-                        <option value="none">카테고리</option>
-                        <option value="none">카테고리</option>
-                        <option value="none">카테고리</option>
+                        <option value="none">-- 운동 카테고리 --</option>
+                        <option value="oxy">유산소 운동</option>
+                        <option value="nonoxy">근력 운동</option>
+                        <option value="yoga">요가, 스트레칭</option>
                     </select><br>
                     <input type="text" name="boardTitle" placeholder="제목 입력">
                     <div class="boardModify-form-content-div">
@@ -39,7 +39,7 @@
                 </div>
                 <hr>
                 <div class="boardModify-button-div">
-                    <button type="button" class="boardModify-list">목록</button>
+                    <button id="list-btn" type="button" class="boardModify-list">목록</button>
                     <button type="submit" class="boardModify-reg">등록</button>
                 </div>
             </form>
@@ -109,7 +109,11 @@
              // 파일명 화면에 표시 
              $(this).siblings('.boardModify-uploaded-file-name').val(filename);
         }); //이미지 이름 띄우기 end
-
+		
+        //글 목록으로 이동 버튼
+        $('#list-btn').click(function(){
+        	location.href = '<c:url value="/board/boardListPage" />';
+        });
     });
 </script>
 </html>

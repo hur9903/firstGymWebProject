@@ -25,13 +25,13 @@ public class BoardMapperTest {
 		
 		BoardVO vo = new BoardVO();
 		
-		vo.setUserId("userId");
-		vo.setBoardContent("test");
-		vo.setBoardTitle("test");
-		vo.setBoardCategory("test");
-		vo.setBoardThum("test");
-		
-		mapper.regist(vo);
+		for(int i = 0; i <1000; i++) {
+			vo.setUserId("userId");
+			vo.setBoardContent("test" + i);
+			vo.setBoardTitle("test" + i);
+			vo.setBoardCategory("none");
+			mapper.regist(vo);
+		}
 	}
 	
 	@Test

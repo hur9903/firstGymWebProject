@@ -38,6 +38,57 @@
 		</if>
 	</sql>
 	
+	<sql id="boardListSql">
+		<if test="category == 'none'">
+			<if test="condition == 'title'">
+				WHERE board_title LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="condition == 'writer'">
+				WHERE user_id LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="condition == 'content'">
+				WHERE board_content LIKE '%'||#{keyword}||'%'
+			</if>
+		</if>
+		<if test="category == 'oxy'">
+			WHERE board_category='oxy'
+			<if test="condition == 'title'">
+				AND board_title LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="condition == 'writer'">
+				AND user_id LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="condition == 'content'">
+				AND board_content LIKE '%'||#{keyword}||'%'
+			</if>
+		</if>
+		<if test="category == 'nonoxy'">
+			WHERE board_category='nonoxy'
+			<if test="condition == 'title'">
+				AND board_title LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="condition == 'writer'">
+				AND user_id LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="condition == 'content'">
+				AND board_content LIKE '%'||#{keyword}||'%'
+			</if>
+		</if>
+		<if test="category == 'yoga'">
+			WHERE board_category='yoga'
+			<if test="condition == 'title'">
+				AND board_title LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="condition == 'writer'">
+				AND user_id LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="condition == 'content'">
+				AND board_content LIKE '%'||#{keyword}||'%'
+			</if>
+		</if>
+	</sql>
+	
+	
 <!-- CRUD -->
 	<insert id="regist">
 		INSERT INTO board(board_num, user_id, board_content, board_title, board_category, board_thum, board_video)
@@ -53,5 +104,28 @@
 		SELECT MAX(board_num)
 		FROM board
 		WHERE user_id = #{userId}
+	</select>
+	
+	<select id="getBoard" resultMap="boardVO">
+		SELECT *
+		FROM
+		    (
+		    SELECT ROWNUM AS rn, blist.*
+		    FROM
+		        (
+		        SELECT * FROM board
+		        <include refid="boardListSql" />
+		        ORDER BY board_num DESC
+		        ) blist
+		    )
+		<![CDATA[
+		WHERE rn > (#{pageNum} - 1) * #{countPerPage}
+		AND rn <= #{pageNum} * #{countPerPage}
+		]]>
+	</select>
+	
+	<select id="getTotalArticleNum" resultType="int">
+		SELECT COUNT(*) FROM board
+		<include refid="boardListSql" />
 	</select>
 </mapper>

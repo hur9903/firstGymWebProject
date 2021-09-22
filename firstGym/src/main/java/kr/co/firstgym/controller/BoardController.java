@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.firstgym.board.service.IBoardService;
+import kr.co.firstgym.command.BoardPageVO;
 import kr.co.firstgym.command.BoardVO;
 
 @Controller
@@ -24,7 +25,14 @@ public class BoardController {
 	
 	//게시글 목록으로 이동
 	@GetMapping("/boardListPage")
-	public String boardListPage(){
+	public String boardListPage(Model model, BoardPageVO page){
+		
+		List<BoardVO> board = service.getBoard(page);
+		page.setTotalArticleCount(service.getTotalArticleNum(page));
+		
+		model.addAttribute("board", board);
+		model.addAttribute("page", page);
+		
 		return "/board/boardList";
 	}
 	

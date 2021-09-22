@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.firstgym.command.BoardPageVO;
 import kr.co.firstgym.command.BoardVO;
 
 public interface IBoardService {
@@ -21,7 +22,10 @@ public interface IBoardService {
 	int getArticleNo(String userId);
 	
 	//게시글 리스트 불러오기
-	List<BoardVO> getBoard();
+	List<BoardVO> getBoard(BoardPageVO page);
+	
+	//게시글 리스트 글 수 불러오기
+	int getTotalArticleNum(BoardPageVO page);
 		
 	//게시글 수정
 }
