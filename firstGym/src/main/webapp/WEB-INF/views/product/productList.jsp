@@ -9,31 +9,34 @@
             <div class="productList-main">
                     <h3>전체상품</h3>
             </div>
-            <!-- 상단 검색창 -->
+            
+            <!-- 상단 검색창   --> 
             <div id="boardList-top-search-div">
                 <form action="#">
                     <div class="boardList-search-div">
-                        <select name="" id="">
-                            <option value="">--- 카테고리 ---</option>
-                            <option value="">--- 카테고리 ---</option>
-                            <option value="">--- 카테고리 ---</option>
-                        </select>
                         <div>
-                            <input type="text">
+                            <input type="text" name="text_box">
                             <button class="color-darkskyblue">검색</button>
                         </div>
                     </div>
                 </form>
             </div>
+            
             <ul class="clearfix">
+             
+                <c:forEach var="item" items="${list}">
                 <li>
-                    <img src="image/1.png" alt="" class="product">
-                    <h3>아령 덤벨</h3>
-                    <h4>73,200원</h4>
-                    <div class="hover-product">
-                        <a href="#">아령 덤벨</a>
-                    </div>
+                    <a href='<c:url value="/product/productDetailPage?productNum=${item.productNum}"/>'>
+                    	<img src="image/1.png" alt="" class="product">
+                    
+	                    <h3>${item.productNum}</h3>
+	                    <h4>원</h4>
+	                    <div class="hover-product">
+	                    </div>
+                    </a>
                 </li>
+                </c:forEach>
+            <!--     
                 <li>
                     <img src="image/2.png" alt="" class="product">
                     <h3>폼롤러</h3>
@@ -154,6 +157,7 @@
                         <a href="#">실내 턱걸이</a>
                     </div>
                 </li>
+                -->
             </ul>
         </section>
         <div class="paging">
@@ -171,3 +175,7 @@
     <!-- 푸터. jsp전환시 삭제 후 include 사용 -->
     
 <%@ include file="../include/footer.jsp" %>
+<script>
+	console.log('${list}');
+</script>
+</html>
