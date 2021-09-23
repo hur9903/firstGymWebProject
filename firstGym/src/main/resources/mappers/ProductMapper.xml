@@ -22,9 +22,20 @@
   	</resultMap>
   	
   	<select id="getList" resultMap="ProductVO">
-  		SELECT * 
-  		FROM product
-  		WHERE p_name LIKE '%'||#{text_box}||'%'
+	  	SELECT * FROM	
+	  		(
+	  		SELECT ROWNUM AS rn, tbl.* FROM
+		  		(
+		  		SELECT * 
+		  		FROM product
+		  		WHERE p_name LIKE '%'||#{text_box}||'%'
+		  		ORDER BY p_num DESC
+		  		) tbl
+		  	)
+		<![CDATA[
+		WHERE rn > (#{page}-1) * #{countPerPage}
+		AND rn <= #{page} * #{countPerPage}
+		]]>
   	</select>
   	
   	<!-- 상품조회 -->
@@ -34,6 +45,26 @@
 		WHERE p_num = #{pNum}
   	</select>
   	
+  	<!-- 총 게시물의 개수를 구해오자. -->
+  	<select id="totalCount" resultType="int">
+  		SELECT COUNT(*)
+  		FROM product
+  		WHERE p_name LIKE '%'||#{text_box}||'%'
+  	
+  	</select>
   	
   	
   </mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

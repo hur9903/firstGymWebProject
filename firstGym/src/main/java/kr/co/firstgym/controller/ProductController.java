@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.firstgym.command.PageCreator;
 import kr.co.firstgym.command.ProductVO;
 import kr.co.firstgym.command.SearchPagingVO;
 import kr.co.firstgym.product.service.IProductListService;
@@ -23,13 +24,24 @@ public class ProductController {
 
 	//상품리스트로 이동
 	@GetMapping("/productListPage")
-	public String productListPage(Model model, SearchPagingVO searchPaging) {
-		List<ProductVO> product = service.getList(searchPaging);
+	public String productListPage(Model model, SearchPagingVO paging) {
+		System.out.println("페이지 번호: " + paging.getPage());
+		System.out.println("한 페이지에 보여줄 게시물 개수: " + paging.getCountPerPage());
+		System.out.println("검색어: " + paging.getText_box());
+		List<ProductVO> product = service.getList(paging);
+		System.out.println("DB에서 가져온 게시물 개수: " + product.size());
 		
-		for(ProductVO vo : product) {
-			System.out.println("controller: " + vo);
-		}
+		PageCreator pc = new PageCreator();
+		pc.setPaging(paging);
+		int totalCount = service.totalCount(paging);
+		System.out.println("총 게시물 개수: " + totalCount);
+		pc.setArticleTotalCount(totalCount);
+		
+		System.out.println("완성된 pc: " + pc);
+		
 		model.addAttribute("list", product);
+		model.addAttribute("pc", pc);
+		
 		return "product/productList";
 	}
 	

@@ -32,7 +32,7 @@
         <nav class='bar'>
             <ul>
                 <li><a href="#">MBI 검사</a></li>
-                <li><a href="#">운동기구</a></li>
+                <li><a href="<c:url value='/product/productListPage' />">운동기구</a></li>
                 <li><a href="#">게시판</a></li>
                 <li><a href="#">마이페이지</a></li>
                 <li><a href="#">문의하기</a></li>

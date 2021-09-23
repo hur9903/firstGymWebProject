@@ -25,16 +25,16 @@
             <ul class="clearfix">
              
                 <c:forEach var="item" items="${list}">
-                <li>
-                    <a href='<c:url value="/product/productDetailPage?productNum=${item.productNum}"/>'>
-                    	<img src="image/1.png" alt="" class="product">
-                    
-	                    <h3>${item.productNum}</h3>
-	                    <h4>원</h4>
-	                    <div class="hover-product">
-	                    </div>
-                    </a>
-                </li>
+	                <li>
+	                    <a href='<c:url value="/product/productDetailPage?productNum=${item.productNum}"/>'>
+	                    	<img src="image/1.png" alt="" class="product">
+	                    
+		                    <h3>${item.productNum}</h3>
+		                    <h4>원</h4>
+		                    <div class="hover-product">
+		                    </div>
+	                    </a>
+	                </li>
                 </c:forEach>
             <!--     
                 <li>
@@ -162,13 +162,17 @@
         </section>
         <div class="paging">
             <div class="pagination">
-                <a class="prev" href="#"></a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a class="next" href="#"></a>        
+            	<c:if test="${pc.prev}">
+                	<a class="prev" href="<c:url value='/product/productListPage?page=${pc.beginPage-1}' />">이전</a>
+                </c:if>
+                
+                <c:forEach var="pageNum" begin="${pc.beginPage}" end="${pc.endPage}">
+                	<a href="<c:url value='/product/productListPage?page=${pageNum}' />" class="active">${pageNum}</a>
+                </c:forEach>
+                
+                <c:if test="${pc.next}">
+                	<a class="next" href="<c:url value='/product/productListPage?page=${pc.endPage+1}' />">다음</a>
+                </c:if>        
             </div>
         </div>
     </div>

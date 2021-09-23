@@ -12,5 +12,8 @@ public interface IProductListService {
 	
 	//상품 목록
 	List<ProductVO> getList(SearchPagingVO searchPasing);
+	
+	//총 게시물의 개수를 가져오는 메서드
+	int totalCount(SearchPagingVO paging);
 
 }

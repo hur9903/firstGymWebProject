@@ -7,12 +7,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class SearchPagingVO extends PageVO {
-	
-	private String text_box;
-	
-	public SearchPagingVO() {
-		this.text_box = "";
-	}
+public class PageVO {
 
+	private int page;
+	private int countPerPage;
+	
+	public PageVO() {
+		this.page = 1;
+		this.countPerPage = 12;
+	}
+	
 }

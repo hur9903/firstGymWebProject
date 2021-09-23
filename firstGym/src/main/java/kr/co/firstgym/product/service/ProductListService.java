@@ -32,6 +32,11 @@ public class ProductListService implements IProductListService {
 		return product;
 	}
 	
+	@Override
+	public int totalCount(SearchPagingVO paging) {
+		return mapper.totalCount(paging);
+	}
+	
 	
 	
 
