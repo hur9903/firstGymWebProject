@@ -13,23 +13,24 @@
         
         <div class="style">
             <ul class="list">
+            	<c:forEach var="vo" items="${OrderProductList}">
                     <li class="out-box">
                         <div class="number-box">
-                            <a href="#" class="order-number">0004</a>
+                            <a href="<c:url value='/order/orderDetailPage?o_num=${vo.o_num}' />" class="order-number">${vo.o_num}</a>
                         </div>
                         <div class="pic-box">
                             <img src="image/1.png" alt="" class="pic">
                         </div>
                         <div class="order-info">
                             <div class="product-title">
-                                <a href="#" class="dumbel">아령 덤벨</a>
+                                <a href="#" class="dumbel">${vo.p_name}</a>
                             </div>
                             <div class="product-price">
-                                <a class="price">73,200원</a>
-                                <a class="date">2021.03.27</a>
+                                <a class="price">${vo.o_productPrice}</a>
+                                <a class="date">${vo.o_productDate}</a>
                             </div>
                             <div class="type">
-                                <a href="#">웨이트</a>
+                                <a href="#">${vo.o_productCategory}</a>
                             </div>
                         </div>
                         <div class="seller-info">
@@ -37,78 +38,7 @@
                                 <a href="#" class="qna-btn">문의하기</a>
                         </div>
                     </li>
-                    <li class="out-box">
-                        <div class="number-box">
-                            <a href="#" class="order-number">0003</a>
-                        </div>
-                        <div class="pic-box">
-                            <img src="image/2.png" alt="" class="pic">
-                        </div>
-                        <div class="order-info">
-                            <div class="product-title">
-                                <a href="#" class="dumbel">폼롤러</a>
-                            </div>
-                            <div class="product-price">
-                                <a class="price">20,000원</a>
-                                <a class="date">2020.12.19</a>
-                            </div>
-                            <div class="type">
-                                <a href="#">요가필라테스</a>
-                            </div>
-                        </div>
-                        <div class="seller-info">
-                                <span class="seller">퍼스트짐</span>
-                                <a href="#" class="qna-btn">문의하기</a>
-                        </div>
-                    </li>
-                    <li class="out-box">
-                        <div class="number-box">
-                            <a href="#" class="order-number">0002</a>
-                        </div>
-                        <div class="pic-box">
-                            <img src="image/3.png" alt="" class="pic">
-                        </div>
-                        <div class="order-info">
-                            <div class="product-title">
-                                <a href="#" class="dumbel">요가매트</a>
-                            </div>
-                            <div class="product-price">
-                                <a class="price">224,600원</a>
-                                <a class="date">2020.07.24</a>
-                            </div>
-                            <div class="type">
-                                <a href="#">요가필라테스</a>
-                            </div>
-                        </div>
-                        <div class="seller-info">
-                                <span class="seller">퍼스트짐</span>
-                                <a href="#" class="qna-btn">문의하기</a>
-                        </div>
-                    </li>
-                    <li class="out-box">
-                        <div class="number-box">
-                            <a href="#" class="order-number">0001</a>
-                        </div>
-                        <div class="pic-box">
-                            <img src="image/4.png" alt="" class="pic">
-                        </div>
-                        <div class="order-info">
-                            <div class="product-title">
-                                <a href="#" class="dumbel">스텝퍼</a>
-                            </div>
-                            <div class="product-price">
-                                <a class="price">42,700원</a>
-                                <a class="date">2020.01.08</a>
-                            </div>
-                            <div class="type">
-                                <a href="#">유산소</a>
-                            </div>
-                        </div>
-                        <div class="seller-info">
-                                <span class="seller">퍼스트짐</span>
-                                <a href="#" class="qna-btn">문의하기</a>
-                        </div>
-                    </li>
+             	</c:forEach>
             </ul>
         </div>
     </section>

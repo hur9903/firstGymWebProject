@@ -10,21 +10,21 @@
                     
                     
                     <div class="orderDetail-order">주문 상세 내역</div>
-                    <button class="orderDetail-prevBtn">주문 목록 보기<span>▶</span></button>
+                    <button type="button" class="orderDetail-prevBtn" onclick="location.href='<c:url value="/order/orderListPage" />'">주문 목록 보기<span>▶</span></button>
                     <div id="orderDetail-second-table" class="orderDetail-table-box">
                         <span class="orderDetail-order-main">주문 정보</span>
                         <table class="orderDetail-main-table2"  >
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">주문 번호</td>
-                                <td></td>
+                                <td>${OrderProduct.o_num}</td>
                             </tr>
                             <tr class="orderDetail-table-tr">
-                                <td class="orderDetail-table-td">주문 일자</td>
-                                <td></td>
+                                <td class="orderDetail-table-td">주문 날짜</td>
+                                <td>${OrderProduct.o_date}</td>
                             </tr>
                             <tr class="orderDetail-table-tr">
-                                <td class="orderDetail-table-td">주문자</td>
-                                <td></td>
+                                <td class="orderDetail-table-td">주문한 사람</td>
+                                <td>${OrderProduct.o_sendId}</td>
                             </tr>
                         </table>
                     </div>
@@ -34,15 +34,15 @@
                         <table class="orderDetail-main-table2">
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">수취인</td>
-                                <td></td>
+                                <td>${OrderProduct.o_receiveName}</td>
                             </tr>
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">주소</td>
-                                <td></td>
+                                <td>${OrderProduct.o_address}&nbsp;${OrderProduct.o_detailAddress}</td>
                             </tr>
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">연락처</td>
-                                <td></td>
+                                <td>${OrderProduct.o_pNum}</td>
                             </tr>
                         </table>
                     </div>
@@ -51,12 +51,12 @@
                         <table class="orderDetail-main-table2">
                             
                             <tr class="orderDetail-table-tr">
-                                <td class="orderDetail-table-td">주문 금액</td>
-                                <td>50000원</td>
+                                <td class="orderDetail-table-td">결제 금액</td>
+                                <td>${OrderProduct.o_totalPrice}</td>
                             </tr>
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">결제 방법</td>
-                                <td></td>
+                                <td>${OrderProduct.o_method}</td>
                             </tr>
                             
                             
