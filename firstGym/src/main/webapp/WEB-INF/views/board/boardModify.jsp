@@ -12,15 +12,15 @@
             <form id="article-form" action="<c:url value='/board/boardUpdate'/>" method="post" enctype="multipart/form-data">
                 <hr>
                 <div class="boardModify-form-div">               
-                    <select name="category" id="">
+                    <select name="boardCategory" id="">
                         <option value="none">-- 운동 카테고리 --</option>
                         <option value="oxy">유산소 운동</option>
                         <option value="nonoxy">근력 운동</option>
                         <option value="yoga">요가, 스트레칭</option>
                     </select><br>
-                    <input type="text" name="title" id="board-title" placeholder="제목 입력">
+                    <input type="text" name="boardTitle" id="board-title" placeholder="제목 입력">
                     <div class="boardModify-form-content-div">
-                        <textarea id="boardModify-summernote" name="content"></textarea>
+                        <textarea id="boardModify-summernote" name="boardContent"></textarea>
                     </div>
                     <div class="boardModify-fileupload-div">
                         <!-- 다수 이미지 업로드 가능. -->
