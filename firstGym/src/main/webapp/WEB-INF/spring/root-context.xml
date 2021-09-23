@@ -37,11 +37,11 @@
 	<!-- 마이바티스 연결 객체 생성. -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
-		
+
 		 <!-- 마이바티스 같은 경우는 mapper 구현체를 xml로 대체하니까
 			해당 구현체 xml의 경로를 알려줘야 한다.  -->
 		
-		<property name="mapperLocations" value="classpath:/mappers/*.xml" />
+		<property name="mapperLocations" value="classpath:/mappers/**/*.xml" />
 	</bean>
 	
 	<!-- 위의 구현체 xml을 빈으로 등록하기 위해서는 타입이 필요하니까
@@ -49,6 +49,7 @@
 	 -->
 
 	<mybatis-spring:scan base-package="kr.co.firstgym.board.mapper"/>
+	<mybatis-spring:scan base-package="kr.co.firstgym.user.repository"/>
 
 	 <!--
 	<mybatis-spring:scan base-package="kr.co.firstgym.reply.mapper"/>
