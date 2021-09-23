@@ -56,5 +56,6 @@
 	<mybatis-spring:scan base-package="kr.co.firstgym.user.mapper"/>
 	<mybatis-spring:scan base-package="kr.co.firstgym.snsboard.mapper"/>
 	  -->
+	<mybatis-spring:scan base-package="kr.co.firstgym.order.mapper"/>
 		
 </beans>
