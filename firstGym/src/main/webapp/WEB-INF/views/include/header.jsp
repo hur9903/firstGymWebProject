@@ -15,23 +15,51 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
+<script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
     <!-- 제이쿼리 임시 -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>   -->
+   
+    <!-- 부트스트랩 css 사용 --> 
+    <link rel="stylesheet" href="/css/bootstrap.css">
+
+
+    
+    
 
 </head>
 <body>
     <header>
         <div class='title'>
-            <h1>FIRST GYM</h1>
+            <h1>FIRST GYM</a></h1>
             <div class="join">
-                <a href="#">로그인</a>
-                <a href="#">회원가입</a>
+              <%--   
+	              <a href="<c:url value='/user/loginPage' />">로그인</a>
+	              <a href="<c:url value='/user/joinPage' />">회원가입</a> 
+              --%>
+                
+                <c:if test="${login == null }"> 
+	          	
+		            <a href="<c:url value='/user/loginPage' />">LOGIN</a>
+		            <a href="<c:url value='/user/joinPage' />">JOIN</a>
+	          
+          		</c:if>
+          
+          		<c:if test="${login != null }">
+	          
+		         	 <a href="<c:url value='/mypage/mypageMain' />">MYPAGE</a>
+		         	 <a href="<c:url value='/user/logout' />" onclick="return confirm('정말 로그아웃 하시겠습니까?')" > LOGOUT</a>
+     		  		
+          		</c:if>
             </div>
         </div>
         <nav class='bar'>
             <ul>
-                <li><a href="#">MBI 검사</a></li>
+                <li><a href="#">BMI 검사</a></li>
                 <li><a href="#">운동기구</a></li>
                 <li><a href="#">게시판</a></li>
                 <li><a href="#">마이페이지</a></li>

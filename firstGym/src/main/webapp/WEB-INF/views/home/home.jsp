@@ -8,7 +8,7 @@
     <iframe width="720" height="350" src="https://www.youtube.com/embed/QH2-TGUlwu4" title="YouTube video player"
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
-    <hr style="margin-top: 10px;" color="#c0e1f5" size="6px">
+    <hr class="homeboard-main" style: color="#c0e1f5" size="6px">
     <div class="homeboard clearfix">
         <div class="bestboard">
             <div class="in-box">
@@ -100,7 +100,7 @@
             </ul>
         </div>
     </div>
-    <hr color="#c0e1f5" size="6px" style="clear: both;">
+    <hr color="#c0e1f5" size="6px" >
     <div class="homegigu" style="display: inline-block;">
         <h4 style="float: left;">인기 기구</h4>
         <h3 style="float: right;"><a href='#' class="moreview">더보기</a></h3>
@@ -157,3 +157,16 @@
 
 
 </html>
+
+ <script>
+    
+
+	const msg = '${msg}'
+   		if(msg === "success"){
+   			alert('회원 정보 수정 완료')
+   		}else if(msg === "logoutSuccess"){
+   			alert('로그아웃이 완료되었습니다')
+   		}
+   			
+	
+	</script>
