@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.co.firstgym.order.mapper.IOrderMapper">
+  
+  	<select id="getList" resultType="kr.co.firstgym.command.OrderProductVO">
+  		select * from
+	  		(
+	  		select rownum as rn, tbl.* from
+		  		(
+		  		select *
+  				from order_product op left outer join orders o
+  				on op.o_num = o.o_num
+  				where o.o_sendId = #{id}
+  				order by o.o_num
+		  		) tbl
+		  	)
+		<![CDATA[
+		WHERE rn > (#{page.pageNum} - 1) * #{page.countPerPage}
+		AND rn <= #{page.pageNum} * #{page.countPerPage}
+		]]>
+  	</select>
+  	
+  	<select id="getTotal" resultType="int">
+  		select count(*)
+  		from order_product op left outer join orders o
+  		on op.o_num = o.o_num
+  		where o.o_sendId = #{id}
+  	</select>
+  	
+  	<select id="getContent" resultType="kr.co.firstgym.command.OrdersVO">
+  		select *
+  		from orders o left outer join order_product op
+  		on op.o_num = o.o_num
+  		where o.o_num = #{o_num}
+  	</select>
+  
+</mapper>
