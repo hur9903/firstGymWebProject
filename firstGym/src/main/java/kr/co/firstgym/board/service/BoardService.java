@@ -149,6 +149,7 @@ public class BoardService implements IBoardService{
 		return returnPath;
 	}
 	
+	
 	//폴더생성
 	private void makeDir(String path) {
 		
@@ -205,13 +206,8 @@ public class BoardService implements IBoardService{
 		
 		//영상삭제
 		if(video != null) {
-			String[] videoNameSplit = video.split("/");
-			String videoName = videoNameSplit[videoNameSplit.length - 1];
-			String videoRealPath = "C:\\firstGym\\video\\" + videoName;
-			
-			String[] thumNameSplit = thum.split("/");
-			String thumName = thumNameSplit[thumNameSplit.length - 1];
-			String thumRealPath = "C:\\firstGym\\image\\" + thumName;
+			String videoRealPath = getRealFilePath(video, "video");
+			String thumRealPath = getRealFilePath(thum, "img");
 			
 			deleteFile(videoRealPath);
 			deleteFile(thumRealPath);
@@ -220,9 +216,7 @@ public class BoardService implements IBoardService{
 		//이미지 삭제
 		if(! images.isEmpty()) {
 			for(String image : images) {
-				String[] imageNameSplit = image.split("/");
-				String imageName = imageNameSplit[imageNameSplit.length - 1];
-				String imageRealPath = "C:\\firstGym\\image\\" + imageName;
+				String imageRealPath = getRealFilePath(image, "img");
 				
 				deleteFile(imageRealPath);
 			}
@@ -242,28 +236,94 @@ public class BoardService implements IBoardService{
 			}
 		}
 	}
+	
+	private String getRealFilePath(String path, String imgOrVideo) {
+		String[] fileNameSplit = path.split("/");
+		String fileName = fileNameSplit[fileNameSplit.length - 1];
+		
+		String fileRealPath = "";
+		
+		if(imgOrVideo.equals("img")) {
+			fileRealPath = "C:\\firstGym\\image\\" + fileName;
+		}else {
+			fileRealPath = "C:\\firstGym\\video\\" + fileName;			
+		}
+		
+		return fileRealPath;
+	}
 
 	@Override
 	public void updateArticle(BoardVO boardInfo, List<MultipartFile> images, MultipartFile video, boolean imageDelCheck) {
 		
-		//새로운 동영상이 있을 떄
-			//기존 동영상이 있다면 기존의 동영상 삭제 + 썸네일 삭제
-			//동영상 등록, 썸네일 등록
+		//기존의 게시글, 이미지 정보
+		BoardVO oldArticle = boardMapper.getArticle(boardInfo.getBoardNum());
+		List<String> oldImages = imageMapper.getImages(boardInfo.getBoardNum());
 		
-			//기존 사진 삭제 체크o
-				//사진들 삭제
-		
-			//사진 있을 때
-				//사진 등록
-		
-		//동영상 없을 때
-			//기존 사진 삭제 체크o
-				//동영상이 있다면 사진들 삭제
-				//동영상이 없다면 사진들 삭제 + 썸네일 삭제
-		
-				//사진 있을 때 사진 등록 + 썸네일 등록
-
-		//기존 사진 있을 때 사진 등록
+		if(! video.isEmpty()) { //새로운 동영상이 있을 때
+			if(oldArticle.getBoardVideo() != null) { //기존 동영상이 있다면 기존의 동영상 삭제 + 썸네일 삭제	
+				
+				String oldVideoPath = getRealFilePath(oldArticle.getBoardVideo(), "video");
+				deleteFile(oldVideoPath);
+				String oldThumPath = getRealFilePath(oldArticle.getBoardThum(), "img");
+				deleteFile(oldThumPath);
+			}
+			
+			//동영상 등록
+			String videoPath = registFile(video, "C:\\firstGym\\video", "video");
+			boardInfo.setBoardVideo(videoPath);
+			
+			//썸네일 이미지 저장
+			boardInfo.setBoardThum(registThumVideo(getRealFilePath(videoPath, "video")));
+			
+			if(imageDelCheck) { //기존 이미지 삭제
+				for(String oldImage : oldImages) {
+					//이미지 저장소에서 삭제
+					String oldImagePath = getRealFilePath(oldImage, "img");
+					deleteFile(oldImagePath);
+					//이미지 경로 데이터 베이스에서 삭제
+					imageMapper.delete(oldImage);
+				}
+			}
+			
+			if(! images.get(0).isEmpty()) { //이미지 등록
+				for(MultipartFile image : images) {
+					System.out.println("동영상과 이미지: " + image.getOriginalFilename());
+					registFile(image, "C:\\firstGym\\image", "img");
+				}
+			}
+			
+		} else { //동영상 없을 때			
+			
+			List<String> newImages = new ArrayList<>();
+			boolean needNewThum = false;
+			
+			if(imageDelCheck) { //기존 이미지 삭제
+				for(String oldImage : oldImages) {
+					//이미지 저장소에서 삭제
+					String oldImagePath = getRealFilePath(oldImage, "img");
+					deleteFile(oldImagePath);
+					//이미지 경로 데이터 베이스에서 삭제
+					imageMapper.delete(oldImage);
+				}
+				
+				if(boardInfo.getBoardVideo() == null) {
+					boardInfo.setBoardThum(null);
+					needNewThum = true;
+				}
+			}
+			
+			if(! images.get(0).isEmpty()) { //이미지 등록
+				for(MultipartFile image : images) {
+					System.out.println("동영상과 이미지: " + image.getOriginalFilename());
+					newImages.add(registFile(image, "C:\\firstGym\\image", "img"));
+				}
+				if(needNewThum) {
+					boardInfo.setBoardThum(newImages.get(0));
+				}
+			}
+		}
+			
+		boardMapper.updateArticle(boardInfo);
 		
 	}
 }

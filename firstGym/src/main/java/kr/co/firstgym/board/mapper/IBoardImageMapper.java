@@ -11,4 +11,8 @@ public interface IBoardImageMapper {
 	
 	//게시글 이미지 불러오기
 	List<String> getImages(int boardNum);
+	
+	//게시글 삭제
+	void delete(String imgBoard);
+	
 }

@@ -15,4 +15,9 @@
 		WHERE board_num = #{boardNum}
 	</select>
 	
+	<delete id="delete">
+		DELETE FROM img_board
+		WHERE img_board = #{imgBoard}
+	</delete>
+	
 </mapper>

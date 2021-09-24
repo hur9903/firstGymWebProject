@@ -134,4 +134,10 @@
 		DELETE FROM board
 		WHERE board_num = #{boardNum}
 	</delete>
+	
+	<update id="updateArticle">
+		UPDATE board
+		SET board_content = #{boardContent}, board_title = #{boardTitle}, board_category = #{boardCategory}, board_thum = #{boardThum}, board_video = #{boardVideo}
+		WHERE boart_num = #{boardNum}
+	</update>
 </mapper>
