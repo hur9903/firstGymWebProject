@@ -12,7 +12,7 @@ public class MypageController {
 	//마이페이지 메인 이동
 	@GetMapping("/mypageMainPage")
 	public String mypageMainPage() {
-		return "";
+		return "mypage/mypageMain";
 	}
 	
 	//bmi리스트 가져오기

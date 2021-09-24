@@ -162,9 +162,7 @@
     
 
 	const msg = '${msg}'
-   		if(msg === "success"){
-   			alert('회원 정보 수정 완료')
-   		}else if(msg === "logoutSuccess"){
+   		if(msg === "logoutSuccess"){
    			alert('로그아웃이 완료되었습니다')
    		}
    			

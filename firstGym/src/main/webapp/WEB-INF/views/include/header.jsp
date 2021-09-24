@@ -12,10 +12,10 @@
 
 
     <!-- summernote cdn (jquery 필수)-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
     <!-- 제이쿼리 임시 -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>   -->
@@ -47,7 +47,7 @@
           
           		<c:if test="${login != null }">
 	          
-		         	 <a href="<c:url value='/mypage/mypageMain' />">MYPAGE</a>
+		         	 <a href="<c:url value='/mypage/mypageMainPage' />">MYPAGE</a>
 		         	 <a href="<c:url value='/user/logout' />" onclick="return confirm('정말 로그아웃 하시겠습니까?')" > LOGOUT</a>
      		  		
           		</c:if>
