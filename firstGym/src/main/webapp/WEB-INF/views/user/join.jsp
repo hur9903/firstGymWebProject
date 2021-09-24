@@ -14,13 +14,13 @@
             <form action="<c:url value='/user/join' />" method="post" id="joinForm">
                 <div class="join-clearfix">
                     <span class="join-float-left">아이디</span>
-                    <span class="join-float-right"><input type="text" name="userId" id="userId" placeholder="아이디 (영문포함 5~12자)">
-                    <button type="button" class="join-color-pruple" id="idCheckBtn">중복확인</button></span><br>
-                    <span class="joinCheck" id="idCheck"></span><br>
+                    <span class="join-float-right"><input type="text" name="userId" id="userId" placeholder="아이디 (영문,숫자 포함 5~12자)">
+                    <button type="button" class="join-color-pruple" id="idCheckBtn">중복확인</button><br><span id="CheckId"></span></span>
+                    <span class="joinCheck" id="idCheck"></span>
                 </div>
                 <div class="join-clearfix">
                     <span class="join-float-left">비밀번호</span>
-                    <span class="join-float-right"><input type="password" placeholder="비밀번호 (영문 숫자 특수문자 포함 8자이상)" name="userPw" id="userPw"></span>
+                    <span class="join-float-right"><input type="password" placeholder="비밀번호(영문,숫자,특수문자 포함 8자이상)" name="userPw" id="userPw"></span>
                     <span class="joinCheck" id="pwCheck"></span><br>
                 </div>
                 <div class="join-clearfix">
@@ -44,8 +44,8 @@
                 </div>
                 <div class="join-clearfix">
                     <span class="join-float-left">E-mail</span>
-                    <span class="join-float-right"><input type="email" placeholder="입력시 @까지 함께 입력하세요" name="userEmail" id="userEmail"><button type="button" class="join-color-pruple">중복확인</button></span>
-                	<span class="joinCheck" id="emailCheck"></span><br>
+                    <span class="join-float-right"><input type="email" placeholder="입력시 @까지 함께 입력하세요" name="userEmail" id="userEmail"><button type="button" class="join-color-pruple" id="emailCheckBtn">중복확인</button><br><span id="Checkemail"></span></span>
+                	<span class="joinCheck" id="emailCheck"></span>
                 </div>
                 <div class="join-clearfix">
                     <span class="join-float-left">휴대전화</span>
@@ -79,11 +79,14 @@
     
   	//회원가입 버튼 클릭
       $('#joinBtn').click(function() {
-		if($('#userId').val() === ''){
+   	  	if($('#userId').val() === ''){
 			alert('아이디는 필수 값 입니다');
 			$('#userId').focus();
 			return;
-		}else if($('#userPw').val() === ''){
+		}else if(!$('#userId').attr('readonly')) { 
+            alert('아이디 중복체크는 필수입니다.');
+            return;
+        }else if($('#userPw').val() === ''){
 			alert('비밀번호는 필수 값 입니다');
 			$('#userPw').focus();
 			return;
@@ -100,18 +103,17 @@
 			$('#userBirth').focus();
 			return;
 		}else if(!$('#userGen').is(":checked")){
-			if(!$('#userGen2').is(":checked")){
-				alert('성별을 체크 해주세요');
-				$('#userGen').focus();
-			}else{
-				alert('e-mail을 입력 해주세요');
-				$('#userEmail').focus();
-			}
+			alert('성별을 체크 해주세요');
+			$('#userGen').focus();
+			return;
 		}else if($('#userEmail').val() === ''){
-			alert('e-mail을 입력 해주세요');
+			alert('이메일을 입력 해주세요');
 			$('#userEmail').focus();
 			return;	
-		}else if($('#userPhone').val() === ''){
+		}else if(!$('#userEmail').attr('readonly')) { 
+            alert('이메일 중복체크는 필수입니다.');
+            return;
+        }else if($('#userPhone').val() === ''){
 			alert('휴대폰 번호를 입력 해주세요');
 			$('#userPhone').focus();
 			return;
@@ -133,6 +135,7 @@
 			return;
 		}else{
 			$('#joinForm').submit();
+			alert('회원가입이 완료 되었습니다!')
 		}
 	})
 	
@@ -147,7 +150,7 @@
 	const getAddrCheck = RegExp(/^[a-zA-Z0-9]{1,}$/);
 	
    	//입력값 중 하나라도 만족하지 못한다면 회원가입처리를 막기 위한 논리형 변수 선언
-	let chk1 = false, chk2 = false, chk3 = false, chk4 = false, chk5 = false, chk6 = false, chk7 = false, chk8 = false, chk9 = false;
+	let chk1 = false, chk2 = false, chk3 = false, chk4 = false, chk5 = false, chk6 = false, chk7 = false, chk8 = false, chk9 = false, chk10 = false;
    	
 	//ID입력값 검증
 	$('#userId').keyup(function() {
@@ -161,12 +164,49 @@
 			$('#idCheck').html('<b style="font-size: 14px; color:red;"> [영문,숫자 조합 5~12자로 입력하세요]</b>');
 			chk1 = false;
 		}else{
-			$(this).css('background-color', 'rgb(229, 241, 221)');
+			$(this).css('background-color', 'rgb(232, 240, 254)');
 			$('#idCheck').html('');
 			chk1 = true;
+			
+			//ID 중복 확인
+		    $('#idCheckBtn').click(function() {
+				if($('#userId').val() === ''){
+					alert('아이디를 입력하세요');
+					$('#userId').focus();
+					return;
+				}else{
+
+				    const userId = $('#userId').val();
+				    
+				    $.ajax({
+				        type: "POST",
+				        url: "<c:url value='/user/idCheck' />",
+				        headers: {
+				           "Content-type" : "application/json"
+				        },
+				        dataType: "text",
+				        data: userId,
+				        success: function(data) {
+				           if(data === 'idCheckOk') {
+				        	  $('#userId').attr('readonly', true);
+				              $('#CheckId').html('<b style="font-size: 14px; color:green;"> [사용 가능한 아이디입니다]</b>');
+				           } else {
+				              $('#CheckId').html('<b style="font-size: 14px; color:red;"> [중복된 아이디입니다]</b>');
+				           }
+				        },
+				        error: function(request,status,error) {
+				        	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				        }
+				  	}); 
+				  	
+				}
+			});//중복확인 이벤트 끝
 		}
 	});
-    
+	
+   
+	
+  
     //PW 검증
     $('#userPw').keyup(function() {
 		if($(this).val() === ''){
@@ -175,11 +215,11 @@
 			chk2 = false;
 		}else if(!getPwCheck.test($(this).val())){
 			$(this).css('background-color', 'rgb(255, 234, 255)');
-			$('#pwCheck').html('<b style="font-size: 14px; color:red;"> [특수문자 포함 8자 이상 입력하세요]</b>');
+			$('#pwCheck').html('<b style="font-size: 14px; color:red;"> [영문,숫자,특수문자 조합 8자이상 입력하세요]</b>');
 			chk2 = false;
 		}
 		else{
-			$(this).css('background-color', 'rgb(229, 241, 221)');
+			$(this).css('background-color', 'rgb(232, 240, 254)');
 			$('#pwCheck').html('');
 			chk2 = true;
 		}
@@ -202,7 +242,7 @@
 		}
 		//통과
 		else{
-			$(this).css('background-color', 'rgb(229, 241, 221)');
+			$(this).css('background-color', 'rgb(232, 240, 254)');
 			$('#pwCheck2').html('');
 			$('#pwCheckOk').html('<b style="font-size: 14px; color:green;"> [비밀번호 확인 완료]</b>');
 			chk3 = true;
@@ -225,7 +265,7 @@
 		}
 		//통과
 		else{
-			$(this).css('background-color', 'rgb(229, 241, 221)');
+			$(this).css('background-color', 'rgb(232, 240, 254)');
 			$('#nameCheck').html('');	
 			chk4 = true;
 		}
@@ -243,7 +283,7 @@
 			$('#birthCheck').html('<b style="font-size: 14px; color:red;"> [정확히 숫자로만 8글자 입력하세요] </b>');
 			chk5 = false;
 		}else{
-			$(this).css('background-color', 'rgb(229, 241, 221)');
+			$(this).css('background-color', 'rgb(232, 240, 254)');
 			$('#birthCheck').html('');	
 			chk5 = true;
 		}
@@ -251,18 +291,52 @@
     
 	//이메일 검증
 	$('#userEmail').keyup(function() {
-		if($(this).val() === ''){
-			$(this).css('background-color', 'rgb(255, 234, 255)');
+		if($('#userEmail').val() === ''){
+			$('#userEmail').css('background-color', 'rgb(255, 234, 255)');
 			$('#emailCheck').html('<b style="font-size: 14px; color:red;"> [이메일을 입력하세요] </b>');
 			chk6 = false;
 		}else if(!getEmailCheck.test($(this).val())){
-			$(this).css('background-color', 'rgb(255, 234, 255)');
+			$('#userEmail').css('background-color', 'rgb(255, 234, 255)');
 			$('#emailCheck').html('<b style="font-size: 14px; color:red;"> [이메일 형식에 어긋납니다] </b>');
 			chk6 = false;
 		}else{
-			$(this).css('background-color', 'rgb(229, 241, 221)');
+			$('#userEmail').css('background-color', 'rgb(232, 240, 254)');
 			$('#emailCheck').html('');	
 			chk6 = true;
+			
+			//email 중복 확인
+		    $('#emailCheckBtn').click(function() {
+				if($('#userEmail').val() === ''){
+					alert('이메일을 입력하세요');
+					$('#userEmail').focus();
+					return;
+				}else{
+
+				    const userEmail = $('#userEmail').val();
+				    
+				    $.ajax({
+				        type: "POST",
+				        url: "<c:url value='/user/emailCheck' />",
+				        headers: {
+				           "Content-type" : "application/json"
+				        },
+				        dataType: "text",
+				        data: userEmail,
+				        success: function(data) {
+				           if(data === 'emailCheckOk') {
+				        	  $('#userEmail').attr('readonly', true);
+				              $('#Checkemail').html('<b style="font-size: 14px; color:green;"> [사용 가능한 이메일입니다]</b>');
+				           } else {
+				              $('#Checkemail').html('<b style="font-size: 14px; color:red;"> [중복된 이메일입니다]</b>');
+				           }
+				        },
+				        error: function(request,status,error) {
+				        	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				        }
+				  	}); 
+				  	
+				}
+			});//중복확인 이벤트 끝
 		}
 	})
 	
@@ -276,8 +350,12 @@
 			$(this).css('background-color', 'rgb(255, 234, 255)');
 			$('#phoneCheck').html('<b style="font-size: 14px; color:red;"> ["-"를 빼고 입력하세요] </b>');
 			chk7 = false;
+		}else if(!getPhoneCheck.test($(this).val())){
+			$(this).css('background-color', 'rgb(255, 234, 255)');
+			$('#phoneCheck').html('<b style="font-size: 14px; color:red;"> [숫자로만 10~11자리 입력하세요]</b>');	
+			chk4 = false;
 		}else{
-			$(this).css('background-color', 'rgb(229, 241, 221)');
+			$(this).css('background-color', 'rgb(232, 240, 254)');
 			$('#phoneCheck').html('');	
 			chk7 = true;
 		}
@@ -289,7 +367,7 @@
 			$(this).css('background-color', 'rgb(255, 234, 255)');
 			chk8 = false;
 		}else{
-			$(this).css('background-color', 'rgb(229, 241, 221)');
+			$(this).css('background-color', 'rgb(232, 240, 254)');
 			$('#addrCheck').html('');	
 			chk8 = true;
 		}
@@ -299,11 +377,11 @@
 		if($(this).val() === ''){
 			$(this).css('background-color', 'rgb(255, 234, 255)');
 			$('#addrCheck').html('<b style="font-size: 14px; color:red;"> [주소를 입력하세요] </b>');
-			chk8 = false;
+			chk9 = false;
 		}else{
-			$(this).css('background-color', 'rgb(229, 241, 221)');
+			$(this).css('background-color', 'rgb(232, 240, 254)');
 			$('#addrCheck').html('');	
-			chk8 = true;
+			chk9 = true;
 		}
 	})
 	//상세주소 검증
@@ -311,11 +389,11 @@
 		if($(this).val() === ''){
 			$(this).css('background-color', 'rgb(255, 234, 255)');
 			$('#addr2Check').html('<b style="font-size: 14px; color:red;"> [상세주소를 입력하세요] </b>');
-			chk9 = false;
+			chk10 = false;
 		}else{
-			$(this).css('background-color', 'rgb(229, 241, 221)');
+			$(this).css('background-color', 'rgb(232, 240, 254)');
 			$('#addr2Check').html('');	
-			chk9 = true;
+			chk10 = true;
 		}
 	})
     </script>
