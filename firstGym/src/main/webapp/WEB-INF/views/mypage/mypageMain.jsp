@@ -45,7 +45,7 @@
                     <a href="#" id="mypageMain-bmiBtn">
                           BMI 검사 기록
                     </a><br><br>
-                    <a href="#">
+                    <a href="/order/orderListPage">
                          구매목록
                     </a>
                 </div>
