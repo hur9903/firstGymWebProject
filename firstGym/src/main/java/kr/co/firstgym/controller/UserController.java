@@ -104,15 +104,30 @@ public class UserController {
 	}
 	
 	//아이디 중복체크
-	@GetMapping("/idCheck")
-	public String idCheck() {
-		return "";
+	@ResponseBody
+	@PostMapping("/idCheck")
+	public String idCheck(@RequestBody String userId) {
+		
+		int result = service.checkId(userId);
+		if(result == 1) {
+			return "idCheckNo";
+		} else {
+			return "idCheckOk";
+		}	
 	}
 	
 	//이메일 중복체크
-	@GetMapping("/emailCheck")
-	public String emailCheck() {
-		return "";
+	@ResponseBody
+	@PostMapping("/emailCheck")
+	public String emailCheck(@RequestBody String userEmail) {
+		
+		int result = service.checkEmail(userEmail);
+		if(result == 1) {
+			return "emailCheckNo";
+		} else {
+			return "emailCheckOk";
+		}	
+	
 	}
 	
 	//회원가입
@@ -128,8 +143,15 @@ public class UserController {
 	
 	//사용자 정보 수정
 	@PostMapping("/modifyInfo")
-	public String modifyInfo() {
-		return "";
+	public String modifyInfo(UserVO vo,  RedirectAttributes ra) {
+		
+		System.out.println("수정 요청 들어옴");
+		System.out.println("수정값: " + vo);
+		
+		service.modify(vo);
+		ra.addFlashAttribute("msg", "modifyOk");
+		
+		return "redirect:/mypage/mypageMainPage";
 	}
 	
 	//로그아웃

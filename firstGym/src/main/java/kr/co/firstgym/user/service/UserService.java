@@ -19,8 +19,12 @@ public class UserService implements IUserService {
 	
 	@Override
 	public int checkId(String account) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.checkId(account);
+	}
+	
+	@Override
+	public int checkEmail(String email) {
+		return mapper.checkEmail(email);
 	}
 
 	@Override
@@ -37,6 +41,11 @@ public class UserService implements IUserService {
 	public void delete(String account) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public void modify(UserVO vo) {
+		mapper.modify(vo);
 	}
 
 }

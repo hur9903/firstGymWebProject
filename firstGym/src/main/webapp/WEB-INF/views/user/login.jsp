@@ -36,7 +36,7 @@
             </div>
         </div>
         <div id="login-links-div" >
-            <a href="#" id="login-find-pw">비밀번호 찾기</a> | <a href="#" id="login-find-id">아이디 찾기</a> | <a href="#" id="login-join">회원가입</a>
+            <a href="#" id="login-find-pw">비밀번호 찾기</a> | <a href="#" id="login-find-id">아이디 찾기</a> | <a href="<c:url value='/user/joinPage' />" id="login-join">회원가입</a>
         </div>
     </div>
     <!-- 아이디, 비번 찾기 모달 -->
@@ -204,7 +204,7 @@
             $('#idCheck').html('<b style="font-size: 14px; color:red;"> [영문,숫자 조합 5~12자로 입력하세요]</b>');
             chk1 = false;
          }else {
-            $('#userId').css('background-color', 'rgb(229, 241, 221)');
+            $('#userId').css('background-color', 'rgb(232, 240, 254)');
             $('#idCheck').html('<b style="font-size: 14px; color: green;">[아이디 입력 완료]</b>');
             chk1 = true;
          }
@@ -218,11 +218,11 @@
             chk2 = false;
          }else if(!getPwCheck.test($(this).val())){
             $(this).css('background-color', 'rgb(255, 234, 255)');
-            $('#pwCheck').html('<b style="font-size: 14px; color:red;"> [특수문자 포함 8자 이상 입력하세요]</b>');
+            $('#pwCheck').html('<b style="font-size: 14px; color:red;"> [영문,숫자,특수문자 조합 8자 이상 입력하세요]</b>');
             chk2 = false;
          }
          else{
-            $(this).css('background-color', 'rgb(229, 241, 221)');
+            $(this).css('background-color', 'rgb(232, 240, 254)');
             $('#pwCheck').html('<b style="font-size: 14px; color:green;"> [비밀번호 입력 완료]</b>');
             chk2 = true;
          }

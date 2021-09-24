@@ -1312,10 +1312,10 @@ text-decoration: none;
     -moz-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    overflow: hidden;
+    overflow: scroll;
         border: 1px solid black;
-        width: 600px;
-        height:auto;
+        width: 620px;
+    	height: 650px;
         padding: 50px 80px;
         font-size: 20px;
 }
@@ -1336,6 +1336,7 @@ font-size: 30px;
     border: none;
     height: 30px;
     margin: 10px;
+    padding: 5px;
 }
 .mypageModify-gender{
         transform: scale(1.5);
@@ -1383,7 +1384,8 @@ font-size: 30px;
 
     .mypageModify-button{
         text-align: center;
-        margin-bottom: -50px;
+		margin-top: 70px;
+		margin-bottom: -30px;
     }
     
     .mypageModify-mod:hover, .mypageModify-can:hover{
@@ -1858,7 +1860,7 @@ font-size: 30px;
    height: 50px;
 }
 td{
-   width: 200px;
+   width: 170px;
 }
 /* 상하 마긴 */
 .orderDetail-table-box{
