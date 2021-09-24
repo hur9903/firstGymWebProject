@@ -21,25 +21,25 @@
                             <th scope="row">
                                 <span class="product-title">상품명</span>
                             </th>
-                            <td class="title">아령 덤벨</td>
+                            <td class="title">${itemInfo.pName}</td>
                         </tr>
                         <tr class="record">
                             <th scope="row">
                                 <span>제조사</span>
                             </th>
-                            <td>퍼스트짐</td>
+                            <td>${itemInfo.pCompany}</td>
                         </tr>
                         <tr class="record">
                             <th scope="row">
                                 <span>원산지</span>
                             </th>
-                            <td>한국</td>
+                            <td>${itemInfo.pCountry}</td>
                         </tr>
                         <tr class="record">
                             <th scope="row">
                                 <span>판매가</span>
                             </th>
-                            <td>73,200원</td>
+                            <td>${itemInfo.pPrice}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -62,24 +62,24 @@
                                 <th scope="col">가격</th>
                             </tr>
                         </thead>
-                        <tbody class>
+                        <tbody>
                             <tr>
-                                <td>아령 덤벨</td>
+                                <td>${itemInfo.pName}</td>
                                 <td>
                                     <span class="quantity">
-                                        <input id="quatity" name="quantity-opt" style value="1" type="text">
-                                        <a href="none">
-                                            <img src="image/수량증가.gif" alt="수량증가" class="quantity-up">
-                                        </a>
-                                        <a href="none">
-                                            <img src="image/수량감소.gif" alt="수량감소" class="quantity-down">
-                                        </a>
+                                        <input id="quantity" name="quantity-opt" value="1" type="text">
+                                        <button type="button" id="plus"> ▲
+                                            <!--  <img src="image/수량증가.gif" alt="수량증가" class="quantity-up" id="plus">-->
+                                        </button>
+                                        <button type="button" id="minus"> ▼
+                                            <!-- <img src="image/수량감소.gif" alt="수량감소" class="quantity-down" id="minus"> -->
+                                        </button>
                                     </span>
                                 </td>
-                                <td class="right">
+                                <td class="right" style="width: 70px;">
                                     <span class="quantity-price">
-                                        73,200원
-                                        <input type="hidden" name="option-box-price" class="option-box-price" value="73200">
+                                        ${itemInfo.pPrice}
+                                        <input type="hidden" id="total-price" name="option-box-price" class="option-box-price" value="73200">
                                     </span>
                                 </td>
                             </tr>
@@ -102,7 +102,7 @@
                 </div>
                 <div class="purchase-btn">
                     <div class="btn-area">
-                        <a href="#" class="first">
+                        <a href="<c:url value='/order/purchase'/>" id="order_purchase">
                             <img src="image/바로구매하기.gif" alt="바로 구매하기">
                         </a>
                     </div>
@@ -123,6 +123,7 @@
                         <a href="#prd-review">상품사용후기</a>
                     </li>
                     <li class="prd-li-qna">
+                    	<a href="#prd-qna">상품문의하기</a>
                     </li>
                 </ul>
                 <div class="cont">
@@ -289,5 +290,56 @@
         </div>
     </div>
     
+    <!-- 
+    <span class="quantity">
+       <input id="quantity" name="quantity-opt" value="1" type="text">
+       <a href="none">
+         <img src="image/수량증가.gif" alt="수량증가" class="quantity-up" id="plus">
+       </a>
+       <a href="none">
+         <img src="image/수량감소.gif" alt="수량감소" class="quantity-down" id="minus">
+       </a>
+    </span>
+     -->
+    
+    <script>
+    	const $count = document.getElementById('quantity');
+    	const $plus = document.getElementById('plus');
+    	const $minus = document.getElementById('minus');
+   		let value = $count.getAttribute('value');
+    	
+    	$plus.onclick = function() {
+	   		const price = document.getElementById('total-price').getAttribute('value');
+    		console.log('+버튼 클릭!');
+    		value++;
+    		$count.setAttribute('value', value);
+    		
+    		let tot_price = price * value;
+    		document.getElementById('total-price').setAttribute('value', tot_price);
+    		console.log('변경 후 가격:' + document.getElementById('total-price').value);
+    		document.querySelector('.quantity-price').textContent = document.getElementById('total-price').getAttribute('value');
+    	}
+    	
+    	$minus.onclick = function() {
+    		console.log('-버튼 클릭!');
+    		if(+$count.value === 1) {
+    			alert('최소구매 수량은 1개입니다.');
+    			return;
+    		}
+    		value--;
+    		$count.setAttribute('value', value);
+    	}
+    </script>
+    
 <%@ include file="../include/footer.jsp" %>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
