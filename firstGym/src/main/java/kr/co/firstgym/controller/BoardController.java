@@ -2,6 +2,8 @@ package kr.co.firstgym.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.co.firstgym.board.service.BoardService;
 import kr.co.firstgym.board.service.IBoardService;
 import kr.co.firstgym.command.BoardPageVO;
 import kr.co.firstgym.command.BoardVO;
+import kr.co.firstgym.command.UserVO;
 
 @Controller
 @RequestMapping("/board")
@@ -50,19 +54,28 @@ public class BoardController {
 		return "/board/boardContent";
 	}
 	
-	//게시글 등록+수정페이지로 이동
+	//게시글 등록 페이지로 이동
+	@GetMapping("/boardUpdatePage")
+	public String boardUpdatePage() {
+		return "/board/boardModify";
+	}
+	
+	//게시글 수정 페이지로 이동
 	@GetMapping("/boardModifyPage")
-	public String boardModifyPage() {
+	public String boardModifyPage(@RequestParam("boardNum") int boardNum, Model model) {
+			
+		model.addAttribute("article", service.getArticle(boardNum));
+		model.addAttribute("msg", "boardModify");
+			
 		return "/board/boardModify";
 	}
 	
 	//게시글 등록
 	@PostMapping("/boardUpdate")
-	public String boardUpdate(BoardVO article, @RequestParam("images") List<MultipartFile> images, @RequestParam("video") MultipartFile video) {
+	public String boardUpdate(BoardVO article, @RequestParam("images") List<MultipartFile> images, @RequestParam("video") MultipartFile video, HttpSession session) {
 		
-		//session값 대신..
-		String userId = "userId";
-		//session값 대신..
+		UserVO user = (UserVO)session.getAttribute("login");
+		String userId = user.getUserId();
 		
 		article.setUserId(userId);
 		
@@ -73,12 +86,13 @@ public class BoardController {
 	}
 	
 	//게시글 수정
-		@PostMapping("/boardModify")
-		public String boardModify(BoardVO article, @RequestParam("images") List<MultipartFile> images, @RequestParam("video") MultipartFile video) {
-			
-			
-			return "/board/boardContent";
-		}
+	@PostMapping("/boardModify")
+	public String boardModify(BoardVO article, @RequestParam("images") List<MultipartFile> images, @RequestParam("video") MultipartFile video, @RequestParam("imageDelCheck") boolean imageDelCheck) {
+		
+		service.updateArticle(article, images, video, imageDelCheck);
+		
+		return "redirect:/board/boardDetailPage/" + article.getBoardNum();
+	}
 	
 	//게시글 삭제
 	@PostMapping("/boardDelete")

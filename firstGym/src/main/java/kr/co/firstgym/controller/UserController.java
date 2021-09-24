@@ -34,16 +34,16 @@ public class UserController {
 	
 	//아이디 로그인 진행
 	@PostMapping("/idLogin")
-	public String idLogin(String userId, String userPw, Model model ) {
-		
+	public String idLogin(String userId, String userPw, HttpSession session ) {
+	      
 		System.out.println("login 요청 들어옴" + userId + "," + userPw);
-		UserVO vo = service.login(userId, userPw);
-		
-		System.out.println("vo: " + vo);
-		
-		model.addAttribute("user", vo);
-		
-		return "/user/login";
+	    UserVO vo = service.login(userId, userPw);
+	      
+	    System.out.println("vo: " + vo);
+	      
+	    session.setAttribute("login", vo);
+	      
+	    return "/user/login";
 	}
 	
 	//로그인 요청 처리

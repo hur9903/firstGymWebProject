@@ -22,7 +22,7 @@
                     </div>
                     <div class="boardContent-float-right">
                         <form id="del-form" action="<c:url value="/board/boardDelete" />" method="post">
-                        	<button type="button" class="color-darkskyblue boardContent-btn-big">수정</button>
+                        	<button id="mod-btn" type="button" class="color-darkskyblue boardContent-btn-big">수정</button>
                         	<input type="hidden" name="boardNum" value="${article.boardNum}">
                         	<button id="del-btn" type="button" class="boardContent-del boardContent-btn-big">삭제</button>
                         </form>
@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <!-- 댓글영역 -->
-                    <div class="boardContent-reply">
+                    <div id="reply" class="boardContent-reply">
                         <div class="boardContent-reply-area-div">
                             <form action="" class="boardContent-updonw-margin-div">
                                 <input type="text" placeholder="댓글 입력">
@@ -271,6 +271,11 @@
         // 리스트로 이동 버튼 
         $('#list-btn').click(function(){
         	location.href='<c:url value="/board/boardListPage" />';
+        });
+        
+        //게시글 수정 버튼
+        $('#mod-btn').click(function(){
+        	location.href='<c:url value="/board/boardModifyPage?boardNum=${article.boardNum}" />';
         });
         
         //게시글 삭제 버튼

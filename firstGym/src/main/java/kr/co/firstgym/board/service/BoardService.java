@@ -242,4 +242,28 @@ public class BoardService implements IBoardService{
 			}
 		}
 	}
+
+	@Override
+	public void updateArticle(BoardVO boardInfo, List<MultipartFile> images, MultipartFile video, boolean imageDelCheck) {
+		
+		//새로운 동영상이 있을 떄
+			//기존 동영상이 있다면 기존의 동영상 삭제 + 썸네일 삭제
+			//동영상 등록, 썸네일 등록
+		
+			//기존 사진 삭제 체크o
+				//사진들 삭제
+		
+			//사진 있을 때
+				//사진 등록
+		
+		//동영상 없을 때
+			//기존 사진 삭제 체크o
+				//동영상이 있다면 사진들 삭제
+				//동영상이 없다면 사진들 삭제 + 썸네일 삭제
+		
+				//사진 있을 때 사진 등록 + 썸네일 등록
+
+		//기존 사진 있을 때 사진 등록
+		
+	}
 }

@@ -138,7 +138,7 @@
     		
     		//글 등록 버튼
 	    	$('#regist-btn').click(function(){
-	    		location.href = '<c:url value="/board/boardModifyPage" />';
+	    		location.href = '<c:url value="/board/boardUpdatePage" />';
 	    	});
     		
     		//페이지버튼

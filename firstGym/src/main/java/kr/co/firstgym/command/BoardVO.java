@@ -22,4 +22,6 @@ public class BoardVO {
 	private String boardThum; //게시글 썸네일 이미지 주소
 	private String boardVideo; //게시글 비디오 주소
 	
+	private boolean imageDelCheck; //게시글 수정시 이미지 삭제 여부
+	
 }

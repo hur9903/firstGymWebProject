@@ -6,6 +6,7 @@
 
     <div class="boardModify-main-div">
         <div class="boardModify-sub-div">
+        	<input id="modify-check" type="hidden" value="${msg}">
             <div id="boardModify-title">
                 게시글 등록
             </div>
@@ -13,25 +14,30 @@
                 <hr>
                 <div class="boardModify-form-div">               
                     <select name="boardCategory" id="">
-                        <option value="none">-- 운동 카테고리 --</option>
-                        <option value="oxy">유산소 운동</option>
-                        <option value="nonoxy">근력 운동</option>
-                        <option value="yoga">요가, 스트레칭</option>
+                        <option value="none" <c:if test="${msg == 'boardModify'}">${article.boardCategory == 'none' ? 'selected' : ''}</c:if>>-- 운동 카테고리 --</option>
+                        <option value="oxy" <c:if test="${msg == 'boardModify'}">${article.boardCategory == 'oxy' ? 'selected' : ''}</c:if>>유산소 운동</option>
+                        <option value="nonoxy" <c:if test="${msg == 'boardModify'}">${article.boardCategory == 'nonoxy' ? 'selected' : ''}</c:if>>근력 운동</option>
+                        <option value="yoga" <c:if test="${msg == 'boardModify'}">${article.boardCategory == 'yoga' ? 'selected' : ''}</c:if>>요가, 스트레칭</option>
                     </select><br>
-                    <input type="text" name="boardTitle" id="board-title" placeholder="제목 입력">
+                    <input type="text" name="boardTitle" id="board-title" placeholder="제목 입력" value="<c:if test="${msg == 'boardModify'}">${article.boardTitle}</c:if>">
                     <div class="boardModify-form-content-div">
-                        <textarea id="boardModify-summernote" name="boardContent"></textarea>
+                        <textarea id="boardModify-summernote" name="boardContent">
+                        	<c:if test="${msg == 'boardModify'}">${article.boardContent}</c:if>
+                        </textarea>
                     </div>
                     <div class="boardModify-fileupload-div">
+                    	<div id="image-del-check">
+                    		<input type="checkbox" name="imageDelCheck" value="false"> 기존 이미지 삭제
+                    	</div>
                         <!-- 다수 이미지 업로드 가능. -->
                         <div class="boardModify-imageupload">
-                            <label for="boardModify-image-upload">이미지 등록</label>
+                            <label id="board-image-label" for="boardModify-image-upload">이미지 등록</label>
                             <input type="file" id="boardModify-image-upload" name="images" accept=".png, .jpg, .jpeg" multiple>
                             <input class="boardModify-uploaded-file-name" placeholder="이미지(png,jpg)" disabled="disabled">  
                         </div>
                         <!-- 동영상 1개만 업로드 가능 -->
                         <div class="boardModify-videoupload">
-                            <label for="boardModify-video-upload">동영상 등록</label>
+                            <label id="board-video-label" for="boardModify-video-upload">동영상 등록</label>
                             <input type="file" id="boardModify-video-upload" name="video" accept=".mp4">
                             <input class="boardModify-uploaded-file-name" placeholder="동영상(mp4)" disabled="disabled">        
                         </div>
@@ -49,6 +55,18 @@
 <script>
     $(document).ready(function() {
 
+    	$('#image-del-check').hide();
+    	
+    	//수정요청시 수정페이지로.
+    	if($('#modify-check').val() === 'boardModify'){
+    		$('#boardModify-title').text('게시글 수정');
+    		$('#article-form').attr('action', '<c:url value="/board/boardModify"/>');
+    		$('#submit-btn').text('수정');
+    		$('#board-image-label').text('이미지 추가 등록');
+    		$('#board-video-label').text('동영상 재등록');
+    		$('#image-del-check').show();
+    	}
+    	
         //summernote start
         $('#boardModify-summernote').summernote({
             lang: 'ko-KR',

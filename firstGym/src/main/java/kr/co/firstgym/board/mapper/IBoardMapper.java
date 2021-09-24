@@ -28,5 +28,7 @@ public interface IBoardMapper {
 	//게시글 삭제
 	void deleteArticle(int boardNum);
 	
+	//게시글 수정
+	void updateArticle(BoardVO boardInfo);
 	
 }
