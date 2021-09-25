@@ -142,6 +142,7 @@ public class BoardService implements IBoardService{
 		try {
 			File saveFile = new File(savePath);
 			file.transferTo(saveFile);
+			System.out.println("파일 저장 성공: " + savePath);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -259,6 +260,13 @@ public class BoardService implements IBoardService{
 		BoardVO oldArticle = boardMapper.getArticle(boardInfo.getBoardNum());
 		List<String> oldImages = imageMapper.getImages(boardInfo.getBoardNum());
 		
+		//이미지 매퍼로 보낼 vo객체
+		BoardImageVO registImage = new BoardImageVO();
+		registImage.setBoardNum(boardInfo.getBoardNum());
+		
+		boardInfo.setBoardThum(oldArticle.getBoardThum());
+		boardInfo.setBoardVideo(oldArticle.getBoardVideo());
+		
 		if(! video.isEmpty()) { //새로운 동영상이 있을 때
 			if(oldArticle.getBoardVideo() != null) { //기존 동영상이 있다면 기존의 동영상 삭제 + 썸네일 삭제	
 				
@@ -275,6 +283,7 @@ public class BoardService implements IBoardService{
 			//썸네일 이미지 저장
 			boardInfo.setBoardThum(registThumVideo(getRealFilePath(videoPath, "video")));
 			
+			System.out.println(imageDelCheck);
 			if(imageDelCheck) { //기존 이미지 삭제
 				for(String oldImage : oldImages) {
 					//이미지 저장소에서 삭제
@@ -287,12 +296,15 @@ public class BoardService implements IBoardService{
 			
 			if(! images.get(0).isEmpty()) { //이미지 등록
 				for(MultipartFile image : images) {
-					System.out.println("동영상과 이미지: " + image.getOriginalFilename());
-					registFile(image, "C:\\firstGym\\image", "img");
+					System.out.println(image.getOriginalFilename());
+					registImage.setImgBoard(registFile(image, "C:\\firstGym\\image", "img"));
+					imageMapper.regist(registImage);
 				}
 			}
 			
 		} else { //동영상 없을 때			
+			
+			System.out.println("동영상 없음");
 			
 			List<String> newImages = new ArrayList<>();
 			boolean needNewThum = false;
@@ -304,25 +316,42 @@ public class BoardService implements IBoardService{
 					deleteFile(oldImagePath);
 					//이미지 경로 데이터 베이스에서 삭제
 					imageMapper.delete(oldImage);
-				}
-				
-				if(boardInfo.getBoardVideo() == null) {
-					boardInfo.setBoardThum(null);
-					needNewThum = true;
-				}
+					
+					if(boardInfo.getBoardVideo() == null) {
+						boardInfo.setBoardThum("none");
+					}
+				}	
+			}
+			
+			//썸네일 등록여부 검사
+			if(boardInfo.getBoardVideo() == null) {
+				System.out.println("service: 썸네일 지워짐");
+				needNewThum = true;
 			}
 			
 			if(! images.get(0).isEmpty()) { //이미지 등록
 				for(MultipartFile image : images) {
-					System.out.println("동영상과 이미지: " + image.getOriginalFilename());
-					newImages.add(registFile(image, "C:\\firstGym\\image", "img"));
+					System.out.println(image.getOriginalFilename());
+					String imgPath = registFile(image, "C:\\firstGym\\image", "img");
+					registImage.setImgBoard(imgPath);
+					newImages.add(imgPath);
+					imageMapper.regist(registImage);
 				}
 				if(needNewThum) {
+					System.out.println("썸네일 받아라!!");
 					boardInfo.setBoardThum(newImages.get(0));
 				}
 			}
 		}
-			
+		
+		//매퍼는 null인식 못해서 none으로 넣어서 거른다.
+		if(boardInfo.getBoardThum() == null) {
+			boardInfo.setBoardThum("none");
+		}
+		if(boardInfo.getBoardVideo() == null) {
+			boardInfo.setBoardVideo("none");
+		}
+		
 		boardMapper.updateArticle(boardInfo);
 		
 	}

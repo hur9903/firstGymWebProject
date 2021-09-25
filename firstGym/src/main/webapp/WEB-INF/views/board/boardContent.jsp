@@ -21,11 +21,13 @@
                         <button id="list-btn" class="color-darkskyblue boardContent-btn-big">목록</button>
                     </div>
                     <div class="boardContent-float-right">
-                        <form id="del-form" action="<c:url value="/board/boardDelete" />" method="post">
-                        	<button id="mod-btn" type="button" class="color-darkskyblue boardContent-btn-big">수정</button>
-                        	<input type="hidden" name="boardNum" value="${article.boardNum}">
-                        	<button id="del-btn" type="button" class="boardContent-del boardContent-btn-big">삭제</button>
-                        </form>
+                    	<c:if test="${login.userId == article.userId}">
+	                        <form id="del-form" action="<c:url value="/board/boardDelete" />" method="post">
+	                        	<button id="mod-btn" type="button" class="color-darkskyblue boardContent-btn-big">수정</button>
+	                        	<input type="hidden" name="boardNum" value="${article.boardNum}">
+	                        	<button id="del-btn" type="button" class="boardContent-del boardContent-btn-big">삭제</button>
+	                        </form>
+                        </c:if>
                     </div>
                 </div>
                 <hr>

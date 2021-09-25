@@ -87,8 +87,9 @@ public class BoardController {
 	
 	//게시글 수정
 	@PostMapping("/boardModify")
-	public String boardModify(BoardVO article, @RequestParam("images") List<MultipartFile> images, @RequestParam("video") MultipartFile video, @RequestParam("imageDelCheck") boolean imageDelCheck) {
+	public String boardModify(BoardVO article, @RequestParam("images") List<MultipartFile> images, @RequestParam("video") MultipartFile video, @RequestParam(value="imageDelCheck", defaultValue="false") boolean imageDelCheck) {
 		
+		System.out.println("controller-imdel: "+imageDelCheck);
 		service.updateArticle(article, images, video, imageDelCheck);
 		
 		return "redirect:/board/boardDetailPage/" + article.getBoardNum();

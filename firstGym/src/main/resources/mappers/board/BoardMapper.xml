@@ -137,7 +137,19 @@
 	
 	<update id="updateArticle">
 		UPDATE board
-		SET board_content = #{boardContent}, board_title = #{boardTitle}, board_category = #{boardCategory}, board_thum = #{boardThum}, board_video = #{boardVideo}
-		WHERE boart_num = #{boardNum}
+		SET board_content = #{boardContent}, board_title = #{boardTitle}, board_category = #{boardCategory},
+		<if test="boardThum != 'none'">
+			board_thum = #{boardThum},
+		</if>
+		<if test="boardThum == 'none'">
+			board_thum = NULL,
+		</if>
+		<if test="boardVideo != 'none'">
+			board_video = #{boardVideo}
+		</if>
+		<if test="boardVideo == 'none'">
+			board_video = NULL
+		</if>
+		WHERE board_num = #{boardNum}
 	</update>
 </mapper>

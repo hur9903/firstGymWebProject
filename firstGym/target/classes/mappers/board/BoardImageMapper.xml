@@ -16,7 +16,7 @@
 	</select>
 	
 	<delete id="delete">
-		DELETE FROM img_board
+		DELETE FROM board_image
 		WHERE img_board = #{imgBoard}
 	</delete>
 	

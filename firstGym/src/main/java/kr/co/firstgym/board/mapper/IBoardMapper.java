@@ -15,16 +15,16 @@ public interface IBoardMapper {
 	
 	//게시글 불러오기(게시글 번호)
 	BoardVO getArticle(int boardNum);
-		
+	
 	//특정 사용자의 최신 게시글 번호 가져오기
 	int getArticleNo(String userId);
-		
+	
 	//게시글 리스트 불러오기
 	List<BoardVO> getBoard(BoardPageVO page);
 	
 	//게시글 리스트 글 수 불러오기
 	int getTotalArticleNum(BoardPageVO page);
-		
+	
 	//게시글 삭제
 	void deleteArticle(int boardNum);
 	

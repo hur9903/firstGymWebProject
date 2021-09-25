@@ -11,6 +11,10 @@
                 게시글 등록
             </div>
             <form id="article-form" action="<c:url value='/board/boardUpdate'/>" method="post" enctype="multipart/form-data">
+	        	<c:if test="${msg == 'boardModify'}">
+	        		<input name="boardNum" type="hidden" value="${article.boardNum}">
+	        		<input name="userId" type="hidden" value="${article.userId}">
+	        	</c:if>
                 <hr>
                 <div class="boardModify-form-div">               
                     <select name="boardCategory" id="">
@@ -27,7 +31,7 @@
                     </div>
                     <div class="boardModify-fileupload-div">
                     	<div id="image-del-check">
-                    		<input type="checkbox" name="imageDelCheck" value="false"> 기존 이미지 삭제
+                    		<input type="checkbox" name="imageDelCheck" value="true"> 기존 이미지 삭제
                     	</div>
                         <!-- 다수 이미지 업로드 가능. -->
                         <div class="boardModify-imageupload">

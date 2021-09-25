@@ -77,9 +77,11 @@
             	</table>
             </div>
             <!-- 게시글 등록 버튼 -->
-            <div class="boardList-update-btn-div boardList-clearfix">
-                <button id="regist-btn" class="color-darkskyblue boardList-float-right">게시글 등록</button>
-            </div>
+            <c:if test="${login != null}">
+	            <div class="boardList-update-btn-div boardList-clearfix">
+	                <button id="regist-btn" class="color-darkskyblue boardList-float-right">게시글 등록</button>
+	            </div>
+            </c:if>
             <!-- 페이징 바 -->
             <div class="boardList-paging-div">
 	            <form action="<c:url value="/board/boardListPage" />" id="page-form">
