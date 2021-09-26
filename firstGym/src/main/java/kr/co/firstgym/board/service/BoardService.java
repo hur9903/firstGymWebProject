@@ -172,6 +172,10 @@ public class BoardService implements IBoardService{
 		
 		BoardVO article = boardMapper.getArticle(boardNum);
 		
+		if(article.getUserId() == null) {
+			article.setUserId("(탈퇴한 회원입니다)");
+		}
+		
 		return article;
 	}
 	
@@ -188,7 +192,15 @@ public class BoardService implements IBoardService{
 	@Override
 	public List<BoardVO> getBoard(BoardPageVO page) {
 		
-		return boardMapper.getBoard(page);
+		List<BoardVO> returnBoard = boardMapper.getBoard(page);
+		
+		for(BoardVO vo : returnBoard) {
+			if(vo.getUserId() == null) {
+				vo.setUserId("(탈퇴한 회원입니다)");
+			}
+		}
+		
+		return returnBoard;
 	}
 
 	@Override

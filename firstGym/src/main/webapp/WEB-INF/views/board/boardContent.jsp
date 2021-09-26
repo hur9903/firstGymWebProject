@@ -408,6 +408,14 @@
 		
 			return time;
 		}
+      	
+      	//댓글 페이징 버튼 클릭
+      	$('#boardContent-pageing-bar').on('click', 'a', function(event){
+      		event.preventDefault();
+      		let pageNum = $(this).attr('href');
+      		getReplyList(pageNum);
+      		location.href = '#reply';
+      	});
     });
 </script>
 </html>

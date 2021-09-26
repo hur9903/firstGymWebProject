@@ -29,7 +29,20 @@ public class ReplyService implements IReplyService {
 		listParam.put("boardNum", boardNum);
 		listParam.put("page", page);
 		
-		return mapper.getList(listParam);
+		//탈퇴한 사용자 댓글 검사
+		List<ReplyVO> returnList = mapper.getList(listParam);
+		
+		for(ReplyVO vo : returnList) {
+			if(vo.getUserId() == null) {
+				vo.setUserId("(탈퇴한 회원입니다)");
+			}
+		}
+		
+		for(ReplyVO vo : returnList) {
+			System.out.println(vo.getUserId());
+		}
+		
+		return returnList;
 	}
 	
 	@Override
