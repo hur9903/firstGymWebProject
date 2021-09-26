@@ -187,7 +187,8 @@
 <script>
     $(document).ready(function() {
 
-        // 이미지바 이동
+    	//*** 화면 에니메이션 + 모달창 관련  ***//
+        //* 이미지바 이동 *//
         let is_mouse_down = false;
         let right_move = false;
         const $img_border_box = $('.boardContent-images-div');
@@ -231,7 +232,7 @@
             }
         };
 
-        // 이미지 모달
+        //* 이미지 모달 *//
         const $img_modal = $('#boardContent-img-modal');
         const $img_modal_img = $('#boardContent-img-modal img');
         const $img_modal_video = $('#boardContent-img-modal video');
@@ -256,7 +257,7 @@
             $img_modal_video.get(0).pause();
         });
 
-        // 신고하기 모달
+        //* 신고하기 모달 *//
         $('#boardContent-report-modal').hide();
 
         $('#boardContent-report-btn').click(function(){
@@ -270,24 +271,27 @@
             $('#boardContent-report-modal').hide();
         });
         
-        // 리스트로 이동 버튼 
+        
+	    //*** 게시글 리스트 이동버튼, 게시글 수정 + 삭제 버튼  ***//
+        //* 리스트로 이동 버튼 *//
         $('#list-btn').click(function(){
         	location.href='<c:url value="/board/boardListPage" />';
         });
         
-        //게시글 수정 버튼
+        //* 게시글 수정 버튼 *//
         $('#mod-btn').click(function(){
         	location.href='<c:url value="/board/boardModifyPage?boardNum=${article.boardNum}" />';
         });
         
-        //게시글 삭제 버튼
+        //* 게시글 삭제 버튼 *//
         $('#del-btn').click(function(){
         	if(confirm('정말 삭제하시겠습니까?')){
         		$('#del-form').submit();
         	}
         });
         
-        //댓글 등록 버튼
+      	//*** 댓글 관련  ***//
+        //* 댓글 등록 버튼 *//
         let registBtnUrl = "<c:url value='/reply/replyUpdate' />";
         
         $('#board-reply-regist-btn').click(function(){
@@ -332,15 +336,19 @@
 			}); //ajax end	
         });//댓글 등록 이벤트 end
         
+        //* 댓글 현재 페이지 변수 *//
+        let thisPageNum = 1;
+        
+        //* 댓글리스트 호출 *// 
         let registListUrl = "<c:url value='/reply/replyList' />" + "/" + ${article.boardNum};
         
-        //댓글리스트 호출 함수
         function getReplyList(pageNum){
-        	//boardContent-reply-area
+        	thisPageNum = pageNum;
+        	
         	$.getJSON(
         		registListUrl + "/" + pageNum,
         		function(data){
-					
+        			
         			//페이징 정보
         			let pageNum = data.page.pageNum;
         			let totalCount = data.page.totalArticleCount;
@@ -359,13 +367,18 @@
 						replies += '<div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">';
 						replies += '<div class="boardContent-float-left boardContent-reply-content">';
 						replies += '<p><strong>' + replyList[i].userId + '</strong></p>';
-				        replies += '<p class="boardContent-updonw-padding-div">' + replyList[i].replyContent + '</p>';
+				        replies += '<p id="reply-content-num-' + replyList[i].replyNum + '" class="boardContent-updonw-padding-div">' + replyList[i].replyContent + '</p>';
+				        replies += '<input id="reply-mod-num-' + replyList[i].replyNum + '" type="hidden" value="">';
 				        replies += '<p><small>' + changeTimeForm(replyList[i].replyDate) + '</small></p>';
 				        replies += '</div>';
-				        replies += '<div class="boardContent-float-right boardContent-reply-btn-div">';
-				        replies += '<button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>';
-				        replies += '<button class="boardContent-del boardContent-color-black boardContent-btn-small">삭제</button>';
-				        replies += '</div>';
+				        if(replyList[i].userId === '${login.userId}'){
+					        replies += '<div class="boardContent-float-right boardContent-reply-btn-div">';
+					        replies += '<button id="reply-mod-btn-' + replyList[i].replyNum + '" data-num="' + replyList[i].replyNum + '" class="boardContent-color-white color-darkskyblue boardContent-btn-small boardReply-mod">수정</button>';
+					        replies += '<button id="reply-del-btn-' + replyList[i].replyNum + '" data-num="' + replyList[i].replyNum + '" class="boardContent-del boardContent-color-black boardContent-btn-small boardReply-del">삭제</button>';
+					        replies += '<button id="reply-mod-do-btn-' + replyList[i].replyNum + '" data-num="' + replyList[i].replyNum + '" class="boardContent-color-white color-darkskyblue boardContent-btn-small reply-mod-do-btn" style="display: none;">수정</button>';
+					        replies += '<button id="reply-mod-cancel-btn-' + replyList[i].replyNum + '" data-num="' + replyList[i].replyNum + '" class="boardContent-del boardContent-color-black boardContent-btn-small reply-mod-cancel-btn" style="display: none;">취소</button>';
+					        replies += '</div>';
+				        }
 				        replies += '</div>';
 					}
 					
@@ -392,11 +405,8 @@
                     
                     $('#boardContent-pageing-bar').html(pagingBar);
         		}
-        	);
+        	); //getJson end
         }; //댓글 호출함수 end
-        
-        //게시글 상세보기 페이지가 열리면 저절로 댓글 목록 가져오기
-        getReplyList(1);
         
       	//날짜 처리 함수
 		function changeTimeForm(millis) {
@@ -408,13 +418,128 @@
 		
 			return time;
 		}
+        
+        //* 게시글 상세보기 페이지가 열리면 저절로 댓글 목록 가져오기 *//
+        getReplyList(1);
       	
-      	//댓글 페이징 버튼 클릭
+      	//* 댓글 페이징 버튼 *//
       	$('#boardContent-pageing-bar').on('click', 'a', function(event){
       		event.preventDefault();
       		let pageNum = $(this).attr('href');
       		getReplyList(pageNum);
       		location.href = '#reply';
+      	});
+      	
+      	//* 댓글 삭제 *//
+      	$('#boardContent-reply-area').on('click', 'button.boardReply-del', function(event){
+      		
+      		if(confirm('정말로 삭제하시겠습니까?')){
+	      		let replyNum = $(this).attr('data-num');      		
+	      		let deleteUrl = "<c:url value='/reply/replyDelete' />" + "/" + replyNum;
+	      		
+	      		$.ajax({
+					type: "post",
+					url: deleteUrl,
+					dataType: "text",
+					headers: {
+						"Content-Type" : "application/json"
+					},
+					success: function(data) {
+						console.log(data);
+						alert('댓글이 삭제되었습니다.');
+						//댓글 다시 불러오기
+						getReplyList(1);
+						location.href = '#reply';
+					},
+					error: function() {
+						alert('댓글 삭제 중 오류가 발생했습니다.');
+					}
+				}); //ajax end
+      		}
+      	}); //댓글 삭제 함수end
+      	
+      	//* 댓글 수정 *//
+      	//수정모드로 변경
+      	$('#boardContent-reply-area').on('click', 'button.boardReply-mod', function(event){
+      			
+      		//전환할 태그의 아이디 찾기
+      		let modContentId = '#boardContent-reply-area #reply-content-num-' + $(this).attr('data-num');
+      		let modInputId = '#boardContent-reply-area #reply-mod-num-' + $(this).attr('data-num');
+      		
+      		let modBtnId = '#boardContent-reply-area #reply-mod-btn-' + $(this).attr('data-num');
+      		let delBtnId = '#boardContent-reply-area #reply-del-btn-' + $(this).attr('data-num');
+      		let modDoBtnId = '#boardContent-reply-area #reply-mod-do-btn-' + $(this).attr('data-num');
+      		let modCancelBtnId = '#boardContent-reply-area #reply-mod-cancel-btn-' + $(this).attr('data-num');
+      			
+      		//컨탠츠창과 입력창 전환
+      		$(modInputId).attr('type', 'text');
+      		$(modInputId).val($(modContentId).text());
+      		$(modInputId).css("width", "100%");
+      		$(modContentId).css("display", "none");
+				
+      		//버튼 전환
+      		$(modBtnId).css("display", "none");
+      		$(delBtnId).css("display", "none");
+      		$(modDoBtnId).css("display", "inline-block");
+      		$(modCancelBtnId).css("display", "inline-block");
+      		
+      	});
+      	
+      	//수정모드 취소
+      	$('#boardContent-reply-area').on('click', 'button.reply-mod-cancel-btn', function(event){
+      		
+      		//전환할 태그 아이디 찾기
+      		let modContentId = '#boardContent-reply-area #reply-content-num-' + $(this).attr('data-num');
+      		let modInputId = '#boardContent-reply-area #reply-mod-num-' + $(this).attr('data-num');
+      		
+      		let modBtnId = '#boardContent-reply-area #reply-mod-btn-' + $(this).attr('data-num');
+      		let delBtnId = '#boardContent-reply-area #reply-del-btn-' + $(this).attr('data-num');
+      		let modDoBtnId = '#boardContent-reply-area #reply-mod-do-btn-' + $(this).attr('data-num');
+      		let modCancelBtnId = '#boardContent-reply-area #reply-mod-cancel-btn-' + $(this).attr('data-num');
+      		
+      		//컨탠츠창과 입력창 전환
+      		$(modInputId).attr('type', 'hidden');
+      		$(modContentId).css("display", "inline-block");
+				
+      		//버튼 전환
+      		$(modBtnId).css("display", "inline-block");
+      		$(delBtnId).css("display", "inline-block");
+      		$(modDoBtnId).css("display", "none");
+      		$(modCancelBtnId).css("display", "none");
+      	});
+      	
+      	//수정 진행
+		$('#boardContent-reply-area').on('click', 'button.reply-mod-do-btn', function(event){
+      		
+			let modInputId = '#boardContent-reply-area #reply-mod-num-' + $(this).attr('data-num');
+			const replyContent = $(modInputId).val();
+			const replyNum = $(this).attr('data-num');
+						
+			const modUrl = "<c:url value='/reply/replyModify' />"
+			
+			$.ajax({
+				type: "post",
+				url: modUrl,
+				data: JSON.stringify(
+						{
+							"replyNum": replyNum,
+							"replyContent": replyContent
+						}		
+					),
+				dataType: "text",
+				headers: {
+					"Content-Type" : "application/json"
+				},
+				success: function(data) {
+					console.log(data);
+					alert('댓글이 수정되었습니다.');
+					//댓글 다시 불러오기
+					getReplyList(thisPageNum);
+				},
+				error: function() {
+					alert('댓글 수정 중 오류가 발생했습니다.');
+				}
+			}); //ajax end
       	});
     });
 </script>

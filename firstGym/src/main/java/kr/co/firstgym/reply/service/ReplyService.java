@@ -38,10 +38,6 @@ public class ReplyService implements IReplyService {
 			}
 		}
 		
-		for(ReplyVO vo : returnList) {
-			System.out.println(vo.getUserId());
-		}
-		
 		return returnList;
 	}
 	
