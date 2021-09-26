@@ -53,6 +53,7 @@
 	<mybatis-spring:scan base-package="kr.co.firstgym.user.repository"/>
 	<mybatis-spring:scan base-package="kr.co.firstgym.bmiresult.mapper"/>
 	<mybatis-spring:scan base-package="kr.co.firstgym.product.mapper"/>
+	<mybatis-spring:scan base-package="kr.co.firstgym.reply.mapper"/>
 
 	 <!--
 	<mybatis-spring:scan base-package="kr.co.firstgym.reply.mapper"/>

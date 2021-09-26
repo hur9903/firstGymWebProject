@@ -9,6 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import kr.co.firstgym.board.mapper.IBoardImageMapper;
 import kr.co.firstgym.board.mapper.IBoardMapper;
 import kr.co.firstgym.command.BoardVO;
+import kr.co.firstgym.command.ReplyVO;
+import kr.co.firstgym.reply.mapper.IReplyMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -19,6 +21,9 @@ public class BoardMapperTest {
 	
 	@Autowired
 	private IBoardImageMapper imageMapper;
+	
+	@Autowired
+	private IReplyMapper replyMapper;
 	
 	@Test
 	public void registTest() {
@@ -34,6 +39,7 @@ public class BoardMapperTest {
 		}
 	}
 	
+	
 	@Test
 	public void getArticleTest() {
 		
@@ -44,5 +50,41 @@ public class BoardMapperTest {
 	public void getImagesTest() {
 		
 		System.out.println(imageMapper.getImages(28));
+	}
+	
+	@Test
+	public void replyRegistTest() {
+		
+		ReplyVO vo = new ReplyVO();
+		vo.setReplyContent("content");
+		vo.setBoardNum(1047);
+		vo.setUserId("woozu99");
+		
+		replyMapper.regist(vo);
+		
+	}
+	
+//	@Test
+//	public void replyGetListTest() {
+//		
+//		System.out.println(replyMapper.getList(1047));
+//	}
+	
+	@Test
+	public void replyModifyTest() {
+		
+		ReplyVO vo = new ReplyVO();
+		
+		vo.setReplyContent("수정된 정보임다..");
+		vo.setReplyNum(1);
+		vo.setUserId("woozu99");
+		
+		replyMapper.modify(vo);
+	}
+	
+	@Test
+	public void replyDeleteTest() {
+		
+		replyMapper.delete(1);
 	}
 }

@@ -91,13 +91,13 @@
                     <!-- 댓글영역 -->
                     <div id="reply" class="boardContent-reply">
                         <div class="boardContent-reply-area-div">
-                            <form action="" class="boardContent-updonw-margin-div">
-                                <input type="text" placeholder="댓글 입력">
-                                <button class="boardContent-reg boardContent-color-white boardContent-btn-small">등록</button>
-                            </form>
-                            <div class="boardContent-reply-list-div">
+                            <div class="boardContent-updonw-margin-div">
+                                <input id="board-reply-input" type="text" placeholder="댓글 입력">
+                                <button id="board-reply-regist-btn" type="button" class="boardContent-reg boardContent-color-white boardContent-btn-small">등록</button>
+                            </div>
+                            <div id="boardContent-reply-area" class="boardContent-reply-list-div">
                                 <!-- 댓글 추가 시 아래 div 반복시켜 출력 -->
-                                <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
+                                <!-- <div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">
                                     <div class="boardContent-float-left boardContent-reply-content">
                                         <p><strong>댓글 작성자</strong></p>
                                         <p class="boardContent-updonw-padding-div">댓글 내용~</p>
@@ -107,16 +107,16 @@
                                         <button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>
                                         <button class="boardContent-del boardContent-color-black boardContent-btn-small">삭제</button>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <!-- 페이징 바 -->
                         <div class="boardList-paging-div boardContent-each-reply-div">
-                            <ul>
+                            <ul id="boardContent-pageing-bar">
                                 <!-- 이전버튼  -->
-                                <a href=""><li class="boardList-btn-not-check">&lt;</li></a>
+                                <!-- <a href=""><li class="boardList-btn-not-check">&lt;</li></a> -->
                                 <!-- 페이지 버튼(체크되면 class이름 변경) -->
-                                <a href=""><li class="boardList-btn-check">1</li></a>
+                                <!-- <a href=""><li class="boardList-btn-check">1</li></a>
                                 <a href=""><li class="boardList-btn-not-check">2</li></a>
                                 <a href=""><li class="boardList-btn-not-check">3</li></a>
                                 <a href=""><li class="boardList-btn-not-check">4</li></a>
@@ -125,10 +125,10 @@
                                 <a href=""><li class="boardList-btn-not-check">7</li></a>
                                 <a href=""><li class="boardList-btn-not-check">8</li></a>
                                 <a href=""><li class="boardList-btn-not-check">9</li></a>
-                                <a href=""><li class="boardList-btn-not-check">10</li></a>
+                                <a href=""><li class="boardList-btn-not-check">10</li></a> -->
                                     
                                 <!-- 다음버튼 -->
-                                <a href=""><li class="boardList-btn-not-check">&gt;</li></a>
+                                <!-- <a href=""><li class="boardList-btn-not-check">&gt;</li></a> -->
 
                             </ul>
                         </div>
@@ -286,6 +286,128 @@
         		$('#del-form').submit();
         	}
         });
+        
+        //댓글 등록 버튼
+        let registBtnUrl = "<c:url value='/reply/replyUpdate' />";
+        
+        $('#board-reply-regist-btn').click(function(){
+        	if('${login}' === ''){
+        		alert('댓글을 등록하려면 로그인해주세요.');
+        		return;
+        	}
+        	
+        	const replyContent = $('#board-reply-input').val();
+        	const boardNum = '${article.boardNum}';
+        	const userId = '${login.userId}';
+        	
+        	if(replyContent === ''){
+        		alert('댓글을 입력해주세요.');
+        		return;
+        	}
+        	
+        	$.ajax({
+				type: "post",
+				url: registBtnUrl,
+				data: JSON.stringify(
+					{
+						"boardNum": boardNum,
+						"userId": userId,
+						"replyContent": replyContent
+					}		
+				),
+				dataType: "text",
+				headers: {
+					"Content-Type" : "application/json"
+				},
+				success: function(data) {
+					console.log(data);
+					$('#board-reply-input').val('');
+					
+					//댓글 다시 불러오기
+					getReplyList(1);
+				},
+				error: function() {
+					alert('댓글 등록 중 오류가 발생했습니다.');
+				}
+			}); //ajax end	
+        });//댓글 등록 이벤트 end
+        
+        let registListUrl = "<c:url value='/reply/replyList' />" + "/" + ${article.boardNum};
+        
+        //댓글리스트 호출 함수
+        function getReplyList(pageNum){
+        	//boardContent-reply-area
+        	$.getJSON(
+        		registListUrl + "/" + pageNum,
+        		function(data){
+					
+        			//페이징 정보
+        			let pageNum = data.page.pageNum;
+        			let totalCount = data.page.totalArticleCount;
+        			let beginPageNum = data.page.beginPageNum;
+        			let endPageNum = data.page.endPageNum;
+        			let prev = data.page.prev;
+        			let next = data.page.next;
+        			
+        			//댓글 목록
+        			let replyList = data.replyList;
+
+					//댓글 다시 불러오기
+        			let replies = '';
+					
+					for(let i = 0; i < replyList.length; i++){
+						replies += '<div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">';
+						replies += '<div class="boardContent-float-left boardContent-reply-content">';
+						replies += '<p><strong>' + replyList[i].userId + '</strong></p>';
+				        replies += '<p class="boardContent-updonw-padding-div">' + replyList[i].replyContent + '</p>';
+				        replies += '<p><small>' + changeTimeForm(replyList[i].replyDate) + '</small></p>';
+				        replies += '</div>';
+				        replies += '<div class="boardContent-float-right boardContent-reply-btn-div">';
+				        replies += '<button class="boardContent-color-white color-darkskyblue boardContent-btn-small">수정</button>';
+				        replies += '<button class="boardContent-del boardContent-color-black boardContent-btn-small">삭제</button>';
+				        replies += '</div>';
+				        replies += '</div>';
+					}
+					
+					$('#boardContent-reply-area').html(replies);
+					
+					//페이징 바 불러오기
+					let pagingBar = '';
+					
+					if(prev){
+						pagingBar += '<a href="' + (beginPageNum - 1) + '"><li class="boardList-btn-not-check">&lt;</li></a>';
+					}
+					
+					for(let i = beginPageNum; i <= endPageNum; i++){
+						if(i == pageNum){
+							pagingBar += '<a href="' + i + '"><li class="boardList-btn-check">' + i + '</li></a>';
+						} else{
+							pagingBar += '<a href="' + i + '"><li class="boardList-btn-not-check">' + i + '</li></a>';
+						}
+					}
+                      
+                    if(next){
+                    	pagingBar += '<a href="' + (endPageNum + 1) + '"><li class="boardList-btn-not-check">&gt;</li></a>';
+                    }
+                    
+                    $('#boardContent-pageing-bar').html(pagingBar);
+        		}
+        	);
+        }; //댓글 호출함수 end
+        
+        //게시글 상세보기 페이지가 열리면 저절로 댓글 목록 가져오기
+        getReplyList(1);
+        
+      	//날짜 처리 함수
+		function changeTimeForm(millis) {
+			
+			const today = new Date(millis);
+			
+			let time = today.getFullYear() + '.' + (today.getMonth() + 1) + '.' + today.getDate() + ' ' 
+						+ today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+		
+			return time;
+		}
     });
 </script>
 </html>
