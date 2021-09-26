@@ -26,4 +26,7 @@ public class UserVO {
 //   private int userPoint;
    
    private List<OrderProductVO> orderProductList;
+   private List<BmiResultVO> bmiResultList;
+   
+   
 }

@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.firstgym.command.PageCreator;
 import kr.co.firstgym.command.ProductVO;
 import kr.co.firstgym.command.SearchPagingVO;
 import kr.co.firstgym.product.service.IProductListService;
+import kr.co.firstgym.util.PageCreator;
 
 @Controller
 @RequestMapping("/product")
@@ -26,6 +26,7 @@ public class ProductController {
 	@GetMapping("/productListPage")
 	public String productListPage(Model model, SearchPagingVO paging) {
 		System.out.println("페이지 번호: " + paging.getPage());
+		paging.setCountPerPage(12);
 		System.out.println("한 페이지에 보여줄 게시물 개수: " + paging.getCountPerPage());
 		System.out.println("검색어: " + paging.getText_box());
 		List<ProductVO> product = service.getList(paging);

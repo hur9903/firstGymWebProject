@@ -123,10 +123,10 @@
                         <a href="#prd-review">상품사용후기</a>
                     </li>
                     <li class="prd-li-qna">
-                    	<a href="#prd-qna">상품문의하기</a>
+                    	<a href="#prd-qna">상품Q&A</a>
                     </li>
                 </ul>
-                <div class="cont">
+                <div class="cont" id="prd-detail">
                     <h3>상품상세정보</h3>
                     <p> </p>
                     <table>
@@ -160,10 +160,10 @@
                         <a href="#prd-review">상품사용후기</a>
                     </li>
                     <li>
-                        <a href="prdQnA">상품Q&A</a>
+                        <a href="#prd-qna">상품Q&A</a>
                     </li>
                 </ul>
-                <div class="cont">
+                <div class="cont" id="prd-change">
                     <h3>교환 및 반품정보</h3>
                     <b>교환 및 반품이 가능한 경우</b>
                     <br>
@@ -207,7 +207,7 @@
             </div>
             <!-- 교환 및 반품정보 -->
             <!-- 상품사용후기 -->
-            <div class="review-box">
+            <div class="review-box" id="prd-review">
                 <div class="review-option">
                     <img src="image/review.gif" alt="">
                 </div>
@@ -273,7 +273,7 @@
             </div>
             <!-- 상품사용후기 -->
             <!-- 상품 Q&A -->
-            <div class="prdQnA">
+            <div class="prdQnA" id="prd-qna">
                 <div class="board">
                     <div class="item-title">
                         <img src="image/Q&A.gif" alt="상품문의하기">

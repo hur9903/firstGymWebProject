@@ -11,7 +11,7 @@
             <form action="">
                 <table class="bmiCheck-table">
                     <tbody>
-                        <tr>
+                        <tr> 
                             <th>성별</th>
                             <td><input type="radio" name="#" class="bmiCheck-td-check"> &nbsp;&nbsp;남</td>   
                             <td><input type="radio" name="#" class="bmiCheck-td-check">&nbsp;&nbsp;여</td>

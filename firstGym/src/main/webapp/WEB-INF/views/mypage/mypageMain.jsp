@@ -11,23 +11,25 @@
                 <tbody>
                     <tr>
                         <th>아이디</th>
-                        <td>abc1234</td>
+                        <td>${user.userId}</td>
                     </tr>
                     <tr>
                         <th>이름</th>
-                        <td>홍길동</td>
+                        <td>${user.userName}</td>
                     </tr>
                     <tr>
                         <th>이메일</th>
-                        <td>aaa@naver.com</td>
+                        <td>${user.userEmail}</td>
                     </tr>
                     <tr>
                         <th>전화번호</th>
-                        <td>123456789</td>
+                        <td>${user.userPhone}</td>
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td>서울특별시 마포구~~~</td>
+                        <td>${user.userAddr1} <br>
+                        	${user.userAddr2}
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -38,7 +40,7 @@
                         회원 정보 수정
                     </a> <br><br>
                     <a href="#">
-                        출석체크
+                      내가 쓴 게시글 보기
                     </a>
                 </div>
                 <div class="right">
@@ -137,72 +139,38 @@
                 <h3>내 BMI 기록</h3>
             </div>
             <div class="second">
-                <table class="bmiList-table" border="1px solid">
-                    <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>검사 날짜</th>
-                            <th>BMI 지수</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       <tr>
-                            <td>ssss</td>
-                            <td>sss</td>
-                            <td>sss</td>
-                        </tr><tr>
-                            <td>ssss</td>
-                            <td>sss</td>
-                            <td>sss</td>
-                        </tr><tr>
-                            <td>ssss</td>
-                            <td>sss</td>
-                            <td>sss</td>
-                        </tr>
-                        <tr>
-                            <td>ssss</td>
-                            <td>sss</td>
-                            <td>sss</td>
-                        </tr><tr>
-                            <td>ssss</td>
-                            <td>sss</td>
-                            <td>sss</td>
-                        </tr> <tr>
-                            <td>ssss</td>
-                            <td>sss</td>
-                            <td>sss</td>
-                        </tr><tr>
-                            <td>ssss</td>
-                            <td>sss</td>
-                            <td>sss</td>
-                        </tr><tr>
-                            <td>ssss</td>
-                            <td>sss</td>
-                            <td>sss</td>
-                        </tr>
-                    </tbody>
-            
-                </table>
-            
-                <div class="bmiList-paging-div">
+	                <table class="bmiList-table">
+	                    <thead>
+	                        <tr>
+	                            <th>번호</th>
+	                            <th>검사날짜</th>
+	                            <th>BMI 지수</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody id="bmiList-body">
+	                    <c:forEach var="results" items="${list}"> 
+	                    	<tr>
+	                            <td>${results.bmiNum}</td>
+	                            <td>${results.bmiDate}</td>
+	                            <td>${results.bmiResult}</td>
+	                        </tr>
+		            	 </c:forEach> 
+	                    </tbody>
+	                </table>
+                <div class="bmiList-paging-div clearfix">
                     <ul class="bmiList-paging-ul">
                         <!-- 이전버튼  -->
-                        <a href=""><li class="bmiList-btn-not-check">&lt;</li></a>
-                        <!-- 페이지 버튼(체크되면 class이름 변경) -->
-                        <a href=""><li class="bmiList-btn-check">1</li></a>
-                        <a href=""><li class="bmiList-btn-not-check">2</li></a>
-                        <a href=""><li class="bmiList-btn-not-check">3</li></a>
-                        <a href=""><li class="bmiList-btn-not-check">4</li></a>
-                        <a href=""><li class="bmiList-btn-not-check">5</li></a>
-                        <a href=""><li class="bmiList-btn-not-check">6</li></a>
-                        <a href=""><li class="bmiList-btn-not-check">7</li></a>
-                        <a href=""><li class="bmiList-btn-not-check">8</li></a>
-                        <a href=""><li class="bmiList-btn-not-check">9</li></a>
-                        <a href=""><li class="bmiList-btn-not-check">10</li></a>
-                            
-                        <!-- 다음버튼 -->
-                        <a href=""><li class="bmiList-btn-not-check">&gt;</li></a>
-        
+                        <c:if test="${pc.prev}">
+		                	<a class="prev" href="<c:url value='/mypage/mainPage?page=${pc.beginPage-1}' />">이전</a>
+		                </c:if>
+		                <c:forEach var="pageNum" begin="${pc.beginPage}" end="${pc.endPage}">
+		                	<a href="<c:url value='/mypage/mainPage?page=${pageNum}' />" class="active">${pageNum}</a>
+		                </c:forEach>
+		                
+		                <c:if test="${pc.next}">
+		                	<a class="next" href="<c:url value='/mypage/mainPage?page=${pc.endPage+1}' />">다음</a>
+		                </c:if>   
+
                     </ul>
                 </div>
                 <div class="bmiList-btn">
@@ -212,7 +180,6 @@
         </div>
         <!-- 페이징 바 -->
 
-        </form>
     </div>
     <!-- 푸터. jsp전환시 삭제 후 include 사용 -->
     <%@ include file="../include/footer.jsp" %>
@@ -243,7 +210,12 @@
         const $bmiList_confirm = $('#bmiList-btn-confirm');
 
         $modal_bmiList.hide();
-
+        
+        
+        
+        let strAdd = '';
+        
+        
         $mypageMain_bmiBtn.click(function(){
             $modal_bmiList.show()
         })
@@ -251,6 +223,9 @@
         $bmiList_confirm.click(function(){
             $modal_bmiList.hide()
         })
+		    
+	    
 
+       
     </script>
 

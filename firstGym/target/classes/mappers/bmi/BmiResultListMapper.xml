@@ -2,11 +2,54 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="kr.co.firstgym.bmiresult.mapper.IBmiResultListMapper">
+  <mapper namespace="kr.co.firstgym.bmi.mapper.IBmiMapper">
   	
-  	<resultMap type="kr.co.firstgym.command.BmiResultVO" id="bmiResultVO"></resultMap>
+  	<resultMap type="kr.co.firstgym.command.BmiResultVO" id="bmiResult">
+  		<result column="bmi_num" property="bmiNum"/>
+  		<result column="bmi_date" property="bmiDate"/>
+  		<result column="bmi_result" property="bmiResult"/>
+  		<result column="user_id" property="userId"/>
+  	</resultMap>
   	
-  	<!-- BMI리스트 가져오기 -->
+  	<select id="selectOne" resultMap="bmiResult">
+	  	SELECT * FROM
+	  		(
+	  		SELECT ROWNUM AS rn, tbl.* FROM
+		  		(
+		  		SELECT * FROM bmi_result
+		  		WHERE user_id=#{userId}
+		  		) tbl
+		  	)
+		<![CDATA[
+		WHERE rn > (#{paging.page}-1) * #{paging.countPerPage}
+		AND rn <= #{paging.page} * #{paging.countPerPage}
+		]]>
+  	</select>
+  	
+  	<select id="countBMI" resultType="int">
+  		SELECT COUNT(*) FROM bmi_result
+  		WHERE user_id=#{userId}
+  	</select>
+  	
+  	<!-- <select id="getList" resultMap="bmiResultVO">
+	  	SELECT * FROM	
+	  		(
+	  		SELECT ROWNUM AS rn, tbl.* FROM
+		  		(
+		  		SELECT * 
+		  		FROM bmi_result
+		  		WHERE p_name LIKE '%'||#{text_box}||'%'
+		  		ORDER BY p_num DESC
+		  		) tbl
+		  	)
+		<![CDATA[
+		WHERE rn > (#{page}-1) * #{countPerPage}
+		AND rn <= #{page} * #{countPerPage}
+		]]>
+  	</select>
+  	
+  		
+  	BMI리스트 가져오기
   	<select id="getList" resultMap="bmiResultVO">
   		SELECT * FROM bmi_result
   		WHERE 
@@ -14,4 +57,15 @@
   		ORDER BY bmi_num DESC
   	</select>
   	
+  	총 게시물의 개수 
+  	<select id="totCount" resultType="int">
+  		SELECT COUNT(*)
+  		FROM bmi_result
+  		WHERE p_name LIKE '%'||#{text_box}||'%'
+  	
+  	</select>
+  	
+  	
+  	 -->
+  	 
   </mapper>
