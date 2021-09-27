@@ -60,7 +60,7 @@
 	                                <div class="boardList-content-info">
 	                                    <span>${article.userId}</span>
 	                                    <span>조회수 ${article.boardView}</span>
-	                                    <span><img src="image/heart-full.svg" alt="heart"> ${article.boardRecom}</span>
+	                                    <span><img src="${pageContext.request.contextPath }/resources/image/heart-full.svg" alt="heart"> ${article.boardRecom}</span>
 	                                </div>
 	                                <div class="boardList-content-date"><small><fmt:formatDate value="${article.boardDate}" pattern="yyyy.MM.dd" /></small></div>
 	                            </div>
@@ -71,7 +71,7 @@
 		                            </div>
 	                            </c:if>
 	                        </td>
-	                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> ${article.replyCnt}</td>
+	                        <td class="boardList-list-right-td"><img src="${pageContext.request.contextPath }/resources/image/talk.svg" alt="talk"> ${article.replyCnt}</td>
 	                    </tr>
                     </c:forEach>
             	</table>

@@ -1,6 +1,8 @@
 package kr.co.firstgym.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,10 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.co.firstgym.board.service.BoardService;
+import kr.co.firstgym.board.service.IBoardRecomService;
 import kr.co.firstgym.board.service.IBoardService;
 import kr.co.firstgym.command.BoardPageVO;
 import kr.co.firstgym.command.BoardVO;
@@ -27,6 +30,9 @@ public class BoardController {
 	
 	@Autowired
 	private IBoardService service;
+	
+	@Autowired
+	private IBoardRecomService recomService;
 	
 	//게시글 목록으로 이동
 	@GetMapping("/boardListPage")
@@ -46,6 +52,7 @@ public class BoardController {
 	public String boardDetailPage(@PathVariable("boardNum") int boardNum, Model model) {
 		
 		BoardVO article = service.getArticle(boardNum);
+		article.setBoardRecom(recomService.calcTotalRecom(boardNum));
 		List<String> images = service.getImages(boardNum);
 		
 		model.addAttribute("article", article);
@@ -105,9 +112,30 @@ public class BoardController {
 	}
 	
 	//좋아요 처리(비동기)
-	@PostMapping("/boardLike")
-	public String boardLike() {
-		return "";
+	@ResponseBody
+	@GetMapping("/boardLike/{boardNum}/{userId}")
+	public Map<String, Object> boardLike(@PathVariable("boardNum") int boardNum, @PathVariable("userId") String userId) {
+		
+		int isRecom = 0;
+		if(recomService.recomCheck(boardNum, userId) == 0) {
+			recomService.registRecom(boardNum, userId);
+			isRecom = 1;
+		} else {
+			recomService.deleteRecom(boardNum, userId);
+			isRecom = 0;
+		}
+		Map<String, Object> recomInfo = new HashMap<>();
+		recomInfo.put("recomNum", recomService.calcTotalRecom(boardNum));
+		recomInfo.put("isRecom", isRecom);
+		return recomInfo;
+	}
+	
+	//좋아요 여부 검사(비동기)
+	@ResponseBody
+	@GetMapping("/boardLikeCheck/{boardNum}/{userId}")
+	public int boardLikeCheck(@PathVariable("boardNum") int boardNum, @PathVariable("userId") String userId) {
+		
+		return recomService.recomCheck(boardNum, userId);
 	}
 	
 }

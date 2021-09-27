@@ -40,7 +40,7 @@
                     </div>
                     <div class="boardContent-float-right">
                         <!-- 클릭 시 하트 이미지 바꾸고 좋아요 수 비동기 통신으로 가져오기 -->
-                        <button class="boardContent-btn-heart"><img class="boardContent-heart" src="image/heart-empty.svg" alt="heart"> ${article.boardRecom}</button>
+                        <button id="boardContent-heart-btn" class="boardContent-btn-heart"><img class="boardContent-heart" src="${pageContext.request.contextPath }/resources/image/heart-empty.svg" alt="heart"> ${article.boardRecom}</button>
                     </div>
                 </div>
                 <hr>
@@ -562,6 +562,47 @@
 				}
 			}); //ajax end
       	});
+      	
+		//* 게시글 추천 *//
+		//추천버튼 초기화
+		if('${login}' !== ''){
+			const recomCheckUrl = "<c:url value='/board/boardLikeCheck' />" + "/" + '${article.boardNum}' + "/" + '${login.userId}';
+			
+			$.getJSON(
+				recomCheckUrl,
+				function(data){
+					
+					if(data === 1){
+						
+						let buttonText = '<img class="boardContent-heart" src="' + '${pageContext.request.contextPath}' + '/resources/image/heart-full.svg" alt="heart"> ${article.boardRecom}';
+						$('#boardContent-heart-btn').html(buttonText);
+					}
+				}	
+			);//postJson end
+		}
+		
+		$('#boardContent-heart-btn').click(function(){
+			if('${login}' === ''){
+				alert('로그인이 필요한 기능입니다.');
+				return;
+			}
+			
+			const recomUrl = "<c:url value='/board/boardLike' />" + "/" + '${article.boardNum}' + "/" + '${login.userId}';
+			
+			$.getJSON(
+				recomUrl,
+				function(data){
+					//이미지 바꾸기
+					if(data.isRecom === 1){
+						let buttonText = '<img class="boardContent-heart" src="' + '${pageContext.request.contextPath}' + '/resources/image/heart-full.svg" alt="heart"> ' + data.recomNum;
+						$('#boardContent-heart-btn').html(buttonText);				
+					}else{
+						let buttonText = '<img class="boardContent-heart" src="' + '${pageContext.request.contextPath}' + '/resources/image/heart-empty.svg" alt="heart"> ' + data.recomNum;
+						$('#boardContent-heart-btn').html(buttonText);	
+					}
+				}	
+			);//postJson end
+		});
     });
 </script>
 </html>

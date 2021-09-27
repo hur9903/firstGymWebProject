@@ -24,7 +24,13 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
 
 
+    <style>
     
+    </style>
+    
+    <script defer>
+    	
+    </script>
     
 
 </head>
@@ -61,5 +67,14 @@
                 <li><a href="#">마이페이지</a></li>
                 <li><a href="#">문의하기</a></li>
             </ul>
-        </nav>      
+        </nav>
+        <nav class='bar' style="background: #0000">
+            <ul>
+                <li></li>
+                <li style="background: red; width: 20%; margin: 0;">운동기구</li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </nav>       
     </header>

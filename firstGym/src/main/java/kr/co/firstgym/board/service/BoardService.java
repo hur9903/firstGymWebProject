@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.firstgym.board.mapper.IBoardImageMapper;
 import kr.co.firstgym.board.mapper.IBoardMapper;
+import kr.co.firstgym.board.mapper.IBoardRecomMapper;
 import kr.co.firstgym.command.BoardImageVO;
 import kr.co.firstgym.command.BoardPageVO;
 import kr.co.firstgym.command.BoardVO;
@@ -31,6 +32,9 @@ public class BoardService implements IBoardService{
 	
 	@Autowired
 	private IBoardImageMapper imageMapper;
+	
+	@Autowired
+	private IBoardRecomMapper recomMapper;
 	
 	@Override
 	public void regist(BoardVO boardInfo, List<MultipartFile> images, MultipartFile video) {
@@ -198,6 +202,7 @@ public class BoardService implements IBoardService{
 			if(vo.getUserId() == null) {
 				vo.setUserId("(탈퇴한 회원입니다)");
 			}
+			vo.setBoardRecom(recomMapper.calcTotalRecom(vo.getBoardNum()));
 		}
 		
 		return returnBoard;

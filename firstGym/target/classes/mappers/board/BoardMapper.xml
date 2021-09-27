@@ -114,9 +114,12 @@
 		    SELECT ROWNUM AS rn, blist.*
 		    FROM
 		        (
-		        SELECT board.board_num, board.user_id, board_title, board_category, board_view,board_recom, board_date, board_thum, COUNT(reply.reply_num) AS reply_cnt
-				FROM board LEFT OUTER JOIN reply
+		        SELECT board.board_num, board.user_id, board_title, board_category, board_view, board_date, board_thum, COUNT(reply.reply_num) AS reply_cnt, COUNT(board_recom.user_id) AS board_recom 
+				FROM board
+				LEFT OUTER JOIN reply
 				ON board.board_num = reply.board_num
+				LEFT OUTER JOIN board_recom
+				ON board.board_num = board_recom.board_num
 		        <include refid="boardListSql" />
 		        GROUP BY board.board_num,board.board_num, board.user_id, board_title, board_category, board_view, board_recom, board_date, board_thum
 			    ORDER BY board_num DESC
