@@ -2,13 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../include/header.jsp" %>
-
+v
     <div id="productDetail-div">
         <!-- 상단 제품 정보 -->
         <div class="product-detail">
            <div class="product-imgArea">
                <div class="keyImg">
-                   <img class="image" src="image/1.png">
+                   <img class="image" src="<c:url value='/product/display?filePath=${itemInfo.proImage}' />">
                </div>
            </div>
            <div class="info-area">
@@ -21,25 +21,25 @@
                             <th scope="row">
                                 <span class="product-title">상품명</span>
                             </th>
-                            <td class="title">${itemInfo.pName}</td>
+                            <td class="title">${itemInfo.proName}</td>
                         </tr>
                         <tr class="record">
                             <th scope="row">
                                 <span>제조사</span>
                             </th>
-                            <td>${itemInfo.pCompany}</td>
+                            <td>${itemInfo.proCompany}</td>
                         </tr>
                         <tr class="record">
                             <th scope="row">
                                 <span>원산지</span>
                             </th>
-                            <td>${itemInfo.pCountry}</td>
+                            <td>${itemInfo.proCountry}</td>
                         </tr>
                         <tr class="record">
                             <th scope="row">
                                 <span>판매가</span>
                             </th>
-                            <td>${itemInfo.pPrice}</td>
+                            <td>${itemInfo.proPrice}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -64,7 +64,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>${itemInfo.pName}</td>
+                                <td>${itemInfo.proName}</td>
                                 <td>
                                     <span class="quantity">
                                         <input id="quantity" name="quantity-opt" value="1" type="text">
@@ -78,7 +78,7 @@
                                 </td>
                                 <td class="right" style="width: 70px;">
                                     <span class="quantity-price">
-                                        ${itemInfo.pPrice}
+                                        ${itemInfo.proPrice}
                                         <input type="hidden" id="total-price" name="option-box-price" class="option-box-price" value="73200">
                                     </span>
                                 </td>

@@ -12,25 +12,41 @@
             
             <!-- 상단 검색창   --> 
             <div id="boardList-top-search-div">
-                <form action="#">
+	            <form action="#">
+	                    <div class="boardList-search-div">
+	                        <select name="category" id="">
+	                            <option value="none" ${page.category == 'none' ? 'selected' : ''}>--- 운동 카테고리 ---</option>
+	                            <option value="oxy" ${page.category == 'oxy' ? 'selected' : ''}>유산소 운동</option>
+	                            <option value="nonoxy" ${page.category == 'nonoxy' ? 'selected' : ''}>웨이트</option>
+	                            <option value="yoga" ${page.category == 'yoga' ? 'selected' : ''}>요가, 스트레칭</option>
+	                            <option value="band" ${page.category == 'band' ? 'selected' : ''}>밴드운동</option>
+	                        </select>
+	                        <div>
+	                            <input name="text_box" type="text">
+	                            <button class="color-darkskyblue">검색</button>
+	                        </div>
+	                    </div>
+	                </form> 
+                 <!--<form action="#">
                     <div class="boardList-search-div">
                         <div>
                             <input type="text" name="text_box">
                             <button class="color-darkskyblue">검색</button>
                         </div>
                     </div>
-                </form>
+                </form> -->
             </div>
+            
             
             <ul class="clearfix">
              
                 <c:forEach var="item" items="${list}">
 	                <li>
-	                    <a href='<c:url value="/product/productDetailPage?productNum=${item.productNum}"/>'>
-	                    	<img src="image/1.png" alt="" class="product">
+	                    <a href='<c:url value="/product/productDetailPage?proNum=${item.proNum}"/>'>
+	                    	<img src="<c:url value='/product/display?filePath=${item.proImage}' />" alt="" class="product">
 	                    
-		                    <h3>${item.productNum}</h3>
-		                    <h4>원</h4>
+		                    <h3>${item.proName}</h3>
+		                    <h4>${item.proPrice}원</h4>
 		                    <div class="hover-product">
 		                    </div>
 	                    </a>

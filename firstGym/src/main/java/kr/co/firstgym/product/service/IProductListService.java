@@ -8,7 +8,7 @@ import kr.co.firstgym.command.SearchPagingVO;
 public interface IProductListService {
 	
 	//상품 상세보기 이동 기능
-	public ProductVO getContent(int pNum);
+	public ProductVO getContent(int proNum);
 	
 	//상품 목록
 	List<ProductVO> getList(SearchPagingVO searchPasing);

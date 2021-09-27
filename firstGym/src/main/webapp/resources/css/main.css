@@ -1500,8 +1500,7 @@ font-size: 30px;
     text-decoration: underline;
     }
 .bmiList-paging-ul{
-    position: absolute;
-    margin: 10px;
+	margin-left: 165px
 }
 
     /*modal- bmiList*/
@@ -1547,7 +1546,7 @@ font-size: 30px;
         
 }
 .bmiList-table th{
-        background: rgb(167, 163, 163);
+        background: rgb(214, 213, 213);
         text-align: left;
 }
 .bmiList-table th, .bmiList-table td{
@@ -1614,8 +1613,7 @@ font-size: 30px;
     text-decoration: underline;
     }
 .bmiList-paging-ul{
-    position: absolute;
-    margin: 10px;
+    margin-left: 165px
 }
 
 /*** purchase.html 디자인 ***/

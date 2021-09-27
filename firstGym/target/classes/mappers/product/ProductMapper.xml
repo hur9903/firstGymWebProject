@@ -6,17 +6,17 @@
   <mapper namespace="kr.co.firstgym.product.mapper.IProductMapper"><!--이 경로에 있는 인터페이스를 찾음 -->
   
   	<resultMap type="kr.co.firstgym.command.ProductVO" id="ProductVO">
-  		<result column="p_num" property="productNum"/>
-  		<result column="p_category" property="pCategory"/>
-  		<result column="p_company" property="pCompany"/>
-  		<result column="p_country" property="pCountry"/>
-  		<result column="p_image" property="pImage"/>
-  		<result column="p_name" property="pName"/>
-  		<result column="p_price" property="pPrice"/>
-  		<result column="p_method" property="pMethod"/>
-  		<result column="p_sendPrice" property="pSendPrice"/>
-  		<result column="p_exchangeInfo" property="pExchangeInfo"/>
-  		<result column="p_info" property="pInfo"/>
+  		<result column="p_num" property="proNum"/>
+  		<result column="p_category" property="proCategory"/>
+  		<result column="p_company" property="proCompany"/>
+  		<result column="p_country" property="proCountry"/>
+  		<result column="p_image" property="proImage"/>
+  		<result column="p_name" property="proName"/>
+  		<result column="p_price" property="proPrice"/>
+  		<result column="p_method" property="proMethod"/>
+  		<result column="p_sendPrice" property="proSendPrice"/>
+  		<result column="p_exchangeInfo" property="proExchangeInfo"/>
+  		<result column="p_info" property="proInfo"/>
   	
   		
   	</resultMap>
@@ -29,6 +29,13 @@
 		  		SELECT * 
 		  		FROM product
 		  		WHERE p_name LIKE '%'||#{text_box}||'%'
+		  		<!-- 
+		  		AND
+		  		<if test="category == 유산소">		  		
+			  		WHERE p_category = '유산소'
+		  		</if>
+		  		 -->
+		  		
 		  		ORDER BY p_num DESC
 		  		) tbl
 		  	)
@@ -39,10 +46,10 @@
   	</select>
   	
   	<!-- 상품조회 -->
-  	<select id="getContent" resultType="kr.co.firstgym.command.ProductVO">
+  	<select id="getContent" resultMap="ProductVO">
   		SELECT *
 		FROM product
-		WHERE p_num = #{pNum}
+		WHERE p_num = #{proNum}
   	</select>
   	
   	<!-- 총 게시물의 개수를 구해오자. -->

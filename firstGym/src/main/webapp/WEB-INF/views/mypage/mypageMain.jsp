@@ -161,16 +161,19 @@
                     <ul class="bmiList-paging-ul">
                         <!-- 이전버튼  -->
                         <c:if test="${pc.prev}">
-		                	<a class="prev" href="<c:url value='/mypage/mainPage?page=${pc.beginPage-1}' />">이전</a>
+                        	<a href="<c:url value='/mypage/mainPage?page=${pc.beginPage-1}' />"><li class="bmiList-btn-not-check">&lt;</li></a>
 		                </c:if>
 		                <c:forEach var="pageNum" begin="${pc.beginPage}" end="${pc.endPage}">
 		                	<a href="<c:url value='/mypage/mainPage?page=${pageNum}' />" class="active">${pageNum}</a>
 		                </c:forEach>
 		                
+						<!-- 다음버튼 -->
 		                <c:if test="${pc.next}">
-		                	<a class="next" href="<c:url value='/mypage/mainPage?page=${pc.endPage+1}' />">다음</a>
+		                	<a href="<c:url value='/mypage/mainPage?page=${pc.endPage+1}' />"><li class="bmiList-btn-not-check">&gt;</li></a>
+		                	<!-- <a href=""><li class="bmiList-btn-not-check">&gt;</li></a>
+		                	<a class="next" href="<c:url value='/mypage/mainPage?page=${pc.endPage+1}' />">></a> -->
 		                </c:if>   
-
+                        
                     </ul>
                 </div>
                 <div class="bmiList-btn">
@@ -193,36 +196,43 @@
         const $modify = $('#mypageMain-modBtn');
         const $mypageModify_mod = $('#mypageModify-mod');
         const $mypageModify_can = $('#mypageModify-can');
+        const $modal_bmiList = $('#bmiList');
+        
+        const page = '${pc.paging.page}';
+        console.log(page);
+
 
         $modal_info.hide();
+        if(parseInt(page) === 1) {
+        	console.log('page: 1, modal hide!');
+	        $modal_bmiList.hide();        	
+        }
 
         $modify.click(function(){
             $modal_info.show();
-        })
+        });
 
         $mypageModify_can.click(function(){
             $modal_info.hide()
-        })
+        });
 
         //BMI 검사 기록 모달
-        const $modal_bmiList = $('#bmiList');
         const $mypageMain_bmiBtn = $('#mypageMain-bmiBtn');
         const $bmiList_confirm = $('#bmiList-btn-confirm');
 
-        $modal_bmiList.hide();
+        
+        $mypageMain_bmiBtn.click(function() {
+			$modal_bmiList.show();
+		})
+        
+        $bmiList_confirm.click(function() {
+	        $modal_bmiList.hide();			
+		});
+        
+     
         
         
-        
-        let strAdd = '';
-        
-        
-        $mypageMain_bmiBtn.click(function(){
-            $modal_bmiList.show()
-        })
-
-        $bmiList_confirm.click(function(){
-            $modal_bmiList.hide()
-        })
+     
 		    
 	    
 
