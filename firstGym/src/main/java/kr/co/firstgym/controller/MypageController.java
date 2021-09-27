@@ -19,7 +19,7 @@ import kr.co.firstgym.command.BmiResultVO;
 public class MypageController {
 
 	//마이페이지 메인 이동
-	@GetMapping("/mypageMainPage")
+	@GetMapping("/mainPage")
 	public String mypageMainPage() {
 		return "mypage/mypageMain";
 	}

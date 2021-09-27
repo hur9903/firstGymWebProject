@@ -4,10 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="kr.co.firstgym.bmiresult.mapper.IBmiResultListMapper">
   	
-  	<resultMap type="kr.co.firstgym.command.BmiResultVO" id="bmiResultVO"></resultMap>
+  	<resultMap type="kr.co.firstgym.command.BmiResultVO" id="bmiResult">
+  		<result column="bmi_num" property="bmiNum"/>
+  		<result column="bmi_date" property="bmiDate"/>
+  		<result column="bmi_result" property="bmiResult"/>
+  		<result column="user_id" property="userId"/>
+  	</resultMap>
+  	
+  	<insert id="insertBMI">
+  		INSERT INTO bmi_result (bmi_num, bmi_result, user_id)
+  		VALUES(bmi_result_seq.NEXTVAL, #{bmiResult}, #{userId})
+  	</insert>
+  	
   	
   	<!-- BMI리스트 가져오기 -->
-  	<select id="getList" resultMap="bmiResultVO">
+  	<select id="getList" resultMap="bmiResult">
   		SELECT * FROM bmi_result
   		WHERE 
   			user_id = #{userId}
