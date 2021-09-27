@@ -45,4 +45,11 @@
 		USER_MAIL=#{userMail} ,USER_ADDRESS1=#{userAddr1}, USER_ADDRESS2=#{userAddr2} WHERE USER_ID=#{userId}
 	</update>
 
+	<delete id="delete">
+		DELETE FROM users WHERE USER_ID=#{userId} AND USER_PW=#{userPw}
+	</delete>
+	
+	<select id="findId" resultMap="UserMap" >
+		SELECT * FROM users WHERE USER_NAME=#{name} AND USER_EMAIL=#{email}
+	</select>
 </mapper>

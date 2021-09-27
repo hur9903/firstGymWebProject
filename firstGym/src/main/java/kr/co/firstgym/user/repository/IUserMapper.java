@@ -22,8 +22,11 @@ public interface IUserMapper {
 		UserVO selectOne(String account);
 			
 		//회원 탈퇴
-		void delete(String account);
+		void delete(UserVO vo);
 		
 		//회원정보 수정 
 		void modify (UserVO vo);
+		
+		//아이디 찾기
+		UserVO findId(@Param("name") String name, @Param("email")String email);
 }
