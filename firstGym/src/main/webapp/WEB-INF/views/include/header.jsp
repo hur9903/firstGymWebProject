@@ -18,11 +18,13 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
     <!-- 제이쿼리 임시 -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>   -->
-   
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ -->   
     <!-- 부트스트랩 css 사용 --> 
-    <link rel="stylesheet" href="/css/bootstrap.css">
-
+<!--     <link rel="stylesheet" href="/css/bootstrap.css">
+ -->	  
+	<!-- 주소 api -->    
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
     
     
@@ -33,29 +35,41 @@
         <div class='title'>
             <h1>FIRST GYM</a></h1>
             <div class="join">
-              <%--   
-	              <a href="<c:url value='/user/loginPage' />">로그인</a>
-	              <a href="<c:url value='/user/joinPage' />">회원가입</a> 
-              --%>
-                
-                <c:if test="${login == null }"> 
+       
+            <c:choose>
+            
+              <c:when test="${login == null}"> 
+	          		<c:if test="${noIdLogin == null}">
 	          	
-		            <a href="<c:url value='/user/loginPage' />">LOGIN</a>
-		            <a href="<c:url value='/user/joinPage' />">JOIN</a>
+			            <a href="<c:url value='/user/loginPage' />">LOGIN</a>
+			            <a href="<c:url value='/user/joinPage' />">JOIN</a>
+		            
+	          		</c:if>
+	          		<c:if test="${noIdLogin != null }">
 	          
-          		</c:if>
-          
-          		<c:if test="${login != null }">
-	          
-		         	 <a href="<c:url value='/mypage/mypageMainPage' />">MYPAGE</a>
+			         	 <a href="<c:url value='/user/joinPage' />">JOIN</a>
+		    	     	 <a href="<c:url value='/user/logout' />" onclick="return confirm('정말 로그아웃 하시겠습니까?')" > LOGOUT</a>
+     		  		
+	          		</c:if>
+	          	</c:when>
+	          		
+	          	<c:when	test="${login != null}"> 
+	          		 <a href="<c:url value='/mypage/mypageMainPage' />">MYPAGE</a>
 		         	 <a href="<c:url value='/user/logout' />" onclick="return confirm('정말 로그아웃 하시겠습니까?')" > LOGOUT</a>
      		  		
-          		</c:if>
+	          	</c:when>	
+          		
+            </c:choose>
+              
+          
+         
+               
+          		
             </div>
         </div>
         <nav class='bar'>
             <ul>
-                <li><a href="#">MBI 검사</a></li>
+                <li><a href="#">BMI 검사</a></li>
                 <li><a href="<c:url value='/product/productListPage' />">운동기구</a></li>
                 <li><a href="#">게시판</a></li>
                 <li><a href="#">마이페이지</a></li>

@@ -54,11 +54,11 @@
                 </div>
                 <div class="join-clearfix">
                     <span class="join-float-left">우편번호</span>
-                    <span class="join-float-right"><input type="text" placeholder="우편번호" name="userMail" id="userMail"><button type="button" class="mypageModify-mailFind">주소찾기</button></span>
+                    <span class="join-float-right"><input type="text" placeholder="우편번호" name="userMail" id="userMail" readonly><button type="button" class="mypageModify-mailFind" onclick="searchAddress()" id="selAdd">주소찾기</button></span>
                 </div>
                 <div class="join-clearfix">
                     <span class="join-float-left">주소</span>
-                    <span class="join-float-right"><input type="address" placeholder="주소" name="userAddr1" id="userAddr1"></button></span>
+                    <span class="join-float-right"><input type="address" placeholder="주소" name="userAddr1" id="userAddr1" readonly></button></span>
                     <span class="joinCheck" id="addrCheck"></span><br>
                 </div>
                 <div class="join-clearfix">
@@ -139,6 +139,7 @@
 		}
 	})
 	
+	
 	//---------------------유효성 검사
 	//각 입력값들의 유효성 검증을 위한 정규 표현식을 변수로 선언
 	const getIdCheck = RegExp(/^[a-zA-Z0-9]{5,12}$/);
@@ -164,7 +165,7 @@
 			$('#idCheck').html('<b style="font-size: 14px; color:red;"> [영문,숫자 조합 5~12자로 입력하세요]</b>');
 			chk1 = false;
 		}else{
-			$(this).css('background-color', 'rgb(232, 240, 254)');
+			$(this).css('background-color', 'rgb(240, 240, 240)');
 			$('#idCheck').html('');
 			chk1 = true;
 			
@@ -219,7 +220,7 @@
 			chk2 = false;
 		}
 		else{
-			$(this).css('background-color', 'rgb(232, 240, 254)');
+			$(this).css('background-color', 'rgb(240, 240, 240)');
 			$('#pwCheck').html('');
 			chk2 = true;
 		}
@@ -242,7 +243,7 @@
 		}
 		//통과
 		else{
-			$(this).css('background-color', 'rgb(232, 240, 254)');
+			$(this).css('background-color', 'rgb(240, 240, 240)');
 			$('#pwCheck2').html('');
 			$('#pwCheckOk').html('<b style="font-size: 14px; color:green;"> [비밀번호 확인 완료]</b>');
 			chk3 = true;
@@ -265,7 +266,7 @@
 		}
 		//통과
 		else{
-			$(this).css('background-color', 'rgb(232, 240, 254)');
+			$(this).css('background-color', 'rgb(240, 240, 240)');
 			$('#nameCheck').html('');	
 			chk4 = true;
 		}
@@ -283,7 +284,7 @@
 			$('#birthCheck').html('<b style="font-size: 14px; color:red;"> [정확히 숫자로만 8글자 입력하세요] </b>');
 			chk5 = false;
 		}else{
-			$(this).css('background-color', 'rgb(232, 240, 254)');
+			$(this).css('background-color', 'rgb(240, 240, 240)');
 			$('#birthCheck').html('');	
 			chk5 = true;
 		}
@@ -300,7 +301,7 @@
 			$('#emailCheck').html('<b style="font-size: 14px; color:red;"> [이메일 형식에 어긋납니다] </b>');
 			chk6 = false;
 		}else{
-			$('#userEmail').css('background-color', 'rgb(232, 240, 254)');
+			$('#userEmail').css('background-color', 'rgb(240, 240, 240)');
 			$('#emailCheck').html('');	
 			chk6 = true;
 			
@@ -355,23 +356,25 @@
 			$('#phoneCheck').html('<b style="font-size: 14px; color:red;"> [숫자로만 10~11자리 입력하세요]</b>');	
 			chk4 = false;
 		}else{
-			$(this).css('background-color', 'rgb(232, 240, 254)');
+			$(this).css('background-color', 'rgb(240, 240, 240)');
 			$('#phoneCheck').html('');	
 			chk7 = true;
 		}
 	})
 	
 	//우편 번호 검증
-	$('#userMail').keyup(function() {
-		if($(this).val() === ''){
-			$(this).css('background-color', 'rgb(255, 234, 255)');
+ 	$('#userMail').on("propertychange change keyup paste input" ,function() {
+ 		console.log($(this).val());
+		if($(this).val() !== ''){
+			$(this).css('background-color', 'rgb(240, 240, 240)');
 			chk8 = false;
-		}else{
-			$(this).css('background-color', 'rgb(232, 240, 254)');
-			$('#addrCheck').html('');	
-			chk8 = true;
+		
 		}
-	})
+		
+	})  
+
+	
+	
 	//주소 검증
 	$('#userAddr1').keyup(function() {
 		if($(this).val() === ''){
@@ -379,7 +382,7 @@
 			$('#addrCheck').html('<b style="font-size: 14px; color:red;"> [주소를 입력하세요] </b>');
 			chk9 = false;
 		}else{
-			$(this).css('background-color', 'rgb(232, 240, 254)');
+			$(this).css('background-color', 'rgb(240, 240, 240)');
 			$('#addrCheck').html('');	
 			chk9 = true;
 		}
@@ -391,10 +394,38 @@
 			$('#addr2Check').html('<b style="font-size: 14px; color:red;"> [상세주소를 입력하세요] </b>');
 			chk10 = false;
 		}else{
-			$(this).css('background-color', 'rgb(232, 240, 254)');
+			$(this).css('background-color', 'rgb(240, 240, 240)');
 			$('#addr2Check').html('');	
 			chk10 = true;
 		}
 	})
+	
+	  //다음 주소 api사용해보기
+       function searchAddress() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+               
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('userMail').value = data.zonecode;
+                document.getElementById("userAddr1").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("userAddr2").focus();
+            }
+        }).open();
+    }
+       
     </script>
 </html>

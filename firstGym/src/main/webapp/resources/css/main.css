@@ -389,9 +389,12 @@ footer .footerhr {
     margin-top: -20px;
 }
 .boardContent-updonw-margin-div{
-    margin-top: 20px;
-    margin-left: 30px;
+  /*   margin-top: 20px; */
+   /*  margin-left: 30px; */
     padding: 10px;
+}
+div#reply {
+    margin-top: 10px;
 }
 /* 이미지 */
 .boardContent-img{ 
@@ -464,7 +467,7 @@ footer .footerhr {
 }
 .boardContent-each-reply-div{
     background: white;
-    width: 80%;
+    /* width: 80%; */
     margin: 20px;
 }
 .boardContent-reply{
@@ -1252,7 +1255,7 @@ footer .footerhr {
     margin: 0 auto;
     font-size: 20px;
 }
-           
+
 .mypageMain-menu{
     position: relative;
     width: 700px;
@@ -1301,7 +1304,7 @@ text-decoration: none;
    background-color: #00000090;
 }
 .mypageModify-Main{
-    border-radius: .25em;
+    border-radius: 5px;
     background: white;
     position: fixed;
     left: 50vw;
@@ -1516,7 +1519,7 @@ font-size: 30px;
    background-color: #00000090;
 }
     .bmiList-Main{
-    border-radius: .25em;
+    border-radius: 5px;
     background: white;
     position: fixed;
     left: 50vw;
@@ -1619,6 +1622,98 @@ font-size: 30px;
     position: absolute;
     margin: 10px;
 }
+
+/*** userDelete.html ***/
+.mypage-deleteMain{
+    border: 1px solid black;
+    width: 400px;
+    height: 400px;
+    box-shadow: 5px 5px 20px rgb(136 128 128);
+    border-radius: 5px; 
+    background: white;
+    position: fixed;
+    left: 50vw;
+    top: 50vh;
+    min-width: 300px;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    font-size: 20px;
+   
+}
+
+#delete-modal{
+	width: 100vw;
+   height: 100vw;
+   position: fixed;
+   left: 0;
+   top: 0;
+   background-color: #00000090;
+}
+.mypage-deleteMain-h3{
+    text-align: center;
+}
+.mypage-delete{
+    padding: 10px;
+    margin-top: 50px;
+}
+.delBtn{
+   background-color: rgb(52, 152, 219);
+    padding: 5px;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+.delBtn:hover{
+    cursor: pointer;
+    background-color: rgb(14, 117, 185);
+}
+.mypage-delBtn{
+    text-align: center;
+}
+.del-cancel{
+	float: right;
+    margin-right: -30px;
+    margin-top: -60px;
+    width: 45px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    border: none;
+}
+.del-cancel:hover{
+    cursor: pointer;
+}
+.deleteForm{
+    text-align: center;
+    word-spacing: 10px;
+}
+.deleteForm input{
+    height: 35px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.deleteBtn{
+    border-radius: 5px;
+    background: #615353;
+    position: relative;
+    padding: 5px;
+    color: white;
+    margin-left: 1050px;
+    top: -10px;
+}       
+.deleteBtn:hover{
+	background: #7f7676;
+    cursor: pointer;
+}    
 
 /*** purchase.html 디자인 ***/
 .purchase-main-div{

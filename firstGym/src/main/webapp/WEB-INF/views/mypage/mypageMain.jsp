@@ -8,7 +8,11 @@
         <div class="mypageMain-main">
             
             <table class="mypageMain-table" >
+            
                 <tbody>
+	                <div class="delete">
+	               		<button class="deleteBtn" id="deleteBtn"> 회원 탈퇴 </button>
+	                </div>
                     <tr>
                         <th>아이디</th>
                         <td>abc1234</td>
@@ -29,7 +33,10 @@
                         <th>주소</th>
                         <td>서울특별시 마포구~~~</td>
                     </tr>
+               
                 </tbody>
+                
+                
             </table>
 
             <div class="mypageMain-menu">
@@ -71,11 +78,11 @@
                         </tr>
                         <tr>
                             <td>비밀번호</td>
-                            <td><input class="mypageModify-pw" name="userPw" id="userPw"><span id="checkUserPw"></span></td>
+                            <td><input type="password" class="mypageModify-pw" name="userPw" id="userPw"><span id="checkUserPw"></span></td>
                         </tr>
                         <tr>
                             <td>비밀번호확인</td>
-                            <td><input class="mypageModify-pwCk" id="userPwCk"><span id="checkUserPwCk"></span></td>
+                            <td><input type="password" class="mypageModify-pwCk" id="userPwCk"><span id="checkUserPwCk"></span></td>
                         </tr>
                         <tr>
                             <td>이름</td>
@@ -107,13 +114,13 @@
                         </tr>
                         <tr>
                             <td>우편번호</td>
-                            <td><input class="mypageModify-mail" size=20 id="userMail" name="userMail"><span id="checkMail"></span>
-                                <button type="button" class="mypageModify-mailFind">주소찾기</button>
+                            <td><input class="mypageModify-mail" size=20 id="userMail" name="userMail" readonly><span id="checkMail"></span>
+                                <button type="button" class="mypageModify-mailFind" onclick="searchAddress()">주소찾기</button>
                             </td>
                         </tr>
                         <tr>
                             <td>주소</td>
-                            <td><input class="mypageModify-add" name="userAddr1" size=30 id="userAddr1"><span id="checkAddr1"></span></td>
+                            <td><input class="mypageModify-add" name="userAddr1" size=30 id="userAddr1" readonly><span id="checkAddr1"></span></td>
                         </tr>
                         <tr>
                             <td>상세주소</td>
@@ -216,8 +223,34 @@
         </div>
         <!-- 페이징 바 -->
 
-        </form>
     </div>
+    
+    <!-- delete user -->
+    
+    <div id="delete-modal">
+	     <div class="mypage-deleteMain" id="mypage-deleteMain">
+	     
+	        <div class="mypage-deleteMain-h3">
+	            <h3>회원 탈퇴</h3>
+	            <button class="del-cancel" id="del-cancel"> X </button>
+	        </div>
+	        
+	            <div id="mypage-delete" class="mypage-delete" >
+	                <form action="<c:url value='/user/delete' />" method="post" id="deleteForm" class="deleteForm">
+	                    아이디 : <input type="text" size="10" placeholder="아이디" name="userId" id="delUserId" value="${login.userId }" readonly style="background: rgb(232, 240, 254)"><br>
+	                    <br><br>
+	                    비밀번호 : <input type="password" size="10" placeholder="비밀번호" name="userPw" id="delUserPw"><br>
+	                    <br><br><br>
+	                    <div class="mypage-delBtn"><button type="button" class="delBtn" id="delBtn">탈퇴하기</button></div>
+	                </form>
+	            </div> 
+	    </div>
+   </div> 
+    
+    
+    
+    
+    
     <!-- 푸터. jsp전환시 삭제 후 include 사용 -->
     <%@ include file="../include/footer.jsp" %>
 
@@ -237,7 +270,7 @@
         })
 
         $mypageModify_can.click(function(){
-            $modal_info.hide()
+            $modal_info.hide();
         })
 
         //BMI 검사 기록 모달
@@ -255,6 +288,20 @@
             $modal_bmiList.hide()
         })
 
+        //회원 탈퇴 모달
+        const $delete_modal = $('#delete-modal');
+        const $deleteBtn = $('#deleteBtn');
+        const $del_cancel = $('#del-cancel');
+        
+        $delete_modal.hide();
+        
+        $deleteBtn.click(function() {
+			$delete_modal.show();
+		})
+        
+		$del_cancel.click(function() {
+			$delete_modal.hide();
+		})
         //-------------------------------------------
         //유효성 검사
         const getIdCheck = RegExp(/^[a-zA-Z0-9]{5,12}$/);
@@ -433,7 +480,7 @@
 		})
 		
 		//MAIL
-		$('#userMail').keyup(function() {
+		$('#userMail').on(function() {
 			if($(this).val() === ''){	
 				$('#checkMail').html('<b style="font-size: 14px; color:red;"> !</b>');
 				chk8 = false;
@@ -470,4 +517,59 @@
    		if(msg === "modifyOk"){
    			alert('회원 정보가 수정 되었습니다!')
    		}
+	
+	
+	//회원 탈퇴 이벤트
+	$('#delBtn').click(function() {
+		if($('#delUserPw').val() === ''){
+			alert('비밀번호를 입력하세요');
+			$('#delUserPw').focus();
+		}else{
+			alert('정말 탈퇴 하시겠습니까?')
+			$('#deleteForm').submit();
+		}
+	})
+	
+	const delmsg = '${msg}'
+		if(delmsg === "delFail"){
+			alert('비밀번호가 다릅니다')
+		}
+	
+	
+	//다음 주소 api사용해보기
+    function searchAddress() {
+     new daum.Postcode({
+         oncomplete: function(data) {
+             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+             var addr = ''; // 주소 변수
+             var extraAddr = ''; // 참고항목 변수
+
+             //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+             if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                 addr = data.roadAddress;
+             } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                 addr = data.jibunAddress;
+             }
+            
+             // 우편번호와 주소 정보를 해당 필드에 넣는다.
+             document.getElementById('userMail').value = data.zonecode;
+             document.getElementById("userAddr1").value = addr;
+             // 커서를 상세주소 필드로 이동한다.
+             document.getElementById("userAddr2").focus();
+         }
+     }).open();
+ }
+	
     </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    

@@ -24,6 +24,8 @@ public class UserVO {
    private String userAddr2;
    private Timestamp regDate;
 //   private int userPoint;
+   private String nonUserName;
+   private String nonUserEmail;
    
    private List<OrderProductVO> orderProductList;
 }
