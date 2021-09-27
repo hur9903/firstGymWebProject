@@ -16,6 +16,7 @@
 		<result column="board_date" property="boardDate"/>
 		<result column="board_thum" property="boardThum"/>
 		<result column="board_video" property="boardVideo"/>
+		<result column="reply_cnt" property="replyCnt"/>
 	</resultMap>
 	
 <!-- 동적쿼리 부분 -->
@@ -113,10 +114,12 @@
 		    SELECT ROWNUM AS rn, blist.*
 		    FROM
 		        (
-		        SELECT board_num, user_id, board_title, board_category, board_view, board_recom, board_date, board_thum
-		        FROM board
+		        SELECT board.board_num, board.user_id, board_title, board_category, board_view,board_recom, board_date, board_thum, COUNT(reply.reply_num) AS reply_cnt
+				FROM board LEFT OUTER JOIN reply
+				ON board.board_num = reply.board_num
 		        <include refid="boardListSql" />
-		        ORDER BY board_num DESC
+		        GROUP BY board.board_num,board.board_num, board.user_id, board_title, board_category, board_view, board_recom, board_date, board_thum
+			    ORDER BY board_num DESC
 		        ) blist
 		    )
 		<![CDATA[

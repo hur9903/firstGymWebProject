@@ -21,6 +21,7 @@ public class BoardVO {
 	private Timestamp boardDate; //게시글 등록일
 	private String boardThum; //게시글 썸네일 이미지 주소
 	private String boardVideo; //게시글 비디오 주소
+	private int replyCnt; //게시글 댓글 수
 	
 	private boolean imageDelCheck; //게시글 수정시 이미지 삭제 여부
 	

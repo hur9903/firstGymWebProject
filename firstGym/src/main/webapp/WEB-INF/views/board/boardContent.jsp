@@ -91,9 +91,9 @@
                     <!-- 댓글영역 -->
                     <div id="reply" class="boardContent-reply">
                         <div class="boardContent-reply-area-div">
-                            <div class="boardContent-updonw-margin-div">
-                                <input id="board-reply-input" type="text" placeholder="댓글 입력">
-                                <button id="board-reply-regist-btn" type="button" class="boardContent-reg boardContent-color-white boardContent-btn-small">등록</button>
+                            <div class="boardContent-updonw-margin-div boardContent-clearfix">
+                                <textarea id="board-reply-input" type="text" placeholder="댓글 입력" class="boardContent-float-left"></textarea>
+                                <button id="board-reply-regist-btn" type="button" class="boardContent-float-left boardContent-reg boardContent-color-white boardContent-btn-small">등록</button>
                             </div>
                             <div id="boardContent-reply-area" class="boardContent-reply-list-div">
                                 <!-- 댓글 추가 시 아래 div 반복시켜 출력 -->
@@ -309,6 +309,11 @@
         		return;
         	}
         	
+        	if(replyContent.length > 50){
+        		alert('댓글은 50자 이내로 작정해주세요. 현재 글자 수: ' + replyContent.length);
+        		return;
+        	}
+        	
         	$.ajax({
 				type: "post",
 				url: registBtnUrl,
@@ -361,14 +366,19 @@
         			let replyList = data.replyList;
 
 					//댓글 다시 불러오기
-        			let replies = '';
+					
+					let replies = '';
 					
 					for(let i = 0; i < replyList.length; i++){
 						replies += '<div class="boardContent-updonw-margin-div boardContent-each-reply-div boardContent-clearfix">';
 						replies += '<div class="boardContent-float-left boardContent-reply-content">';
 						replies += '<p><strong>' + replyList[i].userId + '</strong></p>';
-				        replies += '<p id="reply-content-num-' + replyList[i].replyNum + '" class="boardContent-updonw-padding-div">' + replyList[i].replyContent + '</p>';
-				        replies += '<input id="reply-mod-num-' + replyList[i].replyNum + '" type="hidden" value="">';
+						replies += '<input id="reply-content-hidden-' + replyList[i].replyNum + '" type="hidden" value="' + replyList[i].replyContent + '">'
+						
+						let content = replyList[i].replyContent.replaceAll("\n", "<br/>");
+						
+				        replies += '<p id="reply-content-num-' + replyList[i].replyNum + '" class="boardContent-updonw-padding-div" style="word-break:break-all;">' + content + '</p>';
+				        replies += '<textarea id="reply-mod-num-' + replyList[i].replyNum + '" style="display: none;" value=""></textarea>';
 				        replies += '<p><small>' + changeTimeForm(replyList[i].replyDate) + '</small></p>';
 				        replies += '</div>';
 				        if(replyList[i].userId === '${login.userId}'){
@@ -465,6 +475,7 @@
       		//전환할 태그의 아이디 찾기
       		let modContentId = '#boardContent-reply-area #reply-content-num-' + $(this).attr('data-num');
       		let modInputId = '#boardContent-reply-area #reply-mod-num-' + $(this).attr('data-num');
+      		let hiddenContentId = '#boardContent-reply-area #reply-content-hidden-' + $(this).attr('data-num');
       		
       		let modBtnId = '#boardContent-reply-area #reply-mod-btn-' + $(this).attr('data-num');
       		let delBtnId = '#boardContent-reply-area #reply-del-btn-' + $(this).attr('data-num');
@@ -473,8 +484,8 @@
       			
       		//컨탠츠창과 입력창 전환
       		$(modInputId).attr('type', 'text');
-      		$(modInputId).val($(modContentId).text());
-      		$(modInputId).css("width", "100%");
+      		$(modInputId).val($(hiddenContentId).val());
+      		$(modInputId).css("display", "inline-block");
       		$(modContentId).css("display", "none");
 				
       		//버튼 전환
@@ -498,7 +509,7 @@
       		let modCancelBtnId = '#boardContent-reply-area #reply-mod-cancel-btn-' + $(this).attr('data-num');
       		
       		//컨탠츠창과 입력창 전환
-      		$(modInputId).attr('type', 'hidden');
+      		$(modInputId).css("display", "none");
       		$(modContentId).css("display", "inline-block");
 				
       		//버튼 전환
@@ -516,6 +527,16 @@
 			const replyNum = $(this).attr('data-num');
 						
 			const modUrl = "<c:url value='/reply/replyModify' />"
+			
+			if(replyContent === ''){
+				alert('댓글을 입력해주세요.');
+				return;
+			}
+			
+			if(replyContent.length > 50){
+        		alert('댓글은 50자 이내로 작정해주세요. 현재 글자 수: ' + replyContent.length);
+        		return;
+        	}
 			
 			$.ajax({
 				type: "post",

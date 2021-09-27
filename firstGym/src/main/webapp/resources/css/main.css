@@ -457,9 +457,19 @@ footer .footerhr {
 .boardContent-del:hover{
     background-color: rgb(143, 142, 142);
 }
-.boardContent-reply-area-div input{
+.boardContent-reply-area-div pre{
+	font-size: 16px;
+}
+.boardContent-reply-area-div textarea{
     padding: 5px;
     width: 80%;
+    height: 50px;
+    resize: none;
+    margin-right: 10px;
+    font-size: 16px;
+}
+.boardContent-reply-content{
+	width: 100%;
 }
 .boardContent-each-reply-div{
     background: white;
@@ -1219,9 +1229,6 @@ footer .footerhr {
     font-size: 13px;
     color: black;
     text-decoration: none;
-}
-#productList .pagination .prev {
-    background: rgb(247, 240, 240) url('image/page_prev.png') no-repeat center center;
 }
 #productList .pagination .next {
     background: rgb(247, 240, 240) url('image/page_next.png') no-repeat center center;

@@ -66,12 +66,12 @@
 	                            </div>
 	                            <!-- 썸네일 이미지가 없으면 아래 div 표시x -->
 	                            <c:if test="${article.boardThum != null}">
-		                            <div class="boardList-content-img boardList-float-right">
+		                            <div class="boardList-content-img boardList-float-right" style="cursor: auto;">
 		                                <img src="<spring:url value='${article.boardThum}' />" alt="img">
 		                            </div>
 	                            </c:if>
 	                        </td>
-	                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> 0</td>
+	                        <td class="boardList-list-right-td"><img src="image/talk.svg" alt="talk"> ${article.replyCnt}</td>
 	                    </tr>
                     </c:forEach>
             	</table>
