@@ -38,14 +38,17 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void delete(String account) {
-		// TODO Auto-generated method stub
-
+	public void delete(UserVO vo) {
+		mapper.delete(vo);
 	}
 	
 	@Override
 	public void modify(UserVO vo) {
 		mapper.modify(vo);
 	}
-
+	
+	@Override
+	public UserVO findId(String name, String email) {
+		return mapper.findId(name, email);
+	}
 }

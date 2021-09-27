@@ -296,7 +296,7 @@
         
         $('#board-reply-regist-btn').click(function(){
         	if('${login}' === ''){
-        		alert('댓글을 등록하려면 로그인해주세요.');
+        		alert('댓글을 등록하려면 회원 로그인해주세요.');
         		return;
         	}
         	
@@ -583,7 +583,7 @@
 		
 		$('#boardContent-heart-btn').click(function(){
 			if('${login}' === ''){
-				alert('로그인이 필요한 기능입니다.');
+				alert('회원 로그인이 필요한 기능입니다.');
 				return;
 			}
 			

@@ -1,14 +1,18 @@
 package kr.co.firstgym.controller;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,13 +74,20 @@ public class UserController {
 		}else {
 			return "idFail";
 		}
-		
 	}
 		
 	//비회원 로그인 진행
 	@PostMapping("/nonidLogin")
-	public String nonidLogin() {
-		return "";
+	public String nonidLogin(String nonUserName, String nonUserPhone, HttpSession session, RedirectAttributes ra) {
+		
+		System.out.println("비회원 로그인 요청 들어옴 :" + nonUserName + "," + nonUserPhone);
+		 
+		session.setAttribute("noIdLogin", nonUserName);  
+		session.setAttribute("noIdLogin", nonUserPhone);  		      
+		
+		ra.addFlashAttribute("msg", "nonUserLogin");
+		
+		return "redirect:/";
 	}
 	
 	//회원가입 페이지 이동
@@ -86,8 +97,21 @@ public class UserController {
 	}
 	
 	//아이디 찾기 인증번호 생성
-	@PostMapping("/findId")
-	public String findId() {
+	@ResponseBody
+	@PostMapping("/findId/{findIdEmail}/{findIdName}")
+	public String findId(@PathVariable("findIdName") String findIdName, @PathVariable("findIdEmail") String findIdEmail, 
+						 HttpSession session, RedirectAttributes ra) {
+		
+		System.out.println("아이디찾기 요청 들어옴: " + findIdName + "," + findIdEmail);
+		
+		UserVO findVo = service.findId(findIdName, findIdEmail);
+		
+		session.setAttribute("findUserId", findVo.getUserId());
+		
+		Random random = new Random();
+		
+		session.setAttribute("random", random.nextInt(99999));
+
 		return "";
 	}
 	
@@ -162,5 +186,34 @@ public class UserController {
 		ra.addFlashAttribute("msg", "logoutSuccess");
 		
 		return "redirect:/";
+	}
+	
+	//회원 탈퇴
+	@PostMapping("/delete")
+	public String delete(UserVO vo, HttpSession session, RedirectAttributes ra) {
+		
+		System.out.println("탈퇴 요청 들어옴");
+		System.out.println(vo);
+		
+		UserVO delVo = (UserVO) session.getAttribute("login");
+		
+		String sessionPw = delVo.getUserPw();
+		
+		String voPw = vo.getUserPw();
+		
+		System.out.println(sessionPw);
+		System.out.println(voPw);
+		
+		if(!(sessionPw.equals(voPw))) {
+			ra.addFlashAttribute("msg", "delFail");
+			return "redirect:/mypage/mypageMainPage";
+		}else {
+		
+		service.delete(vo);
+		session.invalidate();
+		ra.addFlashAttribute("msg", "delSuccess");
+		
+		return "redirect:/";
+		}
 	}
 }
