@@ -175,7 +175,7 @@ public class UserController {
 		service.modify(vo);
 		ra.addFlashAttribute("msg", "modifyOk");
 		
-		return "redirect:/mypage/mypageMainPage";
+		return "redirect:/mypage/mainPage";
 	}
 	
 	//로그아웃

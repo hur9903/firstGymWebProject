@@ -372,4 +372,10 @@ public class BoardService implements IBoardService{
 		boardMapper.updateArticle(boardInfo);
 		
 	}
+
+	@Override
+	public void updateViewNum(BoardVO boardInfo) {
+		boardMapper.updateViewNum(boardInfo);
+		
+	}
 }

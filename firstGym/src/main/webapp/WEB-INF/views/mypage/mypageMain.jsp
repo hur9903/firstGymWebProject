@@ -44,8 +44,8 @@
                     <a href="#" id="mypageMain-modBtn">
                         회원 정보 수정
                     </a> <br><br>
-                    <a href="#">
-                        출석체크
+                    <a href="<c:url value='/board/boardListPage' />?category=none&condition=myBoard&keyword=${login.userId}">
+                        내가 쓴 게시글
                     </a>
                 </div>
                 <div class="right">
@@ -86,17 +86,17 @@
                         </tr>
                         <tr>
                             <td>이름</td>
-                            <td><input class="mypageModify-name" name="userName" id="userName" "><span id="checkName"></span></td>
+                            <td><input class="mypageModify-name" name="userName" id="userName" value="${login.userName}"><span id="checkName"></span></td>
                         </tr>
                         <tr>
                         	<td>생년월일</td>
-                        	 <td><input class="mypageModify-birth" name="userBirth" id="userBirth" "><span id="checkBirth"></span></td>
+                        	 <td><input class="mypageModify-birth" name="userBirth" id="userBirth" value="${login.userBirth}"><span id="checkBirth"></span></td>
                         </tr>
                         <tr>
                             <td>성별</td>
                             <td >
-                                &nbsp;&nbsp;<input type="radio" class="mypageModify-gender" value="male" name="userGen" id="userGen"><label>&nbsp;남</label>
-                                &nbsp;&nbsp;<input type="radio" class="mypageModify-gender" value="female" name="userGen" id="userGen"><label>&nbsp;여</label>
+                                &nbsp;&nbsp;<input type="radio" class="mypageModify-gender" value="male" name="userGen" id="userGen" ${login.userGen == 'male'?'checked': ''}><label>&nbsp;남</label>
+                                &nbsp;&nbsp;<input type="radio" class="mypageModify-gender" value="female" name="userGen" id="userGen2" ${login.userGen == 'female'?'checked': ''}><label>&nbsp;여</label>
                             </td>
                         </tr>
                         
@@ -109,22 +109,22 @@
                         <tr>
                             <td>휴대전화</td>
                             <td>
-                                <input class="mypageModify-phone" name="userPhone" id="userPhone" ><span id="checkPhone"></span>
+                                <input class="mypageModify-phone" name="userPhone" id="userPhone" value="${login.userPhone}"><span id="checkPhone"></span>
                             </td>
                         </tr>
                         <tr>
                             <td>우편번호</td>
-                            <td><input class="mypageModify-mail" size=20 id="userMail" name="userMail" readonly><span id="checkMail"></span>
+                            <td><input class="mypageModify-mail" size=20 id="userMail" name="userMail" readonly value="${login.userMail}"><span id="checkMail"></span>
                                 <button type="button" class="mypageModify-mailFind" onclick="searchAddress()">주소찾기</button>
                             </td>
                         </tr>
                         <tr>
                             <td>주소</td>
-                            <td><input class="mypageModify-add" name="userAddr1" size=30 id="userAddr1" readonly><span id="checkAddr1"></span></td>
+                            <td><input class="mypageModify-add" name="userAddr1" size=30 id="userAddr1" readonly value="${login.userAddr1}"><span id="checkAddr1"></span></td>
                         </tr>
                         <tr>
                             <td>상세주소</td>
-                            <td><input class="mypageModify-addDetail" name="userAddr2" size=30 id="userAddr2"><span id="checkAddr2"></span></td>
+                            <td><input class="mypageModify-addDetail" name="userAddr2" size=30 id="userAddr2" value="${login.userAddr2}"><span id="checkAddr2"></span></td>
                         </tr>
         
         
@@ -349,7 +349,7 @@
 				alert('생년월일을 숫자로만 8글자 입력하세요 ex)19941124');
 				$('#uesrName').focus();
 				return;
-			}else if(!$('#userGen').is(":checked")){
+			}else if(!$('#userGen').is(":checked") && !$('#userGen2').is(":checked")){
 				alert('성별을 체크하세요');
 				return;
 			}else if($('#userEmail').val() === ''){

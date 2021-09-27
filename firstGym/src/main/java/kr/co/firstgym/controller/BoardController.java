@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +39,7 @@ public class BoardController {
 	
 	//게시글 목록으로 이동
 	@GetMapping("/boardListPage")
-	public String boardListPage(Model model, BoardPageVO page){
+	public String boardListPage(Model model, BoardPageVO page, HttpSession session){
 		
 		List<BoardVO> board = service.getBoard(page);
 		page.setTotalArticleCount(service.getTotalArticleNum(page));
@@ -49,11 +52,29 @@ public class BoardController {
 	
 	//게시글 상세보기로 이동
 	@GetMapping("/boardDetailPage/{boardNum}")
-	public String boardDetailPage(@PathVariable("boardNum") int boardNum, Model model) {
+	public String boardDetailPage(@PathVariable("boardNum") int boardNum, Model model, HttpServletRequest request, HttpServletResponse response) {
 		
 		BoardVO article = service.getArticle(boardNum);
 		article.setBoardRecom(recomService.calcTotalRecom(boardNum));
 		List<String> images = service.getImages(boardNum);
+		
+		Cookie[] cookies = request.getCookies();
+		boolean hasViewed = false;
+		
+		if(cookies != null) {
+			for(Cookie cookie : cookies) {
+				if(cookie.getName().equals("articleView" + boardNum)) { //조회 쿠키 이름: articleView0000(게시글 번호)
+					hasViewed = true;
+				}
+			}
+		}
+		
+		if(! hasViewed) {
+			Cookie newCookie = new Cookie("articleView" + boardNum, "articleView" + boardNum);
+			newCookie.setMaxAge(60*60); //쿠키 지속 시간 1시간
+			response.addCookie(newCookie);
+			service.updateViewNum(article);
+		}
 		
 		model.addAttribute("article", article);
 		model.addAttribute("images", images);
@@ -108,6 +129,7 @@ public class BoardController {
 		service.deleteArticle(boardNum);
 		
 		ra.addFlashAttribute("msg", "deleteSuccess");
+		
 		return "redirect:/board/boardListPage";
 	}
 	

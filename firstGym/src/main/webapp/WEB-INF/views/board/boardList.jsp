@@ -10,10 +10,12 @@
     <div class="boardList-main-div">
         <div class="boardList-sub-div">
             <div id="boardList-page-title">
-                게시글 목록
+            <c:if test="${page.condition == 'myBoard'}">내가 쓴 게시글</c:if>
+            <c:if test="${page.condition != 'myBoard'}">게시글 목록</c:if>
             </div>
             <hr>
             <!-- 상단 검색창 -->
+            <c:if test="${page.condition != 'myBoard'}">
             <div id="boardList-top-search-div">
                 <form action="<c:url value="/board/boardListPage" />">
                     <div class="boardList-search-div">
@@ -35,6 +37,7 @@
                     </div>
                 </form>
             </div>
+            </c:if>
             <!-- 게시판 목록 -->
             <div id="boardList-list-div">
                 <table>
@@ -77,10 +80,12 @@
             	</table>
             </div>
             <!-- 게시글 등록 버튼 -->
-            <c:if test="${login != null}">
-	            <div class="boardList-update-btn-div boardList-clearfix">
-	                <button id="regist-btn" class="color-darkskyblue boardList-float-right">게시글 등록</button>
-	            </div>
+            <c:if test="${page.condition != 'myBoard'}">
+	            <c:if test="${login != null}">
+		            <div class="boardList-update-btn-div boardList-clearfix">
+		                <button id="regist-btn" class="color-darkskyblue boardList-float-right">게시글 등록</button>
+		            </div>
+	            </c:if>
             </c:if>
             <!-- 페이징 바 -->
             <div class="boardList-paging-div">
@@ -106,6 +111,7 @@
                 </form>
             </div>
             <!-- 하단 검색창 -->
+            <c:if test="${page.condition != 'myBoard'}">
             <div id="boardList-bottom-search-div">
                 <form action="<c:url value="/board/boardListPage" />">
                     <div class="boardList-search-div">
@@ -126,7 +132,8 @@
                         </div>
                     </div>
                 </form>
-            </div>    
+            </div>
+            </c:if>    
         </div>
     </div>
     <%@include file="../include/footer.jsp" %>

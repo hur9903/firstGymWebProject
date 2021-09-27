@@ -42,49 +42,61 @@
 	<sql id="boardListSql">
 		<if test="category == 'none'">
 			<if test="condition == 'title'">
-				WHERE board_title LIKE '%'||#{keyword}||'%'
+				WHERE board.board_title LIKE '%'||#{keyword}||'%'
 			</if>
 			<if test="condition == 'writer'">
-				WHERE user_id LIKE '%'||#{keyword}||'%'
+				WHERE board.user_id LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="condition == 'myBoard'">
+				WHERE board.user_id = #{keyword}
 			</if>
 			<if test="condition == 'content'">
-				WHERE board_content LIKE '%'||#{keyword}||'%'
+				WHERE board.board_content LIKE '%'||#{keyword}||'%'
 			</if>
 		</if>
 		<if test="category == 'oxy'">
-			WHERE board_category='oxy'
+			WHERE board.board_category='oxy'
 			<if test="condition == 'title'">
-				AND board_title LIKE '%'||#{keyword}||'%'
+				AND board.board_title LIKE '%'||#{keyword}||'%'
 			</if>
 			<if test="condition == 'writer'">
-				AND user_id LIKE '%'||#{keyword}||'%'
+				AND board.user_id LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="condition == 'myBoard'">
+				AND board.user_id = #{keyword}
 			</if>
 			<if test="condition == 'content'">
-				AND board_content LIKE '%'||#{keyword}||'%'
+				AND board.board_content LIKE '%'||#{keyword}||'%'
 			</if>
 		</if>
 		<if test="category == 'nonoxy'">
-			WHERE board_category='nonoxy'
+			WHERE board.board_category='nonoxy'
 			<if test="condition == 'title'">
-				AND board_title LIKE '%'||#{keyword}||'%'
+				AND board.board_title LIKE '%'||#{keyword}||'%'
 			</if>
 			<if test="condition == 'writer'">
-				AND user_id LIKE '%'||#{keyword}||'%'
+				AND board.user_id LIKE '%'||#{keyword}||'%'
+			</if>
+			<if test="condition == 'myBoard'">
+				AND board.user_id = #{keyword}
 			</if>
 			<if test="condition == 'content'">
-				AND board_content LIKE '%'||#{keyword}||'%'
+				AND board.board_content LIKE '%'||#{keyword}||'%'
 			</if>
 		</if>
 		<if test="category == 'yoga'">
-			WHERE board_category='yoga'
+			WHERE board.board_category='yoga'
 			<if test="condition == 'title'">
-				AND board_title LIKE '%'||#{keyword}||'%'
+				AND board.board_title LIKE '%'||#{keyword}||'%'
 			</if>
 			<if test="condition == 'writer'">
 				AND user_id LIKE '%'||#{keyword}||'%'
 			</if>
+			<if test="condition == 'myBoard'">
+				AND board.user_id = #{keyword}
+			</if>
 			<if test="condition == 'content'">
-				AND board_content LIKE '%'||#{keyword}||'%'
+				AND board.board_content LIKE '%'||#{keyword}||'%'
 			</if>
 		</if>
 	</sql>
@@ -156,6 +168,12 @@
 		<if test="boardVideo == 'none'">
 			board_video = NULL
 		</if>
+		WHERE board_num = #{boardNum}
+	</update>
+	
+	<update id="updateViewNum">
+		UPDATE board
+		SET board_view = board_view + 1
 		WHERE board_num = #{boardNum}
 	</update>
 </mapper>

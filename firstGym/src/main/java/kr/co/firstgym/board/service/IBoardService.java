@@ -32,4 +32,7 @@ public interface IBoardService {
 	
 	//게시글 수정
 	void updateArticle(BoardVO boardInfo, List<MultipartFile> images, MultipartFile video, boolean imageDelCheck);
+	
+	//조회수 수정
+	void updateViewNum(BoardVO boardInfo);
 }

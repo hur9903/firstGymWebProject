@@ -31,4 +31,7 @@ public interface IBoardMapper {
 	//게시글 수정
 	void updateArticle(BoardVO boardInfo);
 	
+	//조회수 수정
+	void updateViewNum(BoardVO boardInfo);
+	
 }
