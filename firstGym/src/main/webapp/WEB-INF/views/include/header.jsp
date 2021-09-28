@@ -21,26 +21,24 @@
 <!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
  -->   
     <!-- 부트스트랩 css 사용 --> 
-<!--     <link rel="stylesheet" href="/css/bootstrap.css">
- -->	  
+    <script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
+	  
 	<!-- 주소 api -->    
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
 
-    <style>
-    
-    </style>
-    
-    <script defer>
-    	
-    </script>
-    
+    <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
+
+    <script src="jquery.min.js"></script> <!-- 제이쿼리를 기반으로 작동하기 때문에 꼭 걸어준다.  --> 
+    <script src="owlcarousel/owl.carousel.min.js"></script> <!-- 업로드한 경로를 지정한다..  --> 
+	<link href="./carousel.css" rel="stylesheet"> <!--추가--> 
+	<script src="./carousel.min.js" type="text/javascript"></script><!--추가-->
 
 </head>
 <body>
     <header>
         <div class='title'>
-            <h1>FIRST GYM</a></h1>
+           <h1> <img src="${pageContext.request.contextPath }/resources/image/logo.png" alt="" class="header-logo"> <span class="header-first">FIRST GYM</span></a></h1>
             <div class="join">
        
             <c:choose>
@@ -67,11 +65,7 @@
 	          	</c:when>	
           		
             </c:choose>
-              
-          
-         
-               
-          		
+
             </div>
         </div>
         <nav class='bar'>
