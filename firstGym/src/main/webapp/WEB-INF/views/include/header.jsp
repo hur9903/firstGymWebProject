@@ -38,7 +38,7 @@
 <body>
     <header>
         <div class='title'>
-           <h1> <img src="${pageContext.request.contextPath }/resources/image/logo.png" alt="" class="header-logo"> <span class="header-first">FIRST GYM</span></a></h1>
+           <h1> <img src="${pageContext.request.contextPath }/resources/image/logo.png" alt="" class="header-logo"><span class="header-first">FIRST GYM</span></h1>
             <div class="join">
        
             <c:choose>
