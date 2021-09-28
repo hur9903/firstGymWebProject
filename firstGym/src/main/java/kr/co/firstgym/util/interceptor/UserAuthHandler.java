@@ -1,36 +1,43 @@
 package kr.co.firstgym.util.interceptor;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-// import kr.co.firstgym.command.UserVO;
+import kr.co.firstgym.command.UserVO;
+
 
 public class UserAuthHandler extends HandlerInterceptorAdapter {
-
-	/*
-	//È¸¿ø±ÇÇÑÀÌ ÇÊ¿äÇÑ ÆäÀÌÁö ¿äÃ»ÀÌ µé¾î¿ÔÀ» ¶§ ¿äÃ»À» °¡·ÎÃ¤ È®ÀÎÇÒ ÀÎÅÍ¼ÁÅÍ.
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
-		//¼¼¼Ç¿¡¼­ ·Î±×ÀÎ µ¥ÀÌÅÍ¸¦ ¾òÀº ÈÄ È®ÀÎÀ» ÇØ Áİ½Ã´Ù.
+		System.out.println("ë¡œê·¸ì¸ ê¶Œí•œ ì¸í„°ì…‰í„° ë“±ì¥!");
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("login");
-
-		if(vo == null) { //·Î±×ÀÎÀÌ ¾ÈµÈ ½ÃÁ¡. (·Î±×ÀÎ ÆäÀÌÁö·Î º¸³»Áİ½Ã´Ù.)
-			response.sendRedirect(request.getContextPath() + "/user/userLogin");
-
-			return false; //ÄÁÆ®·Ñ·¯·Î ÁøÀÔÀ» ¸·½À´Ï´Ù.
-		} else {
-			return true; //Åë°ú~
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		if(vo != null) {
+			System.out.println("ë¡œê·¸ì¸ í•œ ì‚¬ëŒ! í†µê³¼!");
+			return true;
 		}
+		
+		out.print("<script> \r\n");
+		out.print("alert('ë¡œê·¸ì¸ í•˜ì‹  íšŒì›ë§Œ ì´ìš©ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.'); \r\n");
+		out.print("history.back()");
+		out.print("</script>");
 
+		out.flush();
+
+		
+		return false;
 	}
-	*/
 
 }
 

@@ -17,8 +17,8 @@ public class ProductListService implements IProductListService {
 	
 	//상품조회
 	@Override
-	public ProductVO getContent(int pNum) {
-		ProductVO product = mapper.getContent(pNum);
+	public ProductVO getContent(int proNum) {
+		ProductVO product = mapper.getContent(proNum);
 		return product;
 	}
 

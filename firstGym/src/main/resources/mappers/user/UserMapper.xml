@@ -15,6 +15,14 @@
 		<result property="userMail" column="USER_MAIL"/>
 		<result property="userAddr1" column="USER_ADDRESS1"/>
 		<result property="userAddr2" column="USER_ADDRESS2"/>
+		<collection property="bmiResultList" resultMap="list"/>
+</resultMap>
+
+<resultMap type="kr.co.firstgym.command.BmiResultVO" id="list">
+	<id property="userId" column="uerId"/>
+	<result property="bmiNum" column="bmiNum"/>
+	<result property="bmiDate" column="bmiDate"/>
+	<result property="bmiResult" column="bmiResult"/>
 </resultMap>
 
 

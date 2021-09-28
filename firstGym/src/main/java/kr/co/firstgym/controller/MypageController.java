@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,15 +13,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.firstgym.bmi.service.IBmiService;
 import kr.co.firstgym.command.BmiResultVO;
+import kr.co.firstgym.command.UserVO;
+import kr.co.firstgym.util.PageCreator;
+import kr.co.firstgym.util.PageVO;
 
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
 
+	@Autowired
+	private IBmiService service;
+	
 	//마이페이지 메인 이동
 	@GetMapping("/mainPage")
-	public String mypageMainPage() {
+	public String mypageMainPage(PageVO paging, Model model, HttpSession session) {
+		paging.setCountPerPage(5);
+		UserVO vo = (UserVO) session.getAttribute("login");
+		model.addAttribute("user", vo);
+		System.out.println("controller: " + vo.getUserId());
+		List<BmiResultVO> list = service.selectOne(vo.getUserId(), paging);
+		System.out.println(list);
+		model.addAttribute("list", list);
+		
+		PageCreator pc = new PageCreator();
+		pc.setPaging(paging);
+		pc.setArticleTotalCount(service.countBMI(vo.getUserId()));
+		System.out.println("페이지 정보: " + pc);
+		model.addAttribute("pc", pc);
+		//System.out.println(list);
 		return "mypage/mypageMain";
 	}
 	
@@ -32,7 +54,6 @@ public class MypageController {
 		List<BmiResultVO> bmiList = new ArrayList<>();
 		return "";
 	}
-	
 	
 	//출첵화면으로 이동
 	@GetMapping("/dailyCheckPage")

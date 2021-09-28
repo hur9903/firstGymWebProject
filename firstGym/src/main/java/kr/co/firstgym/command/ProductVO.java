@@ -24,16 +24,22 @@ pInfo varchar2(100)
 @ToString
 public class ProductVO {
 
-	private int productNum;
-	private String pCategory;
-	private String pCompany;
-	private String pCountry;
-	private String pImage;
-	private String pName;
-	private int pPrice;
-	private String pMethod;
-	private int pSendPrice;
-	private String pExchangeInfo;
-	private String pInfo;
+	private int proNum;
+	private String proCategory;
+	private String proCompany;
+	private String proCountry;
+	private String proImage;
+	private String proName;
+	private int proPrice;
+	private String proMethod;
+	private int proSendPrice;
+	private String proExchangeInfo;
+	private String proInfo;
 	
 }
+
+
+
+
+
+

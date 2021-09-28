@@ -38,7 +38,7 @@
 <body>
     <header>
         <div class='title'>
-           <h1> <img src="${pageContext.request.contextPath }/resources/image/logo.png" alt="" class="header-logo"><span class="header-first">FIRST GYM</span></h1>
+           <h1> <a href="<c:url value='/' />"><img src="${pageContext.request.contextPath }/resources/image/logo.png" alt="" class="header-logo"><span class="header-first">FIRST GYM</span></a></h1>
             <div class="join">
        
             <c:choose>
@@ -59,7 +59,7 @@
 	          	</c:when>
 	          		
 	          	<c:when	test="${login != null}"> 
-	          		 <a href="<c:url value='/mypage/mypageMainPage' />">MYPAGE</a>
+	          		 <a href="<c:url value='/mypage/mainPage' />">MYPAGE</a>
 		         	 <a href="<c:url value='/user/logout' />" onclick="return confirm('정말 로그아웃 하시겠습니까?')" > LOGOUT</a>
      		  		
 	          	</c:when>	
@@ -73,7 +73,7 @@
                 <li><a href="<c:url value='/bmi/bmiPage' />">BMI 검사</a></li>
                 <li><a href="<c:url value='/product/productListPage' />">운동기구</a></li>
                 <li><a href="<c:url value='/board/boardListPage' />">게시판</a></li>
-                <li><a href="#">마이페이지</a></li>
+                <li><a href="<c:url value='/mypage/mainPage' />">마이페이지</a></li>
                 <li><a href="#">문의하기</a></li>
             </ul>
         </nav>
