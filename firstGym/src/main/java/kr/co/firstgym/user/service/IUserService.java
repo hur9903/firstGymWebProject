@@ -27,6 +27,9 @@ public interface IUserService {
 
 		//아이디 찾기
 		UserVO findId(String name, String email);
+		
+		//비밀번호 찾기
+		String findPw(String id, String email);
 
 	
 	

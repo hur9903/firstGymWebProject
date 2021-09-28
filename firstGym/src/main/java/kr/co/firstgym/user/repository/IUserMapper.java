@@ -29,4 +29,7 @@ public interface IUserMapper {
 		
 		//아이디 찾기
 		UserVO findId(@Param("name") String name, @Param("email")String email);
+		
+		//비밀번호 찾기
+		UserVO findPw(@Param("id") String id, @Param("email")String email);
 }

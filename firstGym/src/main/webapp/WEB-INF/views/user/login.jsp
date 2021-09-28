@@ -58,9 +58,10 @@
                             이메일 입력
                         </div>
                         <div id="login-modal-id-numbermake-btn" class="login-clearfix">
-                            <input type="text" name="findIdEmail" id="findIdEmail" placeholder="이메일" class="login-float-left"> <span id="emailCheck"></span>
+                            <input type="text" name="findEmail" id="findIdEmail" placeholder="이메일" class="login-float-left"> <span id="emailCheck"></span>
                             <button type="button" class="login-float-right login-color-white color-darkskyblue login-btn-small" id="findId-emailNum">인증번호 발송</button>
                         </div>
+                        <input type="hidden" name="findRan" id="findIdRan">
                     </form>
                 </div>
                 <!-- 비밀번호 찾기 -->
@@ -70,8 +71,14 @@
                             아이디 입력
                         </div>
                         <div id="login-modal-id-numbermake-btn" class="login-clearfix">
-                            <input type="text" name="" placeholder="아이디" class="login-float-left">
-                            <button type="button" class="login-float-right login-color-white color-darkskyblue login-btn-small">인증번호 발송</button>
+                            <input type="text" name="findPwId" id="findPwId" placeholder="아이디" class="login-float-left">
+                        </div>
+                        <div class="login-modal-content-text">
+                            이메일 입력
+                        </div>
+                        <div id="login-modal-id-numbermake-btn" class="login-clearfix">
+                            <input type="text" name="findEmail" id="findPwEmail" placeholder="이메일" class="login-float-left"> <span id="emailCheck"></span>
+                            <button type="button" class="login-float-right login-color-white color-darkskyblue login-btn-small" id="findPw-emailNum">인증번호 발송</button>
                         </div>
                     </form>
                 </div>
@@ -83,7 +90,7 @@
                             인증번호 입력
                         </div>
                         <div id="login-modal-id-numberckeck" class="login-clearfix">
-                            <input type="text" name="" placeholder="인증번호" class="login-float-left">
+                            <input type="text" id="login-numbercheck" name="" placeholder="인증번호" class="login-float-left">
                             <button type="button" id="login-numbercheck-btn" class="login-float-right login-color-white color-darkskyblue login-btn-small">인증번호 확인</button>
                         </div>
                     </form>
@@ -104,7 +111,7 @@
     <!-- 푸터. jsp전환시 삭제 후 include 사용 -->
     <%@ include file="../include/footer.jsp" %>
     
-    
+ 
 <script>
     // 회원로그인, 비회원 로그인 전환
     const $user_login_modifier = $('#login-user-login-modifier');
@@ -134,54 +141,6 @@
         }
     });
 
-    // 아이디, 비번 찾기 모달
-    const $modal = $('#login-modal');
-    const $find_pw_btn = $('#login-find-pw');
-    const $find_id_btn = $('#login-find-id');
-    const $modal_xbtn = $('#login-modal-xbtn');
-    const $numbercheck_btn = $('#login-numbercheck-btn');
-    const $id_modal = $('#login-id-modal');
-    const $pw_modal = $('#login-pw-modal');
-    const $make_number_modal = $('#login-make-number-modal');
-    const $result_modal = $('#login-result-modal');
-
-    $modal.hide();
-    
-    $find_pw_btn.click(function(){
-        event.preventDefault();
-        $('#login-modal-title').text('비밀번호 찾기');
-        $('#login-result-title').text('비밀번호');
-
-        $modal.show();
-        $id_modal.hide();
-        $pw_modal.show();
-        $make_number_modal.show();
-        $result_modal.hide();
-    });
-
-    $find_id_btn.click(function(){
-        event.preventDefault();
-        $('#login-modal-title').text('아이디 찾기');
-        $('#login-result-title').text('아이디');
-        $modal.show();
-        $id_modal.show();
-        $pw_modal.hide();
-        $make_number_modal.show();
-        $result_modal.hide();
-    });
-
-    $modal_xbtn.click(function(){
-        $modal.hide();
-    });
-
-    $numbercheck_btn.click(function(){
-        
-        $modal.show();
-        $id_modal.hide();
-        $pw_modal.hide();
-        $make_number_modal.hide();
-        $result_modal.show();
-    });
 
       //---------------------------------
 
@@ -308,7 +267,82 @@
 })
 
 	//-------------------------------------
-	//아이디 찾기  
+	// 아이디, 비번 찾기 모달
+    const $modal = $('#login-modal');
+    const $find_pw_btn = $('#login-find-pw');
+    const $find_id_btn = $('#login-find-id');
+    const $modal_xbtn = $('#login-modal-xbtn');
+    const $numbercheck_btn = $('#login-numbercheck-btn');
+    const $id_modal = $('#login-id-modal');
+    const $pw_modal = $('#login-pw-modal');
+    const $make_number_modal = $('#login-make-number-modal');
+    const $result_modal = $('#login-result-modal');
+    
+  	//아이디, 비밀번호  찾기 변수  
+	let findRandom = 0;
+	let findEmail = '';
+	let isFindIdMode = false;
+	let isFindPwMode = false;
+	let findResult = '';
+
+	emailjs.init('user_f2hBQR6PwERboMjhfS91J');
+
+    $modal.hide();
+    
+    $find_pw_btn.click(function(){
+        event.preventDefault();
+        $('#login-modal-title').text('비밀번호 찾기');
+        $('#login-result-title').text('비밀번호');
+
+        $modal.show();
+        $id_modal.hide();
+        $pw_modal.show();
+        $make_number_modal.show();
+        $result_modal.hide();
+    });
+
+    $find_id_btn.click(function(){
+        event.preventDefault();
+        $('#login-modal-title').text('아이디 찾기');
+        $('#login-result-title').text('아이디');
+        $modal.show();
+        $id_modal.show();
+        $pw_modal.hide();
+        $make_number_modal.show();
+        $result_modal.hide();
+    });
+
+    $modal_xbtn.click(function(){
+        $modal.hide();
+    });
+
+    //인증번호 확인
+    $numbercheck_btn.click(function(){
+    	if(! isFindIdMode && ! isFindPwMode){
+			alert('인증번호가 전송되기 전입니다.');
+		}
+    	else{
+			if((findRandom + '') !== ($('#login-numbercheck').val() + '')){
+				alert('인증번호가 일치하지 않습니다.')
+		        $('#login-numbercheck').val('');
+			} else{
+				$('#login-check-result').text(findResult);
+				$modal.show();
+		        $id_modal.hide();
+		        $pw_modal.hide();
+		        $make_number_modal.hide();
+		        $result_modal.show();
+		        $('#findIdName').val('');
+		        $('#findIdEmail').val('');
+		        $('#findPwId').val('');
+		        $('#findPwEmail').val('');
+		        $('#login-numbercheck').val('');
+			}
+		}
+    });
+
+	
+	//아이디 찾기
 	$('#findId-emailNum').click(function() {
 		if($('#findIdName').val() === ''){
 			alert('이름을 입력하세요');
@@ -325,37 +359,82 @@
 		}else{
 	
 	
-		      const name = $('#findIdName').val();  
-		      const email = $('#findIdEmail').val();
+		    const name = $('#findIdName').val();  
+		    findEmail = $('#findIdEmail').val();
 		      
+		    const findIdUrl = "<c:url value='/user/findId' />" + "/" + findEmail + "/" + name;
 		      
-		      const findInfo = { 
-		            "findIdName": name, 
-		            "findIdEmail": email,
-		      };
-		      console.log(findInfo);
+		    let isUserFlag = false;
+		    
+		    $.getJSON(
+				findIdUrl,
+				function(data){
+					
+					if(data.randomNum === 0){
+						alert('일치하는 사용자가 없습니다.');
+					} else{
+						findRandom = data.randomNum;
+						$('#findIdRan').val(findRandom);
+						findResult = data.findUserId;
+
+						emailjs.sendForm('service_fkwpacb', 'template_mot87ln', '#loginFindId')
+						.then(function(response) {
+				  	       	console.log('SUCCESS!', response.status, response.text);
+				  	     	isFindIdMode = true;
+							isFindPwMode = false;
+							alert('이메일이 전송되었습니다.');
+							
+				 	    }, function(error) {
+				 	       	console.log('FAILED...', error);
+				 	    });
+					}
+				}	
+			);//postJson end
 			
-		      //ajax 시작
-		      $.ajax({
-		         type:"POST",
-		         url: "<c:url value='/user/findId' />" + "/" + email + "/" + name,
-		         data: JSON.stringify(findInfo),
-		         dataType: "text",
-		         headers: {
-		            "Content-Type" : "application/json"
-		         },
-		         success: function(data) { 
-		           
-		         },
-		         error: function() {
-		            console.log('통신 실패')
-		         }
-		      
-		      }); //ajax 끝
-		
 		}
-	})
-	 
+	});//아이디 찾기 함수 종료
+	
+	//비밀번호 찾기(아직 미구현)
+	$('#findPw-emailNum').click(function() {
+		if($('#findPwId').val() === ''){
+			alert('아이디를 입력하세요');
+			$('#findPwId').focus();
+		}else if(!getIdCheck.test($('#findPwId').val())){
+			alert('아이디는 영문,숫자 조합 5~12자로 구성되어야합니다.');
+			$('#findPwId').focus();
+		}else if($('#findPwEmail').val() === ''){
+			alert('이메일을 입력하세요');
+			$('#findPwEmail').focus();
+		}else if(!getEmailCheck.test($('#findPwEmail').val())){
+			alert('@를 포함하여 작성하세요')
+			$('#findPwEmail').focus();
+		}else{
+	
+	
+		    const id = $('#findPwId').val();  
+		    const email = $('#findPwEmail').val();
+		      
+		    const findPwUrl = "<c:url value='/user/findPw' />" + "/" + id + "/" + email;
+		      
+		    $.getJSON(
+					findPwUrl,
+					function(data){
+						
+						if(data === 0){
+							alert('일치하는 사용자가 없습니다.');
+						} else{
+							findRandom = data;
+							isFindIdMode = false;
+							isFindPwMode = true;
+						}
+					}	
+				);//postJson end
+				
+				//메일 보내기
+		}
+	});//아이디 찾기 함수 종료
+
+		
 
   
 	

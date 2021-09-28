@@ -25,6 +25,7 @@
  -->	  
 	<!-- 주소 api -->    
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
 
     <style>
     

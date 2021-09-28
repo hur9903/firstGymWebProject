@@ -1,16 +1,15 @@
 package kr.co.firstgym.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -98,27 +97,52 @@ public class UserController {
 	
 	//아이디 찾기 인증번호 생성
 	@ResponseBody
-	@PostMapping("/findId/{findIdEmail}/{findIdName}")
-	public String findId(@PathVariable("findIdName") String findIdName, @PathVariable("findIdEmail") String findIdEmail, 
-						 HttpSession session, RedirectAttributes ra) {
+	@GetMapping("/findId/{findEmail}/{findIdName}")
+	public Map<String, Object> findId(@PathVariable("findIdName") String findIdName, @PathVariable("findEmail") String findIdEmail, 
+						 HttpSession session) {
 		
 		System.out.println("아이디찾기 요청 들어옴: " + findIdName + "," + findIdEmail);
 		
 		UserVO findVo = service.findId(findIdName, findIdEmail);
 		
-		session.setAttribute("findUserId", findVo.getUserId());
-		
-		Random random = new Random();
-		
-		session.setAttribute("random", random.nextInt(99999));
+		System.out.println("findVo: " + findVo);
 
-		return "";
+		Map<String, Object> returnMap = new HashMap<>();
+		
+		if(findVo == null) {
+			returnMap.put("findUserId", "");
+			returnMap.put("randomNum", 0);
+		}else {
+			returnMap.put("findUserId", findVo.getUserId());
+			
+			Random random = new Random();
+			returnMap.put("randomNum", random.nextInt(99999));
+		}
+		return returnMap;
 	}
 	
 	//비번찾기 인증번호 생성
-	@PostMapping("/findPw")
-	public String findPw() {
-		return "";
+	@ResponseBody
+	@GetMapping("/findPw/{findPwId}/{findEmail}")
+	public int findPw(@PathVariable("findPwId") String findPwId, @PathVariable("findEmail") String findPwEmail, 
+			 HttpSession session) {
+		System.out.println("비밀번호찾기 요청 들어옴: " + findPwId + "," + findPwEmail);
+		
+		String findPw = service.findPw(findPwId, findPwEmail);
+		
+		if(findPw == null) {
+			return 0;
+		}
+		
+		session.setAttribute("findUserPw", findPw);
+		
+		Random random = new Random();
+		
+		int randomNum = random.nextInt(99999);
+		
+		session.setAttribute("random", randomNum);
+
+		return randomNum;
 	}
 	
 	//인증번호 확인
