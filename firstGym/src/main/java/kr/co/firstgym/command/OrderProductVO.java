@@ -13,8 +13,8 @@ public class OrderProductVO {
 	private int o_productNum;
 	private int o_num;
 	private String p_name;
-	private int o_productPrice;
-	private Timestamp o_productDate;
-	private String o_productCategory;
+	private int o_totalPrice;
+	private Timestamp o_date;
+	private String p_category;
 	private int p_num;
 }

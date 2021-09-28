@@ -26,11 +26,11 @@
                                 <a href="#" class="dumbel">${vo.p_name}</a>
                             </div>
                             <div class="product-price">
-                                <a class="price">${vo.o_productPrice}</a>
-                                <a class="date">${vo.o_productDate}</a>
+                                <a class="price">${vo.o_totalPrice}</a>
+                                <a class="date">${vo.o_date}</a>
                             </div>
                             <div class="type">
-                                <a href="#">${vo.o_productCategory}</a>
+                                <a href="#">${vo.p_category}</a>
                             </div>
                         </div>
                         <div class="seller-info">

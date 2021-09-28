@@ -36,5 +36,44 @@
   		on op.o_num = o.o_num
   		where o.o_num = #{o_num}
   	</select>
+  	
+  	<select id="getProduct" resultType="kr.co.firstgym.command.ProductVO">
+  		select *
+  		from product
+  		where p_num = #{p_num}
+  	</select>
+  	
+  	<insert id="regist">
+  		insert into orders
+  		values(orders_seq.nextval, #{o_sendId}, #{o_sendName}, #{o_pNum}, #{o_method},
+  		#{o_receiveName}, #{o_zipcode}, #{o_address}, #{o_detailAddress}, #{o_message},
+  		sysdate, #{o_totalPrice}, #{o_email})
+  	</insert>
+  	
+  	<insert id="registOP">
+  		insert into order_product
+  		values(order_product_seq.nextval, #{seq}, #{name}, #{price},
+  		#{date}, #{category}, #{p_num})
+  	</insert>
+  	
+  	<select id="selectSeq" resultType="int">
+  		select orders_seq.currval from dual
+  	</select>
+  	
+  	<select id="selectName" resultType="String">
+  		select p_name from product where p_num=#{p_num}
+  	</select>
+  	
+  	<select id="selectPrice" resultType="int">
+  		select o_totalPrice from orders where o_num=#{seq}
+  	</select>
+  	
+  	<select id="selectDate" resultType="String">
+  		select o_date from orders where o_num=#{seq}
+  	</select>
+  	
+  	<select id="selectCategory" resultType="String">
+  		select p_category from product where p_num=#{p_num}
+  	</select>
   
 </mapper>
