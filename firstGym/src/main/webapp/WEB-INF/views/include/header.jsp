@@ -21,8 +21,8 @@
 <!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
  -->   
     <!-- 부트스트랩 css 사용 --> 
-<!--     <link rel="stylesheet" href="/css/bootstrap.css">
- -->	  
+    <link rel="stylesheet" href="/css/bootstrap.css">
+	  
 	<!-- 주소 api -->    
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
@@ -33,7 +33,7 @@
 <body>
     <header>
         <div class='title'>
-            <h1>FIRST GYM</a></h1>
+           <h1> <img src="${pageContext.request.contextPath }/resources/image/logo.png" alt="" class="header-logo"> <span class="header-first">FIRST GYM</span></a></h1>
             <div class="join">
        
             <c:choose>
@@ -60,11 +60,7 @@
 	          	</c:when>	
           		
             </c:choose>
-              
-          
-         
-               
-          		
+
             </div>
         </div>
         <nav class='bar'>

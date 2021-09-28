@@ -57,7 +57,11 @@ body, html {/*body와 html은 꽉 차게, 기본 폰트는 나눔 고딕*/
     background: rgb(94, 94, 94);
 }
 /*** header.html 디자인 ***/
-
+.header-logo{
+    width: 100px;
+    margin-left: -410px;
+    margin-right: 30px;
+}
 a {
     color: black;
     text-decoration: none;
@@ -180,10 +184,16 @@ a {
     width: 160px;
     margin: 5px;
 }
-
+span.header-first {
+    margin-right: 100px;
+    position: absolute;
+    top: 30px;
+}
 header .title h1{
     font-family: 'ROKABold';
-    font-size: 5em;
+    font-size: 3.5em;
+    margin-bottom: 20px;
+        margin: -10px;
 }
 header * {
     text-align: center;
@@ -221,15 +231,13 @@ header a {
 header .bar ul li a:hover {
     color: white;
 }
-header .title h1 {
-    font-size: 3em;
-}
+
 
 header .join {
     position: absolute;        
     list-style: none;
     right: 50px;
-    top: 30px;
+    top: 70px;
 }
 
 header .join a {
@@ -251,6 +259,57 @@ header .join a {
 footer .footerhr {
     clear: both;
 }
+footer {
+margin-top: 70px;
+background:rgb(0, 77, 110);
+padding: 30px 0;
+color: white;
+}
+.footer-containe {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.copyright{
+    padding: 20px;
+    word-spacing: 5px;
+    letter-spacing: 2px;
+}
+.copyright ul li, .footer-menu ul li{
+
+    list-style: none;
+}
+.footer-logo{
+    float: left;
+    margin-right: 40px;
+    margin-left: 30px;
+    height: 170px;
+    padding-bottom: 20px;
+}
+.footer-mail{
+    width: 20px;
+}
+.footer-menu{
+    word-spacing: 5px;
+    letter-spacing: 3px;
+    padding: 20px;
+    float: right;
+    margin-top: -150px;
+    margin-right: 190px;
+}
+
+.footer-menu a{
+    color: white;
+}
+.footer-manager{
+    background-color: rgb(54, 54, 54);
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    height: 30px;
+}
+
 
 /*** bmiCheck.html 디자인 ***/
 .bmiCheck-title{
@@ -2816,4 +2875,158 @@ background-color:rgb(14, 117, 185);
 }
 .purchase-card{
    transform: scale(2);
+}
+
+/*** manager.html 디자인 ***/
+.orderDetail-main-div{
+	min-width: 1000px;
+	text-align: center;
+}
+.manager-sub-div{
+    min-width: 600px;
+    margin: 100px 20%;
+    width: 60%;
+    text-align: left;
+    padding: 30px;
+    position: relative;
+
+    /* background: rgb(232, 246, 255); */
+}
+.manager-write{
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(22, 143, 36);
+    color: white;
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.manager-write:hover{
+    cursor: pointer;
+    background-color: rgb(55, 126, 27);
+}
+/* 테이블 테두리*/
+.manager-main-div table{
+    width: 100%;
+    border: 2px solid rgb(0, 0, 0);
+}
+.manager-table-tr{
+    font-weight: 600;
+    text-align: center;
+}
+.manager-main-div td{
+    padding: 5px;
+    text-align: center;
+}
+
+.manager-main-table2{
+    background: rgba(199, 255, 182, 0.3);
+    margin-top: 15px;
+    
+}
+.manager-table-td1{
+    width: 10%;
+    height: 50px;
+}
+.manager-table-td1-2{
+    width: 60%;
+    height: 50px;
+}
+.manager-table-td1-3{
+    width: 50px;
+    height: 50px;
+}
+.manager-table-td2{
+    height: 40px;
+}
+.manager-table-td2-1{
+    width: 50%;
+}
+.manager-table-td2-2{
+    width: 20%;
+}
+td{
+   width: 200px;
+}
+
+/* 상하 마긴 */
+
+.manager-table-box2{
+    margin-top: 150px;
+}
+/* 입력창 길이조절 */
+.manager-input-full-width{
+    width: 80%;
+}
+.manager-input-small-width{
+    min-width: 150px;
+}
+/* 인풋창 설정 */
+.manager-sub-div input,
+.manager-sub-div select{
+    padding: 5px;
+    margin: 5px;
+}
+/* 텍스트에리어 설정 */
+.manager-sub-div textarea{
+    padding: 5px;
+    margin: 5px;
+    width: 80%;
+    height: 60px;
+    resize: none;
+}
+.manager-img{
+    position: relative;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+   
+}
+
+.manager-align-center{
+    text-align: center;
+}
+.manager-order{
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    font-weight: bolder;
+    margin-bottom: 40px;
+    margin-top: -80px;
+}
+
+.manager-order-main{
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(59, 151, 94);
+}
+.manager-paging-div{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.manager-paging-div *{
+    display: inline-block;
+    margin-top: 10px;
+}
+.manager-btn-check{
+    background: rgb(129, 211, 122);
+    border: none;
+    color: white;
+}
+.manager-btn-not-check{
+    background: white;
+    border: 1px solid rgb(129, 211, 122);
+    color: black;
+}
+.manager-paging-div li{
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    border-radius: .25em;
 }
