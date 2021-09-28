@@ -29,13 +29,19 @@
 		  		SELECT * 
 		  		FROM product
 		  		WHERE p_name LIKE '%'||#{text_box}||'%'
-		  		<!-- 
-		  		AND
-		  		<if test="category == 유산소">		  		
-			  		WHERE p_category = '유산소'
-		  		</if>
-		  		 -->
 		  		
+		  		<if test="category == 'oxy'">		  		
+			  	AND p_category = '유산소운동'
+		  		</if>
+		  		<if test="category == 'nonoxy'">		  		
+			  	AND p_category = '웨이트'
+		  		</if>
+		  		<if test="category == 'yoga'">		  		
+			  	AND p_category = '요가,스트레칭'
+		  		</if>
+		  		<if test="category == 'band'">		  		
+			  	AND p_category = '운동밴드'
+		  		</if>
 		  		ORDER BY p_num DESC
 		  		) tbl
 		  	)

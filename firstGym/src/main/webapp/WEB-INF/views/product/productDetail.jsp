@@ -133,12 +133,12 @@ v
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="image/아령덤벨설명.png" alt="">
+                                    <img src="<c:url value='/product/display?filePath=${itemInfo.proImage}' />" alt="">
                                     <br>
-                                    <img src="image/아령덤벨설명2.png" alt="">
+                                    <img src="<c:url value='/product/display?filePath=${itemInfo.proImage}' />" alt="">
                                     <br>
                                     <br>
-                                    <img src="image/아령덤벨설명3.png" alt="">
+                                    <img src="<c:url value='/product/display?filePath=${itemInfo.proImage}' />" alt="">
                                 </td>
                             </tr>
                         </tbody>
@@ -199,7 +199,7 @@ v
                     &nbsp;&nbsp;(자세한 내용은 고객만족센터 1:1 E-MAIL상담을 이용해 주시기 바랍니다.)
                     <br>
                     <br>
-                    ※ 고객님의 마음이 바뀌어 교환, 반품을 하실 경우 상품반송 비용은 고객님께서 부담하셔야 합니다.
+					※ 고객님의 마음이 바뀌어 교환, 반품을 하실 경우 상품반송 비용은 고객님께서 부담하셔야 합니다.
                     <br>
                     &nbsp;&nabla;(색상 교환, 사이즈 교환 등 포함)
                     <br>

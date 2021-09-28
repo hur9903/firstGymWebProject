@@ -62,6 +62,7 @@
 				AND board_content LIKE '%'||#{keyword}||'%'
 			</if>
 		</if>
+		
 		<if test="category == 'nonoxy'">
 			WHERE board_category='nonoxy'
 			<if test="condition == 'title'">
@@ -74,6 +75,7 @@
 				AND board_content LIKE '%'||#{keyword}||'%'
 			</if>
 		</if>
+		
 		<if test="category == 'yoga'">
 			WHERE board_category='yoga'
 			<if test="condition == 'title'">

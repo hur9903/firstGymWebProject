@@ -11,9 +11,11 @@ import lombok.ToString;
 public class SearchPagingVO extends PageVO {
 	
 	private String text_box;
+	private String category;
 	
 	public SearchPagingVO() {
 		this.text_box = "";
+		this.category = "";
 	}
 
 }
