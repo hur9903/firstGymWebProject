@@ -5,7 +5,49 @@
   
 <mapper namespace="kr.co.firstgym.order.mapper.IOrderMapper">
   
-  	<select id="getList" resultType="kr.co.firstgym.command.OrderProductVO">
+  	<resultMap type="kr.co.firstgym.command.OrderProductVO" id="orderProductVO">
+		<result column="o_productnum" property="orderProductNum"/>
+		<result column="o_num" property="orderNum"/>
+		<result column="p_name" property="proName"/>
+		<result column="o_totalprice" property="orderTotalPrice"/>
+		<result column="o_date" property="orderDate"/>
+		<result column="o_category" property="orderCategory"/>
+		<result column="p_num" property="proNum"/>
+  	</resultMap>
+  	
+  	<resultMap type="kr.co.firstgym.command.OrdersVO" id="ordersVO">
+  		<result column="o_num"  property="orderNum"/>
+  		<result column="o_sendid"  property="orderSendId"/>
+  		<result column="o_sendname"  property="orderSendName"/>
+  		<result column="o_pnum"  property="orderPNum"/>
+  		<result column="o_method"  property="orderMethod"/>
+  		<result column="o_receivename"  property="orderReceiveName"/>
+  		<result column="o_zipcode"  property="orderZipcode"/>
+  		<result column="o_address"  property="orderAddress"/>
+  		<result column="o_detailAddress"  property="orderDetailAddress"/>
+  		<result column="o_message"  property="orderMessage"/>
+  		<result column="o_date"  property="orderDate"/>
+  		<result column="o_totalprice"  property="orderTotalPrice"/>
+  		<result column="o_email"  property="orderEmail"/>
+  	</resultMap>
+  	
+  	<resultMap type="kr.co.firstgym.command.ProductVO" id="ProductVO">
+  		<result column="p_num" property="proNum"/>
+  		<result column="p_category" property="proCategory"/>
+  		<result column="p_company" property="proCompany"/>
+  		<result column="p_country" property="proCountry"/>
+  		<result column="p_image" property="proImage"/>
+  		<result column="p_name" property="proName"/>
+  		<result column="p_price" property="proPrice"/>
+  		<result column="p_method" property="proMethod"/>
+  		<result column="p_sendPrice" property="proSendPrice"/>
+  		<result column="p_exchangeInfo" property="proExchangeInfo"/>
+  		<result column="p_info" property="proInfo"/>
+  	
+  		
+  	</resultMap>
+  
+  	<select id="getList" resultMap="orderProductVO">
   		select * from
 	  		(
 	  		select rownum as rn, tbl.* from
@@ -30,11 +72,50 @@
   		where o.o_sendId = #{id}
   	</select>
   	
-  	<select id="getContent" resultType="kr.co.firstgym.command.OrdersVO">
+  	<select id="getContent" resultMap="ordersVO">
   		select *
   		from orders o left outer join order_product op
   		on op.o_num = o.o_num
-  		where o.o_num = #{o_num}
+  		where o.o_num = #{orderNum}
+  	</select>
+  	
+  	<select id="getProduct" resultMap="ProductVO">
+  		select *
+  		from product
+  		where p_num = #{proNum}
+  	</select>
+  	
+  	<insert id="regist">
+  		insert into orders
+  		values(orders_seq.nextval, #{orderSendId}, #{orderSendName}, #{orderPNum}, #{orderMethod},
+  		#{orderReceiveName}, #{orderZipcode}, #{orderAddress}, #{orderDetailAddress}, #{orderMessage},
+  		sysdate, #{orderTotalPrice}, #{orderEmail})
+  	</insert>
+  	
+  	<insert id="registOP">
+  		insert into order_product
+  		values(order_product_seq.nextval, #{seq}, #{name}, #{price},
+  		#{date}, #{category}, #{proNum})
+  	</insert>
+  	
+  	<select id="selectSeq" resultType="int">
+  		select orders_seq.currval from dual
+  	</select>
+  	
+  	<select id="selectName" resultType="String">
+  		select p_name from product where p_num=#{proNum}
+  	</select>
+  	
+  	<select id="selectPrice" resultType="int">
+  		select o_totalPrice from orders where o_num=#{seq}
+  	</select>
+  	
+  	<select id="selectDate" resultType="String">
+  		select o_date from orders where o_num=#{seq}
+  	</select>
+  	
+  	<select id="selectCategory" resultType="String">
+  		select p_category from product where p_num=#{proNum}
   	</select>
   
 </mapper>

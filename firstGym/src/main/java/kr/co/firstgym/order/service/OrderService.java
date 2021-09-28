@@ -1,5 +1,6 @@
 package kr.co.firstgym.order.service;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.firstgym.command.OrderProductVO;
 import kr.co.firstgym.command.OrdersVO;
+import kr.co.firstgym.command.ProductVO;
 import kr.co.firstgym.order.mapper.IOrderMapper;
 import kr.co.firstgym.util.PageVO;
 
@@ -53,8 +55,58 @@ public class OrderService implements IOrderService{
 	}
 
 	@Override
-	public OrdersVO getContent(int o_num) {
-		return mapper.getContent(o_num);
+	public OrdersVO getContent(int orderNum) {
+		return mapper.getContent(orderNum);
+	}
+	
+	@Override
+	public ProductVO getProduct(int proNum) {
+		return mapper.getProduct(proNum);
+	}
+
+	@Override
+	public void regist(OrdersVO vo) {
+		mapper.regist(vo);
+		
+	}
+
+	@Override
+	public void registOP(OrdersVO vo, int seq, int proNum, String name, int price, Timestamp date, String category) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("vo", vo);
+		map.put("seq", seq);
+		map.put("proNum", proNum);
+		map.put("name", name);
+		map.put("price", price);
+		map.put("date", date);
+		map.put("category", category);
+		mapper.registOP(map);
+		
+	}
+
+	@Override
+	public int selectSeq() {
+		return mapper.selectSeq();
+	}
+
+	@Override
+	public String selectName(int proNum) {
+		return mapper.selectName(proNum);
+	}
+
+	@Override
+	public int selectPrice(int seq) {
+		return mapper.selectPrice(seq);
+	}
+
+	@Override
+	public String selectDate(int seq) {
+		return mapper.selectDate(seq);
+	}
+
+	@Override
+	public String selectCategory(int proNum) {
+		return mapper.selectCategory(proNum);
 	}
 
 }
