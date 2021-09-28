@@ -2,13 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../include/header.jsp" %>
-
+v
     <div id="productDetail-div">
         <!-- 상단 제품 정보 -->
         <div class="product-detail">
            <div class="product-imgArea">
                <div class="keyImg">
-                   <img class="image" src="image/1.png">
+                   <img class="image" src="<c:url value='/product/display?filePath=${itemInfo.proImage}' />">
                </div>
            </div>
            <div class="info-area">
@@ -21,25 +21,25 @@
                             <th scope="row">
                                 <span class="product-title">상품명</span>
                             </th>
-                            <td class="title">${itemInfo.pName}</td>
+                            <td class="title">${itemInfo.proName}</td>
                         </tr>
                         <tr class="record">
                             <th scope="row">
                                 <span>제조사</span>
                             </th>
-                            <td>${itemInfo.pCompany}</td>
+                            <td>${itemInfo.proCompany}</td>
                         </tr>
                         <tr class="record">
                             <th scope="row">
                                 <span>원산지</span>
                             </th>
-                            <td>${itemInfo.pCountry}</td>
+                            <td>${itemInfo.proCountry}</td>
                         </tr>
                         <tr class="record">
                             <th scope="row">
                                 <span>판매가</span>
                             </th>
-                            <td>${itemInfo.pPrice}</td>
+                            <td>${itemInfo.proPrice}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -64,7 +64,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>${itemInfo.pName}</td>
+                                <td>${itemInfo.proName}</td>
                                 <td>
                                     <span class="quantity">
                                         <input id="quantity" name="quantity-opt" value="1" type="text">
@@ -78,7 +78,7 @@
                                 </td>
                                 <td class="right" style="width: 70px;">
                                     <span class="quantity-price">
-                                        ${itemInfo.pPrice}
+                                        ${itemInfo.proPrice}
                                         <input type="hidden" id="total-price" name="option-box-price" class="option-box-price" value="73200">
                                     </span>
                                 </td>
@@ -123,22 +123,22 @@
                         <a href="#prd-review">상품사용후기</a>
                     </li>
                     <li class="prd-li-qna">
-                    	<a href="#prd-qna">상품문의하기</a>
+                    	<a href="#prd-qna">상품Q&A</a>
                     </li>
                 </ul>
-                <div class="cont">
+                <div class="cont" id="prd-detail">
                     <h3>상품상세정보</h3>
                     <p> </p>
                     <table>
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="image/아령덤벨설명.png" alt="">
+                                    <img src="<c:url value='/product/display?filePath=${itemInfo.proImage}' />" alt="">
                                     <br>
-                                    <img src="image/아령덤벨설명2.png" alt="">
+                                    <img src="<c:url value='/product/display?filePath=${itemInfo.proImage}' />" alt="">
                                     <br>
                                     <br>
-                                    <img src="image/아령덤벨설명3.png" alt="">
+                                    <img src="<c:url value='/product/display?filePath=${itemInfo.proImage}' />" alt="">
                                 </td>
                             </tr>
                         </tbody>
@@ -160,10 +160,10 @@
                         <a href="#prd-review">상품사용후기</a>
                     </li>
                     <li>
-                        <a href="prdQnA">상품Q&A</a>
+                        <a href="#prd-qna">상품Q&A</a>
                     </li>
                 </ul>
-                <div class="cont">
+                <div class="cont" id="prd-change">
                     <h3>교환 및 반품정보</h3>
                     <b>교환 및 반품이 가능한 경우</b>
                     <br>
@@ -199,7 +199,7 @@
                     &nbsp;&nbsp;(자세한 내용은 고객만족센터 1:1 E-MAIL상담을 이용해 주시기 바랍니다.)
                     <br>
                     <br>
-                    ※ 고객님의 마음이 바뀌어 교환, 반품을 하실 경우 상품반송 비용은 고객님께서 부담하셔야 합니다.
+					※ 고객님의 마음이 바뀌어 교환, 반품을 하실 경우 상품반송 비용은 고객님께서 부담하셔야 합니다.
                     <br>
                     &nbsp;&nabla;(색상 교환, 사이즈 교환 등 포함)
                     <br>
@@ -207,7 +207,7 @@
             </div>
             <!-- 교환 및 반품정보 -->
             <!-- 상품사용후기 -->
-            <div class="review-box">
+            <div class="review-box" id="prd-review">
                 <div class="review-option">
                     <img src="image/review.gif" alt="">
                 </div>
@@ -273,7 +273,7 @@
             </div>
             <!-- 상품사용후기 -->
             <!-- 상품 Q&A -->
-            <div class="prdQnA">
+            <div class="prdQnA" id="prd-qna">
                 <div class="board">
                     <div class="item-title">
                         <img src="image/Q&A.gif" alt="상품문의하기">

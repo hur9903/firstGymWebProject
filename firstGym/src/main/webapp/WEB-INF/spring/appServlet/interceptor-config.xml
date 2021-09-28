@@ -24,7 +24,7 @@
 		<!-- 로그인 권한을 체크하는 핸들러 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/freeBoard/freeRegist"/> <!-- 글쓰기 화면 -->
-			<mvc:mapping path="/user/userMyPage"/> <!-- 마이페이지 화면 -->
+			<mvc:mapping path="/mypage/mainPage"/> <!-- 마이페이지 화면 -->
 			<ref bean="userAuthHandler" />
 		</mvc:interceptor>
 		

@@ -28,4 +28,7 @@ public class UserVO {
    private String nonUserEmail;
    
    private List<OrderProductVO> orderProductList;
+   private List<BmiResultVO> bmiResultList;
+   
+   
 }

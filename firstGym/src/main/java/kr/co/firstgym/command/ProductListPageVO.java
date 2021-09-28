@@ -7,12 +7,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class PageVO {
+public class ProductListPageVO {
 
 	private int page;
 	private int countPerPage;
 	
-	public PageVO() {
+	public ProductListPageVO() {
 		this.page = 1;
 		this.countPerPage = 12;
 	}
