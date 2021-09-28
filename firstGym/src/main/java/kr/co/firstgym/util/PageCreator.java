@@ -21,7 +21,7 @@ public class PageCreator {
 	
 	private void calcDataOfPage() {
 		
-		endPage = (int) (Math.ceil(paging.getPage() / (double) buttonNum) * buttonNum);
+		endPage = (int) (Math.ceil(paging.getPageNum() / (double) buttonNum) * buttonNum);
 		
 		beginPage = (endPage - buttonNum) + 1;
 		

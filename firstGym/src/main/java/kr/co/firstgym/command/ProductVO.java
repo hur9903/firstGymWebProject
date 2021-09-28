@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+
 /*
 	-- 상품 테이블 생성
 pNum number
@@ -35,7 +36,7 @@ public class ProductVO {
 	private int proSendPrice;
 	private String proExchangeInfo;
 	private String proInfo;
-	
+
 }
 
 

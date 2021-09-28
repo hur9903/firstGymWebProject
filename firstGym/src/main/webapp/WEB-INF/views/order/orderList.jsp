@@ -16,21 +16,21 @@
             	<c:forEach var="vo" items="${OrderProductList}">
                     <li class="out-box">
                         <div class="number-box">
-                            <a href="<c:url value='/order/orderDetailPage?o_num=${vo.o_num}' />" class="order-number">${vo.o_num}</a>
+                            <a href="<c:url value='/order/orderDetailPage?orderNum=${vo.orderNum}' />" class="order-number">${vo.orderNum}</a>
                         </div>
                         <div class="pic-box">
                             <img src="image/1.png" alt="" class="pic">
                         </div>
                         <div class="order-info">
                             <div class="product-title">
-                                <a href="#" class="dumbel">${vo.p_name}</a>
+                                <a href="#" class="dumbel">${vo.proname}</a>
                             </div>
                             <div class="product-price">
-                                <a class="price">${vo.o_productPrice}</a>
-                                <a class="date">${vo.o_productDate}</a>
+                                <a class="price">${vo.orderTotalPrice}</a>
+                                <a class="date">${vo.orderDate}</a>
                             </div>
                             <div class="type">
-                                <a href="#">${vo.o_productCategory}</a>
+                                <a href="#">${vo.procategory}</a>
                             </div>
                         </div>
                         <div class="seller-info">

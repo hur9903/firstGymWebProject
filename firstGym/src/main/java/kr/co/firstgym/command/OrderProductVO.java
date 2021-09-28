@@ -10,11 +10,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class OrderProductVO {
-	private int o_productNum;
-	private int o_num;
-	private String p_name;
-	private int o_productPrice;
-	private Timestamp o_productDate;
-	private String o_productCategory;
-	private int p_num;
+	private int orderProductNum;
+	private int orderNum;
+	private String proName;
+	private int orderTotalPrice;
+	private Timestamp orderDate;
+	private String orderCategory;
+	private int proNum;
 }
