@@ -1,6 +1,7 @@
 package kr.co.firstgym.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.co.firstgym.command.UserVO;
@@ -9,8 +10,16 @@ import kr.co.firstgym.user.repository.IUserMapper;
 @Service
 public class UserService implements IUserService {
 
+	
 	@Autowired
 	private IUserMapper mapper;
+	
+	@Override
+	public String security(UserVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	@Override
 	public UserVO login(String id, String pw) {

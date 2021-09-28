@@ -30,6 +30,7 @@ public class UserController {
 	@Autowired
 	private IUserService service;
 	
+	
 	//로그인 페이지로 이동
 	@GetMapping("/loginPage")
 	public String loginPage() {
@@ -57,14 +58,18 @@ public class UserController {
 	
 		System.out.println("로그인 요청 들어옴");
 		System.out.println("param: " + loginData);
-	
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
-		UserVO dbData = service.selectOne(loginData.getUserId());
+		
+		UserVO dbData = service.selectOne(loginData.getUserId()); 
+		
 		System.out.println("dbData : " + dbData);
 		
+
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+		
 		if(dbData != null) {
-			if(loginData.getUserPw().equals(dbData.getUserPw())) {
+			if(encoder.matches(loginData.getUserPw(), dbData.getUserPw())) {
 				session.setAttribute("login", dbData);
 				
 				return "loginOk";
@@ -93,7 +98,28 @@ public class UserController {
 	//회원가입 페이지 이동
 	@GetMapping("/joinPage")
 	public String joinPage() {
+	
 		return "user/join";
+	}
+	
+	//회원가입
+	@PostMapping("/join")
+	public String join(UserVO vo) {
+		
+		System.out.println("회원가입 요청 들어옴");
+		
+		String rawPw = "";
+		String encodePw = "";
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		rawPw = vo.getUserPw();
+		encodePw = encoder.encode(rawPw);
+		vo.setUserPw(encodePw);
+		
+		System.out.println(vo);
+		service.register(vo);
+
+		return "user/login";
 	}
 	
 	//아이디 찾기 인증번호 생성
@@ -154,17 +180,7 @@ public class UserController {
 	
 	}
 	
-	//회원가입
-	@PostMapping("/join")
-	public String join(UserVO vo) {
-		
-		System.out.println("회원가입 요청 들어옴");
-		System.out.println(vo);
-		service.register(vo);
 
-		return "user/login";
-	}
-	
 	//사용자 정보 수정
 	@PostMapping("/modifyInfo")
 	public String modifyInfo(UserVO vo,  RedirectAttributes ra) {

@@ -7,6 +7,9 @@ public interface IUserService {
 		//로그인
 		UserVO login(String id, String pw);
 	
+		//암호화
+		String security(UserVO vo);
+		
 		//아이디 중복 체크 기능
 		int checkId(String account);
 		
