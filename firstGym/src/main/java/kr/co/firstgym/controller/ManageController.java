@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/manage")
 public class ManageController {
 
+	//매니저 페이지 이동
+	@GetMapping("/manager")
+	public String manage() {
+		return "manage/manager";
+	}
+	
 	//신고하기
 	@PostMapping("/report")
 	public String report() {

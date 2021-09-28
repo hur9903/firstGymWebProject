@@ -9,6 +9,7 @@ public interface IUserMapper {
 		//로그인
 		UserVO login(@Param("id")String id, @Param("pw")String pw);
 		
+		
 		//아이디 중복 체크 기능
 		int checkId(String account);
 		
