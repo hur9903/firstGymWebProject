@@ -3037,3 +3037,70 @@ td{
     cursor: pointer;
     border-radius: .25em;
 }
+
+/*** reportContent ***/
+
+ .report-page-title{
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+        .report-content-main-div{
+            background-color: rgba(199, 255, 182, 0.3);
+            border: 1px solid;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .report-sub-div{
+            width: 500px;
+            margin-left: 500px;
+        }
+        .report-content-area-div{
+            position: relative;
+            padding: 10px;
+            background: white;
+            border: 1px solid lightgray;
+            min-height: 200px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        .report-btn-big{
+            padding: 0 20px;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+            color: white;
+            background-color: rgb(22, 143, 36);
+        }
+        .report-btn-big:hover{
+            background-color: rgb(19, 121, 29);
+
+        }
+        .report-btn-big2{
+            padding: 0 20px;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: .25em;
+            color: white;
+            background-color: rgb(73, 78, 73);
+        }
+        .report-btn-big2:hover{
+            background-color: rgb(93, 99, 93);
+
+        }
+        .report-float-left{
+            float: left;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .report-cat{
+            padding: 10px 0;
+        }
