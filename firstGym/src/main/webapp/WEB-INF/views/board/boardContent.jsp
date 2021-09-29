@@ -165,24 +165,30 @@
                 <div class="boardContent-modal-title boardContent-float-left">신고하기</div>
                 <button id="boardContent-report-modal-xbtn" class="boardContent-btn-red boardContent-float-right">x</button>
             </div>
-            <form action="<c:url value='/manage/report' />">
+            <form id="boardContent-report-form" action="<c:url value='/manage/report' />" method="post">
+            	<input type="hidden" name="category" value="${page.category}">
+	            <input type="hidden" name="condition" value="${page.condition}">
+	            <input type="hidden" name="keyword" value="${page.keyword}">
+	            <input type="hidden" name="pageNum" value="${page.pageNum}">
+	            <input type="hidden" name="userId" value="${login.userId}">
+	            <input type="hidden" name="boardNum" value="${article.boardNum}">
                 <div class="boardContent-modal-content">
                     <span id="boardContent-modal-content-title" class="boardContent-report-div">작성자</span> <span class="board-report-writer"> ${article.userId}</span>
-                    <span id="boardContent-modal-content-title" class="boardContent-report-div">내용</span> <span class="board-report-writer">${article.boardTitle}</span>
+                    <span id="boardContent-modal-content-title" class="boardContent-report-div">게시글 제목</span> <span class="board-report-writer">${article.boardTitle}</span>
                     
                     <div id="boardContent-modal-select" class="boardContent-report-margin-div">
-                        <select name="reason" id="">
-                            <option value="" selected="selected">---- 신고 사유 옵션 ----</option>
-                            <option value="">부적절한 홍보 게시글</option>
-                            <option value="" >음란성 또는 청소년에게 부적합한 내용</option>
-                            <option value="">비방/욕설 게시글</option>
-                            <option value="">도배성 게시글</option>
+                        <select name="reportContent" id="reason">
+                            <option value="none" selected="selected">---- 신고 사유 옵션 ----</option>
+                            <option value="reason1">부적절한 홍보 게시글</option>
+                            <option value="reason2" >음란성 또는 청소년에게 부적합한 내용</option>
+                            <option value="reason3">비방/욕설 게시글</option>
+                            <option value="reason4">도배성 게시글</option>
                         </select>
                     </div>
                 </div>
                 <div class="boardContent-modal-bottombtn boardContent-clearfix">
                     <div class="boardContent-float-right">
-                        <button type="submit" class="boardContent-report-btn">등록</button>
+                        <button id="boardContent-report-do" type="button" class="boardContent-report-btn">등록</button>
                     </div>    
                 </div>
             </form>
@@ -610,6 +616,27 @@
 				}	
 			);//postJson end
 		});
+		
+		$('#boardContent-report-do').click(function(){
+			if('${login}' === ''){
+				alert('회원 로그인이 필요한 기능입니다.');
+				return;
+			} else{
+				if($('#reason').val() === 'none'){
+					alert('신고 사유를 선택해주세요.');
+					return;
+				}
+				$('#boardContent-report-form').submit();
+			}
+		});
+		
+		if('${param.msg}' === 'reportFail'){
+			alert('이미 신고한 게시글입니다.');
+		}
+		
+		if('${param.msg}' === 'reportDone'){
+			alert('신고가 접수되었습니다.');
+		}
     });
 </script>
 </html>

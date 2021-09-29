@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 
 <%@include file="../include/header.jsp" %>
 
@@ -21,13 +23,19 @@
                                 <td class="manager-table-td2-2">신고자</td>
                                 <td class="manager-table-td2-3">신고일</td>
                             </tr>
-                            <tr class="manager-table-tr2">
-                                <td class="manager-table-td2"></td>
-                                <td><a href="<c:url value='/manage/reportPage' />">ddd</a></td>
-                                <td  style="font-weight: bold;"></td>
-                                <td></td>
-                            </tr>
-                           
+                            <c:forEach var="report" items="${reports}">
+	                            <tr class="manager-table-tr2">
+	                                <td class="manager-table-td2">${report.reportNum}</td>
+	                                <td><a href="<c:url value='/manage/reportPage' />?reportNum=${report.reportNum}">
+	                                	<c:if test="${report.reportContent == 'reason1'}">부적절한 홍보 게시글</c:if>
+	                                	<c:if test="${report.reportContent == 'reason2'}">음란성 또는 청소년에게 부적합한 내용</c:if>
+	                                	<c:if test="${report.reportContent == 'reason3'}">비방/욕설 게시글</c:if>
+	                                	<c:if test="${report.reportContent == 'reason4'}">도배성 게시글</c:if>	                                
+	                                </a></td>
+	                                <td  style="font-weight: bold;">${report.userId}</td>
+	                                <td><fmt:formatDate value="${report.reportDate}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
+	                            </tr>
+                           </c:forEach>
                         </table>                
                     </div>
                     <!-- 페이징 바 -->

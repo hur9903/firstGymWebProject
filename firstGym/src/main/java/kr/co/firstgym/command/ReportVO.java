@@ -11,10 +11,11 @@ import lombok.ToString;
 @ToString
 public class ReportVO {
 
-	private int rpNum;
+	private int reportNum;
+	private String reportContent;
+	private Timestamp reportDate;
+	private char reportYN;
+	private int boardNum;
 	private String userId;
-	private String rpContent;
-	private Timestamp rpDate;
-	private String reason;
 
 }
