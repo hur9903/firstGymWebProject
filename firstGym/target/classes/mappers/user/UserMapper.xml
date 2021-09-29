@@ -60,4 +60,8 @@
 	<select id="findId" resultMap="UserMap" >
 		SELECT * FROM users WHERE USER_NAME=#{name} AND USER_EMAIL=#{email}
 	</select>
+	
+	<select id="findPw" resultMap="UserMap" >
+		SELECT * FROM users WHERE USER_ID=#{id} AND USER_EMAIL=#{email}
+	</select>
 </mapper>

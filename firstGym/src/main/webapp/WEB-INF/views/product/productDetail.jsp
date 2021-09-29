@@ -102,7 +102,7 @@ v
                 </div>
                 <div class="purchase-btn">
                     <div class="btn-area">
-                        <a href="<c:url value='/order/purchase'/>" id="order_purchase">
+                        <a href="<c:url value='/order/purchasePage?proNum=${itemInfo.proNum}'/>" id="order_purchase">
                             <img src="image/바로구매하기.gif" alt="바로 구매하기">
                         </a>
                     </div>

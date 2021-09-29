@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.co.firstgym.home.mapper.IHomeMapper">
+
+	<resultMap type="kr.co.firstgym.command.BoardVO" id="boardMap">
+		<id property="boardNum" column="board_num"/>
+		<result property="userId" column="user_id"/>
+		<result property="boardContent" column="board_content"/>
+		<result property="boardTitle" column="board_title"/>
+		<result property="boardCategory" column="board_category"/>
+		<result property="boardView" column="board_view"/>
+		<result property="boardRecom" column="board_recom"/>
+		<result property="boardDate" column="board_date"/>
+		<result property="boardThum" column="board_thum"/>
+		<result property="boardVideo" column="board_video"/>
+	</resultMap>
+	
+	<resultMap type="kr.co.firstgym.command.ProductVO" id="productMap">
+		<id property="proNum" column="p_num"/>
+		<result property="proCategory" column="p_category"/>
+		<result property="proCompany" column="p_company"/>
+		<result property="proCountry" column="p_country"/>
+		<result property="proImage" column="p_image"/>
+		<result property="proName" column="p_name"/>
+		<result property="proPrice" column="p_price"/>
+		<result property="proMethod" column="p_method"/>
+		<result property="proSendPrice" column="p_sendPrice"/>
+		<result property="proExchangeInfo" column="p_exchangeInfo"/>
+		<result property="proInfo" column="p_info"/>
+	</resultMap>
+
+	<select id="getBestList" resultMap="boardMap">
+		select * from (select * from board order by board_recom desc)
+		<![CDATA[where rownum <= 4]]>
+	</select>
+	
+	<select id="getRecentList" resultMap="boardMap">
+		select * from (select * from board order by board_date desc)
+		<![CDATA[where rownum <= 4]]>
+	</select>
+	
+	<select id="getBestProduct" resultMap="productMap">
+		select * from (select * from product order by p_price desc)
+		<![CDATA[where rownum <= 4]]>
+	</select>
+
+</mapper>

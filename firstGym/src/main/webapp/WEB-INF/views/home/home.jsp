@@ -16,42 +16,17 @@
                 <h3 class="best-more"><a href="<c:url value='/order/orderListPage' />" class="moreview">더보기</a></h3>
             </div>
             <ul class="best-list">
-                <a href="#">
-                    <li class="hot-new clearfix">
-                        <p class="writing">
-                            인기글
-                            <img src="image/icon_hot.png" alt="" width="20px">
-                        </p>
-                        <p class="date">2022-02-22</p>
-                    </li>
-                </a>
-                <a href="#">
-                    <li class="hot-new clearfix">
-                        <p class="writing">
-                            인기글
-                            <img src="image/icon_hot.png" alt="" width="20px">
-                        </p>
-                        <p class="date">2022-02-22</p>
-                    </li>
-                </a>
-                <a href="#">
-                    <li class="hot-new clearfix">
-                        <p class="writing">
-                            인기글
-                            <img src="image/icon_hot.png" alt="" width="20px">
-                        </p>
-                        <p class="date">2022-02-22</p>
-                    </li>
-                </a>
-                <a href="#">
-                    <li class="hot-new clearfix">
-                        <p class="writing">
-                            인기글
-                            <img src="image/icon_hot.png" alt="" width="20px">
-                        </p>
-                        <p class="date">2022-02-22</p>
-                    </li>
-                </a>
+            	<c:forEach var="vo" items="${bestList}">
+	                <a href="#">
+	                    <li class="hot-new clearfix">
+	                        <p class="writing">
+	                            ${vo.boardTitle}
+	                            <img src="image/icon_hot.png" alt="" width="20px">
+	                        </p>
+	                        <p class="date">${vo.boardDate}</p>
+	                    </li>
+	                </a>
+                </c:forEach>
             </ul>
         </div>
         <div class="recentboard">
@@ -60,43 +35,17 @@
                 <h3 class="best-more"><a href='#' class="moreview">더보기</a></h3>
             </div>
             <ul class="recent-list">
+            	<c:forEach var="vo" items="${recentList}">
                 <a href="#">
                     <li class="hot-new clearfix">
                         <p class="writing">
-                            최신글
+                            ${vo.boardTitle}
                             <img src="image/icon_new.gif" alt="" width="25px">
                         </p>
-                        <p class="date">2022-02-22</p>
+                        <p class="date">${vo.boardDate}</p>
                     </li>
                 </a>
-                <a href="#">
-                    <li class="hot-new clearfix">
-                        <p class="writing">
-                            최신글
-                            <img src="image/icon_new.gif" alt="" width="25px">
-                        </p>
-                        <p class="date">2022-02-22</p>
-                    </li>
-                </a>
-                <a href="#">
-                    <li class="hot-new clearfix">
-                        <p class="writing">
-                            최신글
-                            <img src="image/icon_new.gif" alt="" width="25px">
-                        </p>
-                        <p class="date">2022-02-22</p>
-                    </li>
-                </a>
-                <a href="#">
-                    <li class="hot-new clearfix">
-                        <p class="writing">
-                            최신글
-                            <img src="image/icon_new.gif" alt="" width="25px">
-                        </p>
-                        <p class="date">2022-02-22</p>
-                    </li>
-                </a>
-                
+                </c:forEach>
             </ul>
         </div>
     </div>
@@ -105,50 +54,19 @@
         <h4 style="float: left;">인기 기구</h4>
         <h3 style="float: right;"><a href='#' class="moreview">더보기</a></h3>
         <ul style="clear: both; display: flex; list-style: none; margin-left: 10px;">
+        <c:forEach var="vo" items="${bestProduct}">
             <li>
                 <a href="#">
                     <div>
                         <img src="image/test.jpeg" width="160px" height="200px" alt="기구1">
                         <div class="best-homegigu-pic-box">
-                            <h5 style="float: left;">기구명</h5>
-                            <h5 style="float: right;">가격</h5>
+                            <h5 style="float: left;">${vo.proName}</h5>
+                            <h5 style="float: right;">${vo.proPrice}</h5>
                         </div>
                     </div>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <div>
-                        <img src="image/test.jpeg" width="160px" height="200px" alt="기구1">
-                        <div class="best-homegigu-pic-box">
-                            <h5 style="float: left;">기구명</h5>
-                            <h5 style="float: right;">가격</h5>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div>
-                        <img src="image/test.jpeg" width="160px" height="200px" alt="기구1">
-                        <div class="best-homegigu-pic-box">
-                            <h5 style="float: left;">기구명</h5>
-                            <h5 style="float: right;">가격</h5>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div>
-                        <img src="image/test.jpeg" width="160px" height="200px" alt="기구1">
-                        <div class="best-homegigu-pic-box">
-                            <h5 style="float: left;">기구명</h5>
-                            <h5 style="float: right;">가격</h5>
-                        </div>
-                    </div>
-                </a>
-            </li>
+        </c:forEach>
         </ul>
     </div>
     <hr class="footerhr" color="gainsboro" size="6px" style="margin-top: 5px;">
@@ -162,14 +80,11 @@
     
 
 	const msg = '${msg}'
-   		if(msg === "logoutSuccess"){
+   		if(msg === "success"){
+   			alert('회원 정보 수정 완료')
+   		}else if(msg === "logoutSuccess"){
    			alert('로그아웃이 완료되었습니다')
    		}
    			
-	const delmsg = '${msg}'
-		if(delmsg === "delSuccess"){
-			alert('탈퇴가 완료되었습니다')
-		}
-	
 	
 	</script>

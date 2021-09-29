@@ -1,5 +1,7 @@
 package kr.co.firstgym.user.repository;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.firstgym.command.UserVO;
@@ -32,5 +34,5 @@ public interface IUserMapper {
 		UserVO findId(@Param("name") String name, @Param("email")String email);
 		
 		//비밀번호 찾기
-		UserVO findPw(@Param("id") String id, @Param("email")String email);
+		UserVO findPw(Map<String, Object> mappeerParam);
 }
