@@ -91,7 +91,7 @@
                     <!-- 댓글영역 -->
                     <div id="reply" class="boardContent-reply">
                         <div class="boardContent-reply-area-div">
-                            <div class="boardContent-updonw-margin-div boardContent-clearfix">
+                            <div class="boardContent-reply-margin-div boardContent-clearfix">
                                 <textarea id="board-reply-input" type="text" placeholder="댓글 입력" class="boardContent-float-left"></textarea>
                                 <button id="board-reply-regist-btn" type="button" class="boardContent-float-left boardContent-reg boardContent-color-white boardContent-btn-small">등록</button>
                             </div>
@@ -111,7 +111,7 @@
                             </div>
                         </div>
                         <!-- 페이징 바 -->
-                        <div class="boardList-paging-div boardContent-each-reply-div">
+                        <div class="boardList-paging-div ">
                             <ul id="boardContent-pageing-bar">
                                 <!-- 이전버튼  -->
                                 <!-- <a href=""><li class="boardList-btn-not-check">&lt;</li></a> -->
@@ -158,24 +158,24 @@
                 <div class="boardContent-modal-title boardContent-float-left">신고하기</div>
                 <button id="boardContent-report-modal-xbtn" class="boardContent-btn-red boardContent-float-right">x</button>
             </div>
-            <form action="#">
+            <form action="<c:url value='/manage/report' />">
                 <div class="boardContent-modal-content">
-                    <div id="boardContent-modal-content-title" class="boardContent-updonw-margin-div">
-                        신고 사유
-                    </div>
-                    <div id="boardContent-modal-select" class="boardContent-updonw-margin-div">
-                        <select name="" id="">
-                            <option value="">---- 신고 사유 옵션 ----</option>
-                            <option value="">---- 신고 사유 옵션 ----</option>
-                            <option value="">---- 신고 사유 옵션 ----</option>
-                            <option value="">---- 신고 사유 옵션 ----</option>
+                    <span id="boardContent-modal-content-title" class="boardContent-report-div">작성자</span> <span class="board-report-writer"> ${article.userId}</span>
+                    <span id="boardContent-modal-content-title" class="boardContent-report-div">내용</span> <span class="board-report-writer">${article.boardTitle}</span>
+                    
+                    <div id="boardContent-modal-select" class="boardContent-report-margin-div">
+                        <select name="reason" id="">
+                            <option value="" selected="selected">---- 신고 사유 옵션 ----</option>
+                            <option value="">부적절한 홍보 게시글</option>
+                            <option value="" >음란성 또는 청소년에게 부적합한 내용</option>
+                            <option value="">비방/욕설 게시글</option>
+                            <option value="">도배성 게시글</option>
                         </select>
                     </div>
                 </div>
                 <div class="boardContent-modal-bottombtn boardContent-clearfix">
                     <div class="boardContent-float-right">
-                        <button type="button" id="boardContent-report-modal-undobtn" class="boardContent-color-black boardContent-btn-small">취소</button>
-                        <button type="submit" class="boardContent-color-white color-darkskyblue boardContent-btn-small">등록</button>
+                        <button type="submit" class="boardContent-report-btn">등록</button>
                     </div>    
                 </div>
             </form>

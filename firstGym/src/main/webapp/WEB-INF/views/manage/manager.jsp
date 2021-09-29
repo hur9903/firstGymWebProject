@@ -63,13 +63,13 @@
                         <table class="manager-main-table2" border="1px solid black">
                             <tr class="manager-table-tr">
                                 <td class="manager-table-td1">번호</td>
-                                <td class="manager-table-td2-1">제목</td>
+                                <td class="manager-table-td2-1">내용</td>
                                 <td class="manager-table-td2-2">신고자</td>
                                 <td class="manager-table-td2-3">신고일</td>
                             </tr>
                             <tr class="manager-table-tr2">
                                 <td class="manager-table-td2"></td>
-                                <td><a href="#"></a></td>
+                                <td><a href="<c:url value='/manage/reportPage' />">ddd</a></td>
                                 <td  style="font-weight: bold;"></td>
                                 <td></td>
                             </tr>
