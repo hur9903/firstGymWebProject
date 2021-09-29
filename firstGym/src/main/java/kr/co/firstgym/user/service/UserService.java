@@ -1,5 +1,7 @@
 package kr.co.firstgym.user.service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +67,12 @@ public class UserService implements IUserService {
 
 	@Override
 	public String findPw(String id, String email) {
-		UserVO userInfo = mapper.findPw(id, email);
+		Map<String, Object> mapperParam = new HashMap<>();
+		mapperParam.put("id", id);
+		mapperParam.put("email", email);
+		System.out.println("id: "+ id + "email: " + email);
+		UserVO userInfo = mapper.findPw(mapperParam);
+		System.out.println("service userInfo: " + userInfo);
 		if(userInfo == null) {
 			return null;
 		} else {
@@ -89,10 +96,14 @@ public class UserService implements IUserService {
 				newPw += numPw[ran.nextInt(numPw.length)];
 			}
 			
+			System.out.println("임시비번: " + newPw);
 			//생성된 임시 비밀번호를 인코딩
+			String encodePw = "";
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			
-//			
-//			userInfo.setUserPw(newPw);
+			encodePw = encoder.encode(newPw);
+			userInfo.setUserPw(encodePw);
+			
 			mapper.modify(userInfo);
 			
 			return newPw;

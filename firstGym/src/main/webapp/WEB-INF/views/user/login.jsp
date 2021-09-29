@@ -49,7 +49,7 @@
             <div class="login-modal-content">
                 <!-- 아이디 찾기 -->
                 <div id="login-id-modal">
-                    <form action="<c:url value='/user/findId' /> "  method="post" id="loginFindId">            
+                    <form action=""  id="loginFindId">            
                         <div class="login-modal-content-text">
                             이름 입력
                         </div>
@@ -66,7 +66,7 @@
                 </div>
                 <!-- 비밀번호 찾기 -->
                 <div id="login-pw-modal">
-                    <form action="#">            
+                    <form action="" id="loginFindPw">            
                         <div class="login-modal-content-text">
                             아이디 입력
                         </div>
@@ -80,6 +80,7 @@
                             <input type="text" name="findEmail" id="findPwEmail" placeholder="이메일" class="login-float-left"> <span id="emailCheck"></span>
                             <button type="button" class="login-float-right login-color-white color-darkskyblue login-btn-small" id="findPw-emailNum">인증번호 발송</button>
                         </div>
+                        <input type="hidden" name="findRan" id="findPwRan">
                     </form>
                 </div>
                 <!-- 인증번호 맞는지 확인 -->
@@ -413,26 +414,38 @@
 	
 		    const id = $('#findPwId').val();  
 		    const email = $('#findPwEmail').val();
+		    console.log
+		    console.log('email' + email);
 		      
 		    const findPwUrl = "<c:url value='/user/findPw' />" + "/" + id + "/" + email;
 		      
 		    $.getJSON(
 					findPwUrl,
 					function(data){
-						
-						if(data === 0){
+						console.log(data.randomNum);
+						if(data.randomNum === 0){
 							alert('일치하는 사용자가 없습니다.');
 						} else{
-							findRandom = data;
-							isFindIdMode = false;
-							isFindPwMode = true;
+							findRandom = data.randomNum;
+							$('#findPwRan').val(findRandom);
+							findResult = data.findUserPw;
+
+							/* emailjs.sendForm('service_fkwpacb', 'template_mot87ln', '#loginFindPw')
+							.then(function(response) {
+					  	       	console.log('SUCCESS!', response.status, response.text);
+					  	     	isFindIdMode = false;
+								isFindPwMode = true;
+								alert('이메일이 전송되었습니다.');
+								
+					 	    }, function(error) {
+					 	       	console.log('FAILED...', error);
+					 	    }); */
+							
 						}
 					}	
 				);//postJson end
-				
-				//메일 보내기
 		}
-	});//아이디 찾기 함수 종료
+	});//비밀번호 찾기 함수 종료
 
 		
 
