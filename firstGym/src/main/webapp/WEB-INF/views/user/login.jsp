@@ -395,7 +395,7 @@
 		}
 	});//아이디 찾기 함수 종료
 	
-	//비밀번호 찾기(아직 미구현)
+	//비밀번호 찾기
 	$('#findPw-emailNum').click(function() {
 		if($('#findPwId').val() === ''){
 			alert('아이디를 입력하세요');
@@ -413,16 +413,13 @@
 	
 	
 		    const id = $('#findPwId').val();  
-		    const email = $('#findPwEmail').val();
-		    console.log
-		    console.log('email' + email);
+		    findEmail = $('#findPwEmail').val();
 		      
-		    const findPwUrl = "<c:url value='/user/findPw' />" + "/" + id + "/" + email;
+		    const findPwUrl = "<c:url value='/user/findPw' />" + "/" + findEmail + "/" + id;
 		      
 		    $.getJSON(
 					findPwUrl,
 					function(data){
-						console.log(data.randomNum);
 						if(data.randomNum === 0){
 							alert('일치하는 사용자가 없습니다.');
 						} else{
@@ -430,7 +427,7 @@
 							$('#findPwRan').val(findRandom);
 							findResult = data.findUserPw;
 
-							/* emailjs.sendForm('service_fkwpacb', 'template_mot87ln', '#loginFindPw')
+							emailjs.sendForm('service_fkwpacb', 'template_mot87ln', '#loginFindPw')
 							.then(function(response) {
 					  	       	console.log('SUCCESS!', response.status, response.text);
 					  	     	isFindIdMode = false;
@@ -439,7 +436,7 @@
 								
 					 	    }, function(error) {
 					 	       	console.log('FAILED...', error);
-					 	    }); */
+					 	    });
 							
 						}
 					}	

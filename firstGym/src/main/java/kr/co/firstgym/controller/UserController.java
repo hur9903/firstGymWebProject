@@ -147,7 +147,7 @@ public class UserController {
 	
 	//비번찾기 인증번호 생성
 	@ResponseBody
-	@GetMapping("/findPw/{findPwId}/{findEmail}")
+	@GetMapping("/findPw/{findEmail}/{findPwId}")
 	public Map<String, Object> findPw(@PathVariable("findPwId") String findPwId, @PathVariable("findEmail") String findPwEmail) {
 		System.out.println("비밀번호찾기 요청 들어옴: " + findPwId + "," + findPwEmail);
 		
