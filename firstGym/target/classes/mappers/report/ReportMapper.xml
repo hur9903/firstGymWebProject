@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kr.co.firstgym.report.repository.IReportMapper">
+
+	<resultMap type="kr.co.firstgym.command.ReportVO" id="ReportMap">
+	
+		<id property="rpNum" column="REPORT_NUM" />
+		<result property="rpContent" column="REPORT_CONTENT"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="rpDate" column="REPORT_DATE"/>
+		
+	</resultMap>
+	
+	
+	<insert id="">
+		INSERT INTO report (report_num, report_content, report_date, user_id)VALUES(#{rpNum), #{reContent}, #{userID}, #{rpDate})
+	</insert>
+	
+	
+</mapper>
+	
