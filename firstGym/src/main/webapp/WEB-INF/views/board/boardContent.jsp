@@ -12,7 +12,8 @@
     <div class="boardContent-main-div">
         <div class="boardContent-sub-div">
             <div id="boardContent-page-title">
-                게시글 상세보기
+            <c:if test="${page.category == 'info'}">공지사항 상세보기</c:if>
+            <c:if test="${page.category != 'info'}">게시글 상세보기</c:if>
             </div>
             <div class="boardContent-content-main-div">
                 <hr>
@@ -25,6 +26,10 @@
 	                        <form id="del-form" action="<c:url value="/board/boardDelete" />" method="post">
 	                        	<button id="mod-btn" type="button" class="color-darkskyblue boardContent-btn-big">수정</button>
 	                        	<input type="hidden" name="boardNum" value="${article.boardNum}">
+	        					<input type="hidden" name="category" value="${page.category}">
+	            				<input type="hidden" name="condition" value="${page.condition}">
+	            				<input type="hidden" name="keyword" value="${page.keyword}">
+	            				<input type="hidden" name="pageNum" value="${page.pageNum}">
 	                        	<button id="del-btn" type="button" class="boardContent-del boardContent-btn-big">삭제</button>
 	                        </form>
                         </c:if>
@@ -85,7 +90,9 @@
 	                        ${article.boardContent}
                         </div>
                         <div class="boardContent-report-btn-div">
-                            <button id="boardContent-report-btn" class="boardContent-color-white boardContent-btn-small">신고하기</button>
+                        	<c:if test="${page.category != 'info'}">
+                            	<button id="boardContent-report-btn" class="boardContent-color-white boardContent-btn-small">신고하기</button>
+                        	</c:if>
                         </div>
                     </div>
                     <!-- 댓글영역 -->
@@ -275,12 +282,12 @@
 	    //*** 게시글 리스트 이동버튼, 게시글 수정 + 삭제 버튼  ***//
         //* 리스트로 이동 버튼 *//
         $('#list-btn').click(function(){
-        	location.href='<c:url value="/board/boardListPage" />';
+        	location.href='<c:url value="/board/boardListPage" />?category=${page.category}&condition=${page.condition}&keyword=${page.keyword}&pageNum=${page.pageNum}';
         });
         
         //* 게시글 수정 버튼 *//
         $('#mod-btn').click(function(){
-        	location.href='<c:url value="/board/boardModifyPage?boardNum=${article.boardNum}" />';
+        	location.href='<c:url value="/board/boardModifyPage?boardNum=${article.boardNum}" />&category=${page.category}&condition=${page.condition}&keyword=${page.keyword}&pageNum=1';
         });
         
         //* 게시글 삭제 버튼 *//
