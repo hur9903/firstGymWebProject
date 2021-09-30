@@ -123,8 +123,7 @@ public class UserController {
 	//아이디 찾기 인증번호 생성
 	@ResponseBody
 	@GetMapping("/findId/{findEmail}/{findIdName}")
-	public Map<String, Object> findId(@PathVariable("findIdName") String findIdName, @PathVariable("findEmail") String findIdEmail, 
-						 HttpSession session) {
+	public Map<String, Object> findId(@PathVariable("findIdName") String findIdName, @PathVariable("findEmail") String findIdEmail) {
 		
 		System.out.println("아이디찾기 요청 들어옴: " + findIdName + "," + findIdEmail);
 		
@@ -141,39 +140,33 @@ public class UserController {
 			returnMap.put("findUserId", findVo.getUserId());
 			
 			Random random = new Random();
-			returnMap.put("randomNum", random.nextInt(99999));
+			returnMap.put("randomNum", random.nextInt(99999) + 1);
 		}
 		return returnMap;
 	}
 	
 	//비번찾기 인증번호 생성
 	@ResponseBody
-	@GetMapping("/findPw/{findPwId}/{findEmail}")
-	public int findPw(@PathVariable("findPwId") String findPwId, @PathVariable("findEmail") String findPwEmail, 
-			 HttpSession session) {
+	@GetMapping("/findPw/{findEmail}/{findPwId}")
+	public Map<String, Object> findPw(@PathVariable("findPwId") String findPwId, @PathVariable("findEmail") String findPwEmail) {
 		System.out.println("비밀번호찾기 요청 들어옴: " + findPwId + "," + findPwEmail);
 		
 		String findPw = service.findPw(findPwId, findPwEmail);
 		
+		System.out.println("findPw(con): " + findPw);
+		
+		Map<String, Object> returnMap = new HashMap<>();
+		
 		if(findPw == null) {
-			return 0;
+			returnMap.put("findUserPW", "");
+			returnMap.put("randomNum", 0);
+		} else {
+			returnMap.put("findUserPw", findPw);
+			
+			Random random = new Random();
+			returnMap.put("randomNum", random.nextInt(99999) + 1);
 		}
-		
-		session.setAttribute("findUserPw", findPw);
-		
-		Random random = new Random();
-		
-		int randomNum = random.nextInt(99999);
-		
-		session.setAttribute("random", randomNum);
-
-		return randomNum;
-	}
-	
-	//인증번호 확인
-	@PostMapping("/findcodeCheck")
-	public String findcodeCheck() {
-		return "";
+		return returnMap;
 	}
 	
 	//아이디 중복체크

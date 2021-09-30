@@ -1,8 +1,9 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../include/header.jsp" %>
-v
+
     <div id="productDetail-div">
         <!-- 상단 제품 정보 -->
         <div class="product-detail">
@@ -12,7 +13,7 @@ v
                </div>
            </div>
            <div class="info-area">
-            <h3>아령 덤벨</h3>
+            <h3>${itemInfo.proName}</h3>
             <div class="detail">
                 <table class="basic-info" summary>
                     <caption>기본 정보</caption>
@@ -37,15 +38,21 @@ v
                         </tr>
                         <tr class="record">
                             <th scope="row">
+                                <span>배송비</span>
+                            </th>
+                            <td>${itemInfo.proSendPrice}원</td>
+                        </tr>
+                        <tr class="record">
+                            <th scope="row">
                                 <span>판매가</span>
                             </th>
-                            <td>${itemInfo.proPrice}</td>
+                            <td>${itemInfo.proPrice}원</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="total-products">
                     <p class="info">
-                        <img src="image/느낌표.gif" alt="">
+                        <img src="${pageContext.request.contextPath }/resources/image/ExclamationMark.gif" alt="">
                         수량을 선택해 주세요.
                     </p>
                     <table summary>
@@ -59,7 +66,6 @@ v
                             <tr>
                                 <th scope="col">상품명</th>
                                 <th scope="col">상품수</th>
-                                <th scope="col">가격</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,18 +73,18 @@ v
                                 <td>${itemInfo.proName}</td>
                                 <td>
                                     <span class="quantity">
-                                        <input id="quantity" name="quantity-opt" value="1" type="text">
-                                        <button type="button" id="plus"> ▲
-                                            <!--  <img src="image/수량증가.gif" alt="수량증가" class="quantity-up" id="plus">-->
-                                        </button>
-                                        <button type="button" id="minus"> ▼
-                                            <!-- <img src="image/수량감소.gif" alt="수량감소" class="quantity-down" id="minus"> -->
-                                        </button>
+                                        <input id="quantity" name="quantity-opt" value="1" type="text" readonly>
+                                        <a href="#" id="quantity-up">
+                                        <img src="${pageContext.request.contextPath }/resources/image/quantityUp.gif" alt="수량증가" class="quantity-up">
+	                                    </a>
+	                                    <a href="#" id="quantity-down">
+	                                        <img src="${pageContext.request.contextPath }/resources/image/quantityDown.gif" alt="수량감소" class="quantity-down">
+	                                    </a>
+
                                     </span>
                                 </td>
                                 <td class="right" style="width: 70px;">
-                                    <span class="quantity-price">
-                                        ${itemInfo.proPrice}
+                                    <span class="quantity-price">                                    
                                         <input type="hidden" id="total-price" name="option-box-price" class="option-box-price" value="73200">
                                     </span>
                                 </td>
@@ -91,9 +97,9 @@ v
                                     (수량) :
                                     <span class="total">
                                         <strong>
-                                            <em>73,200원</em>
+                                            <em id="price">${itemInfo.proPrice}원</em>
                                         </strong>
-                                         (1개)
+                                         <small id="total-quantity">(1개)</small>
                                     </span>
                                 </td>
                             </tr>
@@ -103,7 +109,7 @@ v
                 <div class="purchase-btn">
                     <div class="btn-area">
                         <a href="<c:url value='/order/purchase'/>" id="order_purchase">
-                            <img src="image/바로구매하기.gif" alt="바로 구매하기">
+                            <button class="purchaseDirect">바로 구매하기</button>
                         </a>
                     </div>
                 </div>
@@ -116,14 +122,11 @@ v
                     <li class="selected">
                         <a href="#prd-detail">상품상세정보</a>
                     </li>
-                    <li class="prd-li-change">
+                    <li>
                         <a href="#prd-change">교환 및 반품정보</a>
                     </li>
-                    <li class="prd-li-review">
+                    <li>
                         <a href="#prd-review">상품사용후기</a>
-                    </li>
-                    <li class="prd-li-qna">
-                    	<a href="#prd-qna">상품Q&A</a>
                     </li>
                 </ul>
                 <div class="cont" id="prd-detail">
@@ -133,12 +136,7 @@ v
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="<c:url value='/product/display?filePath=${itemInfo.proImage}' />" alt="">
-                                    <br>
-                                    <img src="<c:url value='/product/display?filePath=${itemInfo.proImage}' />" alt="">
-                                    <br>
-                                    <br>
-                                    <img src="<c:url value='/product/display?filePath=${itemInfo.proImage}' />" alt="">
+                                    <img src="<c:url value='/product/display?filePath=${itemInfo.proInfo}' />" alt="">
                                 </td>
                             </tr>
                         </tbody>
@@ -158,9 +156,6 @@ v
                     </li>
                     <li>
                         <a href="#prd-review">상품사용후기</a>
-                    </li>
-                    <li>
-                        <a href="#prd-qna">상품Q&A</a>
                     </li>
                 </ul>
                 <div class="cont" id="prd-change">
@@ -184,8 +179,8 @@ v
                     <br>
                     - 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우
                     <br>
-                    &nbsp;&nbsp;(예 : 가전제품, 식품, 음반 등, 단 액정화면이 부착된 노트북, LCD모니터, 디지털 카메라 등의 불량화소에
-                    <br>
+                     &nbsp;&nbsp;(예 : 가전제품, 식품, 음반 등, 단 액정화면이 부착된 노트북, LCD모니터, 디지털 카메라 등의 불량화소에
+                     <br>
                     &nbsp;&nbsp;따른 반품/교환은 제조사 기준에 따릅니다.)
                     <br>
                     - 고객님의 사용 또는 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우 단, 화장품등의 경우 시용제품을
@@ -208,8 +203,19 @@ v
             <!-- 교환 및 반품정보 -->
             <!-- 상품사용후기 -->
             <div class="review-box" id="prd-review">
+            	<ul class="link">
+                    <li>
+                        <a href="#prd-detail">상품상세정보</a>
+                    </li>
+                    <li>
+                        <a href="#prd-change">교환 및 반품정보</a>
+                    </li>
+                    <li class="selected">
+                        <a href="#prd-review">상품사용후기</a>
+                    </li>
+                </ul>
                 <div class="review-option">
-                    <img src="image/review.gif" alt="">
+                	<img class="reviewImg" src="${pageContext.request.contextPath }/resources/image/review.gif" alt="상품리뷰" class="">
                 </div>
                 <ul class="review-list">
                     <li class="review-item">
@@ -260,33 +266,33 @@ v
                 </ul>
                 <div class="review-writer">
                     <div class="review-inbox">
-                        <strong class="blind">리뷰를 입력하세요</strong>
+                        <strong class="blind">후기를 입력하세요</strong>
                         <em class="inbox-id">맹구</em>
-                        <textarea class="comment">리뷰를 남겨보세요.</textarea>
+                        <textarea class="comment">후기를 남겨보세요.</textarea>
                     </div>
                 </div>
                 <p class="btn-area">
                     <a href="#" class="review-register">
-                        <img src="image/상품후기쓰기.gif" alt="상품후기쓰기">
+                        <button type="submit" class="review">상품후기등록</button>
                     </a>
                 </p>
             </div>
             <!-- 상품사용후기 -->
-            <!-- 상품 Q&A -->
+            <!-- 상품 Q&A 
             <div class="prdQnA" id="prd-qna">
                 <div class="board">
                     <div class="item-title">
-                        <img src="image/Q&A.gif" alt="상품문의하기">
+                        <a class="qna">상품문의</a>
                     </div>
                     <p class="desc">상품에 대해 궁금한 점을 해결해 드립니다.</p>
                     <p class="nodata">게시물이 없습니다.</p>
                     <p class="btn-area">
                         <a href="#">
-                            <img src="image/상품문의하기.gif" alt="">
+                            <button class="review">상품문의하기</button>
                         </a>
                     </p>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     
@@ -303,42 +309,50 @@ v
      -->
     
     <script>
-    	const $count = document.getElementById('quantity');
-    	const $plus = document.getElementById('plus');
-    	const $minus = document.getElementById('minus');
-   		let value = $count.getAttribute('value');
-    	
-    	$plus.onclick = function() {
-	   		const price = document.getElementById('total-price').getAttribute('value');
-    		console.log('+버튼 클릭!');
-    		value++;
-    		$count.setAttribute('value', value);
-    		
-    		let tot_price = price * value;
-    		document.getElementById('total-price').setAttribute('value', tot_price);
-    		console.log('변경 후 가격:' + document.getElementById('total-price').value);
-    		document.querySelector('.quantity-price').textContent = document.getElementById('total-price').getAttribute('value');
-    	}
-    	
-    	$minus.onclick = function() {
-    		console.log('-버튼 클릭!');
-    		if(+$count.value === 1) {
-    			alert('최소구매 수량은 1개입니다.');
-    			return;
-    		}
-    		value--;
-    		$count.setAttribute('value', value);
-    	}
-    </script>
+    let $total = document.getElementById('quantity');
+    console.log($total);
+    const upBtn = document.getElementById('quantity-up');
+    const downBtn = document.getElementById('quantity-down');
+    const $price = document.getElementById('total-price');
+    const original_price = $price.value;
+    console.log('원금: ' + original_price);
+    console.log('총액: ' + $price.value);
+
+    upBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('수량 증가 버튼 클릭됨!');
+        let value = $total.getAttribute('value');
+        console.log('value: ' + value);
+        value++;
+        $total.setAttribute('value', value);
+        console.log('변경된 value: ' + value);
+        $price.setAttribute('value', original_price * value);
+        console.log('총액: ' + $price.value);
+        document.getElementById('price').textContent = $price.value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원";
+        document.getElementById('total-quantity').textContent = '(' + value + '개' + ')';
+    });
+
+    downBtn.addEventListener('click', function(e) {
+        console.log('수량 감소 버튼 클릭됨!');
+        if(+$total.value === 1) {
+            alert('1 미만으로 내릴 수 없습니다.');
+            return;
+        } 
+        let value = $total.getAttribute('value');
+        console.log('value: ' + value);
+        value--;
+        $total.setAttribute('value', value);
+        console.log('변경된 value: ' + value);
+        $price.setAttribute('value', original_price * value);
+        console.log('총액: ' + $price.value);
+        document.getElementById('price').textContent = $price.value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); + "원";
+        document.getElementById('total-quantity').textContent = '(' +  value + '개' + ')';
+    });
+
+    </script>           
+       
     
 <%@ include file="../include/footer.jsp" %>
-    
-    
-    
-    
-    
-    
-    
     
     
     
