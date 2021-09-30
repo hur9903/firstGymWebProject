@@ -9,10 +9,9 @@
     
     <div class="manager-main-div">
         <div class="manager-sub-div">
-            <form action="">
+            
                 <div id="manager-first-table" class="manager-table-box">
-                <input id="page-pn" type="hidden" name="pageNum" value="${page.pageNum}">   
-                    
+                   
                     <div class="manager-order">관리자 화면</div>
                     <div class="manager-table-box2">
                         <span class="manager-order-main">신고 목록</span>
@@ -38,7 +37,8 @@
                            </c:forEach>
                         </table>                
                     </div>
-                    <!-- 페이징 바 -->
+                    <form id="page-form" action="">
+           		<!-- 페이징 바 -->
                     <div class="manager-paging-div">
                         <ul>
                             <!-- 이전버튼  -->
@@ -57,9 +57,12 @@
 
                         </ul>
                     </div>
+                    <input id="page-pn" type="hidden" name="pageNum" value="${page.pageNum}">    
+            </form>
+                    
                     <hr>
                 </div>
-            </form>
+            
                     <button id="write-info-btn" type="button" class="manager-write">공지사항 등록</button>                    
             		<button id="to-info-btn" type="button" class="manager-write">공지사항 목록</button>  
         </div>

@@ -396,6 +396,7 @@ color: white;
     cursor: pointer;
     border: none;
     border-radius: .25em;
+	margin-right: 10px;
 }
 #boardContent-report-btn{
     background-color: rgb(255, 38, 0);
@@ -458,8 +459,17 @@ color: white;
     margin-top: 20px;
     padding: 10px;
 }
+.boardContent-reply-margin-div{
+	margin-top: 20px;
+    padding: 10px;
+    margin-left: 100px;
+}
 div#reply {
     margin-top: 10px;
+}
+.board-report-writer{
+
+	color:black;
 }
 /* 이미지 */
 .boardContent-img{ 
@@ -510,6 +520,7 @@ div#reply {
     background: white;
     border: 1px solid lightgray;
     min-height: 300px;
+    margin-top: 20px;
 }
 .boardContent-content-area-div button{
     position: absolute;
@@ -543,6 +554,9 @@ div#reply {
 .boardContent-each-reply-div{
     background: white;
     /* width: 80%; */
+    margin: 20px;
+}
+li.boardList-btn-check {
     margin: 20px;
 }
 .boardContent-reply{
@@ -593,7 +607,10 @@ div#reply {
     line-height: 220px;
     cursor: pointer;
 }
-
+div#boardContent-modal-select {
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
 /* 게시글 상세보기 이미지 모달 */
 #boardContent-img-modal, #boardContent-report-modal{
     width: 100vw;
@@ -615,6 +632,19 @@ div#reply {
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     overflow: hidden;
+}
+button.boardContent-report-btn {
+    background: rgb(52, 152, 219);
+    color: white;
+    margin-right: 20px;
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+button.boardContent-report-btn:hover{
+	background: rgb(23 104 158);
+	cursor: pointer;
 }
 .boardContent-modal-div img{
     max-width: 50vw;
@@ -646,9 +676,11 @@ div#reply {
     width: 50%;
     max-width: 500px;
     min-width: 300px;
+	height: 262px;
 }
 #boardContent-modal-content-title{
     color: rgb(52, 152, 219);
+	font-weight: bold;
 }
 #boardContent-modal-select{
     text-align: center;
@@ -2997,11 +3029,6 @@ td{
    width: 200px;
 }
 
-/* 상하 마긴 */
-
-.manager-table-box2{
-    margin-top: 150px;
-}
 /* 입력창 길이조절 */
 .manager-input-full-width{
     width: 80%;
