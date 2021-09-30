@@ -14,7 +14,7 @@
 		<result property="userId" column="user_id"/>
 		
 	</resultMap>
-	
+
 	<insert id="report">
 		INSERT INTO report(report_num, report_content, board_num, user_id, report_yn)
 		VALUES(report_list_seq.NEXTVAL, #{reportContent}, #{boardNum}, #{userId}, '0')

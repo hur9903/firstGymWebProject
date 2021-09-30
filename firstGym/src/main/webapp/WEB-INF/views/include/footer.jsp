@@ -8,7 +8,7 @@
     <div class="footer-container">
 	    <div class="sideBar">
 	    	<div class="qSideMenu">
-	    		<button type="button" class="qnaBtn">
+	    		<button id="side-btn" type="button" class="qnaBtn">
 	    			<a href="#">문의</a>
 	    		</button>
 	    	</div>
@@ -75,6 +75,9 @@
 	$managerEmail.click(function() {
 		$emailInfo.show();
 	})
+	$('#side-btn').click(function(){
+		$emailInfo.show();
+	})
 	
 	$emailCn.click(function() {
 		$emailInfo.hide();
@@ -84,6 +87,10 @@
 	emailjs.init('user_f2hBQR6PwERboMjhfS91J');
 	
 	$emailBtn.click(function() {
+		if('${login}' === ''){
+			alert('사용자 로그인이 필요한 기능입니다.');
+			return;
+		}
 		if($content.val() === '' ){
 			alert('문의 내용이 작성되지 않았습니다.');
 			$content.focus();
