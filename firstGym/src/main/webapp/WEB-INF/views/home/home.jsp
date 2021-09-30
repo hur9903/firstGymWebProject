@@ -4,6 +4,7 @@
 
     <%@include file="../include/header.jsp" %>
     
+    
     <div class="middle-body">
     <iframe width="720" height="350" src="https://www.youtube.com/embed/QH2-TGUlwu4" title="YouTube video player"
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -69,6 +70,8 @@
         </c:forEach>
         </ul>
     </div>
+    
+    
     <hr class="footerhr" color="gainsboro" size="6px" style="margin-top: 5px;">
 </div>
 <%@include file="../include/footer.jsp" %>

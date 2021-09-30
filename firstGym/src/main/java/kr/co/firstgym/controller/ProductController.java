@@ -34,7 +34,7 @@ public class ProductController {
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getFile(@RequestParam("filePath") String filePath) {
 		System.out.println("filePath: " + filePath);
-		File file = new File("C:\\Users\\USER\\Desktop\\image\\" + filePath);
+		File file = new File("C:\\image\\" + filePath);
 		
 		System.out.println("file: " + file);
 		
