@@ -7,7 +7,7 @@
     <div class="purchase-main-div">
         <div class="purchase-sub-div">
             <form action="<c:url value='/order/purchase?proNum=${product.proNum}' />" name="payForm" method="post">
-            	<input type="hidden" name="orderSendId" value="heoheo">
+            	<input type="hidden" name="orderSendId" value="${user.userId}">
                 <div id="purchase-first-table" class="purchase-table-box">
                     
                     
@@ -49,15 +49,15 @@
                     <table class="purchase-main-table2">
                         <tr class="purchase-table-tr">
                             <td class="purchase-table-td">이름</td>
-                            <td><input type="text" name="orderSendName" class="purchase-input-full-width"></td>
+                            <td><input type="text" name="orderSendName" class="purchase-input-full-width" value="${user.userName}"></td>
                         </tr>
                         <tr class="purchase-table-tr">
                             <td class="purchase-table-td">휴대전화</td>
-                            <td><input type="text" name="orderPNum" class="purchase-input-full-width"></td>
+                            <td><input type="text" name="orderPNum" class="purchase-input-full-width" value="${user.userPhone}"></td>
                         </tr>
                         <tr class="purchase-table-tr">
                             <td class="purchase-table-td">이메일</td>
-                            <td><input type="email" name="orderEmail" class="purchase-input-full-width"></td>
+                            <td><input type="email" name="orderEmail" class="purchase-input-full-width" value="${user.userEmail}"></td>
                         </tr>
                     </table>
                 </div>
@@ -67,14 +67,14 @@
                         
                         <tr class="purchase-table-tr">
                             <td class="purchase-table-td">받으시는 분</td>
-                            <td><input type="text" name="orderReceiveName" class="purchase-input-full-width"></td>
+                            <td><input type="text" name="orderReceiveName" class="purchase-input-full-width" value="${user.userName}"></td>
                         </tr>
                         <tr class="purchase-table-tr">
                             <td class="purchase-table-td">주소</td>
                             <td>
-                                <input type="text" name="orderZipcode" class="purchase-input-small-width"><button class="purchase-mailBtn">우편번호</button><br>
-                                <input type="text" name="orderAddress" class="purchase-input-full-width"><br>
-                                <input type="text" name="orderDetailAddress" class="purchase-input-full-width">
+                                <input id="userMail" type="text" name="orderZipcode" class="purchase-input-small-width" value="${user.userMail}" readonly><button type="button" id="addBtn" class="purchase-mailBtn" onclick="searchAddress()">우편번호</button><br>
+                                <input id="userAddr1" type="text" name="orderAddress" class="purchase-input-full-width" value="${user.userAddr1}" readonly><br>
+                                <input id="userAddr2" type="text" name="orderDetailAddress" class="purchase-input-full-width" value="${user.userAddr2}">
                             </td>
                         </tr>
                         
@@ -185,12 +185,12 @@
                         </tr>
                     </table>
                         
-                    <div class="purchase-check"><input type="checkbox" class="purchase-checkbox"> 결제서비스 약관에 모두 동의합니다.</div>
+                    <div class="purchase-check"><input type="checkbox" id="chBox" class="purchase-checkbox"> 결제서비스 약관에 모두 동의합니다.</div>
                                
                                                 
 
                     <td rowspan="2" class="purchase-table-td3 purchase-align-center">
-                        <button id="payBtn" class="purchase-payBtn">결제하기</button>
+                        <button type="button" id="payBtn" class="purchase-payBtn">결제하기</button>
                     </td>
                 </div>
             </form>
@@ -199,7 +199,7 @@
 
     <!-- 푸터. jsp전환시 삭제 후 include 사용 -->
     
-<%@ include file="../include/header.jsp" %>
+<%@ include file="../include/footer.jsp" %>
     <!-- 푸터. jsp전환시 삭제 후 include 사용 -->
 
     <script>
@@ -311,6 +311,7 @@
         })
         
         const payBtn = document.getElementById("payBtn");
+        const chBox = document.getElementById("chBox");
         payBtn.onclick = function() {
         	if(document.payForm.orderSendName.value === '') {
         		alert('주문자는 필수 항목입니다.');
@@ -347,10 +348,41 @@
         		document.payForm.orderMessage.focus();
         		return;
         	}
+        	else if(chBox.checked === false) {
+        		alert('약관에 동의하셔야 합니다.');
+        		chBox.focus();
+        		return;
+        	}
         	else {
         		document.payForm.submit();
         	}
         	
+        }
+        
+        function searchAddress() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var addr = ''; // 주소 변수
+                    var extraAddr = ''; // 참고항목 변수
+
+                    //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                        addr = data.roadAddress;
+                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                        addr = data.jibunAddress;
+                    }
+                   
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('userMail').value = data.zonecode;
+                    document.getElementById("userAddr1").value = addr;
+                    // 커서를 상세주소 필드로 이동한다.
+                    document.getElementById("userAddr2").focus();
+                }
+            }).open();
         }
 
 
