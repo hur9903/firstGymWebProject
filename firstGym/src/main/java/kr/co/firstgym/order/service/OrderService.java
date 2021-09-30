@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.firstgym.command.OrderPageVO;
 import kr.co.firstgym.command.OrderProductVO;
 import kr.co.firstgym.command.OrdersVO;
 import kr.co.firstgym.command.ProductVO;
@@ -22,7 +23,7 @@ public class OrderService implements IOrderService{
 	private IOrderMapper mapper;
 
 	@Override
-	public List<OrderProductVO> getList(PageVO vo, String userId) {
+	public List<OrderProductVO> getList(OrderPageVO vo, String userId) {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("page", vo);
@@ -47,9 +48,9 @@ public class OrderService implements IOrderService{
 	}
 
 	@Override
-	public int getTotal(PageVO vo, String userId) {
+	public int getTotal(String userId) {
 		Map<String, Object> map = new HashMap<>();
-		map.put("page", vo);
+		//map.put("page", vo);
 		map.put("id", userId);
 		return mapper.getTotal(map);
 	}

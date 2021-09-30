@@ -42,17 +42,25 @@
             </ul>
         </div>
     </section>
-        <div class="paging">
-            <div class="pagination">
-                <a class="prev" href="#"></a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a class="next" href="#"></a>        
+        <div class="boardList-paging-div">
+	            <form action="<c:url value="/order/orderListPage" />" id="page-form">
+	            	<input id="page-pn" type="hidden" name="pageNum" value="${page.pageNum}">
+	                <ul>
+	                    <!-- 이전버튼  -->
+	                    <c:if test="${page.prev}">
+	                    	<a href=""><li class="boardList-btn-not-check" data-pn="${page.beginPageNum-1}">&lt;</li></a>
+	                    </c:if>
+	                    <!-- 페이지 버튼(체크되면 class이름 변경) -->
+	                    <c:forEach var="num" begin="${page.beginPageNum}" end="${page.endPageNum}">
+		                    <a href="#"><li class="${page.pageNum == num ? 'boardList-btn-check' : 'boardList-btn-not-check'}" data-pn="${num}">${num}</li></a>
+		                </c:forEach>
+	                    <!-- 다음버튼 -->
+	                    <c:if test="${page.next}">
+	                    	<a href=""><li class="boardList-btn-not-check" data-pn="${page.endPageNum+1}">&gt;</li></a>
+						</c:if>
+	                </ul>
+                </form>
             </div>
-        </div>
     
     </div>
     
@@ -60,3 +68,13 @@
     
     <%@ include file="../include/footer.jsp" %>
     <!-- 푸터. jsp전환시 삭제 후 include 사용 -->
+    
+    <<script>
+  //페이지버튼
+	
+	$('#page-form a').click(function(event){
+		event.preventDefault();
+		$('#page-pn').val(event.target.getAttribute("data-pn"));
+		$('#page-form').submit();
+	});
+	</script>

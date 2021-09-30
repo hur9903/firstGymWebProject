@@ -3,6 +3,7 @@ package kr.co.firstgym.order.service;
 import java.sql.Timestamp;
 import java.util.List;
 
+import kr.co.firstgym.command.OrderPageVO;
 import kr.co.firstgym.command.OrderProductVO;
 import kr.co.firstgym.command.OrdersVO;
 import kr.co.firstgym.command.ProductVO;
@@ -11,10 +12,10 @@ import kr.co.firstgym.util.PageVO;
 public interface IOrderService {
 	
 	//글 목록
-	List<OrderProductVO> getList(PageVO vo, String userId);
+	List<OrderProductVO> getList(OrderPageVO vo, String userId);
 
 	//총 게시물 수
-	int getTotal(PageVO vo, String userId);
+	int getTotal(String userId);
 	
 	//상세보기
 	OrdersVO getContent(int orderNum);

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.co.firstgym.command.OrderPageVO;
 import kr.co.firstgym.command.OrdersVO;
+import kr.co.firstgym.command.UserVO;
 import kr.co.firstgym.order.service.IOrderService;
 import kr.co.firstgym.util.PageCreator;
 import kr.co.firstgym.util.PageVO;
@@ -27,20 +29,31 @@ public class OrderController {
 
 	//구매목록 페이지로 이동
 	@GetMapping("/orderListPage")
-	public String orderListPage(HttpSession session, PageVO pvo, Model model) {
-		//UserVO uvo = (UserVO) session.getAttribute("login");
+	public String orderListPage(HttpSession session, OrderPageVO page, Model model) {
+		UserVO uvo = (UserVO) session.getAttribute("login");
+		int total = service.getTotal(uvo.getUserId());
+		page.setTotalArticleCount(total);
+		
+		model.addAttribute("OrderProductList", service.getList(page, uvo.getUserId()));
+		model.addAttribute("page", page);
+		
+		return "order/orderList";
+		/*
+		UserVO uvo = (UserVO) session.getAttribute("login");
 		//String userId = uvo.getUserId();
 		System.out.println("페이지정보: " + pvo);
 		PageCreator pc = new PageCreator();
+		pvo.setCountPerPage(5);
 		pc.setPaging(pvo);
-		int total = service.getTotal(pvo, "heoheo");
+		int total = service.getTotal(pvo, uvo.getUserId());
 		pc.setArticleTotalCount(total);
 		System.out.println("pc: " + pc);
 		
-		model.addAttribute("OrderProductList", service.getList(pvo, "heoheo"));
-		model.addAttribute("pc", pc);
+		model.addAttribute("OrderProductList", service.getList(pvo, uvo.getUserId()));
+		model.addAttribute("page", pc);
 		
 		return "order/orderList";
+		*/
 	}
 	
 	//주문 상세내역페이지로 이동
@@ -54,8 +67,11 @@ public class OrderController {
 	
 	//결제화면으로 이동
 	@GetMapping("/purchasePage")
-	public String purchasePage(@RequestParam int proNum, Model model) {
+	public String purchasePage(@RequestParam int proNum, HttpSession session, Model model) {
 		
+		UserVO uvo = (UserVO) session.getAttribute("login");
+		
+		model.addAttribute("user", uvo);
 		model.addAttribute("product", service.getProduct(proNum));
 		
 		return "order/purchase";
