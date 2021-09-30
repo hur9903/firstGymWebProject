@@ -42,7 +42,7 @@ public class BmiController {
 		System.out.println("입력받은 정보: " + vo);
 		service.insertBMI(vo, userId);
 		
-		ra.addFlashAttribute("msg", "BMI 입력이 완료되었습니다.");
+		ra.addAttribute("msg", "bmiModal");
 			
 		
 		return "redirect:/mypage/mainPage";

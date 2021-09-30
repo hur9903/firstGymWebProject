@@ -25,6 +25,7 @@
 		  		(
 		  		SELECT * FROM bmi_result
 		  		WHERE user_id=#{userId}
+		  		ORDER BY bmi_num DESC
 		  		) tbl
 		  	)
 		<![CDATA[
