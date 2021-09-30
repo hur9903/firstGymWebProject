@@ -23,14 +23,14 @@
                         </div>
                         <div class="order-info">
                             <div class="product-title">
-                                <a href="#" class="dumbel">${vo.proname}</a>
+                                <a href="#" class="dumbel">${vo.proName}</a>
                             </div>
                             <div class="product-price">
                                 <a class="price">${vo.orderTotalPrice}</a>
                                 <a class="date">${vo.orderDate}</a>
                             </div>
                             <div class="type">
-                                <a href="#">${vo.procategory}</a>
+                                <a href="#">${vo.orderCategory}</a>
                             </div>
                         </div>
                         <div class="seller-info">

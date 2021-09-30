@@ -15,13 +15,23 @@
 	        		<input name="boardNum" type="hidden" value="${article.boardNum}">
 	        		<input name="userId" type="hidden" value="${article.userId}">
 	        	</c:if>
+	        		<input type="hidden" name="category" value="${page.category}">
+	            	<input type="hidden" name="condition" value="${page.condition}">
+	            	<input type="hidden" name="keyword" value="${page.keyword}">
+	            	<input type="hidden" name="pageNum" value="${page.pageNum}">
                 <hr>
                 <div class="boardModify-form-div">               
                     <select name="boardCategory" id="">
+                    	<c:if test="${page.category != 'info'}">
                         <option value="none" <c:if test="${msg == 'boardModify'}">${article.boardCategory == 'none' ? 'selected' : ''}</c:if>>-- 운동 카테고리 --</option>
                         <option value="oxy" <c:if test="${msg == 'boardModify'}">${article.boardCategory == 'oxy' ? 'selected' : ''}</c:if>>유산소 운동</option>
                         <option value="nonoxy" <c:if test="${msg == 'boardModify'}">${article.boardCategory == 'nonoxy' ? 'selected' : ''}</c:if>>근력 운동</option>
                         <option value="yoga" <c:if test="${msg == 'boardModify'}">${article.boardCategory == 'yoga' ? 'selected' : ''}</c:if>>요가, 스트레칭</option>
+                    	</c:if>
+                        <option value="info">공지사항</option>
+                    	<c:if test="${page.category == 'info'}">
+                    	
+                    	</c:if>
                     </select><br>
                     <input type="text" name="boardTitle" id="board-title" placeholder="제목 입력" value="<c:if test="${msg == 'boardModify'}">${article.boardTitle}</c:if>">
                     <div class="boardModify-form-content-div">
@@ -134,7 +144,7 @@
 		
         //글 목록으로 이동 버튼
         $('#list-btn').click(function(){
-        	location.href = '<c:url value="/board/boardListPage" />';
+        	location.href = '<c:url value="/board/boardListPage" />?category=${page.category}&condition=${page.condition}&keyword=${page.keyword}&pageNum=${page.pageNum}';
         });
         
         //글 등록버튼

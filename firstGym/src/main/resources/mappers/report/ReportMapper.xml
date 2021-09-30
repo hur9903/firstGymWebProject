@@ -6,18 +6,58 @@
 
 	<resultMap type="kr.co.firstgym.command.ReportVO" id="ReportMap">
 	
-		<id property="rpNum" column="REPORT_NUM" />
-		<result property="rpContent" column="REPORT_CONTENT"/>
-		<result property="userId" column="USER_ID"/>
-		<result property="rpDate" column="REPORT_DATE"/>
+		<result property="reportNum" column="report_num" />
+		<result property="reportContent" column="report_content"/>
+		<result property="reportDate" column="report_date"/>
+		<result property="reportYN" column="report_yn"/>
+		<result property="boardNum" column="board_num"/>
+		<result property="userId" column="user_id"/>
 		
 	</resultMap>
+
+	<insert id="report">
+		INSERT INTO report(report_num, report_content, board_num, user_id, report_yn)
+		VALUES(report_list_seq.NEXTVAL, #{reportContent}, #{boardNum}, #{userId}, '0')
+	</insert>
+	
+	<select id="reportList" resultMap="ReportMap">
+		SELECT report_num, report_content, user_id, report_date
+		FROM(
+			SELECT ROWNUM as rn, rp.*
+			FROM(
+				SELECT * FROM report
+				WHERE report_yn = '0'
+				ORDER BY report_num DESC
+			) rp
+		)
+		<![CDATA[
+		WHERE rn > (#{pageNum} - 1) * #{countPerPage}
+		AND rn <= #{pageNum} * #{countPerPage}
+		]]>
+	</select>
+	
+	<select id="checkRp" resultType="int">
+		SELECT COUNT(*) FROM report
+		WHERE board_num = #{boardNum} AND user_id = #{userId}
+	</select>
+	
+	<select id="getReport" resultMap="ReportMap">
+		SELECT * FROM report
+		WHERE report_num = #{reportNum}
+	</select>
+	
+	<update id="refuse">
+		UPDATE report
+		SET report_yn = '1'
+		WHERE report_num = #{reportNum}
+	</update>
 	
 	
-	<!-- <insert id="">
-		INSERT INTO report (report_num, report_content, report_date, user_id)VALUES(#{rpNum), #{reContent}, #{userID}, #{rpDate})
-	</insert> -->
 	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM report
+	</select>
 	
 </mapper>
 	

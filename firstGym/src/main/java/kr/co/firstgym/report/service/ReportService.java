@@ -1,33 +1,54 @@
 package kr.co.firstgym.report.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.firstgym.command.BoardPageVO;
 import kr.co.firstgym.command.ReportVO;
 import kr.co.firstgym.report.repository.IReportMapper;
-import kr.co.firstgym.user.repository.IUserMapper;
 
 @Service
 public class ReportService implements IReportService {
 	@Autowired
 	private IReportMapper mapper;
-	
+
 	@Override
 	public void report(ReportVO vo) {
-		// TODO Auto-generated method stub
-
+		mapper.report(vo);
 	}
 
 	@Override
-	public ReportVO reportList(ReportVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ReportVO> reportList(BoardPageVO page) {
+		return mapper.reportList(page);
+	}
+
+	@Override
+	public int checkRp(int boardNum, String userId) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardNum", boardNum);
+		map.put("userId", userId);
+		return mapper.checkRp(map);
+	}
+
+	@Override
+	public ReportVO getReport(int reportNum) {
+		return mapper.getReport(reportNum);
+	}
+
+	@Override
+	public void refuse(int reportNum) {
+		mapper.refuse(reportNum);
+	}
+
+	@Override
+	public int getTotal() {
+		return mapper.getTotal();
 	}
 	
-	@Override
-	public int checkRp(String content) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 }

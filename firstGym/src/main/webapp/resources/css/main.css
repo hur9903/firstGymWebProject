@@ -74,7 +74,7 @@ body, html {/*body와 html은 꽉 차게, 기본 폰트는 나눔 고딕*/
 /*** header.html 디자인 ***/
 .header-logo{
     width: 100px;
-    margin-left: -410px;
+    margin-left: -318px;
     margin-right: 30px;
 }
 a {
@@ -1304,10 +1304,14 @@ button.boardContent-report-btn:hover{
     position: absolute;
     left: 3%;
     top: 2%;
-    width: 98%;
-    height: 92%;
+    width: 96%;
+    height: 100%;
     background-color: rgba(17, 17, 49, 0.897);
     opacity: 0;
+}
+#productList .products ul li .hover-product h3 {
+	color: white;
+	margin-top: 50%;
 }
 #productList .products ul li:hover .hover-product {
     opacity: 1;
@@ -2450,6 +2454,12 @@ background-color:rgb(14, 117, 185);
     border: none;
     vertical-align: top;
 }
+#productDetail-div .reviewImg {
+	border: none;
+    vertical-align: top;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
 #productDetail-div .total-products table {
     margin: 0;
 }
@@ -2543,6 +2553,17 @@ background-color:rgb(14, 117, 185);
     text-align: right;
     font-size: 0;
     line-height: 0;
+}
+#productDetail-div .purchaseDirect {
+	width: 120px;
+    height: 50px;
+    text-align: center;
+    font-size: 16px;
+    color: rgb(85, 86, 87);
+    font-weight: bold;
+    background-color: rgb(208, 236, 248);
+    border: rgb(208, 236, 248);
+    border-radius: 5px;
 }
 #productDetail-div .add-detail {
     clear: both;
@@ -2671,6 +2692,17 @@ background-color:rgb(14, 117, 185);
     height: 1px;
     margin: -1px;
     overflow: hidden;
+}
+#productDetail-div .review {
+	width: 90px;
+    height: 40px;
+    text-align: center;
+    font-size: 13px;
+    color: rgb(85, 86, 87);
+    font-weight: bold;
+    background-color: rgb(209, 211, 212);
+    border: rgb(208, 236, 248);
+    border-radius: 5px;
 }
 #productDetail-div .inbox-id {
     display: block;
@@ -2951,6 +2983,7 @@ background-color:rgb(14, 117, 185);
 }
 .manager-write{
     float: right;
+    margin-top: 20px;
     margin-right: 10px;
     margin-bottom: 10px;
     background-color: rgb(22, 143, 36);
@@ -3012,9 +3045,6 @@ td{
 
 /* 상하 마긴 */
 
-.manager-table-box2{
-    margin-top: 150px;
-}
 /* 입력창 길이조절 */
 .manager-input-full-width{
     width: 80%;
@@ -3155,6 +3185,7 @@ td{
             padding: 10px 0;
         }
         
+
 /* email */
 #email-info{
 
@@ -3235,4 +3266,57 @@ td{
     font-size: 20px;
     font-weight: bold;
     color: rgb(43, 161, 59);
+
+/* 사이드바 */
+.sideBar {
+	right: 40px;
+	bottom: 8%;
+	position : fixed;
+}
+
+.qSideMenu button {
+	width: 50px;
+	height: 50px;
+	overflow: visible;
+	font-size: 20px;
+	padding: 0;
+	background: none;
+	display: block;
+	position: relative;
+	border-radius: 30px;
+	font-size: 15px;
+	border: 2px solid rgb(47, 45, 82);
+	background-color: rgb(47, 45, 82);
+}
+.qnaBtn {
+	margin-bottom: 10px;
+}
+.uSideMenu button {
+	width: 50px;
+	height: 50px;
+	overflow: visible;
+	font-size: 20px;
+	padding: 0;
+	background: none;
+	display: block;
+	position: relative;
+	border-radius: 30px;
+	font-size: 15px;
+	border: 2px solid rgb(47, 45, 82);
+	background-color: white;
+}
+.qnaBtn a {
+	color: white;
+	font-weight: bold;
+}
+.upBtn a {
+	color: rgb(47, 45, 82);
+	font-weight: bold;
+	font-size: 30px;
+}
+.instaBtn {
+	position: absolute;
+	margin-left: 1%;
+	left: 50px;
+	top: 65px;
 }

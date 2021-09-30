@@ -6,6 +6,18 @@
 
 <footer >
     <div class="footer-container">
+	    <div class="sideBar">
+	    	<div class="qSideMenu">
+	    		<button type="button" class="qnaBtn">
+	    			<a href="#">문의</a>
+	    		</button>
+	    	</div>
+	    	<div class="uSideMenu">
+		    	<button type="button" class="upBtn">
+		    		<a href="#">⇧</a>
+		    	</button>
+	    	</div>
+	    </div>
         <div class="row">
             <div class="col-md-7 col-sm-12">
                 <img src="${pageContext.request.contextPath }/resources/image/firstgymLogo.png" alt="" class="footer-logo">
