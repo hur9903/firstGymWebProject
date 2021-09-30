@@ -22,8 +22,8 @@ public class ReportService implements IReportService {
 	}
 
 	@Override
-	public List<ReportVO> reportList(BoardPageVO vo) {
-		return mapper.reportList(vo);
+	public List<ReportVO> reportList(BoardPageVO page) {
+		return mapper.reportList(page);
 	}
 
 	@Override
@@ -42,6 +42,11 @@ public class ReportService implements IReportService {
 	@Override
 	public void refuse(int reportNum) {
 		mapper.refuse(reportNum);
+	}
+
+	@Override
+	public int getTotal() {
+		return mapper.getTotal();
 	}
 	
 	

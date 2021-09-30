@@ -21,8 +21,19 @@
 	</insert>
 	
 	<select id="reportList" resultMap="ReportMap">
-		SELECT * FROM report
-		WHERE report_yn = '0'
+		SELECT report_num, report_content, user_id, report_date
+		FROM(
+			SELECT ROWNUM as rn, rp.*
+			FROM(
+				SELECT * FROM report
+				WHERE report_yn = '0'
+				ORDER BY report_num DESC
+			) rp
+		)
+		<![CDATA[
+		WHERE rn > (#{pageNum} - 1) * #{countPerPage}
+		AND rn <= #{pageNum} * #{countPerPage}
+		]]>
 	</select>
 	
 	<select id="checkRp" resultType="int">
@@ -40,6 +51,13 @@
 		SET report_yn = '1'
 		WHERE report_num = #{reportNum}
 	</update>
+	
+	
+	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM report
+	</select>
 	
 </mapper>
 	

@@ -9,9 +9,9 @@
     
     <div class="manager-main-div">
         <div class="manager-sub-div">
-            <form action="#">
+            <form action="">
                 <div id="manager-first-table" class="manager-table-box">
-                    
+                <input id="page-pn" type="hidden" name="pageNum" value="${page.pageNum}">   
                     
                     <div class="manager-order">관리자 화면</div>
                     <div class="manager-table-box2">
@@ -42,27 +42,26 @@
                     <div class="manager-paging-div">
                         <ul>
                             <!-- 이전버튼  -->
+                            <c:if test="${page.prev}">
                             <a href=""><li class="manager-btn-not-check">&lt;</li></a>
+                            </c:if>
                             <!-- 페이지 버튼(체크되면 class이름 변경) -->
-                            <a href=""><li class="manager-btn-check">1</li></a>
-                            <a href=""><li class="manager-btn-not-check">2</li></a>
-                            <a href=""><li class="manager-btn-not-check">3</li></a>
-                            <a href=""><li class="manager-btn-not-check">4</li></a>
-                            <a href=""><li class="manager-btn-not-check">5</li></a>
-                            <a href=""><li class="manager-btn-not-check">6</li></a>
-                            <a href=""><li class="manager-btn-not-check">7</li></a>
-                            <a href=""><li class="manager-btn-not-check">8</li></a>
-                            <a href=""><li class="manager-btn-not-check">9</li></a>
-                            <a href=""><li class="manager-btn-not-check">10</li></a>
-                                
-                            <!-- 다음버튼 -->
-                            <a href=""><li class="manager-btn-not-check">&gt;</li></a>
+	                    	<c:forEach var="num" begin="${page.beginPageNum}" end="${page.endPageNum}">
+		                    	<a href=""><li class="${page.pageNum == num ? 'manager-btn-check' : 'manager-btn-not-check'}" data-pn="${num}">${num}</li></a>
+		                	</c:forEach>
+	                    	<!-- 다음버튼 -->
+	                    	<c:if test="${page.next}">
+	                    		<a href=""><li class="manager-btn-not-check" data-pn="${page.endPageNum+1}">&gt;</li></a>
+							</c:if>
+                            
 
                         </ul>
                     </div>
                     <hr>
+                </div>
             </form>
-                    <button type="button" class="manager-write">공지사항 등록</button>                    
+                    <button id="write-info-btn" type="button" class="manager-write">공지사항 등록</button>                    
+            		<button id="to-info-btn" type="button" class="manager-write">공지사항 목록</button>  
         </div>
     </div>
 
@@ -70,7 +69,20 @@
     <%@ include file="../include/footer.jsp" %>
     
     <script>
-		$('.manager-write').click(function(){
-			location.href = '<c:url value="/board/boardUpdatePage" />?category=info&condition=title&keyword=&pageNum=1';
+    	//공지로 이동
+    	$('#to-info-btn').click(function(){
+			location.href = '<c:url value="/board/boardListPage" />?category=info&condition=title&keyword=&pageNum=1';
+		});
+    	
+    	//공지작성
+		$('#write-info-btn').click(function(){
+			location.href = '<c:url value="/board/boardUpdatePage"/>?category=info&condition=title&keyword=&pageNum=1';
+		});
+		
+    	//페이징
+		$('#page-form a').click(function(event){
+			event.preventDefault();
+    		$('#page-pn').val(event.target.getAttribute("data-pn"));
+    		$('#page-form').submit();
 		});
 	</script>

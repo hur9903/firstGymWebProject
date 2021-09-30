@@ -12,7 +12,7 @@ public interface IReportMapper {
 	void report(ReportVO vo);
 		
 	//신고 리스트 가져오기
-	List<ReportVO> reportList(BoardPageVO vo);
+	List<ReportVO> reportList(BoardPageVO page);
 		
 	//신고 여부 확인
 	int checkRp(Map<String, Object> map);
@@ -22,4 +22,7 @@ public interface IReportMapper {
 	
 	//신고 거절
 	void refuse(int reportNum);
+	
+	//신고 수 가져오기
+	int getTotal();
 }

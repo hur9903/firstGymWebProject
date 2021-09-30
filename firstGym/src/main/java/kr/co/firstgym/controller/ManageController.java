@@ -29,8 +29,10 @@ public class ManageController {
 	//매니저 페이지 이동
 	@GetMapping("/manager")
 	public String manage(BoardPageVO page, Model model) {
+		page.setTotalArticleCount(service.getTotal());
 		List<ReportVO> reports = service.reportList(page);
 		model.addAttribute("reports", reports);
+		model.addAttribute("page", page);
 		return "manage/manager";
 	}
 	

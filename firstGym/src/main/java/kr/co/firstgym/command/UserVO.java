@@ -23,6 +23,8 @@ public class UserVO {
    private String userAddr1;
    private String userAddr2;
    private Timestamp regDate;
+   private String userGrade;
+   
 //   private int userPoint;
    private String nonUserName;
    private String nonUserEmail;
