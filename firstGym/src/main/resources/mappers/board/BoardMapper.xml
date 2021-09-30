@@ -101,6 +101,10 @@
 				AND board.board_content LIKE '%'||#{keyword}||'%'
 			</if>
 		</if>
+		
+		<if test="category == 'info'">
+			WHERE board.board_category='info'
+		</if>
 	</sql>
 	
 	

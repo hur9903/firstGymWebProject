@@ -31,7 +31,7 @@ public class BoardMapperTest {
 		BoardVO vo = new BoardVO();
 		
 		for(int i = 0; i <1000; i++) {
-			vo.setUserId("userId");
+			vo.setUserId("woozu01");
 			vo.setBoardContent("test" + i);
 			vo.setBoardTitle("test" + i);
 			vo.setBoardCategory("none");

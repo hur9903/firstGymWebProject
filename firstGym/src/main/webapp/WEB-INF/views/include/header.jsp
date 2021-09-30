@@ -79,7 +79,12 @@
                 <li><a href="<c:url value='/product/productListPage' />">운동기구</a></li>
                 <li><a href="<c:url value='/board/boardListPage' />">게시판</a></li>
                 <li><a href="<c:url value='/mypage/mainPage' />">마이페이지</a></li>
-                <li><a href="#">문의하기</a></li>
+                <c:if test="${login.userGrade != 'manager'}">
+                	<li><a href="<c:url value="/board/boardListPage" />?category=info&condition=title&keyword=&pageNum=1">공지사항</a></li>
+                </c:if>
+                <c:if test="${login.userGrade == 'manager'}">
+                	<li><a href="<c:url value='/manage/manager' />">관리자 페이지</a></li>
+                </c:if>
             </ul>
         </nav>
         <!-- <nav class='bar' style="background: #0000">

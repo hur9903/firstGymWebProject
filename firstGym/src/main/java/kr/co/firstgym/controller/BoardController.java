@@ -52,7 +52,7 @@ public class BoardController {
 	
 	//게시글 상세보기로 이동
 	@GetMapping("/boardDetailPage/{boardNum}")
-	public String boardDetailPage(@PathVariable("boardNum") int boardNum, Model model, HttpServletRequest request, HttpServletResponse response) {
+	public String boardDetailPage(@PathVariable("boardNum") int boardNum, BoardPageVO page, Model model, HttpServletRequest request, HttpServletResponse response) {
 		
 		BoardVO article = service.getArticle(boardNum);
 		article.setBoardRecom(recomService.calcTotalRecom(boardNum));
@@ -78,20 +78,36 @@ public class BoardController {
 		
 		model.addAttribute("article", article);
 		model.addAttribute("images", images);
+		model.addAttribute("page", page);
 		
 		return "/board/boardContent";
 	}
 	
 	//게시글 등록 페이지로 이동
 	@GetMapping("/boardUpdatePage")
-	public String boardUpdatePage() {
+	public String boardUpdatePage(BoardPageVO page, Model model) {
+		if(!page.getCondition().equals("myBoard")) {
+			page.setKeyword("");
+			page.setCondition("title");
+		}
+		if(!page.getCategory().equals("info")) {
+			page.setCategory("none");
+		}
+		model.addAttribute("page", page);
 		return "/board/boardModify";
 	}
 	
 	//게시글 수정 페이지로 이동
 	@GetMapping("/boardModifyPage")
-	public String boardModifyPage(@RequestParam("boardNum") int boardNum, Model model) {
-			
+	public String boardModifyPage(@RequestParam("boardNum") int boardNum, BoardPageVO page, Model model) {
+		if(!page.getCondition().equals("myBoard")) {
+			page.setKeyword("");
+			page.setCondition("title");
+		}
+		if(!page.getCategory().equals("info")) {
+			page.setCategory("none");
+		}
+		model.addAttribute("page", page);
 		model.addAttribute("article", service.getArticle(boardNum));
 		model.addAttribute("msg", "boardModify");
 			
@@ -100,7 +116,7 @@ public class BoardController {
 	
 	//게시글 등록
 	@PostMapping("/boardUpdate")
-	public String boardUpdate(BoardVO article, @RequestParam("images") List<MultipartFile> images, @RequestParam("video") MultipartFile video, HttpSession session) {
+	public String boardUpdate(BoardVO article, BoardPageVO page, @RequestParam("images") List<MultipartFile> images, @RequestParam("video") MultipartFile video, HttpSession session) {
 		
 		UserVO user = (UserVO)session.getAttribute("login");
 		String userId = user.getUserId();
@@ -110,27 +126,35 @@ public class BoardController {
 		service.regist(article, images, video); //게시글 등록
 		int bno = service.getArticleNo(userId); //게시글 번호 반환
 		
-		return "redirect:/board/boardDetailPage/" + bno;
+		return "redirect:/board/boardDetailPage/" + bno  + "?category=" + page.getCategory() +"&condition=" + page.getCondition() + "&keyword=" + page.getKeyword() + "&pageNum=1";
 	}
 	
 	//게시글 수정
 	@PostMapping("/boardModify")
-	public String boardModify(BoardVO article, @RequestParam("images") List<MultipartFile> images, @RequestParam("video") MultipartFile video, @RequestParam(value="imageDelCheck", defaultValue="false") boolean imageDelCheck) {
+	public String boardModify(BoardVO article, BoardPageVO page, @RequestParam("images") List<MultipartFile> images, @RequestParam("video") MultipartFile video, @RequestParam(value="imageDelCheck", defaultValue="false") boolean imageDelCheck) {
 		
 		System.out.println("controller-imdel: "+imageDelCheck);
 		service.updateArticle(article, images, video, imageDelCheck);
 		
-		return "redirect:/board/boardDetailPage/" + article.getBoardNum();
+		return "redirect:/board/boardDetailPage/" + article.getBoardNum() + "?category=" + page.getCategory() +"&condition=" + page.getCondition() + "&keyword=" + page.getKeyword() + "&pageNum=1";
 	}
 	
 	//게시글 삭제
 	@PostMapping("/boardDelete")
-	public String boardDelete(@RequestParam("boardNum") int boardNum, RedirectAttributes ra) {
+	public String boardDelete(@RequestParam("boardNum") int boardNum, BoardPageVO page, RedirectAttributes ra) {
 		service.deleteArticle(boardNum);
+		
+		if(!page.getCondition().equals("myBoard")) {
+			page.setKeyword("");
+			page.setCondition("title");
+		}
+		if(!page.getCategory().equals("info")) {
+			page.setCategory("none");
+		}
 		
 		ra.addFlashAttribute("msg", "deleteSuccess");
 		
-		return "redirect:/board/boardListPage";
+		return "redirect:/board/boardListPage"  + "?category=" + page.getCategory() +"&condition=" + page.getCondition() + "&keyword=" + page.getKeyword() + "&pageNum=1";
 	}
 	
 	//좋아요 처리(비동기)

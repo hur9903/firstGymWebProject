@@ -11,11 +11,14 @@
         <div class="boardList-sub-div">
             <div id="boardList-page-title">
             <c:if test="${page.condition == 'myBoard'}">내가 쓴 게시글</c:if>
-            <c:if test="${page.condition != 'myBoard'}">게시글 목록</c:if>
+            <c:if test="${page.condition != 'myBoard'}">
+     			<c:if test="${page.category == 'info'}">공지사항</c:if>       
+     			<c:if test="${page.category != 'info'}">게시글 목록</c:if>
+            </c:if>
             </div>
             <hr>
             <!-- 상단 검색창 -->
-            <c:if test="${page.condition != 'myBoard'}">
+            <c:if test="${page.condition != 'myBoard' && page.category != 'info'}">
             <div id="boardList-top-search-div">
                 <form action="<c:url value="/board/boardListPage" />">
                     <div class="boardList-search-div">
@@ -31,7 +34,7 @@
                             <option value="content" ${page.condition == 'content' ? 'selected' : ''}>내용</option>
                         </select>
                         <div>
-                            <input name="keyword" type="text">
+                            <input name="keyword" type="text" value="${page.keyword}">
                             <button class="color-darkskyblue">검색</button>
                         </div>
                     </div>
@@ -53,7 +56,7 @@
 	                        <td class="boardList-clearfix">
 	                            <div class="boardList-content-div boardList-float-left">
 	                                <div class="boardList-content-title">
-	                                	<a href="<c:url value="/board/boardDetailPage/${article.boardNum}" />">
+	                                	<a href="<c:url value="/board/boardDetailPage/${article.boardNum}" />?category=${page.category}&condition=${page.condition}&keyword=${page.keyword}&pageNum=${page.pageNum}">
 	                                		<c:if test="${article.boardCategory == 'oxy'}">[유산소 운동]</c:if>
                         					<c:if test="${article.boardCategory == 'nonoxy'}">[근력 운동]</c:if>
                        						<c:if test="${article.boardCategory == 'yoga'}">[요가, 스트레칭]</c:if>
@@ -80,7 +83,7 @@
             	</table>
             </div>
             <!-- 게시글 등록 버튼 -->
-            <c:if test="${page.condition != 'myBoard'}">
+            <c:if test="${page.condition != 'myBoard' && page.category != 'info'}">
 	            <c:if test="${login != null}">
 		            <div class="boardList-update-btn-div boardList-clearfix">
 		                <button id="regist-btn" class="color-darkskyblue boardList-float-right">게시글 등록</button>
@@ -111,7 +114,7 @@
                 </form>
             </div>
             <!-- 하단 검색창 -->
-            <c:if test="${page.condition != 'myBoard'}">
+            <c:if test="${page.condition != 'myBoard' && page.category != 'info'}">
             <div id="boardList-bottom-search-div">
                 <form action="<c:url value="/board/boardListPage" />">
                     <div class="boardList-search-div">
@@ -127,7 +130,7 @@
                             <option value="content" ${page.condition == 'content' ? 'selected' : ''}>내용</option>
                         </select>
                         <div>
-                            <input name="keyword" type="text">
+                            <input name="keyword" type="text" value="${page.keyword}">
                             <button class="color-darkskyblue">검색</button>
                         </div>
                     </div>
@@ -147,7 +150,7 @@
     		
     		//글 등록 버튼
 	    	$('#regist-btn').click(function(){
-	    		location.href = '<c:url value="/board/boardUpdatePage" />';
+	    		location.href = '<c:url value="/board/boardUpdatePage" />?category=${page.category}&condition=${page.condition}&keyword=${page.keyword}&pageNum=1';
 	    	});
     		
     		//페이지버튼
