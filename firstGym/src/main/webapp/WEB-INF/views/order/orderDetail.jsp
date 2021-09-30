@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@ include file="../include/header.jsp" %>
   
@@ -16,15 +17,15 @@
                         <table class="orderDetail-main-table2"  >
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">주문 번호</td>
-                                <td>${OrderProduct.o_num}</td>
+                                <td>${OrderProduct.orderNum}</td>
                             </tr>
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">주문 날짜</td>
-                                <td>${OrderProduct.o_date}</td>
+                                <td><fmt:formatDate value="${OrderProduct.orderDate}" pattern="yyyy년 MM월 dd일" /></td>
                             </tr>
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">주문한 사람</td>
-                                <td>${OrderProduct.o_sendId}</td>
+                                <td>${OrderProduct.orderSendId}</td>
                             </tr>
                         </table>
                     </div>
@@ -34,15 +35,15 @@
                         <table class="orderDetail-main-table2">
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">수취인</td>
-                                <td>${OrderProduct.o_receiveName}</td>
+                                <td>${OrderProduct.orderReceiveName}</td>
                             </tr>
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">주소</td>
-                                <td>${OrderProduct.o_address}&nbsp;${OrderProduct.o_detailAddress}</td>
+                                <td>${OrderProduct.orderAddress}&nbsp;${OrderProduct.orderDetailAddress}</td>
                             </tr>
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">연락처</td>
-                                <td>${OrderProduct.o_pNum}</td>
+                                <td>${OrderProduct.orderPNum}</td>
                             </tr>
                         </table>
                     </div>
@@ -52,11 +53,11 @@
                             
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">결제 금액</td>
-                                <td>${OrderProduct.o_totalPrice}</td>
+                                <td>${OrderProduct.orderTotalPrice}</td>
                             </tr>
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">결제 방법</td>
-                                <td>${OrderProduct.o_method}</td>
+                                <td>${OrderProduct.orderMethod}</td>
                             </tr>
                             
                             

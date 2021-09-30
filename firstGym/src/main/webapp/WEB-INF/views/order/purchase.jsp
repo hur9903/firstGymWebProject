@@ -11,7 +11,7 @@
                 <div id="purchase-first-table" class="purchase-table-box">
                     
                     
-                    <div class="purchase-order">주문서 작성</div><button class="purchase-prevBtn">이전페이지 <span>▶</span></button>
+                    <div class="purchase-order">주문서 작성</div><button type="button" class="purchase-prevBtn" onclick="location.href='<c:url value='/product/productDetailPage?proNum=${product.proNum}' />';">이전페이지 <span>▶</span></button>
                     ! 상품의 수량 변경은 상품상세 페이지에서 가능합니다.
              
                     <table class="purchase-main-table1">
