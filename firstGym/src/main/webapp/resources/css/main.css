@@ -45,14 +45,29 @@ body, html {/*body와 html은 꽉 차게, 기본 폰트는 나눔 고딕*/
     background: rgb(208, 236, 248);
 }
 
-.color-darkskyblue{
+.color-darkskyblue {
     background: rgb(52, 152, 219);
+   
 }
 
 .color-lightskyblue{
     background: rgba(208, 236, 248, 0.18)
 }
 
+.registBtn {
+    font-size: 15px;
+    background-color: rgb(10, 45, 109);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.registBtn:hover{
+	cursor: pointer;
+	    background-color: rgb(42 81 153);
+	
+}
 .color-gray{
     background: rgb(94, 94, 94);
 }
@@ -307,7 +322,13 @@ color: white;
     margin-top: 10px;
     padding: 5px;
     border-radius: 5px;
-    height: 30px;
+    width: 100px;
+    height: 40px;
+    color: white;
+    font-size: 15px;
+}
+.footer-manager:hover{
+	cursor: pointer;
 }
 
 
@@ -3133,3 +3154,85 @@ td{
         .report-cat{
             padding: 10px 0;
         }
+        
+/* email */
+#email-info{
+
+    width: 100vw;
+    height: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #00000090;
+}
+
+.email-Main{
+    border-radius: 10px;
+    background: rgb(246, 251, 255);
+    position: fixed;
+    left: 50vw;
+    top: 50vh;
+    min-width: 300px;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 550px;
+    padding: 50px 80px;
+    font-size: 20px;
+    box-shadow:5px 5px 20px rgb(136 128 128);
+}
+.email-h3{
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 5px;
+}
+.email-btn{
+    float: right;
+    width: 90px;
+    height: 30px;
+    color: white;
+    background-color: rgb(52, 152, 219);
+    border: none;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    
+}
+.email-cn{
+    float: right;
+    width: 90px;
+    height: 30px;
+    color: white;
+    background: rgb(94, 94, 94);
+    border: none;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+.email-cn:hover{
+    background-color: rgb(60, 62, 63);
+    cursor: pointer;
+}
+.email-btn:hover{
+    background-color: rgb(36, 103, 148);
+    cursor: pointer;
+}
+.email-text{
+    width: 350px;
+    height: 250px;
+    padding: 10px;
+    margin-top: 20px;
+    overflow: scroll;
+    border: 2px solid black;
+}
+.email-writer{
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(43, 161, 59);
+}

@@ -57,7 +57,7 @@
 	                                		<c:if test="${article.boardCategory == 'oxy'}">[유산소 운동]</c:if>
                         					<c:if test="${article.boardCategory == 'nonoxy'}">[근력 운동]</c:if>
                        						<c:if test="${article.boardCategory == 'yoga'}">[요가, 스트레칭]</c:if>
-	                                		${article.boardTitle}
+	                                		${article.boardTitle}<br><br>
 	                                	</a>
 	                                </div>
 	                                <div class="boardList-content-info">
@@ -83,7 +83,7 @@
             <c:if test="${page.condition != 'myBoard'}">
 	            <c:if test="${login != null}">
 		            <div class="boardList-update-btn-div boardList-clearfix">
-		                <button id="regist-btn" class="color-darkskyblue boardList-float-right">게시글 등록</button>
+		                <button id="regist-btn" class="registBtn boardList-float-right">게시글 등록</button>
 		            </div>
 	            </c:if>
             </c:if>

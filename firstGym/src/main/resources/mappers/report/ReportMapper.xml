@@ -14,9 +14,9 @@
 	</resultMap>
 	
 	
-	<insert id="">
+	<!-- <insert id="">
 		INSERT INTO report (report_num, report_content, report_date, user_id)VALUES(#{rpNum), #{reContent}, #{userID}, #{rpDate})
-	</insert>
+	</insert> -->
 	
 	
 </mapper>
