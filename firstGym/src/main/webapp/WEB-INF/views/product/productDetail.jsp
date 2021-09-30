@@ -85,7 +85,7 @@
                                 </td>
                                 <td class="right" style="width: 70px;">
                                     <span class="quantity-price">                                    
-                                        <input type="hidden" id="total-price" name="option-box-price" class="option-box-price" value="73200">
+                                        <input type="hidden" id="total-price" name="option-box-price" class="option-box-price" value="${itemInfo.proPrice}">
                                     </span>
                                 </td>
                             </tr>
@@ -108,9 +108,15 @@
                 </div>
                 <div class="purchase-btn">
                     <div class="btn-area">
-                        <a href="<c:url value='/order/purchase'/>" id="order_purchase">
-                            <button class="purchaseDirect">바로 구매하기</button>
-                        </a>
+                        <!--  <a href="<c:url value='/order/purchasePage?proNum=${itemInfo.proNum}&quantity=3'/>" id="order_purchase">
+                            
+                        </a> -->
+                        <form action="<c:url value='/order/purchasePage'/>">
+                        	<input name="proNum" value="${itemInfo.proNum}" type="hidden">
+                        	<input name="quantity" value="1" id="quan" type="hidden">
+                        	<button class="purchaseDirect">바로 구매하기</button>
+                        </form>
+                        
                     </div>
                 </div>
             </div>
@@ -315,6 +321,7 @@
     const downBtn = document.getElementById('quantity-down');
     const $price = document.getElementById('total-price');
     const original_price = $price.value;
+    const $quan = document.getElementById('quan');
     console.log('원금: ' + original_price);
     console.log('총액: ' + $price.value);
 
@@ -325,6 +332,7 @@
         console.log('value: ' + value);
         value++;
         $total.setAttribute('value', value);
+        $quan.setAttribute('value', value);
         console.log('변경된 value: ' + value);
         $price.setAttribute('value', original_price * value);
         console.log('총액: ' + $price.value);
@@ -342,6 +350,7 @@
         console.log('value: ' + value);
         value--;
         $total.setAttribute('value', value);
+        $quan.setAttribute('value', value);
         console.log('변경된 value: ' + value);
         $price.setAttribute('value', original_price * value);
         console.log('총액: ' + $price.value);
