@@ -26,7 +26,7 @@
                             <tr>
                                 <td rowspan="3"><div class="purchase-img"><img src="image/sample-image3.jpg" alt=""></div></td>
                                 <td><fmt:parseNumber value="${product.proPrice}" var="p1" />${p1}원</td>
-                                <td><fmt:parseNumber value="1" var="a" />${a}</td>
+                                <td><fmt:parseNumber value="${quantity}" var="a" />${a}</td>
                                 <td>${product.proMethod}</td>
                                 <td><fmt:parseNumber value="${product.proSendPrice}" var="p2" />${p2}원</td>
                                 <td><input type="number" id="totalPrice1" readonly>원</td>
@@ -40,7 +40,7 @@
                             </tr>
                         </table>
                        
-                            <div class="purchase-span">상품구매금액&nbsp;(${product.proPrice})&nbsp;+ 배송비&nbsp;(${product.proSendPrice}) =  <span class="purchase-total">합계 : (<input type="number" id="totalPrice2" readonly>) 원</span></div>
+                            <div class="purchase-span">상품구매금액&nbsp;(${product.proPrice})&nbsp; +&nbsp; 수량&nbsp;(${quantity})&nbsp; +&nbsp; 배송비&nbsp;(${product.proSendPrice}) =  <span class="purchase-total">합계 : (<input type="number" id="totalPrice2" readonly>) 원</span></div>
                         
                         
                 </div>

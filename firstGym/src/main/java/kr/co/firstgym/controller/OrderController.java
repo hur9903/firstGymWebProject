@@ -67,11 +67,12 @@ public class OrderController {
 	
 	//결제화면으로 이동
 	@GetMapping("/purchasePage")
-	public String purchasePage(@RequestParam int proNum, HttpSession session, Model model) {
+	public String purchasePage(@RequestParam int proNum, @RequestParam int quantity, HttpSession session, Model model) {
 		
 		UserVO uvo = (UserVO) session.getAttribute("login");
 		
 		model.addAttribute("user", uvo);
+		model.addAttribute("quantity", quantity);
 		model.addAttribute("product", service.getProduct(proNum));
 		
 		return "order/purchase";
