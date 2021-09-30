@@ -38,6 +38,11 @@
 <body>
     <header>
         <div class='title'>
+	        <div class="instaBtn">
+			    <a type="button" href="https://www.instagram.com/firstgym__/">
+			    	<img src="${pageContext.request.contextPath }/resources/image/instagram.png">
+			    </a>
+			</div>
            <h1> <a href="<c:url value='/' />"><img src="${pageContext.request.contextPath }/resources/image/logo.png" alt="" class="header-logo"><span class="header-first">FIRST GYM</span></a></h1>
             <div class="join">
        

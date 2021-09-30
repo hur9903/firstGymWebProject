@@ -48,6 +48,7 @@
 		                    <h3>${item.proName}</h3>
 		                    <h4>${item.proPrice}원</h4>
 		                    <div class="hover-product">
+		                    	<h3>${item.proName}</h3>
 		                    </div>
 	                    </a>
 	                </li>
