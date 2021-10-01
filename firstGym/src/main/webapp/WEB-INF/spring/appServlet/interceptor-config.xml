@@ -9,22 +9,16 @@
 	<!-- web.xml에 초기 설정 파일로 이 파일을 추가 -->
 	
 	<!-- 인터셉터 클래스를 bean으로 등록 -->
-	<bean id="userLoginSuccessHandler" class="kr.co.firstgym.util.interceptor.UserLoginSuccessHandler" />
 	<bean id="userAuthHandler" class="kr.co.firstgym.util.interceptor.UserAuthHandler" />
 	<bean id="boardAuthHandler" class="kr.co.firstgym.util.interceptor.BoardAuthHandler" />
 	
 	<mvc:interceptors>
 	
-		<!-- 로그인 이후 실행되는 PostHandler -->
-		<mvc:interceptor>
-			<mvc:mapping path="/user/login"/>
-			<ref bean="userLoginSuccessHandler" />
-		</mvc:interceptor>
-		
+	
 		<!-- 로그인 권한을 체크하는 핸들러 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/freeBoard/freeRegist"/> <!-- 글쓰기 화면 -->
-			<mvc:mapping path="/mypage/mainPage"/> <!-- 마이페이지 화면 -->
+			<mvc:mapping path="/mypage/**"/> <!-- 마이페이지 화면 -->
 			<ref bean="userAuthHandler" />
 		</mvc:interceptor>
 		

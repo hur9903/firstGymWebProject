@@ -1594,7 +1594,7 @@ font-size: 30px;
 
     .mypageModify-button{
         text-align: center;
-      margin-top: 70px;
+      margin-top: 170px;
       margin-bottom: -30px;
     }
     
@@ -1710,9 +1710,6 @@ font-size: 30px;
 #bmiList a:hover{
     text-decoration: underline;
     }
-.bmiList-paging-ul{
-   margin-left: 165px
-}
 
     /*modal- bmiList*/
     #bmiList{
@@ -1820,7 +1817,8 @@ font-size: 30px;
     text-decoration: underline;
     }
 .bmiList-paging-ul{
-    margin-left: 165px
+        text-align: center;
+
 }
 
 /*** userDelete.html ***/
@@ -2154,9 +2152,7 @@ font-size: 30px;
     width: 100px;
    height: 50px;
 }
-td{
-   width: 170px;
-}
+
 /* 상하 마긴 */
 .orderDetail-table-box{
     margin: 10px 10px;
@@ -3117,9 +3113,6 @@ background-color:rgb(14, 117, 185);
 }
 .manager-table-td2-2{
     width: 20%;
-}
-td{
-   width: 200px;
 }
 
 /* 입력창 길이조절 */
