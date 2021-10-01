@@ -59,7 +59,7 @@ body, html {/*body와 html은 꽉 차게, 기본 폰트는 나눔 고딕*/
 /*** header.html 디자인 ***/
 .header-logo{
     width: 100px;
-    margin-left: -318px;
+    margin-left: -392px;
     margin-right: 30px;
 }
 a {
@@ -185,9 +185,10 @@ a {
     margin: 5px;
 }
 span.header-first {
-    margin-right: 100px;
+    margin-right: 110px;
     position: absolute;
     top: 30px;
+    font-family: 'ROKABold';
 }
 header .title h1{
     font-family: 'ROKABold';
@@ -346,6 +347,7 @@ color: white;
     border-radius: 5px;
     font-size: 20px;
     border: 1px solid rgb(190, 188, 188);
+	margin-left: 30px
 }
 
 .bmiCheck-td-check{
@@ -371,6 +373,97 @@ color: white;
     background-color:rgb(14, 117, 185);
     cursor: pointer;
 }
+select.bmi-select {
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 5px;
+        border: 1px solid rgb(190, 188, 188);
+        height: 40px;
+
+}
+
+#bmi-info{
+
+        width: 100vw;
+        height: 100vw;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background-color: #00000090;
+    }
+     .bmi-Main{
+        border-radius: 10px;
+                background: rgb(243, 252, 255);
+
+        position: fixed;
+        left: 50vw;
+        top: 50vh;
+        min-width: 300px;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 500px;
+        padding: 50px 80px;
+        font-size: 20px;
+        box-shadow:5px 5px 20px rgb(136 128 128);
+        border: 1px solid rgb(0, 0, 82);
+    }
+    .bmi-h3{
+        font-size: 30px;
+        text-align: center;
+        letter-spacing: 2px;
+    }
+
+    .bmi-btn{
+        float: right;
+        width: 90px;
+        height: 40px;
+        color: white;
+        background-color: rgb(52, 152, 219);
+        border: none;
+        font-weight: bold;
+        font-size: 17px;
+        margin-top: 20px;
+        margin-right: 60px;
+
+    }
+    .bmi-cn{
+        float: right;
+        width: 90px;
+        height: 40px;
+        color: white;
+        background: rgb(94, 94, 94);
+        border: none;
+        font-weight: bold;
+        font-size: 17px;
+        margin-top: 20px;
+        margin-right: 30px;
+    }
+    .bmi-cn:hover{
+        background-color: rgb(60, 62, 63);
+        cursor: pointer;
+    }
+    .bmi-btn:hover{
+        background-color: rgb(36, 103, 148);
+        cursor: pointer;
+    }
+
+    .bmi-writer{
+        font-size: 20px;
+        font-weight: bold;
+        color: rgb(21, 43, 104)
+    }
+    .bmiResult{
+        font-size: 17px;
+    }
+    .bmiResult2{
+        color: rgb(0, 0, 187);
+        font-weight: bold;
+    }
+
 
 /*** boardContent.html 디자인 ***/
 /* clearfix */
@@ -1458,7 +1551,9 @@ font-size: 30px;
     top: -8px;
 }
 .second{
-    height: 500px;
+    height: 400px;
+    margin: 20px;
+    margin-left: 30px;
 }    
     .mypageModify-mod, .mypageModify-can{
         border: none;
@@ -1574,7 +1669,6 @@ font-size: 30px;
 
 .bmiList-btn{
     text-align: center;
-    margin: 50px;
     margin-bottom: -50px;
 }
 
