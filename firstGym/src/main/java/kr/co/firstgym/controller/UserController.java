@@ -229,16 +229,18 @@ public class UserController {
 		
 		UserVO delVo = (UserVO) session.getAttribute("login");
 		
-		String sessionPw = delVo.getUserPw();
+//		String sessionPw = delVo.getUserPw();
 		
 		String voPw = vo.getUserPw();
 		
-		System.out.println(sessionPw);
+//		System.out.println(sessionPw);
 		System.out.println(voPw);
 		
-		if(!(sessionPw.equals(voPw))) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		if(!(encoder.matches( vo.getUserPw(), delVo.getUserPw()))) {
 			ra.addFlashAttribute("msg", "delFail");
-			return "redirect:/mypage/mypageMainPage";
+			return "redirect:/mypage/mainPage";
 		}else {
 		
 		service.delete(vo);

@@ -40,6 +40,8 @@ public class UserAuthHandler extends HandlerInterceptorAdapter {
 		return false;
 	}
 
+
+	
 }
 
 
