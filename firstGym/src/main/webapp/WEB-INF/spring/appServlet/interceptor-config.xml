@@ -12,6 +12,7 @@
 	<bean id="userLoginSuccessHandler" class="kr.co.firstgym.util.interceptor.UserLoginSuccessHandler" />
 	<bean id="userAuthHandler" class="kr.co.firstgym.util.interceptor.UserAuthHandler" />
 	<bean id="boardAuthHandler" class="kr.co.firstgym.util.interceptor.BoardAuthHandler" />
+	<bean id="orderLoginHandler" class="kr.co.firstgym.util.interceptor.OrderLoginHandler" />
 	
 	<mvc:interceptors>
 	
@@ -33,6 +34,12 @@
 			<mvc:mapping path="/freeBoard/freeUpdate"/> <!-- 수정 요청 -->
 			<mvc:mapping path="/freeBoard/freeDelete"/> <!-- 삭제 요청 -->
 			<ref bean="boardAuthHandler" />
+		</mvc:interceptor>
+		
+		<!-- 결제 과정에서 실행되는 PostHandler -->
+		<mvc:interceptor>
+			<mvc:mapping path="/order/*"/>
+			<ref bean="orderLoginHandler" />
 		</mvc:interceptor>
 		
 		

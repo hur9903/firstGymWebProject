@@ -69,7 +69,12 @@
     <%@ include file="../include/footer.jsp" %>
     <!-- 푸터. jsp전환시 삭제 후 include 사용 -->
     
-    <<script>
+    <script>
+    const noOrderMsg = '${noOrderMsg}'
+    if(noOrderMsg === 'noOrderMsg') {
+    	alert("존재하지 않는 주문번호입니다.");
+    }
+    
   //페이지버튼
 	
 	$('#page-form a').click(function(event){

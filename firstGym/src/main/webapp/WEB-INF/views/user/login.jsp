@@ -114,6 +114,11 @@
     
  
 <script>
+	const noLogMsg = '${noLogMsg}';
+	if(noLogMsg === 'noLogin') {
+		alert('로그인 후 이용 할 수 있습니다.')
+	}
+	
     // 회원로그인, 비회원 로그인 전환
     const $user_login_modifier = $('#login-user-login-modifier');
     const $nonuser_login_modifier = $('#login-nonuser-login-modifier');

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.firstgym.command.ProductVO;
 import kr.co.firstgym.command.SearchPagingVO;
@@ -73,6 +74,8 @@ public class ProductController {
 
 		model.addAttribute("list", product);
 		model.addAttribute("pc", pc);
+		
+		model.addAttribute("noProductMsg", model.getAttribute("noProductMsg"));
 
 		return "product/productList";
 	}
@@ -80,7 +83,13 @@ public class ProductController {
 
 	//상품상세페이지 이동
 	@GetMapping("/productDetailPage")
-	public String productDetailPage(int proNum, Model model) {
+	public String productDetailPage(int proNum, Model model, RedirectAttributes ra) {
+		
+		if(service.getContent(proNum) == null) {
+			ra.addFlashAttribute("noProductMsg", "noProductMsg");
+			return "redirect:/product/productListPage";
+		}
+		
 		System.out.println("상세 요청 번호: " + proNum);
 		ProductVO product = service.getContent(proNum);
 		System.out.println("상세 요청에 대한 결과: " + product);
