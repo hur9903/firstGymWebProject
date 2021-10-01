@@ -54,7 +54,7 @@ public class ManageController {
 		return redirectUrl;
 	}
 	
-	//신고목록으로 이동
+	//신고상세페이지로 이동
 	@GetMapping("/reportPage")
 	public String reportPage(@RequestParam("reportNum") int reportNum, Model model) {
 		model.addAttribute("report", service.getReport(reportNum));
