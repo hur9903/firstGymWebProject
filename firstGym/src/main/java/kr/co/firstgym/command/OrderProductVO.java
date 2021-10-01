@@ -17,4 +17,5 @@ public class OrderProductVO {
 	private Timestamp orderDate;
 	private String orderCategory;
 	private int proNum;
+	private String proImage;
 }

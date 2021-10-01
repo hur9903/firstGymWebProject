@@ -13,6 +13,7 @@
 	<bean id="userAuthHandler" class="kr.co.firstgym.util.interceptor.UserAuthHandler" />
 	<bean id="boardAuthHandler" class="kr.co.firstgym.util.interceptor.BoardAuthHandler" />
 	<bean id="ManagerInterceptor" class="kr.co.firstgym.util.interceptor.ManagerInterceptor" />
+	<bean id="orderLoginHandler" class="kr.co.firstgym.util.interceptor.OrderLoginHandler" />
 	
 	<mvc:interceptors>
 	
@@ -44,6 +45,12 @@
 			<mvc:mapping path="/manage/reportAccept"/>
 			<mvc:mapping path="/manage/reportRefuse"/>
 			<ref bean="ManagerInterceptor"/>
+		</mvc:interceptor>
+
+		<!-- 결제 과정에서 실행되는 PostHandler -->
+		<mvc:interceptor>
+			<mvc:mapping path="/order/*"/>
+			<ref bean="orderLoginHandler" />
 		</mvc:interceptor>
 		
 	</mvc:interceptors>
