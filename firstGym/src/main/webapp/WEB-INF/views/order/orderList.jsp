@@ -19,7 +19,7 @@
                             <a href="<c:url value='/order/orderDetailPage?orderNum=${vo.orderNum}' />" class="order-number">${vo.orderNum}</a>
                         </div>
                         <div class="pic-box">
-                            <img src="image/1.png" alt="" class="pic">
+                            <img src="<c:url value='/product/display?filePath=${vo.proImage}' />" alt="" class="pic">
                         </div>
                         <div class="order-info">
                             <div class="product-title">
