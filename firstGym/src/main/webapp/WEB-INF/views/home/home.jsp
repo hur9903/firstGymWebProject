@@ -80,7 +80,7 @@
 </html>
 
  <script>
-    
+ 
 
 	const msg = '${msg}'
    		if(msg === "success"){
@@ -89,5 +89,9 @@
    			alert('로그아웃이 완료되었습니다')
    		}
    			
-	
+	const delmsg = '${msg}'
+   		if(delmsg === "delSuccess"){
+   			alert('회원 탈퇴가 완료되었습니다.')
+   		
+   		}
 	</script>

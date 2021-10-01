@@ -32,7 +32,7 @@
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td>${user.userAddr1} <br>
+                        <td>${user.userAddr1} &nbsp;
                         	${user.userAddr2}
                         </td>
                     </tr>
