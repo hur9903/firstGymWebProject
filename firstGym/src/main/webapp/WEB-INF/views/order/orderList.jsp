@@ -20,7 +20,7 @@
                             <a href="<c:url value='/order/orderDetailPage?orderNum=${vo.orderNum}' />" class="order-number">${vo.orderNum}</a>
                         </div>
                         <div class="pic-box">
-                            <img src="image/1.png" alt="" class="pic">
+                            <img src="<c:url value='/product/display?filePath=${vo.proImage}' />" alt="" class="pic">
                         </div>
                         <div class="order-info">
                             <div class="product-title">
@@ -66,7 +66,12 @@
     <%@ include file="../include/footer.jsp" %>
     <!-- 푸터. jsp전환시 삭제 후 include 사용 -->
     
-    <<script>
+    <script>
+    const noOrderMsg = '${noOrderMsg}'
+    if(noOrderMsg === 'noOrderMsg') {
+    	alert("존재하지 않는 주문번호입니다.");
+    }
+    
   //페이지버튼
 	
 	$('#page-form a').click(function(event){

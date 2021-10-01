@@ -36,6 +36,8 @@ public class OrderController {
 		
 		model.addAttribute("OrderProductList", service.getList(page, uvo.getUserId()));
 		model.addAttribute("page", page);
+		System.out.println(model.getAttribute("noOrderMsg"));
+		model.addAttribute("noOrderMsg", model.getAttribute("noOrderMsg"));
 		
 		return "order/orderList";
 		/*
@@ -58,7 +60,12 @@ public class OrderController {
 	
 	//주문 상세내역페이지로 이동
 	@GetMapping("/orderDetailPage")
-	public String orderDetailPage(@RequestParam int orderNum, Model model) {
+	public String orderDetailPage(@RequestParam int orderNum, Model model, RedirectAttributes ra) {
+		
+		if(service.getContent(orderNum) == null) {
+			ra.addFlashAttribute("noOrderMsg", "noOrderMsg");
+			return "redirect:/order/orderListPage";
+		}
 		
 		model.addAttribute("OrderProduct", service.getContent(orderNum));
 		
@@ -67,9 +74,15 @@ public class OrderController {
 	
 	//결제화면으로 이동
 	@GetMapping("/purchasePage")
-	public String purchasePage(@RequestParam int proNum, @RequestParam int quantity, HttpSession session, Model model) {
+	public String purchasePage(@RequestParam int proNum, @RequestParam int quantity, HttpSession session, Model model,
+			RedirectAttributes ra) {
 		
 		UserVO uvo = (UserVO) session.getAttribute("login");
+		
+		if(service.getProduct(proNum) == null) {
+			ra.addFlashAttribute("noProductMsg", "noProductMsg");
+			return "redirect:/product/productListPage";
+		}
 		
 		model.addAttribute("user", uvo);
 		model.addAttribute("quantity", quantity);
@@ -80,7 +93,12 @@ public class OrderController {
 	
 	//결제 진행
 	@PostMapping("/purchase")
-	public String purchase(@RequestParam int proNum, OrdersVO vo, RedirectAttributes ra) throws InterruptedException {
+	public String purchase(@RequestParam int proNum, OrdersVO vo, RedirectAttributes ra, Model model) throws InterruptedException {
+		
+		if(service.getProduct(proNum) == null) {
+			ra.addFlashAttribute("noProductMsg", "noProductMsg");
+			return "redirect:/product/productListPage";
+		}
 		
 		service.regist(vo);
 		Thread.sleep(1000);

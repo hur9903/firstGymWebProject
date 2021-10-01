@@ -197,5 +197,10 @@
     
 <%@ include file="../include/footer.jsp" %>
 <script>
+const noProductMsg = '${noProductMsg}'
+    if(noProductMsg === 'noProductMsg') {
+    	alert("존재하지 않는 제품입니다.");
+    }
+    
 	console.log('${list}');
 </script>

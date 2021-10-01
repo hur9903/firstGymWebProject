@@ -24,7 +24,7 @@
                                 <td class="purchase-table-td7">합계</td>
                             </tr>
                             <tr>
-                                <td rowspan="3"><div class="purchase-img"><img src="image/sample-image3.jpg" alt=""></div></td>
+                                <td rowspan="3"><div class="purchase-img"><img src="<c:url value='/product/display?filePath=${product.proImage}' />" alt=""></div></td>
                                 <td><fmt:parseNumber value="${product.proPrice}" var="p1" />${p1}원</td>
                                 <td><fmt:parseNumber value="${quantity}" var="a" />${a}</td>
                                 <td>${product.proMethod}</td>
