@@ -180,15 +180,15 @@
         <div class="paging">
             <div class="pagination">
             	<c:if test="${pc.prev}">
-                	<a class="prev" href="<c:url value='/product/productListPage?page=${pc.beginPage-1}' />">이전</a>
+                	<a class="prev" href="<c:url value='/product/productListPage?pageNum=${pc.beginPage-1}&page=${pc.beginPage-1}' />">이전</a>
                 </c:if>
                 
                 <c:forEach var="pageNum" begin="${pc.beginPage}" end="${pc.endPage}">
-                	<a href="<c:url value='/product/productListPage?page=${pageNum}' />" class="active">${pageNum}</a>
+                	<a href="<c:url value='/product/productListPage?pageNum=${pageNum}&page=${pageNum}' />" class="active">${pageNum}</a>
                 </c:forEach>
                 
                 <c:if test="${pc.next}">
-                	<a class="next" href="<c:url value='/product/productListPage?page=${pc.endPage+1}' />">다음</a>
+                	<a class="next" href="<c:url value='/product/productListPage?pageNum=${pc.endPage+1}&page=${pc.endPage+1}' />">다음</a>
                 </c:if>        
             </div>
         </div>
