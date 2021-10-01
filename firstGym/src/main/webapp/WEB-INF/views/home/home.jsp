@@ -14,7 +14,7 @@
         <div class="bestboard">
             <div class="in-box">
                 <h4 class="best">인기 게시글</h4>
-                <h3 class="best-more"><a href="<c:url value='/order/orderListPage' />" class="moreview">더보기</a></h3>
+                <h3 class="best-more"><a href="<c:url value='/board/boardListPage' />" class="moreview">더보기</a></h3>
             </div>
             <ul class="best-list">
             	<c:forEach var="vo" items="${bestList}">
@@ -33,7 +33,7 @@
         <div class="recentboard">
             <div class="in-box">
                 <h4 class="best">최신 게시글</h4>
-                <h3 class="best-more"><a href='#' class="moreview">더보기</a></h3>
+                <h3 class="best-more"><a href='/board/boardListPage' class="moreview">더보기</a></h3>
             </div>
             <ul class="recent-list">
             	<c:forEach var="vo" items="${recentList}">
@@ -53,7 +53,7 @@
     <hr color="#c0e1f5" size="6px" >
     <div class="homegigu" style="display: inline-block;">
         <h4 style="float: left;">인기 기구</h4>
-        <h3 style="float: right;"><a href='#' class="moreview">더보기</a></h3>
+        <h3 style="float: right;"><a href='/myweb/product/productListPage' class="moreview">더보기</a></h3>
         <ul style="clear: both; display: flex; list-style: none; margin-left: 10px;">
         <c:forEach var="vo" items="${bestProduct}">
             <li>
