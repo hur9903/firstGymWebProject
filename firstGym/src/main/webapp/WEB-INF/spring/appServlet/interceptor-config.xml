@@ -12,6 +12,7 @@
 	<bean id="userLoginSuccessHandler" class="kr.co.firstgym.util.interceptor.UserLoginSuccessHandler" />
 	<bean id="userAuthHandler" class="kr.co.firstgym.util.interceptor.UserAuthHandler" />
 	<bean id="boardAuthHandler" class="kr.co.firstgym.util.interceptor.BoardAuthHandler" />
+	<bean id="ManagerInterceptor" class="kr.co.firstgym.util.interceptor.ManagerInterceptor" />
 	
 	<mvc:interceptors>
 	
@@ -35,6 +36,15 @@
 			<ref bean="boardAuthHandler" />
 		</mvc:interceptor>
 		
+		<!-- 관리자페이지 권한을 체크하는 핸들러 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/manage/manager"/>
+			<mvc:mapping path="/manage/report"/>
+			<mvc:mapping path="/manage/reportPage"/>
+			<mvc:mapping path="/manage/reportAccept"/>
+			<mvc:mapping path="/manage/reportRefuse"/>
+			<ref bean="ManagerInterceptor"/>
+		</mvc:interceptor>
 		
 	</mvc:interceptors>
 
