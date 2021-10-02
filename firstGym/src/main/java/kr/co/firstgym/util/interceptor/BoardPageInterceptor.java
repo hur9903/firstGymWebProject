@@ -26,9 +26,9 @@ public class BoardPageInterceptor extends HandlerInterceptorAdapter {
 			if(modelAndView.getModel().containsKey("article")) {
 				System.out.println("게시글 수정");
 				BoardVO article = (BoardVO)modelAndView.getModel().get("article");
+				//글 등록자가 아닐 경우
 				if(! article.getUserId().equals(user.getUserId())) {
-					modelAndView.addObject("msg", "needLogin");
-					modelAndView.setViewName("/board/boardListPage");
+					modelAndView.setViewName("redirect:/board/boardListPage");
 				}
 			}
 		} else {
