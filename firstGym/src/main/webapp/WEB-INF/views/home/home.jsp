@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
     <%@include file="../include/header.jsp" %>
     
@@ -18,13 +19,13 @@
             </div>
             <ul class="best-list">
             	<c:forEach var="vo" items="${bestList}">
-	                <a href="#">
+	                <a href='<c:url value="/board/boardDetailPage/${vo.boardNum}"/>'>
 	                    <li class="hot-new clearfix">
 	                        <p class="writing">
 	                            ${vo.boardTitle}
 	                            <img src="image/icon_hot.png" alt="" width="20px">
 	                        </p>
-	                        <p class="date">${vo.boardDate}</p>
+	                        <p class="date"><fmt:formatDate value="${vo.boardDate}" pattern="yyyy.MM.dd HH:mm" /></p>
 	                    </li>
 	                </a>
                 </c:forEach>
@@ -33,17 +34,17 @@
         <div class="recentboard">
             <div class="in-box">
                 <h4 class="best">최신 게시글</h4>
-                <h3 class="best-more"><a href='/board/boardListPage' class="moreview">더보기</a></h3>
+                <h3 class="best-more"><a href='<c:url value='/board/boardListPage' />' class="moreview">더보기</a></h3>
             </div>
             <ul class="recent-list">
             	<c:forEach var="vo" items="${recentList}">
-                <a href="#">
+                <a href='<c:url value="/board/boardDetailPage/${vo.boardNum}"/>'>
                     <li class="hot-new clearfix">
                         <p class="writing">
                             ${vo.boardTitle}
                             <img src="image/icon_new.gif" alt="" width="25px">
                         </p>
-                        <p class="date">${vo.boardDate}</p>
+                        <p class="date"><fmt:formatDate value="${vo.boardDate}" pattern="yyyy.MM.dd HH:mm" /></p>
                     </li>
                 </a>
                 </c:forEach>

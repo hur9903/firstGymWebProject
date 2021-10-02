@@ -33,12 +33,25 @@
 	</resultMap>
 
 	<select id="getBestList" resultMap="boardMap">
-		select * from (select * from board order by board_recom desc)
-		<![CDATA[where rownum <= 4]]>
+		SELECT *
+		FROM
+		    (
+		    SELECT *
+		    FROM
+		        (
+		        SELECT board.board_num, board.user_id, board_title, board_category, board_view, board_date, board_thum, COUNT(board_recom.user_id) AS board_recom 
+				FROM board
+				LEFT OUTER JOIN board_recom
+				ON board.board_num = board_recom.board_num
+		        GROUP BY board.board_num, board.user_id, board_title, board_category, board_view, board_recom, board_date, board_thum
+			    ORDER BY board_recom DESC
+		        ) blist
+		    )
+		<![CDATA[where rownum <= 4 AND TO_CHAR(board_date, 'YYYYMMDD') > TO_CHAR(SYSDATE - 7, 'YYYYMMDD')]]>
 	</select>
 	
 	<select id="getRecentList" resultMap="boardMap">
-		select * from (select * from board order by board_date desc)
+		select * from (select * from board order by board_num desc)
 		<![CDATA[where rownum <= 4]]>
 	</select>
 	

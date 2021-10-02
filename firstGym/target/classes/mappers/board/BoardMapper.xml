@@ -139,7 +139,7 @@
 				LEFT OUTER JOIN board_recom
 				ON board.board_num = board_recom.board_num
 		        <include refid="boardListSql" />
-		        GROUP BY board.board_num,board.board_num, board.user_id, board_title, board_category, board_view, board_recom, board_date, board_thum
+		        GROUP BY board.board_num, board.user_id, board_title, board_category, board_view, board_recom, board_date, board_thum
 			    ORDER BY board_num DESC
 		        ) blist
 		    )
