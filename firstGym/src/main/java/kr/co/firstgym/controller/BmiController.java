@@ -2,6 +2,7 @@ package kr.co.firstgym.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,14 +38,21 @@ public class BmiController {
 	
 	//bmi 검사
 	@PostMapping("/bmiResult")
-	public String bmiResult(BmiCheckVO vo, String userId, RedirectAttributes ra) {
+	public String bmiResult(BmiCheckVO vo, String userId, Model model) {
 		
 		System.out.println("입력받은 정보: " + vo);
-		service.insertBMI(vo, userId);
 		
-		ra.addAttribute("msg", "bmiModal");
-			
-		
+		model.addAttribute("msg", "bmiDone");
+		model.addAttribute("bmiResult", service.insertBMI(vo, userId));
+		model.addAttribute("bmiCheck", vo);
+				
+		return "bmi/bmiCheck";
+	}
+	
+	//bmi 검사 목록으로 이동
+	@GetMapping("/bmiList")
+	public String bmiList(RedirectAttributes ra) {
+		ra.addAttribute("msg", "bmiModal");	
 		return "redirect:/mypage/mainPage";
 	}
 }

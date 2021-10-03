@@ -68,12 +68,46 @@
         </div>
     </section>
     
+    <div id="bmi-info" >
+	    <div class="bmi-Main">
+	        <h3 class="bmi-h3"><br>나의 BMI 지수 확인</h3><br><br>
+	
+		        <span class="bmi-writer">키 </span> <input type="hidden" >&nbsp;&nbsp;&nbsp; ${bmiCheck.height}cm<br><br>
+		        <span class="bmi-writer">몸무게 </span> <input type="hidden" >&nbsp;&nbsp;&nbsp;  ${bmiCheck.weight}kg<br><br><br>
+		        
+		        <span class="bmiResult">당신의 비만도(BMI)지수는 <span class="bmiResult2">
+		        <c:if test="${bmiResult.bmiResult == 'underweight'}">저체중</c:if>
+	            <c:if test="${bmiResult.bmiResult == 'normalweight'}">정상</c:if>
+	            <c:if test="${bmiResult.bmiResult == 'overweight'}">과체중</c:if>
+	            <c:if test="${bmiResult.bmiResult == 'obesity'}">비만</c:if>
+		        </span> &nbsp;입니다</span> <br><br>
+		    
+		        <div class="bmiBtn">
+	                <button type="button" class="bmi-btn" id="bmi-result-re-btn">다시하기</button>
+	                <button type="button" class="bmi-cn" id="bmi-to-last-result">지난 기록</button>
+	            </div>
+		
+		</div>
+	</div>
+    
     <script>
     
     let replaceNotInt = /[^0-9]/gi;
     	
 	$(document).ready(function(){
 	    
+		if('${msg}' !== 'bmiDone'){
+			$('#bmi-info').hide();
+		}
+		
+		$('#bmi-result-re-btn').click(function(){
+			$('#bmi-info').hide();
+		});
+		
+		$('#bmi-to-last-result').click(function(){
+			location.href = '<c:url value="/bmi/bmiList" />';
+		});
+		
         $("#height").on("focusout", function() {
             const x = $(this).val();
             if(x.length > 0) {
