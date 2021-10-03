@@ -16,4 +16,6 @@ public interface IProductListService {
 	//총 게시물의 개수를 가져오는 메서드
 	int totalCount(SearchPagingVO paging);
 
+	//상품 구매여부
+	String isBought(int proNum, String userId);
 }

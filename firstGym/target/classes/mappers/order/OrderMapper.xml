@@ -58,9 +58,9 @@
   				left outer join orders o
   				on op.o_num = o.o_num
   				left outer join product p
-  				on op.p_name = p.p_name
+  				on op.p_num = p.p_num
   				where o.o_sendId = #{id}
-  				order by o.o_num
+  				order by o.o_num desc
 		  		) tbl
 		  	)
 		<![CDATA[

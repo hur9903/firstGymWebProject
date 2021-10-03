@@ -326,6 +326,11 @@
 					return;
 				}
 				
+				if('${isBought}' !== 'bought'){
+					alert('후기 작성은 상품을 구매한 사용자만 가능합니다.');
+					return;
+				}
+				
 				const comment = $('#comment').val();
 				const userId = '${login.userId}';
 				const pNum = '${itemInfo.proNum}';

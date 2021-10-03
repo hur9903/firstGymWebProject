@@ -1,6 +1,8 @@
 package kr.co.firstgym.product.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,21 @@ public class ProductListService implements IProductListService {
 	@Override
 	public int totalCount(SearchPagingVO paging) {
 		return mapper.totalCount(paging);
+	}
+
+	@Override
+	public String isBought(int proNum, String userId) {
+		
+		Map<String, Object> info = new HashMap<>();
+		info.put("proNum", proNum);
+		info.put("userId", userId);
+		int result = mapper.isBought(info);
+		
+		if(result == 0) {
+			return "notBought";
+		} else {
+			return "bought";
+		}
 	}
 	
 	

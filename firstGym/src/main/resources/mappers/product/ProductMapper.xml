@@ -66,6 +66,15 @@
   	
   	</select>
   	
+  	<!-- 상품 구매여부 -->
+  	<select id="isBought" resultType="int">
+  		SELECT COUNT(*)
+		FROM order_product op
+		LEFT OUTER JOIN orders o
+		ON op.o_num = o.o_num
+		WHERE o.o_sendId = #{userId}
+		AND op.p_num = #{proNum}
+  	</select>
   	
   </mapper>
   
