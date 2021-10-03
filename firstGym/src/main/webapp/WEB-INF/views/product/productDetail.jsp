@@ -224,63 +224,20 @@
                 	<img class="reviewImg" src="${pageContext.request.contextPath }/resources/image/review.gif" alt="상품리뷰" class="">
                 </div>
                 <ul class="review-list">
-                    <li class="review-item">
-                        <div class="review-area">
-                            <div class="comment-box">
-                                <div class="id-box">
-                                    <div class="id-info">
-                                        <a class="id">짱구</a>
-                                    </div>
-                                </div>
-                                <div class="review-info">
-                                    <span class="review-date">
-                                        2021.05.03
-                                    </span>
-                                </div>
-                                <div class="text-box">
-                                    <p class="text-view">
-                                        <span class="text-comment">
-                                            튼튼하고 좋아요!
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="review-item">
-                        <div class="review-area">
-                            <div class="comment-box">
-                                <div class="id-box">
-                                    <div class="id-info">
-                                        <a class="id">철수</a>
-                                    </div>
-                                </div>
-                                <div class="review-info">
-                                    <span class="review-date">
-                                        2021.05.22                                </span>
-                                </div>
-                                <div class="text-box">
-                                    <p class="text-view">
-                                        <span class="text-comment">
-                                            배송 빨라요!
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    
+                    <!-- 비동기로 리뷰 받아오는 곳입니다. -->
+                    
                 </ul>
+                
                 <div class="review-writer">
                     <div class="review-inbox">
                         <strong class="blind">후기를 입력하세요</strong>
-                        <em class="inbox-id">맹구</em>
-                        <textarea class="comment">후기를 남겨보세요.</textarea>
+                        <em class="inbox-id">${login.userId}</em>
+                       	<textarea id="comment" class="comment" placeholder="후기를 남겨보세요."></textarea>
                     </div>
                 </div>
-                <p class="btn-area">
-                    <a href="#" class="review-register">
-                        <button type="submit" class="review">상품후기등록</button>
-                    </a>
+                <p class="btn-area">          
+                        <button type="button" id="registBtn" class="review">상품후기등록</button>                  
                 </p>
             </div>
             <!-- 상품사용후기 -->
@@ -358,6 +315,114 @@
         document.getElementById('total-quantity').textContent = '(' +  value + '개' + ')';
     });
 
+    
+    $(document).ready(function() {
+		
+		 $('#registBtn').click(function() {
+				console.log('등록 버튼 클릭됨!');
+				
+				if('${login}' === ''){
+					alert('사용자 로그인이 필요한 서비스입니다.');
+					return;
+				}
+				
+				const comment = $('#comment').val();
+				const userId = '${login.userId}';
+				const pNum = '${itemInfo.proNum}';
+				console.log('리뷰내용: ' + comment);
+				console.log('작성자: ' + userId);
+				console.log('상품번호: ' + pNum);
+				
+				if(comment === ''){
+					alert('후기를 작성해주세요.');
+					return;
+				}
+				
+				$.ajax({
+					url: "<c:url value='/review/regist' />",
+					headers: {
+						"Content-Type" : "application/json"
+					},
+					type: "POST",
+					data: JSON.stringify({
+						"reviewContent" : comment,
+						"userId" : userId,
+						"proNum" : pNum
+					}),
+					success: function(data) {
+						if(data === 'regSuccess') {
+							alert('등록 성공!');
+							$('#comment').val('');
+							getList(true);
+						}
+					},
+					error: function(status) {
+						alert('등록 실패!', status);
+					}
+				});
+			}); //댓글 등록 끝.
+		
+		
+		
+		let str = ""; //화면에 뿌릴 태그를 문자열로 저장하는 변수
+		getList(true);
+		
+		function getList(reset) {
+			
+			const pNum = '${itemInfo.proNum}';
+			
+			$.getJSON(
+				"/myweb/review/getList/" + pNum,
+				function(list) { //응답함수
+					
+					console.log(list);
+					
+					if(reset == true) {
+						str = "";
+					}
+					
+					for(let i = 0; i<list.length; i++) {
+						console.log(list[i]);
+						
+						str += '<li class="review-item">';
+						str += '<div class="review-area">';
+						str += '<div class="comment-box">';
+						str += '<div class="id-box">';
+						str += '<div class="id-info">';
+						str += '<a class="id">' + list[i].userId + '</a>';
+						str += '</div>';
+						str += '</div>';
+						str += '<div class="review-info">';
+						str += '<span class="review-date">';
+						str += changeTimeForm(list[i].reviewRegdate);
+						str += '</span>';
+						str += '</div>';
+						str += '<div class="text-box">';
+						str += '<p class="text-view">';
+						str += '<span class="text-comment">';
+						str += list[i].reviewContent;
+						str += '</span>';
+						str += '</p>'; str += '</div>'; str += '</div>'; str += '</div>';
+						str += '</li>';
+					}
+					
+					$('.review-list').html(str);				
+				}
+			) //end getJSON
+		} //게시물 목록처리 끝.
+		
+		//날짜 처리 함수
+		function changeTimeForm(millis) {
+			
+			const today = new Date(millis);
+			
+			let time = today.getFullYear() + '.' + (today.getMonth() + 1) + '.' + today.getDate() + ' ' 
+						+ today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+		
+			return time;
+		}
+		
+	}); //end jQuery
     </script>           
        
     
