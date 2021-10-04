@@ -90,7 +90,7 @@
                         <thead>
                             <tr  class="purchase-main-table2">
                                 <td colspan="3">
-                                    <input type="radio" name="orderMethod" id="purchase-card" name="card" value="카드"> 신용 카드
+                                    <input type="radio" name="orderMethod" id="purchase-card" name="card" value="카드" checked> 신용 카드
                                     <input type="radio" name="orderMethod" id="purchase-time" name="time" value="계좌"> 실시간 계좌이체
                                     <input type="radio" name="orderMethod" id="purchase-bk" name="bk" value="무통장"> 무통장 입금
                                     <input type="radio" name="orderMethod" id="purchase-phone" name="phone" value="휴대폰"> 휴대폰 결제
