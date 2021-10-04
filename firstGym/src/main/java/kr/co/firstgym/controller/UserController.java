@@ -199,12 +199,23 @@ public class UserController {
 
 	//사용자 정보 수정
 	@PostMapping("/modifyInfo")
-	public String modifyInfo(UserVO vo,  RedirectAttributes ra) {
+	public String modifyInfo(UserVO vo, HttpSession session,  RedirectAttributes ra) {
 		
 		System.out.println("수정 요청 들어옴");
+		
+		String rawPw = "";
+		String encodePw = "";
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		rawPw = vo.getUserPw();
+		encodePw = encoder.encode(rawPw);
+		vo.setUserPw(encodePw);
+		
 		System.out.println("수정값: " + vo);
 		
+		session.setAttribute("login", vo);
 		service.modify(vo);
+		
 		ra.addFlashAttribute("msg", "modifyOk");
 		
 		return "redirect:/mypage/mainPage";
