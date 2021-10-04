@@ -3413,3 +3413,9 @@ td{
     font-weight: bold;
     color: rgb(43, 161, 59);
 } 
+
+/*** error ***/
+.error-main-div *{
+	text-align: center;
+	margin: 100px;
+}
