@@ -55,11 +55,11 @@
     <hr color="#c0e1f5" size="6px" >
     <div class="homegigu" style="display: inline-block;">
         <h4 style="float: left;">인기 기구</h4>
-        <h3 style="float: right;"><a href='/myweb/product/productListPage' class="moreview">더보기</a></h3>
+        <h3 style="float: right;"><a href='<c:url value="/product/productListPage"/>' class="moreview">더보기</a></h3>
         <ul style="clear: both; display: flex; list-style: none; margin-left: 10px;">
         <c:forEach var="vo" items="${bestProduct}">
             <li>
-                <a href="#">
+                <a href='<c:url value="product/productDetailPage?proNum=${vo.proNum}"/>'>
                     <div>
                         <img src="<c:url value='/product/display?filePath=${vo.proImage}' />" alt="" class="product">
                         <div class="best-homegigu-pic-box">

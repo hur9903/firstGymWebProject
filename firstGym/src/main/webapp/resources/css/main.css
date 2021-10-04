@@ -1553,7 +1553,7 @@ font-size: 30px;
     top: -8px;
 }
 .second{
-    height: 400px;
+    height: auto;
     margin: 20px;
     margin-left: 30px;
 }    
@@ -1593,8 +1593,6 @@ font-size: 30px;
 
     .mypageModify-button{
         text-align: center;
-      margin-top: 70px;
-      margin-bottom: -30px;
     }
     
     .mypageModify-mod:hover, .mypageModify-can:hover{

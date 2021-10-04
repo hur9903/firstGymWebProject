@@ -56,8 +56,21 @@
 	</select>
 	
 	<select id="getBestProduct" resultMap="productMap">
-		select * from (select * from product order by p_price desc)
-		<![CDATA[where rownum <= 4]]>
+		SELECT p_num, p_name, p_price, p_image
+		FROM(
+			SELECT product.*, NVL(ct, 0) as nct
+			FROM product 
+			LEFT JOIN
+			(
+				SELECT p_num, COUNT(*) as ct
+				FROM order_product op
+				LEFT OUTER JOIN orders o
+				ON op.o_num = o.o_num
+				GROUP BY p_num) pc
+				ON product.p_num = pc.p_num
+			)
+		<![CDATA[WHERE ROWNUM <= 4]]>
+		ORDER BY nct desc
 	</select>
 
 </mapper>
