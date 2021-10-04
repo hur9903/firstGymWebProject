@@ -184,7 +184,12 @@
                 </c:if>
                 
                 <c:forEach var="pageNum" begin="${pc.beginPage}" end="${pc.endPage}">
-                	<a href="<c:url value='/product/productListPage?pageNum=${pageNum}&page=${pageNum}' />" class="active">${pageNum}</a>
+                		<c:if test="${pageNum == pc.paging.page}">
+		                	<a href="<c:url value='/product/productListPage?pageNum=${pageNum}&page=${pageNum}' />" style="background:rgb(255 166 166);">${pageNum}</a>
+		                </c:if>
+		                <c:if test="${pageNum != pc.paging.page}">
+		                	<a href="<c:url value='/product/productListPage?pageNum=${pageNum}&page=${pageNum}' />">${pageNum}</a>
+		                </c:if>
                 </c:forEach>
                 
                 <c:if test="${pc.next}">

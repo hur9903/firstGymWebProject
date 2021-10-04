@@ -4,13 +4,57 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
     <%@include file="../include/header.jsp" %>
-     
+        <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 slide-list">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <a href="###">
+                                <img src="${pageContext.request.contextPath }/resources/image/slide1.png" alt="슬라이드1">
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="##">
+                                <img src="${pageContext.request.contextPath }/resources/image/slide2.png" alt="슬라이드2">
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="##">
+                                <img src="${pageContext.request.contextPath }/resources/image/slide3.png" alt="슬라이드3">
+                                </a>
+                            </div>
+                             
+                        </div>
+
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only"> < </span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only"> > </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--슬라이드 끝-->
+        
+    </section>
     <!--  -->
     
     <div class="middle-body">
-     <iframe width="720" height="350" src="https://www.youtube.com/embed/QH2-TGUlwu4" title="YouTube video player"
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
+    
     <hr class="homeboard-main" style: color="#c0e1f5" size="6px">
     <div class="homeboard clearfix">
         <div class="bestboard">
