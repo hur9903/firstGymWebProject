@@ -183,7 +183,6 @@ a {
     clear: both;
 }
 .best-homegigu-pic-box {
-    width: 160px;
     margin: 5px;
 }
 span.header-first {
@@ -1636,11 +1635,13 @@ font-size: 30px;
 .bmiList-table{
         margin-top: 40px;
         width: 100%;
-        height: 100%;
-        border: 1px solid black;
+   		height: 300px;        
+    	border: 1px solid black;
         border-collapse:collapse;
+        word-spacing: 5px;
         
 }
+
 .bmiList-table th{
         background: rgb(167, 163, 163);
         text-align: left;
@@ -1745,14 +1746,7 @@ font-size: 30px;
 font-size: 30px;
 }
 
-.bmiList-table{
-        margin-top: 40px;
-        width: 100%;
-        height: 100%;
-        border: 1px solid black;
-        border-collapse:collapse;
-        
-}
+
 .bmiList-table th{
         background: rgb(214, 213, 213);
         text-align: left;
@@ -1760,6 +1754,7 @@ font-size: 30px;
 .bmiList-table th, .bmiList-table td{
     height: 30px;
     padding: 10px;
+    text-align: center;
 }
 
 .bmiList-btn-confirm{
@@ -1782,7 +1777,9 @@ font-size: 30px;
 .bmiList-btn{
     text-align: center;
     margin: 50px;
-    margin-bottom: -50px;
+    margin-top: 20px;
+    margin-bottom: -30px;
+}
 }
 
 
@@ -2155,9 +2152,7 @@ font-size: 30px;
     width: 100px;
    height: 50px;
 }
-td{
-   width: 170px;
-}
+
 /* 상하 마긴 */
 .orderDetail-table-box{
     margin: 10px 10px;
@@ -2444,6 +2439,10 @@ background-color:rgb(14, 117, 185);
 }
 
 /*** productDetail ***/
+.product-img{
+    width: 700px;
+    margin-left: 100px;
+}
 #productDetail-div .product-detail {
     overflow: hidden;
     position: relative;
@@ -2646,6 +2645,10 @@ background-color:rgb(14, 117, 185);
     border: rgb(208, 236, 248);
     border-radius: 5px;
 }
+.purchaseDirect:hover{
+	cursor: pointer;
+	 background-color: rgb(29, 136, 182);
+}
 #productDetail-div .add-detail {
     clear: both;
     margin: 45px 0 0;
@@ -2679,6 +2682,7 @@ background-color:rgb(14, 117, 185);
 }
 #productDetail-div .add-detail .link .selected a {
     color: white;
+    font-weight: bold;
 }
 #productDetail-div .add-detail .link a {
     font-size: 13px;
@@ -2784,6 +2788,10 @@ background-color:rgb(14, 117, 185);
     background-color: rgb(209, 211, 212);
     border: rgb(208, 236, 248);
     border-radius: 5px;
+}
+#productDetail-div .review:hover{
+	cursor: pointer;
+	
 }
 #productDetail-div .inbox-id {
     display: block;
@@ -3118,9 +3126,6 @@ background-color:rgb(14, 117, 185);
 }
 .manager-table-td2-2{
     width: 20%;
-}
-td{
-   width: 200px;
 }
 
 /* 입력창 길이조절 */

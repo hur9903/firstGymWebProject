@@ -169,7 +169,6 @@
 	                <table class="bmiList-table">
 	                    <thead>
 	                        <tr>
-	                        	<th>번호</th>
 	                            <th>검사날짜</th>
 	                            <th>BMI 지수</th>
 	                        </tr>
@@ -177,9 +176,8 @@
 	                    <tbody id="bmiList-body">
 	                    <c:forEach var="results" items="${list}"> 
 	                    	<tr>
-	                    		<td>${results.bmiNum}</td>
 	                            <td>
-	                            	<fmt:formatDate value="${results.bmiDate}" pattern="yyyy.MM.dd" /><br>
+	                            	<fmt:formatDate value="${results.bmiDate}" pattern="yyyy.MM.dd" />
 	                            	<fmt:formatDate value="${results.bmiDate}" pattern="HH시mm분" />
 	                            </td>
 	                            <td>
@@ -187,7 +185,7 @@
 	                            <c:if test="${results.bmiResult == 'normalweight'}">정상</c:if>
 	                            <c:if test="${results.bmiResult == 'overweight'}">과체중</c:if>
 	                            <c:if test="${results.bmiResult == 'obesity'}">비만</c:if>
-	                            </td>
+	                            </td> 
 	                        </tr>
 		            	 </c:forEach> 
 	                    </tbody>

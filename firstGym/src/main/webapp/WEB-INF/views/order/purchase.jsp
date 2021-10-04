@@ -106,8 +106,9 @@
                                     <td colspan="3">
                                         <select name="" id="">
                                             <option value="">선택해주세요</option>
-                                            <option value="">선택해주세요</option>
-                                            <option value="">선택해주세요</option>
+                                            <option value="">국민은행</option>
+                                            <option value="">우리은행</option>
+                                            <option value="">농협은행</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -116,8 +117,8 @@
                                     <td class="purchase-table-td2" colspan="3">
                                         <select name="" id="">
                                             <option value="">일시불</option>
-                                            <option value="">일시불</option>
-                                            <option value="">일시불</option>
+                                            <option value="">3개월</option>
+                                            <option value="">5개월</option>
                                         </select>
                                     </td>
                                 </tr>

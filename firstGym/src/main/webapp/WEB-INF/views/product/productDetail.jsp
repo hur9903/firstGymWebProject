@@ -142,7 +142,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="<c:url value='/product/display?filePath=${itemInfo.proInfo}' />" alt="">
+                                    <img class="product-img" src="<c:url value='/product/display?filePath=${itemInfo.proInfo}' />" alt="">
                                 </td>
                             </tr>
                         </tbody>

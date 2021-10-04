@@ -25,12 +25,11 @@
 	<!-- 주소 api -->    
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
-
-    <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
-
-    <script src="owlcarousel/owl.carousel.min.js"></script> <!-- 업로드한 경로를 지정한다..  --> 
-	<link href="./carousel.css" rel="stylesheet"> <!--추가--> 
-	<script src="./carousel.min.js" type="text/javascript"></script><!--추가-->
+	
+  <link href="${pageContext.request.contextPath }/resources/css/bootstrap.css" rel="stylesheet">
+    <!--개인 디자인 추가-->
+    <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
 
 </head>
 <body>
