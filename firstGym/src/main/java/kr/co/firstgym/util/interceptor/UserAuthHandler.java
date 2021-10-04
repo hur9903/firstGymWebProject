@@ -19,12 +19,13 @@ public class UserAuthHandler extends HandlerInterceptorAdapter {
 			throws Exception {
 		System.out.println("로그인 권한 인터셉터 등장!");
 		HttpSession session = request.getSession();
-		UserVO vo = (UserVO) session.getAttribute("login");
+		UserVO user = (UserVO) session.getAttribute("login");
+		UserVO nonuser = (UserVO) session.getAttribute("noIdLogin");
 		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		if(vo != null) {
+		if(user != null || nonuser != null) {
 			System.out.println("로그인 한 사람! 통과!");
 			return true;
 		}
