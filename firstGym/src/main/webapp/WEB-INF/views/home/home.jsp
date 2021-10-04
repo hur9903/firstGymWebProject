@@ -60,7 +60,7 @@
             <li>
                 <a href="#">
                     <div>
-                        <img src="image/test.jpeg" width="160px" height="200px" alt="기구1">
+                        <img src="<c:url value='/product/display?filePath=${vo.proImage}' />" alt="" class="product">
                         <div class="best-homegigu-pic-box">
                             <h5 style="float: left;">${vo.proName}</h5>
                             <h5 style="float: right;">${vo.proPrice}</h5>
