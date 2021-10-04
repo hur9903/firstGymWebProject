@@ -293,7 +293,7 @@
     $find_pw_btn.click(function(){
         event.preventDefault();
         $('#login-modal-title').text('비밀번호 찾기');
-        $('#login-result-title').text('비밀번호');
+        $('#login-result-title').text('임시 비밀번호입니다. 로그인 후 마이페이지에서 비밀번호를 변경해주세요.');
 
         $modal.show();
         $id_modal.hide();
