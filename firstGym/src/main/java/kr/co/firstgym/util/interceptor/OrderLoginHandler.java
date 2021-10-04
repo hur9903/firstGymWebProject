@@ -17,9 +17,10 @@ public class OrderLoginHandler extends HandlerInterceptorAdapter {
 			throws Exception {
 		
 		HttpSession session = request.getSession();
-		UserVO vo = (UserVO) session.getAttribute("login");
+		UserVO user = (UserVO) session.getAttribute("login");
+		UserVO nonuser = (UserVO) session.getAttribute("noIdLogin");
 		
-		if(vo != null) {	
+		if(user != null || nonuser != null) {	
 			return true; //컨트롤러로 요청의 진입을 허용.		
 		}
 		

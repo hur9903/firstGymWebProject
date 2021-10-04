@@ -1,5 +1,6 @@
 package kr.co.firstgym.controller;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -83,10 +84,26 @@ public class UserController {
 	@PostMapping("/nonidLogin")
 	public String nonidLogin(String nonUserName, String nonUserPhone, HttpSession session, RedirectAttributes ra) {
 		
+		UserVO vo = new UserVO();
+		
 		System.out.println("비회원 로그인 요청 들어옴 :" + nonUserName + "," + nonUserPhone);
+		
+		vo.setUserId("nonUserrrr");
+		vo.setUserPw("1234");
+		vo.setUserName(nonUserName);
+		vo.setUserPhone(nonUserPhone);
+		vo.setUserBirth("nonUser");
+		vo.setUserGen("nonUser");
+		vo.setUserEmail("nonUser");
+		vo.setUserMail("nonUser");
+		vo.setUserAddr1("nonUser");
+		vo.setUserAddr2("nonUser");
+		vo.setRegDate(Timestamp.valueOf("2000-01-01 00:00:00"));
+		vo.setUserGrade("nonUser");
+		
 		 
-		session.setAttribute("noIdLogin", nonUserName);  
-		session.setAttribute("noIdLogin", nonUserPhone);  		      
+		session.setAttribute("noIdLogin", vo);  
+		//session.setAttribute("noIdLogin", nonUserPhone);  		      
 		
 		ra.addFlashAttribute("msg", "nonUserLogin");
 		

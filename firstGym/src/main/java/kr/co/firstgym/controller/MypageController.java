@@ -32,6 +32,10 @@ public class MypageController {
 	public String mypageMainPage(PageVO paging, Model model, HttpSession session) {
 		paging.setCountPerPage(5);
 		UserVO vo = (UserVO) session.getAttribute("login");
+		if(vo == null) {
+			vo = (UserVO) session.getAttribute("noIdLogin");
+		}
+		
 		model.addAttribute("user", vo);
 		System.out.println("controller: " + vo.getUserId());
 		List<BmiResultVO> list = service.selectOne(vo.getUserId(), paging);
