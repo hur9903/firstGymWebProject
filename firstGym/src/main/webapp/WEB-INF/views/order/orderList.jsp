@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@ include file="../include/header.jsp" %>>
+<%@ include file="../include/header.jsp" %>
     
     <!-- 헤더. jsp전환시 삭제 후 include 사용 -->
 
@@ -19,23 +20,19 @@
                             <a href="<c:url value='/order/orderDetailPage?orderNum=${vo.orderNum}' />" class="order-number">${vo.orderNum}</a>
                         </div>
                         <div class="pic-box">
-                            <img src="image/1.png" alt="" class="pic">
+                            <img src="<c:url value='/product/display?filePath=${vo.proImage}' />" alt="" class="pic">
                         </div>
                         <div class="order-info">
                             <div class="product-title">
-                                <a href="#" class="dumbel">${vo.proName}</a>
+                                <a href="<c:url value='/order/orderDetailPage?orderNum=${vo.orderNum}' />" class="dumbel">${vo.proName}</a>
                             </div>
                             <div class="product-price">
-                                <a class="price">${vo.orderTotalPrice}</a>
-                                <a class="date">${vo.orderDate}</a>
-                            </div>
-                            <div class="type">
-                                <a href="#">${vo.orderCategory}</a>
+                                <a class="price">${vo.orderTotalPrice}원</a><br>
+                                <a class="date"><fmt:formatDate value="${vo.orderDate}" pattern="yyyy년 MM월 dd일" /></a>
                             </div>
                         </div>
                         <div class="seller-info">
                                 <span class="seller">퍼스트짐</span>
-                                <a href="#" class="qna-btn">문의하기</a>
                         </div>
                     </li>
              	</c:forEach>
@@ -69,7 +66,12 @@
     <%@ include file="../include/footer.jsp" %>
     <!-- 푸터. jsp전환시 삭제 후 include 사용 -->
     
-    <<script>
+    <script>
+    const noOrderMsg = '${noOrderMsg}'
+    if(noOrderMsg === 'noOrderMsg') {
+    	alert("존재하지 않는 주문번호입니다.");
+    }
+    
   //페이지버튼
 	
 	$('#page-form a').click(function(event){

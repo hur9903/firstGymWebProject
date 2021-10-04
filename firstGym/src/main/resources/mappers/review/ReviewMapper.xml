@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="kr.co.firstgym.review.mapper.IReviewMapper">
+  	 
+  	 <resultMap type="kr.co.firstgym.command.ReviewVO" id="reviewMap">
+  	 	<id property="reviewNum" column="review_num" />
+  	 	<result property="reviewContent" column="review_content" />
+  	 	<result property="reviewSatisfaction" column="review_satisfaction" />
+  	 	<result property="reviewRegdate" column="review_regdate" />
+  	 	<result property="proNum" column="p_num" />
+  	 	<result property="userId" column="user_id" />
+  	 </resultMap>
+  	 
+  	 
+  	 <insert id="regist">
+  	 	INSERT INTO review (review_num, review_content, review_satisfaction, p_num, user_id)
+  	 	VALUES (review_seq.NEXTVAL, #{reviewContent}, 0, #{proNum}, #{userId})
+  	 </insert>
+  	 
+  	 <select id="select" resultMap="reviewMap">
+  	 	SELECT * FROM review
+  	 	WHERE p_num = #{pNum}
+  	 </select>
+  	 
+  	 
+  	 
+  </mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

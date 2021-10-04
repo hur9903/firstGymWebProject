@@ -11,7 +11,7 @@
                 <div id="purchase-first-table" class="purchase-table-box">
                     
                     
-                    <div class="purchase-order">주문서 작성</div><button class="purchase-prevBtn">이전페이지 <span>▶</span></button>
+                    <div class="purchase-order">주문서 작성</div><button type="button" class="purchase-prevBtn" onclick="location.href='<c:url value='/product/productDetailPage?proNum=${product.proNum}' />';">이전페이지 <span>▶</span></button>
                     ! 상품의 수량 변경은 상품상세 페이지에서 가능합니다.
              
                     <table class="purchase-main-table1">
@@ -24,9 +24,9 @@
                                 <td class="purchase-table-td7">합계</td>
                             </tr>
                             <tr>
-                                <td rowspan="3"><div class="purchase-img"><img src="image/sample-image3.jpg" alt=""></div></td>
+                                <td rowspan="3"><div class="purchase-img"><img src="<c:url value='/product/display?filePath=${product.proImage}' />" alt=""></div></td>
                                 <td><fmt:parseNumber value="${product.proPrice}" var="p1" />${p1}원</td>
-                                <td><fmt:parseNumber value="1" var="a" />${a}</td>
+                                <td><fmt:parseNumber value="${quantity}" var="a" />${a}</td>
                                 <td>${product.proMethod}</td>
                                 <td><fmt:parseNumber value="${product.proSendPrice}" var="p2" />${p2}원</td>
                                 <td><input type="number" id="totalPrice1" readonly>원</td>
@@ -40,7 +40,7 @@
                             </tr>
                         </table>
                        
-                            <div class="purchase-span">상품구매금액&nbsp;(${product.proPrice})&nbsp;+ 배송비&nbsp;(${product.proSendPrice}) =  <span class="purchase-total">합계 : (<input type="number" id="totalPrice2" readonly>) 원</span></div>
+                            <div class="purchase-span">상품구매금액&nbsp;(${product.proPrice})&nbsp; +&nbsp; 수량&nbsp;(${quantity})&nbsp; +&nbsp; 배송비&nbsp;(${product.proSendPrice}) =  <span class="purchase-total">합계 : (<input type="number" id="totalPrice2" readonly>) 원</span></div>
                         
                         
                 </div>

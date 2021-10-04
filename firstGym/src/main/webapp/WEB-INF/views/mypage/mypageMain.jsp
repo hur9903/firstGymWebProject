@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@ include file="../include/header.jsp" %>
     
@@ -54,7 +55,7 @@
                     <a href="#" id="mypageMain-bmiBtn">
                           BMI 검사 기록
                     </a><br><br>
-                    <a href="/order/orderListPage">
+                    <a href="<c:url value='/order/orderListPage' />">
                          구매목록
                     </a>
                 </div>
@@ -153,7 +154,7 @@
 	                <table class="bmiList-table">
 	                    <thead>
 	                        <tr>
-	                            <th>번호</th>
+	                        	<th>번호</th>
 	                            <th>검사날짜</th>
 	                            <th>BMI 지수</th>
 	                        </tr>
@@ -161,9 +162,17 @@
 	                    <tbody id="bmiList-body">
 	                    <c:forEach var="results" items="${list}"> 
 	                    	<tr>
-	                            <td>${results.bmiNum}</td>
-	                            <td>${results.bmiDate}</td>
-	                            <td>${results.bmiResult}</td>
+	                    		<td>${results.bmiNum}</td>
+	                            <td>
+	                            	<fmt:formatDate value="${results.bmiDate}" pattern="yyyy.MM.dd" /><br>
+	                            	<fmt:formatDate value="${results.bmiDate}" pattern="HH시mm분" />
+	                            </td>
+	                            <td>
+	                            <c:if test="${results.bmiResult == 'underweight'}">저체중</c:if>
+	                            <c:if test="${results.bmiResult == 'normalweight'}">정상</c:if>
+	                            <c:if test="${results.bmiResult == 'overweight'}">과체중</c:if>
+	                            <c:if test="${results.bmiResult == 'obesity'}">비만</c:if>
+	                            </td>
 	                        </tr>
 		            	 </c:forEach> 
 	                    </tbody>
@@ -172,15 +181,20 @@
                     <ul class="bmiList-paging-ul">
                         <!-- 이전버튼  -->
                         <c:if test="${pc.prev}">
-                        	<a href="<c:url value='/mypage/mainPage?page=${pc.beginPage-1}' />"><li class="bmiList-btn-not-check">&lt;</li></a>
+                        	<a href="<c:url value='/mypage/mainPage?page=${pc.beginPage-1}&msg=bmiModal' />"><li class="bmiList-btn-not-check">&lt;</li></a>
 		                </c:if>
 		                <c:forEach var="pageNum" begin="${pc.beginPage}" end="${pc.endPage}">
-		                	<a href="<c:url value='/mypage/mainPage?page=${pageNum}' />" class="active">${pageNum}</a>
+		                	<c:if test="${pageNum == pc.paging.page}">
+		                	<a href="<c:url value='/mypage/mainPage?page=${pageNum}&msg=bmiModal' />" style="color:blue;">${pageNum}</a>
+		                	</c:if>
+		                	<c:if test="${pageNum != pc.paging.page}">
+		                	<a href="<c:url value='/mypage/mainPage?page=${pageNum}&msg=bmiModal' />">${pageNum}</a>
+		                	</c:if>
 		                </c:forEach>
 		                
 						<!-- 다음버튼 -->
 		                <c:if test="${pc.next}">
-		                	<a href="<c:url value='/mypage/mainPage?page=${pc.endPage+1}' />"><li class="bmiList-btn-not-check">&gt;</li></a>
+		                	<a href="<c:url value='/mypage/mainPage?page=${pc.endPage+1}&msg=bmiModal' />"><li class="bmiList-btn-not-check">&gt;</li></a>
 		                	<!-- <a href=""><li class="bmiList-btn-not-check">&gt;</li></a>
 		                	<a class="next" href="<c:url value='/mypage/mainPage?page=${pc.endPage+1}' />">></a> -->
 		                </c:if>   
@@ -240,9 +254,9 @@
 
 
         $modal_info.hide();
-        if(parseInt(page) === 1) {
-        	console.log('page: 1, modal hide!');
-	        $modal_bmiList.hide();        	
+        $modal_bmiList.hide(); 
+        if('${param.msg}' === 'bmiModal') {
+        	$modal_bmiList.show();        	
         }
 
         $modify.click(function(){

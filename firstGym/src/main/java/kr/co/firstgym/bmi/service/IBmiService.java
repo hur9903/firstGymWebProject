@@ -10,7 +10,7 @@ import kr.co.firstgym.util.PageVO;
 public interface IBmiService {
 	
 	//BMI 계산 결과를 삽입하는 메서드
-	void insertBMI(BmiCheckVO vo, String userId);
+	BmiResultVO insertBMI(BmiCheckVO vo, String userId);
 	
 	//BMI결과내역
 	List<BmiResultVO> selectOne(String userId, PageVO paging);

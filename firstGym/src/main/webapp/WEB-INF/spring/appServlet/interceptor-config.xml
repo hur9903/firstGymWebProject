@@ -11,6 +11,9 @@
 	<!-- 인터셉터 클래스를 bean으로 등록 -->
 	<bean id="userAuthHandler" class="kr.co.firstgym.util.interceptor.UserAuthHandler" />
 	<bean id="boardAuthHandler" class="kr.co.firstgym.util.interceptor.BoardAuthHandler" />
+	<bean id="ManagerInterceptor" class="kr.co.firstgym.util.interceptor.ManagerInterceptor" />
+	<bean id="orderLoginHandler" class="kr.co.firstgym.util.interceptor.OrderLoginHandler" />
+	<bean id="BoardPageInterceptor" class="kr.co.firstgym.util.interceptor.BoardPageInterceptor"/>
 	
 	<mvc:interceptors>
 	
@@ -29,6 +32,28 @@
 			<ref bean="boardAuthHandler" />
 		</mvc:interceptor>
 		
+		<!-- 관리자페이지 권한을 체크하는 핸들러 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/manage/manager"/>
+			<mvc:mapping path="/manage/report"/>
+			<mvc:mapping path="/manage/reportPage"/>
+			<mvc:mapping path="/manage/reportAccept"/>
+			<mvc:mapping path="/manage/reportRefuse"/>
+			<ref bean="ManagerInterceptor"/>
+		</mvc:interceptor>
+
+		<!-- 결제 과정에서 실행되는 PostHandler -->
+		<mvc:interceptor>
+			<mvc:mapping path="/order/*"/>
+			<ref bean="orderLoginHandler" />
+		</mvc:interceptor>
+		
+		<!-- 게시판 이용 권한 체크(postHandler) -->
+		<mvc:interceptor>
+			<mvc:mapping path="/board/boardUpdatePage"/> <!-- 게시글 등록 화면 -->
+			<mvc:mapping path="/board/boardModifyPage"/> <!-- 게시글 수정 화면 -->
+			<ref bean="BoardPageInterceptor" />
+		</mvc:interceptor>
 		
 	</mvc:interceptors>
 

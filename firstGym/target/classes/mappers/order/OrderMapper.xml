@@ -13,6 +13,7 @@
 		<result column="o_date" property="orderDate"/>
 		<result column="o_category" property="orderCategory"/>
 		<result column="p_num" property="proNum"/>
+		<result column="p_image" property="proImage"/>
   	</resultMap>
   	
   	<resultMap type="kr.co.firstgym.command.OrdersVO" id="ordersVO">
@@ -53,10 +54,13 @@
 	  		select rownum as rn, tbl.* from
 		  		(
 		  		select *
-  				from order_product op left outer join orders o
+  				from order_product op
+  				left outer join orders o
   				on op.o_num = o.o_num
+  				left outer join product p
+  				on op.p_num = p.p_num
   				where o.o_sendId = #{id}
-  				order by o.o_num
+  				order by o.o_num desc
 		  		) tbl
 		  	)
 		<![CDATA[

@@ -21,7 +21,7 @@ public class BmiService implements IBmiService {
 	private IBmiMapper mapper;
 	
 	@Override
-	public void insertBMI(BmiCheckVO vo, String userId) {
+	public BmiResultVO insertBMI(BmiCheckVO vo, String userId) {
 		BmiResultVO result = new BmiResultVO();
 		result.setUserId(userId);
 		int age = 2021 - vo.getYear() + 1;
@@ -49,7 +49,11 @@ public class BmiService implements IBmiService {
 		
 		System.out.println(result);
 		
-		mapper.insertBMI(result);
+		if(userId != "") {			
+			mapper.insertBMI(result);
+		}
+		
+		return result;
 		
 	}
 
