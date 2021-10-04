@@ -16,7 +16,12 @@
 	                </div>
                     <tr>
                         <th>아이디</th>
-                        <td>${user.userId}</td>
+                        <c:if test="${login != null}">
+                        	<td>${user.userId}</td>
+                        </c:if>
+                        <c:if test="${login == null}">
+                        	<td>비회원 로그인 사용자입니다.</td>
+                        </c:if>
                     </tr>
                     <tr>
                         <th>이름</th>
@@ -24,7 +29,12 @@
                     </tr>
                     <tr>
                         <th>이메일</th>
-                        <td>${user.userEmail}</td>
+                        <c:if test="${login != null}">
+                        	<td>${user.userEmail}</td>
+                        </c:if>
+                        <c:if test="${login == null}">
+                        	<td>비회원 로그인 사용자입니다.</td>
+                        </c:if>
                     </tr>
                     <tr>
                         <th>전화번호</th>
@@ -32,9 +42,14 @@
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td>${user.userAddr1} &nbsp;
-                        	${user.userAddr2}
-                        </td>
+                        <c:if test="${login != null}">
+	                        <td>${user.userAddr1} &nbsp;
+	                        	${user.userAddr2}
+	                        </td>
+	                    </c:if>
+                        <c:if test="${login == null}">
+                        	<td>비회원 로그인 사용자입니다.</td>
+                        </c:if>
                     </tr>
                
                 </tbody>

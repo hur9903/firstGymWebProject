@@ -25,7 +25,12 @@
                             </tr>
                             <tr class="orderDetail-table-tr">
                                 <td class="orderDetail-table-td">주문한 사람</td>
-                                <td>${OrderProduct.orderSendId}</td>
+                                <c:if test="${login != null}">
+                                	<td>${OrderProduct.orderSendId}</td>
+                                </c:if>
+                                <c:if test="${login == null}">
+                        			<td>비회원 로그인 사용자입니다.</td>
+                        		</c:if>
                             </tr>
                         </table>
                     </div>
