@@ -31,6 +31,10 @@ public class OrderController {
 	@GetMapping("/orderListPage")
 	public String orderListPage(HttpSession session, OrderPageVO page, Model model) {
 		UserVO uvo = (UserVO) session.getAttribute("login");
+		if(uvo == null) {
+			uvo = (UserVO) session.getAttribute("noIdLogin");
+		}
+		
 		int total = service.getTotal(uvo.getUserId());
 		page.setTotalArticleCount(total);
 		
@@ -78,6 +82,9 @@ public class OrderController {
 			RedirectAttributes ra) {
 		
 		UserVO uvo = (UserVO) session.getAttribute("login");
+		if(uvo == null) {
+			uvo = (UserVO) session.getAttribute("noIdLogin");
+		}
 		
 		if(service.getProduct(proNum) == null) {
 			ra.addFlashAttribute("noProductMsg", "noProductMsg");
