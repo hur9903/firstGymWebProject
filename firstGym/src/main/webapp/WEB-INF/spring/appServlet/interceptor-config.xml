@@ -35,7 +35,6 @@
 		<!-- 관리자페이지 권한을 체크하는 핸들러 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/manage/manager"/>
-			<mvc:mapping path="/manage/report"/>
 			<mvc:mapping path="/manage/reportPage"/>
 			<mvc:mapping path="/manage/reportAccept"/>
 			<mvc:mapping path="/manage/reportRefuse"/>
