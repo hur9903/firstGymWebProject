@@ -19,17 +19,17 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                             <div class="item active">
-                                <a href="###">
+                            	<a href='<c:url value="/product/productDetailPage?proNum=44"/>'>
                                 <img src="${pageContext.request.contextPath }/resources/image/slide1.png" alt="슬라이드1">
                                 </a>
                             </div>
                             <div class="item">
-                                <a href="##">
+                                <a href='<c:url value="/product/productDetailPage?proNum=16"/>'>
                                 <img src="${pageContext.request.contextPath }/resources/image/slide2.png" alt="슬라이드2">
                                 </a>
                             </div>
                             <div class="item">
-                                <a href="##">
+                                <a  href='<c:url value="/product/productListPage"/>'>
                                 <img src="${pageContext.request.contextPath }/resources/image/slide3.png" alt="슬라이드3">
                                 </a>
                             </div>
