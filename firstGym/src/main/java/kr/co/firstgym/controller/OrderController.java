@@ -38,7 +38,7 @@ public class OrderController {
 		int total = service.getTotal(uvo.getUserId());
 		page.setTotalArticleCount(total);
 		
-		model.addAttribute("OrderProductList", service.getList(page, uvo.getUserId()));
+		model.addAttribute("OrderProductList", service.getList(page, uvo.getUserId(), (UserVO)session.getAttribute("noIdLogin")));
 		model.addAttribute("page", page);
 		System.out.println(model.getAttribute("noOrderMsg"));
 		model.addAttribute("noOrderMsg", model.getAttribute("noOrderMsg"));

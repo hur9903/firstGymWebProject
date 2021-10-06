@@ -41,17 +41,21 @@
 	
 	<sql id="boardListSql">
 		<if test="category == 'none'">
+			WHERE (board.board_category='none' 
+			OR board.board_category='oxy'
+			OR board.board_category='nonoxy'
+			OR board.board_category='yoga')
 			<if test="condition == 'title'">
-				WHERE board.board_title LIKE '%'||#{keyword}||'%'
+				AND board.board_title LIKE '%'||#{keyword}||'%'
 			</if>
 			<if test="condition == 'writer'">
-				WHERE board.user_id LIKE '%'||#{keyword}||'%'
+				AND board.user_id LIKE '%'||#{keyword}||'%'
 			</if>
 			<if test="condition == 'myBoard'">
-				WHERE board.user_id = #{keyword}
+				AND board.user_id = #{keyword}
 			</if>
 			<if test="condition == 'content'">
-				WHERE board.board_content LIKE '%'||#{keyword}||'%'
+				AND board.board_content LIKE '%'||#{keyword}||'%'
 			</if>
 		</if>
 		<if test="category == 'oxy'">

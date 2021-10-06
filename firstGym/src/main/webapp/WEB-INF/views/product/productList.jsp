@@ -22,7 +22,7 @@
 	                            <option value="band" ${page.category == 'band' ? 'selected' : ''}>운동밴드</option>
 	                        </select>
 	                        <div>
-	                            <input type="text" name="keyword">
+	                            <input type="text" name="text_box">
 	                            <button type="submit" class="color-darkskyblue">검색</button>
 	                        </div>
 	                    </div>
@@ -180,20 +180,20 @@
         <div class="paging">
             <div class="pagination">
             	<c:if test="${pc.prev}">
-                	<a class="prev" href="<c:url value='/product/productListPage?pageNum=${pc.beginPage-1}&page=${pc.beginPage-1}' />">이전</a>
+                	<a class="prev" href="<c:url value='/product/productListPage?pageNum=${pc.beginPage-1}&page=${pc.beginPage-1}&category=${pc.paging.category}&text_box=${pc.paging.text_box}' />">이전</a>
                 </c:if>
                 
                 <c:forEach var="pageNum" begin="${pc.beginPage}" end="${pc.endPage}">
                 		<c:if test="${pageNum == pc.paging.page}">
-		                	<a href="<c:url value='/product/productListPage?pageNum=${pageNum}&page=${pageNum}' />" style="background:rgb(255 166 166);">${pageNum}</a>
+		                	<a href="<c:url value='/product/productListPage?pageNum=${pageNum}&page=${pageNum}&category=${pc.paging.category}&text_box=${pc.paging.text_box}' />" style="background:rgb(255 166 166);">${pageNum}</a>
 		                </c:if>
 		                <c:if test="${pageNum != pc.paging.page}">
-		                	<a href="<c:url value='/product/productListPage?pageNum=${pageNum}&page=${pageNum}' />">${pageNum}</a>
+		                	<a href="<c:url value='/product/productListPage?pageNum=${pageNum}&page=${pageNum}&category=${pc.paging.category}&text_box=${pc.paging.text_box}' />">${pageNum}</a>
 		                </c:if>
                 </c:forEach>
                 
                 <c:if test="${pc.next}">
-                	<a class="next" href="<c:url value='/product/productListPage?pageNum=${pc.endPage+1}&page=${pc.endPage+1}' />">다음</a>
+                	<a class="next" href="<c:url value='/product/productListPage?pageNum=${pc.endPage+1}&page=${pc.endPage+1}&category=${pc.paging.category}&text_box=${pc.paging.text_box}' />">다음</a>
                 </c:if>        
             </div>
         </div>

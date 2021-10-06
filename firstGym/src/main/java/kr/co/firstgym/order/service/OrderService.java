@@ -13,6 +13,7 @@ import kr.co.firstgym.command.OrderPageVO;
 import kr.co.firstgym.command.OrderProductVO;
 import kr.co.firstgym.command.OrdersVO;
 import kr.co.firstgym.command.ProductVO;
+import kr.co.firstgym.command.UserVO;
 import kr.co.firstgym.order.mapper.IOrderMapper;
 import kr.co.firstgym.util.PageVO;
 
@@ -23,11 +24,12 @@ public class OrderService implements IOrderService{
 	private IOrderMapper mapper;
 
 	@Override
-	public List<OrderProductVO> getList(OrderPageVO vo, String userId) {
+	public List<OrderProductVO> getList(OrderPageVO vo, String userId, UserVO nonUser) {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("page", vo);
 		map.put("id", userId);
+		map.put("nonUser", nonUser);
 		List<OrderProductVO> list = mapper.getList(map);
 		
 		/*

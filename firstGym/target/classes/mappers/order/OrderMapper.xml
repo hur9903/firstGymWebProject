@@ -59,7 +59,11 @@
   				on op.o_num = o.o_num
   				left outer join product p
   				on op.p_num = p.p_num
-  				where o.o_sendId = #{id}
+  				where o.o_sendId = #{id}  				
+  				<if test="nonUser != null">
+  					and o.o_sendname = #{nonUser.userName}
+  					and o.o_pnum = #{nonUser.userPhone}
+  				</if>
   				order by o.o_num desc
 		  		) tbl
 		  	)

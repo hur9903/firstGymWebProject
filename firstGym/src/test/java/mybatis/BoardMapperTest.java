@@ -30,11 +30,26 @@ public class BoardMapperTest {
 		
 		BoardVO vo = new BoardVO();
 		
-		for(int i = 0; i <1000; i++) {
-			vo.setUserId("woozu01");
+		for(int i = 0; i <100; i++) {
+			vo.setUserId("woozu9914");
 			vo.setBoardContent("test" + i);
 			vo.setBoardTitle("test" + i);
 			vo.setBoardCategory("none");
+			mapper.regist(vo);
+			vo.setUserId("woozu9914");
+			vo.setBoardContent("test" + i);
+			vo.setBoardTitle("test" + i);
+			vo.setBoardCategory("oxy");
+			mapper.regist(vo);
+			vo.setUserId("woozu9914");
+			vo.setBoardContent("test" + i);
+			vo.setBoardTitle("test" + i);
+			vo.setBoardCategory("nonoxy");
+			mapper.regist(vo);
+			vo.setUserId("woozu9914");
+			vo.setBoardContent("test" + i);
+			vo.setBoardTitle("test" + i);
+			vo.setBoardCategory("yoga");
 			mapper.regist(vo);
 		}
 	}

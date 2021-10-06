@@ -12,7 +12,7 @@
                 <hr>
                 <div class="boardContent-updonw-padding-div boardContent-clearfix">
                     <div class="boardContent-float-left">
-                        <button class="report-btn-big">목록</button>
+                        <button id="reportList" class="report-btn-big">목록</button>
                     </div>
                     <div class="boardContent-float-right">
                     	<form id="accept-form" action="<c:url value="/manage/reportAccept" />" method="post" style="display: inline-block;">
@@ -78,4 +78,8 @@
     $('#refuse').click(function(){
     	$('#refuse-form').submit();
     });
+    
+    $('#reportList').click(function(){
+    	location.href='<c:url value="/manage/manager" />';
+    })
     </script>

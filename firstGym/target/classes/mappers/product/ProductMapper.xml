@@ -37,10 +37,10 @@
 			  	AND p_category = '웨이트'
 		  		</if>
 		  		<if test="category == 'yoga'">		  		
-			  	AND p_category = '요가,스트레칭'
+			  	AND p_category = '요가, 스트레칭'
 		  		</if>
 		  		<if test="category == 'band'">		  		
-			  	AND p_category = '운동밴드'
+			  	AND p_category = '밴드운동'
 		  		</if>
 		  		ORDER BY p_num DESC
 		  		) tbl
@@ -63,7 +63,18 @@
   		SELECT COUNT(*)
   		FROM product
   		WHERE p_name LIKE '%'||#{text_box}||'%'
-  	
+  		<if test="category == 'oxy'">		  		
+		AND p_category = '유산소운동'
+		</if>
+		<if test="category == 'nonoxy'">		  		
+		AND p_category = '웨이트'
+		</if>
+		<if test="category == 'yoga'">		  		
+		AND p_category = '요가, 스트레칭'
+		</if>
+		<if test="category == 'band'">		  		
+		AND p_category = '밴드운동'
+		</if>
   	</select>
   	
   	<!-- 상품 구매여부 -->

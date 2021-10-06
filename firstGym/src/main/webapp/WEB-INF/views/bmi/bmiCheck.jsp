@@ -105,7 +105,11 @@
 		});
 		
 		$('#bmi-to-last-result').click(function(){
-			location.href = '<c:url value="/bmi/bmiList" />';
+			if('${login}' !== ''){
+				location.href = '<c:url value="/bmi/bmiList" />';
+			}else{
+				alert('회원 로그인이 필요한 기능입니다.');
+			}
 		});
 		
         $("#height").on("focusout", function() {

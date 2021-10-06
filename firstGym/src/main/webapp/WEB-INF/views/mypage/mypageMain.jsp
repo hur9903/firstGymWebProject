@@ -62,7 +62,7 @@
                     <a href="#" id="mypageMain-modBtn">
                         회원 정보 수정
                     </a> <br><br>
-                    <a href="<c:url value='/board/boardListPage' />?category=none&condition=myBoard&keyword=${login.userId}">
+                    <a id="mypageMy-board-btn" href="">
                          내가 쓴 게시글 보기
                     </a>
                 </div>
@@ -256,6 +256,16 @@
 
 
     <script>
+    	//내가 쓴 게시글 이동
+    	$('#mypageMy-board-btn').click(function(e){
+    		if('${login}' !== ''){
+    			e.preventDefault();
+    			location.href='<c:url value='/board/boardListPage' />?category=none&condition=myBoard&keyword=${login.userId}';
+    		}else{
+    			alert("회원 로그인이 필요한 기능입니다.");
+    		}
+    	});
+    
         //회원 정보 수정 모달
         const $modal_info = $('#info');
         const $modify = $('#mypageMain-modBtn');
@@ -273,7 +283,11 @@
         }
 
         $modify.click(function(){
-            $modal_info.show();
+        	if('${login}' !== ''){
+            	$modal_info.show();
+        	}else{
+        		alert('회원 로그인이 필요한 기능입니다.');
+        	}
         });
 
         $mypageModify_can.click(function(){
@@ -286,7 +300,11 @@
 
         
         $mypageMain_bmiBtn.click(function() {
-			$modal_bmiList.show();
+        	if('${login}' !== ''){
+				$modal_bmiList.show();
+        	} else{
+        		alert('회원 로그인이 필요한 기능입니다.');
+        	}
 		})
         
         $bmiList_confirm.click(function() {
@@ -302,7 +320,11 @@
         $delete_modal.hide();
         
         $deleteBtn.click(function() {
-			$delete_modal.show();
+        	if('${login}' !== ''){
+				$delete_modal.show();
+        	}else{
+        		alert('회원 로그인이 필요한 기능입니다.');
+        	}
 		})
         
 		$del_cancel.click(function() {
